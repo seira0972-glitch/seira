@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Pages 多頁面架站教學 | 完整筆記</title>
+    <title>筆記 | 我的品牌</title>
     <style>
         * {
             margin: 0;
@@ -12,196 +12,93 @@
         }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.65;
-            color: #1e293b;
-            background: #f8fafc;
-        }
-        nav {
-            background: white;
-            padding: 16px 24px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            text-align: center;
-            z-index: 100;
-        }
-        nav a {
-            color: #334155;
-            text-decoration: none;
-            margin: 0 18px;
-            font-weight: 500;
-            padding: 6px 4px;
-            border-bottom: 2px solid transparent;
-        }
-        nav a:hover {
-            color: #4f46e5;
-            border-bottom-color: #4f46e5;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
         }
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 48px 24px;
+            padding: 60px 20px;
         }
-        .hero {
+        h1 {
             text-align: center;
-            margin-bottom: 48px;
+            color: #667eea;
+            margin-bottom: 40px;
         }
-        .hero h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #1e293b, #4f46e5);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 12px;
+        .note-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        .note-card {
+        .note-item {
             background: white;
-            border-radius: 28px;
-            padding: 28px 32px;
-            margin-bottom: 32px;
+            border-radius: 16px;
+            padding: 25px 30px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid #eef2ff;
+            border-left: 5px solid #667eea;
+            transition: transform 0.2s;
         }
-        .note-card h2 {
-            font-size: 1.6rem;
-            color: #4f46e5;
-            margin-bottom: 20px;
-            border-left: 5px solid #4f46e5;
-            padding-left: 16px;
+        .note-item:hover {
+            transform: translateX(5px);
         }
-        .note-card h3 {
-            margin: 24px 0 12px 0;
-            color: #0f172a;
+        .note-item h3 {
+            margin-bottom: 10px;
         }
-        .note-card code {
-            background: #f1f5f9;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-family: monospace;
-            font-size: 0.85em;
+        .note-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
         }
-        .note-card pre {
-            background: #0f172a;
-            color: #e2e8f0;
-            padding: 18px;
-            border-radius: 20px;
-            overflow-x: auto;
-            margin: 18px 0;
-            font-size: 0.85rem;
-            font-family: monospace;
-        }
-        .step {
-            margin: 20px 0;
-            padding-left: 20px;
-            border-left: 3px solid #cbd5e1;
+        .note-item a:hover {
+            text-decoration: underline;
         }
         footer {
-            background: #0f172a;
-            color: #cbd5e1;
+            background: #333;
+            color: white;
             text-align: center;
-            padding: 36px 20px;
-            margin-top: 40px;
-        }
-        @media (max-width: 768px) {
-            nav a { margin: 0 10px; font-size: 0.9rem; }
-            .note-card { padding: 20px; }
-            .hero h1 { font-size: 1.8rem; }
+            padding: 30px;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">首頁</a>
-        <a href="about.html">關於</a>
-        <a href="services.html">服務</a>
-        <a href="notes.html">筆記</a>
-    </nav>
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+                setTimeout(() => {
+                    const links = document.querySelectorAll('#nav-placeholder nav a');
+                    links.forEach(link => {
+                        if (link.getAttribute('href') === 'notes.html') {
+                            link.style.color = '#667eea';
+                            link.style.borderBottom = '2px solid #667eea';
+                        }
+                    });
+                }, 100);
+            })
+            .catch(error => console.log('導航載入失敗:', error));
+    </script>
 
     <div class="container">
-        <div class="hero">
-            <h1>📘 GitHub Pages 多頁面架站完全指南</h1>
-            <p>從零開始 · 免費部署品牌官網 · 無需後端</p>
-        </div>
-
-        <div class="note-card">
-            <h2>🎯 目標與概念</h2>
-            <p>使用 GitHub Pages 建立「多個獨立頁面」的現代化品牌網站。完全免費、支援自訂網域，適合個人品牌或小型企業。</p>
-        </div>
-
-        <div class="note-card">
-            <h2>📁 步驟 1：建立 GitHub 倉庫</h2>
-            <div class="step">
-                <p>1. 註冊 GitHub 帳號</p>
-                <p>2. 點擊 New repository</p>
-                <p>3. 倉庫名稱輸入：<code>你的帳號.github.io</code></p>
-                <p>4. 勾選 Add a README file，點擊 Create repository</p>
+        <h1>📘 學習筆記</h1>
+        <div class="note-list">
+            <div class="note-item">
+                <h3>📖 GitHub Pages 多頁面架站教學</h3>
+                <p>從零開始，免費部署品牌官網，無需後端。</p>
+                <a href="github-notes.html" target="_blank">👉 完整教學筆記（新分頁開啟）</a>
             </div>
-        </div>
-
-        <div class="note-card">
-            <h2>🌐 步驟 2：建立首頁 (index.html)</h2>
-            <div class="step">
-                <p>1. 點擊 Add file → Create new file</p>
-                <p>2. 檔名輸入 <code>index.html</code></p>
-                <p>3. 貼上 HTML 代碼，點擊 Commit changes</p>
+            <div class="note-item">
+                <h3>🚧 更多筆記即將上線</h3>
+                <p>AI 工具教學、設計資源分享、SEO 優化技巧⋯⋯敬請期待！</p>
             </div>
-        </div>
-
-        <div class="note-card">
-            <h2>📄 步驟 3：新增多個頁面</h2>
-            <div class="step">
-                <p>重複上述步驟，建立：</p>
-                <ul style="margin-left: 30px; margin-top: 10px;">
-                    <li><code>about.html</code> - 關於我們</li>
-                    <li><code>services.html</code> - 服務項目</li>
-                    <li><code>notes.html</code> - 筆記 / 文章</li>
-                </ul>
-                <p>每個頁面加入統一的導航欄：</p>
-                <pre>&lt;nav&gt;
-    &lt;a href="index.html"&gt;首頁&lt;/a&gt;
-    &lt;a href="about.html"&gt;關於&lt;/a&gt;
-    &lt;a href="services.html"&gt;服務&lt;/a&gt;
-    &lt;a href="notes.html"&gt;筆記&lt;/a&gt;
-&lt;/nav&gt;</pre>
-            </div>
-        </div>
-
-        <div class="note-card">
-            <h2>⚙️ 步驟 4：開啟 GitHub Pages</h2>
-            <div class="step">
-                <p>1. 進入倉庫 → Settings → Pages</p>
-                <p>2. 在 Branch 選擇 main，點 Save</p>
-                <p>3. 等待 1-2 分鐘，網站就會在 <code>https://你的帳號.github.io/</code> 上線</p>
-            </div>
-        </div>
-
-        <div class="note-card">
-            <h2>🎨 步驟 5：自訂設計與內容</h2>
-            <div class="step">
-                <p>• 修改 HTML 中的文字、圖片、連結</p>
-                <p>• 用 v0.dev 或 ChatGPT 生成更專業的版面</p>
-                <p>• 隨時編輯、Commit，網站會自動更新</p>
-            </div>
-        </div>
-
-        <div class="note-card">
-            <h2>💡 進階技巧</h2>
-            <div class="step">
-                <p>✅ 綁定自訂網域：在 Pages 設定中填入你的網域，再到網域商設定 DNS</p>
-                <p>✅ 使用 AI 生成多頁面：用 v0.dev 分別生成各頁面，保持風格一致</p>
-                <p>✅ 加入表單：使用 Formspree 或 Google 表單嵌入</p>
-            </div>
-        </div>
-
-        <div class="note-card">
-            <h2>🔗 我的網站成果</h2>
-            <p>👉 <a href="https://seira0972-glitch.github.io/seira/" target="_blank">https://seira0972-glitch.github.io/seira/</a></p>
-            <p>完全免費、多頁面、可隨時擴充。</p>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 我的品牌 | 用 GitHub Pages 免費架設 | 筆記持續更新中</p>
+        <p>© 2026 我的品牌 | 用 GitHub Pages 免費架設</p>
     </footer>
 </body>
 </html>
