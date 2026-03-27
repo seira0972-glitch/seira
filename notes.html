@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>筆記 | 我的品牌</title>
+    <title>用 AI 做網站 | 我的品牌</title>
     <style>
         * {
             margin: 0;
@@ -33,6 +33,10 @@
             -webkit-background-clip: text;
             color: transparent;
             margin-bottom: 12px;
+        }
+        .hero p {
+            color: #475569;
+            font-size: 1.1rem;
         }
         /* 公開大綱區塊 */
         .outline-card {
@@ -148,6 +152,7 @@
             padding: 2px 8px;
             border-radius: 12px;
             font-family: monospace;
+            font-size: 0.9rem;
         }
         .step-detail pre {
             background: #0f172a;
@@ -157,6 +162,15 @@
             overflow-x: auto;
             margin: 15px 0;
             font-size: 0.85rem;
+            font-family: monospace;
+        }
+        .tip {
+            background: #eef2ff;
+            padding: 12px 16px;
+            border-radius: 16px;
+            margin: 15px 0 0;
+            font-size: 0.9rem;
+            color: #1e293b;
         }
         footer {
             background: #0f172a;
@@ -194,21 +208,21 @@
 
     <div class="container">
         <div class="hero">
-            <h1>📘 GitHub Pages 架站筆記</h1>
-            <p>公開大綱 · 完整教學需要密碼</p>
+            <h1>🤖 用 AI 做網站</h1>
+            <p>GitHub Pages + AI 工具 · 從零到上線 · 完整教學需密碼</p>
         </div>
 
         <!-- 公開的大綱區塊（所有人都看得到） -->
         <div class="outline-card">
             <h2>📌 課程大綱</h2>
             <ul class="step-list">
-                <li><span class="step-number">1</span> 建立 GitHub 帳號與倉庫 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
-                <li><span class="step-number">2</span> 建立首頁 index.html <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
-                <li><span class="step-number">3</span> 新增多個頁面 + 導航欄 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
-                <li><span class="step-number">4</span> 開啟 GitHub Pages <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
-                <li><span class="step-number">5</span> 自訂設計與進階功能 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">1</span> AI 生成網站架構與內容 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">2</span> 建立 GitHub 帳號與倉庫 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">3</span> 將 AI 生成的檔案上傳 GitHub <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">4</span> 開啟 GitHub Pages 發佈網站 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">5</span> 用 AI 優化設計與進階功能 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
             </ul>
-            <p style="color: #64748b; margin-top: 16px;">✨ 完整教學包含：實際程式碼、響應式設計、共用導航欄、自訂網域設定⋯⋯</p>
+            <p style="color: #64748b; margin-top: 16px;">✨ 學習如何用 ChatGPT / v0.dev 生成完整網頁，搭配 GitHub Pages 免費發佈，打造你的品牌官網。</p>
         </div>
 
         <!-- 密碼解鎖區塊 -->
@@ -221,77 +235,81 @@
 
             <!-- 隱藏的詳細內容（密碼正確後顯示） -->
             <div id="detailedContent" class="detailed-content">
-                <h2 style="color: #4f46e5; margin-bottom: 20px;">🔓 完整教學筆記</h2>
+                <h2 style="color: #4f46e5; margin-bottom: 20px;">🔓 完整教學：用 AI 做網站</h2>
                 
                 <div class="step-detail">
-                    <h3>📁 步驟 1：建立 GitHub 帳號與倉庫</h3>
+                    <h3>🤖 步驟 1：用 AI 生成網站架構與內容</h3>
+                    <p>使用 ChatGPT 或 v0.dev 來生成你的網頁程式碼：</p>
+                    <ul style="margin: 12px 0 12px 24px;">
+                        <li><strong>ChatGPT</strong>：直接輸入需求，例如「幫我生成一個品牌官網的首頁，要有導航欄、Hero 區塊、三個服務卡片，風格現代簡潔」</li>
+                        <li><strong>v0.dev</strong>：更適合生成 React 元件，也可輸出 HTML/CSS 程式碼</li>
+                    </ul>
+                    <p>範例提示詞：</p>
+                    <pre>請幫我生成一個完整的 index.html 檔案，內容包含：
+- 導航欄（首頁、關於、服務、筆記）
+- 一個漂亮的 Hero 背景區塊
+- 三個服務項目卡片
+- 頁尾
+風格：現代簡潔、紫色主色調、響應式設計</pre>
+                    <div class="tip">💡 提示詞越詳細，AI 生成的結果越接近你想要的樣子！</div>
+                </div>
+
+                <div class="step-detail">
+                    <h3>📁 步驟 2：建立 GitHub 帳號與倉庫</h3>
                     <p>1. 前往 <a href="https://github.com" target="_blank">GitHub.com</a> 註冊免費帳號</p>
                     <p>2. 點擊右上角「+」→ New repository</p>
-                    <p>3. Repository name 輸入：<code>你的帳號.github.io</code>（例如 <code>seira0972-glitch.github.io</code>）</p>
+                    <p>3. Repository name 輸入：<code>你的帳號.github.io</code></p>
                     <p>4. 勾選 Add a README file，保持 Public，點擊 Create repository</p>
-                    <div class="tip">💡 這個名稱會直接成為你的網站網址！</div>
+                    <div class="tip">💡 這個名稱會直接成為你的網站網址！例如：<code>seira0972-glitch.github.io</code></div>
                 </div>
 
                 <div class="step-detail">
-                    <h3>🌐 步驟 2：建立首頁 index.html</h3>
-                    <p>在倉庫內點擊 Add file → Create new file，檔名輸入 <code>index.html</code>，貼上以下代碼：</p>
-                    <pre>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;我的品牌&lt;/title&gt;
-    &lt;meta charset="UTF-8"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;歡迎來到我的品牌&lt;/h1&gt;
-    &lt;p&gt;我的第一個 GitHub Pages 網站！&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;</pre>
-                    <p>點擊 Commit changes 儲存。</p>
+                    <h3>📤 步驟 3：將 AI 生成的檔案上傳 GitHub</h3>
+                    <p>把 AI 幫你生成的 HTML 檔案上傳到倉庫：</p>
+                    <ul style="margin: 12px 0 12px 24px;">
+                        <li>點擊 <strong>Add file → Create new file</strong></li>
+                        <li>檔名輸入 <code>index.html</code></li>
+                        <li>貼上 AI 生成的程式碼 → Commit changes</li>
+                        <li>重複步驟，上傳 <code>about.html</code>、<code>services.html</code>、<code>notes.html</code></li>
+                    </ul>
+                    <div class="tip">✨ 如果 AI 只給了你一個頁面，可以再用同樣的方式生成其他頁面，記得保持導航欄一致。</div>
                 </div>
 
                 <div class="step-detail">
-                    <h3>📄 步驟 3：新增多個頁面 + 導航欄</h3>
-                    <p>重複上述步驟，建立 <code>about.html</code>、<code>services.html</code>、<code>notes.html</code>。</p>
-                    <p>每個頁面都要加上導航欄，讓訪客可以在頁面之間跳轉：</p>
-                    <pre>&lt;nav&gt;
-    &lt;a href="index.html"&gt;首頁&lt;/a&gt;
-    &lt;a href="about.html"&gt;關於&lt;/a&gt;
-    &lt;a href="services.html"&gt;服務&lt;/a&gt;
-    &lt;a href="notes.html"&gt;筆記&lt;/a&gt;
-&lt;/nav&gt;</pre>
-                    <p>✨ 進階：可建立 <code>nav.html</code> 用 JavaScript 載入，一處修改全部同步。</p>
-                </div>
-
-                <div class="step-detail">
-                    <h3>⚙️ 步驟 4：開啟 GitHub Pages</h3>
+                    <h3>🚀 步驟 4：開啟 GitHub Pages 發佈網站</h3>
                     <p>1. 進入倉庫 → Settings → Pages</p>
-                    <p>2. 在 Branch 選擇 main，點 Save</p>
+                    <p>2. 在 Branch 選擇 <code>main</code>，點 Save</p>
                     <p>3. 等待 1-2 分鐘，網站就會在 <code>https://你的帳號.github.io/</code> 上線</p>
-                    <p>每次修改檔案並 Commit，網站會自動更新。</p>
+                    <p>🎉 恭喜！你的 AI 生成網站已經正式上線了！</p>
+                    <div class="tip">每次修改檔案並 Commit，網站會自動更新，無需任何額外操作。</div>
                 </div>
 
                 <div class="step-detail">
-                    <h3>🎨 步驟 5：自訂設計與進階功能</h3>
-                    <p><strong>自訂設計：</strong> 修改 CSS 樣式，使用 v0.dev 或 ChatGPT 生成現代化版面。</p>
-                    <p><strong>自訂網域：</strong> 在 Pages 設定中填入你的網域，再到網域商設定 DNS。</p>
-                    <p><strong>聯絡表單：</strong> 使用 Formspree 或 Google 表單嵌入。</p>
-                    <p><strong>共用導航欄：</strong> 建立 nav.html，用 fetch 載入到所有頁面。</p>
+                    <h3>✨ 步驟 5：用 AI 優化設計與進階功能</h3>
+                    <p><strong>優化設計：</strong> 把現有網頁貼給 ChatGPT，請它幫你「優化視覺、加上動畫效果、改善手機版樣式」</p>
+                    <p><strong>自訂網域：</strong> 在 Pages 設定中填入你的網域，再到網域商設定 DNS</p>
+                    <p><strong>聯絡表單：</strong> 請 AI 幫你嵌入 Formspree 或 Google 表單</p>
+                    <p><strong>共用導航欄：</strong> 請 AI 幫你寫一個 nav.html 搭配 fetch 載入，一處修改全部同步</p>
+                    <pre>// 範例提示詞：
+「幫我建立一個 nav.html 檔案，裡面放導航欄的 HTML，
+然後教我怎麼用 JavaScript 把這個導航欄載入到所有頁面」</pre>
                 </div>
 
-                <div style="background: #eef2ff; padding: 20px; border-radius: 20px; margin-top: 20px;">
-                    <p>🎉 恭喜！你已經學會用 GitHub Pages 免費建立多頁面品牌官網了！</p>
-                    <p>👉 成果範例：<a href="https://seira0972-glitch.github.io/seira/" target="_blank">https://seira0972-glitch.github.io/seira/</a></p>
+                <div style="background: linear-gradient(135deg, #eef2ff, #ffffff); padding: 24px; border-radius: 24px; margin-top: 20px; border: 1px solid #cbd5e1;">
+                    <p style="font-size: 1.1rem; font-weight: 600; color: #4f46e5;">🎯 你的 AI 網站成果</p>
+                    <p>👉 <a href="https://seira0972-glitch.github.io/seira/" target="_blank">https://seira0972-glitch.github.io/seira/</a></p>
+                    <p>完全用 AI 輔助生成 + GitHub Pages 免費發佈！你也可以做到 ✨</p>
                 </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 我的品牌 | 用 GitHub Pages 免費架設 | 筆記內容受密碼保護</p>
+        <p>© 2026 我的品牌 | 用 AI + GitHub Pages 免費架設 | 完整內容需密碼</p>
     </footer>
 
     <script>
-        // 設定密碼（請改成你自己想要的）
+        // 🔑 設定密碼（請改成你自己想要的）
         const CORRECT_PASSWORD = "1234";
 
         function checkPassword() {
@@ -302,7 +320,6 @@
             if (inputPassword === CORRECT_PASSWORD) {
                 detailedContent.classList.add('show');
                 errorMsg.textContent = '';
-                // 可選：清空密碼框
                 document.getElementById('passwordInput').value = '';
             } else {
                 errorMsg.textContent = '❌ 密碼錯誤，請再試一次';
@@ -310,7 +327,6 @@
             }
         }
 
-        // 允許按 Enter 鍵送出
         document.getElementById('passwordInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 checkPassword();
