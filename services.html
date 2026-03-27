@@ -17,37 +17,66 @@
             background: #fafafa;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 70px 20px;
         }
         h1 {
             text-align: center;
             color: #667eea;
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
-        .service-list {
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+        .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
         }
-        .service-item {
+        .service-card {
             background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border-left: 5px solid #667eea;
+            border-radius: 24px;
+            padding: 35px 30px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            border-left: 6px solid #667eea;
+            transition: all 0.3s;
         }
-        .service-item h3 {
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(102,126,234,0.12);
+        }
+        .service-card h3 {
             color: #667eea;
-            margin-bottom: 15px;
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+        }
+        .service-card p {
+            color: #555;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        .service-card ul {
+            margin-left: 20px;
+            color: #666;
+        }
+        .service-card li {
+            margin: 8px 0;
         }
         footer {
-            background: #333;
-            color: white;
+            background: #1e293b;
+            color: #94a3b8;
             text-align: center;
-            padding: 30px;
-            margin-top: 60px;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .service-card { padding: 25px; }
         }
     </style>
 </head>
@@ -55,7 +84,7 @@
     <div id="nav-placeholder"></div>
     <script>
         fetch('nav.html')
-            .then(response => response.text())
+            .then(res => res.text())
             .then(data => {
                 document.getElementById('nav-placeholder').innerHTML = data;
                 setTimeout(() => {
@@ -68,26 +97,39 @@
                     });
                 }, 100);
             })
-            .catch(error => console.log('導航載入失敗:', error));
+            .catch(err => console.log('導航載入失敗:', err));
     </script>
 
     <div class="container">
         <h1>我們的服務</h1>
-        <div class="service-list">
-            <div class="service-item">
+        <p class="subtitle">專業、快速、免後端 — 為你量身打造的數位解決方案</p>
+        <div class="service-grid">
+            <div class="service-card">
                 <h3>🚀 網站開發</h3>
                 <p>快速建置專業品牌官網，響應式設計，手機電腦都完美顯示。</p>
-                <p>✔ 一鍵部署<br>✔ 永久免費託管<br>✔ 自訂網域</p>
+                <ul>
+                    <li>✔ 一鍵部署</li>
+                    <li>✔ 永久免費託管</li>
+                    <li>✔ 自訂網域</li>
+                </ul>
             </div>
-            <div class="service-item">
+            <div class="service-card">
                 <h3>🎨 品牌設計</h3>
                 <p>打造獨特的視覺識別系統，讓你的品牌與眾不同。</p>
-                <p>✔ Logo 設計<br>✔ 配色方案<br>✔ 品牌識別手冊</p>
+                <ul>
+                    <li>✔ Logo 設計</li>
+                    <li>✔ 配色方案</li>
+                    <li>✔ 品牌識別手冊</li>
+                </ul>
             </div>
-            <div class="service-item">
+            <div class="service-card">
                 <h3>🤖 AI 顧問</h3>
                 <p>導入 AI 工具，提升工作效率 10 倍，降低營運成本。</p>
-                <p>✔ 工作流程優化<br>✔ AI 工具導入<br>✔ 客製化開發</p>
+                <ul>
+                    <li>✔ 工作流程優化</li>
+                    <li>✔ AI 工具導入</li>
+                    <li>✔ 客製化開發</li>
+                </ul>
             </div>
         </div>
     </div>
