@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的品牌官網</title>
+    <title>首頁 | 我的品牌</title>
     <style>
         * {
             margin: 0;
@@ -15,40 +15,35 @@
             line-height: 1.6;
             color: #333;
         }
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
         nav {
             background: white;
             padding: 15px 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
+            text-align: center;
         }
         nav a {
             color: #333;
             text-decoration: none;
             margin: 0 15px;
             font-weight: 500;
+            padding: 5px 10px;
         }
-        nav a:hover {
+        nav a:hover, nav a.active {
             color: #667eea;
+            border-bottom: 2px solid #667eea;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-        }
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        .subtitle {
-            font-size: 20px;
-            opacity: 0.9;
+            padding: 60px 20px;
         }
         .services {
             display: grid;
@@ -70,33 +65,6 @@
             color: #667eea;
             margin-bottom: 15px;
         }
-        .contact-form {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 600px;
-            margin: 40px auto 0;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-family: inherit;
-        }
-        button {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background: #5a67d8;
-        }
         footer {
             background: #333;
             color: white;
@@ -105,64 +73,43 @@
             margin-top: 60px;
         }
         @media (max-width: 768px) {
-            h1 { font-size: 32px; }
             nav a { margin: 0 8px; font-size: 14px; }
+            header h1 { font-size: 32px; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="#">首頁</a>
-        <a href="#services">服務</a>
-        <a href="#about">關於</a>
-        <a href="#contact">聯絡</a>
+        <a href="index.html" class="active">首頁</a>
+        <a href="about.html">關於</a>
+        <a href="services.html">服務</a>
     </nav>
 
     <header>
         <h1>歡迎來到我的品牌</h1>
-        <p class="subtitle">用 AI 打造你的數位資產，完全免費上線！</p>
+        <p>用 AI 打造你的數位資產，完全免費上線！</p>
     </header>
 
     <div class="container">
-        <section id="services">
-            <h2 style="text-align: center;">我們的服務</h2>
-            <div class="services">
-                <div class="service-card">
-                    <h3>🚀 網站開發</h3>
-                    <p>快速建置專業品牌官網，響應式設計</p>
-                </div>
-                <div class="service-card">
-                    <h3>🎨 品牌設計</h3>
-                    <p>打造獨特的視覺識別系統</p>
-                </div>
-                <div class="service-card">
-                    <h3>🤖 AI 顧問</h3>
-                    <p>導入 AI 工具，提升工作效率 10 倍</p>
-                </div>
+        <h2 style="text-align: center;">我們的服務</h2>
+        <div class="services">
+            <div class="service-card">
+                <h3>🚀 網站開發</h3>
+                <p>快速建置專業品牌官網，響應式設計</p>
             </div>
-        </section>
-
-        <section id="about" style="margin-top: 60px;">
-            <h2 style="text-align: center;">關於我們</h2>
-            <p style="text-align: center; max-width: 800px; margin: 20px auto;">
-                我們相信每個人都能擁有自己的數位資產。透過最新的 AI 工具，
-                不需要寫程式也能建立專業網站，真正掌握你的線上主權。
-            </p>
-        </section>
-
-        <section id="contact">
-            <h2 style="text-align: center;">聯絡我們</h2>
-            <div class="contact-form">
-                <input type="text" placeholder="您的姓名">
-                <input type="email" placeholder="電子郵件">
-                <textarea rows="4" placeholder="留言內容"></textarea>
-                <button onclick="alert('感謝您的留言！我們會盡快回覆。')">送出訊息</button>
+            <div class="service-card">
+                <h3>🎨 品牌設計</h3>
+                <p>打造獨特的視覺識別系統</p>
             </div>
-        </section>
+            <div class="service-card">
+                <h3>🤖 AI 顧問</h3>
+                <p>導入 AI 工具，提升工作效率 10 倍</p>
+            </div>
+        </div>
     </div>
 
     <footer>
-        <p>© 2026 我的品牌. 用 GitHub Pages 免費架設</p>
+        <p>© 2026 我的品牌 | 用 GitHub Pages 免費架設</p>
     </footer>
 </body>
 </html>
