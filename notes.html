@@ -205,20 +205,20 @@
     <div class="container">
         <div class="hero">
             <h1>🤖 用 AI 做網站</h1>
-            <p>GitHub Pages + AI 工具 · 從零到上線 · 完整教學需密碼</p>
+            <p>ChatGPT + GitHub Pages · 從零到上線 · 完整教學需密碼</p>
         </div>
 
         <!-- 公開的大綱區塊 -->
         <div class="outline-card">
             <h2>📌 課程大綱</h2>
             <ul class="step-list">
-                <li><span class="step-number">1</span> 建立共用導航欄 (nav.html) <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
-                <li><span class="step-number">2</span> AI 生成各頁面內容 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">1</span> 用 ChatGPT 生成共用導航欄 (nav.html) <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">2</span> 用 ChatGPT 生成各頁面內容 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
                 <li><span class="step-number">3</span> 建立 GitHub 帳號與倉庫 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
                 <li><span class="step-number">4</span> 上傳檔案並開啟 GitHub Pages <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
-                <li><span class="step-number">5</span> 用 AI 優化設計與擴充頁面 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">5</span> 用 ChatGPT 優化設計與擴充頁面 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
             </ul>
-            <p style="color: #64748b; margin-top: 16px;">✨ 學習如何用 AI 生成完整網頁，搭配 GitHub Pages 免費發佈，打造你的個人網站。</p>
+            <p style="color: #64748b; margin-top: 16px;">✨ 學習如何用 ChatGPT 生成完整網頁，搭配 GitHub Pages 免費發佈，打造你的個人網站。</p>
         </div>
 
         <!-- 密碼解鎖區塊 -->
@@ -231,32 +231,45 @@
 
             <!-- 隱藏的詳細內容 -->
             <div id="detailedContent" class="detailed-content">
-                <h2 style="color: #4f46e5; margin-bottom: 20px;">🔓 完整教學：用 AI 做網站</h2>
+                <h2 style="color: #4f46e5; margin-bottom: 20px;">🔓 完整教學：用 ChatGPT 做網站</h2>
                 
                 <div class="step-detail">
-                    <h3>🧭 步驟 1：建立共用導航欄 (nav.html)</h3>
+                    <h3>🧭 步驟 1：用 ChatGPT 生成共用導航欄 (nav.html)</h3>
                     <p>導航欄是所有頁面的「目錄」，先建立它，之後每個頁面都能共用。</p>
-                    <p>請 AI 幫你生成 <code>nav.html</code>：</p>
+                    <p>打開 ChatGPT，輸入以下提示詞：</p>
                     <pre>幫我建立一個 nav.html 檔案，裡面是網站的導航欄，包含：
 - 首頁 (index.html)
 - 關於我 (about.html)
 - 聯繫方式 (contact.html)
 - 其他分頁 (other.html)
 
-樣式：白色背景、置頂固定、hover 時有底線效果。</pre>
-                    <p>AI 會生成類似這樣的程式碼：</p>
-                    <pre>&lt;nav style="background: white; padding: 15px 20px; position: sticky; top: 0;"&gt;
-    &lt;a href="index.html"&gt;首頁&lt;/a&gt;
-    &lt;a href="about.html"&gt;關於我&lt;/a&gt;
-    &lt;a href="contact.html"&gt;聯繫方式&lt;/a&gt;
-    &lt;a href="other.html"&gt;其他分頁&lt;/a&gt;
-&lt;/nav&gt;</pre>
-                    <div class="tip">💡 為什麼要先做導航欄？因為之後用 AI 生成每個頁面時，可以直接請 AI 「在頁面頂部載入 nav.html」，確保所有頁面導航一致。</div>
+樣式要求：
+- 白色背景
+- 置頂固定 (sticky)
+- hover 時有底線效果
+- 手機版要響應式（選單項目水平排列，太小螢幕時適當縮小間距）
+
+請給我完整的 HTML + CSS 程式碼，直接可以複製貼上使用。</pre>
+                    <p>ChatGPT 會生成類似這樣的程式碼：</p>
+                    <pre>&lt;nav style="background: white; padding: 15px 20px; position: sticky; top: 0; text-align: center;"&gt;
+    &lt;a href="index.html" style="color: #333; text-decoration: none; margin: 0 15px;"&gt;首頁&lt;/a&gt;
+    &lt;a href="about.html" style="color: #333; text-decoration: none; margin: 0 15px;"&gt;關於我&lt;/a&gt;
+    &lt;a href="contact.html" style="color: #333; text-decoration: none; margin: 0 15px;"&gt;聯繫方式&lt;/a&gt;
+    &lt;a href="other.html" style="color: #333; text-decoration: none; margin: 0 15px;"&gt;其他分頁&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;style&gt;
+    nav a:hover { color: #667eea; border-bottom: 2px solid #667eea; }
+    @media (max-width: 768px) {
+        nav a { margin: 0 8px; font-size: 14px; }
+    }
+&lt;/style&gt;</pre>
+                    <div class="tip">💡 為什麼要先做導航欄？因為之後用 ChatGPT 生成每個頁面時，可以直接請它「在頁面頂部載入 nav.html」，確保所有頁面導航一致，以後修改導航只需要改一個檔案。</div>
                 </div>
 
                 <div class="step-detail">
-                    <h3>🤖 步驟 2：用 AI 生成各頁面內容</h3>
-                    <p>使用 ChatGPT 或 v0.dev 來生成你的網頁程式碼：</p>
+                    <h3>🤖 步驟 2：用 ChatGPT 生成各頁面內容</h3>
+                    <p>使用 ChatGPT 來生成你的網頁程式碼：</p>
                     <p>範例提示詞（首頁）：</p>
                     <pre>幫我生成一個 index.html 檔案，內容包含：
 - 頁面頂部載入 nav.html（用 fetch 方式）
@@ -270,7 +283,7 @@
                         <li><code>contact.html</code> — 聯繫方式（信箱、社群連結）</li>
                         <li><code>other.html</code> — 其他分頁（筆記、作品集等）</li>
                     </ul>
-                    <div class="tip">💡 提示詞越詳細，AI 生成的結果越接近你想要的樣子！</div>
+                    <div class="tip">💡 提示詞越詳細，ChatGPT 生成的結果越接近你想要的樣子！可以不斷對話調整。</div>
                 </div>
 
                 <div class="step-detail">
@@ -284,11 +297,11 @@
 
                 <div class="step-detail">
                     <h3>📤 步驟 4：上傳檔案並開啟 GitHub Pages</h3>
-                    <p>把 AI 幫你生成的檔案上傳到倉庫：</p>
+                    <p>把 ChatGPT 幫你生成的檔案上傳到倉庫：</p>
                     <ul style="margin: 12px 0 12px 24px;">
                         <li>點擊 <strong>Add file → Create new file</strong></li>
                         <li>依序建立：<code>nav.html</code>、<code>index.html</code>、<code>about.html</code>、<code>contact.html</code>、<code>other.html</code></li>
-                        <li>每個檔案貼上 AI 生成的程式碼 → Commit changes</li>
+                        <li>每個檔案貼上 ChatGPT 生成的程式碼 → Commit changes</li>
                     </ul>
                     <p><strong>開啟 GitHub Pages：</strong></p>
                     <ul style="margin: 12px 0 12px 24px;">
@@ -300,11 +313,11 @@
                 </div>
 
                 <div class="step-detail">
-                    <h3>✨ 步驟 5：用 AI 優化設計與擴充頁面</h3>
+                    <h3>✨ 步驟 5：用 ChatGPT 優化設計與擴充頁面</h3>
                     <p><strong>優化設計：</strong> 把現有網頁貼給 ChatGPT，請它幫你「優化視覺、加上動畫效果、改善手機版樣式」</p>
-                    <p><strong>新增頁面：</strong> 直接在 <code>nav.html</code> 加入新連結，再用 AI 生成新頁面內容</p>
+                    <p><strong>新增頁面：</strong> 直接在 <code>nav.html</code> 加入新連結，再用 ChatGPT 生成新頁面內容</p>
                     <p><strong>自訂網域：</strong> 在 Pages 設定中填入你的網域，再到網域商設定 DNS</p>
-                    <p><strong>聯絡表單：</strong> 請 AI 幫你嵌入 Formspree 或 Google 表單</p>
+                    <p><strong>聯絡表單：</strong> 請 ChatGPT 幫你嵌入 Formspree 或 Google 表單</p>
                     <pre>// 範例提示詞：
 「幫我在 contact.html 加入一個聯絡表單，欄位包含：姓名、Email、訊息，使用 Formspree 接收信件」</pre>
                 </div>
@@ -315,16 +328,16 @@
                     <ul style="margin-left: 20px; margin-top: 8px;">
                         <li>✅ 共用導航欄 (nav.html)</li>
                         <li>✅ 首頁 / 關於我 / 聯繫方式 / 其他分頁</li>
-                        <li>✅ 用 AI 輔助生成 + GitHub Pages 免費發佈</li>
+                        <li>✅ 用 ChatGPT 輔助生成 + GitHub Pages 免費發佈</li>
                     </ul>
-                    <p style="margin-top: 12px;">隨時可以用 AI 繼續擴充更多頁面！</p>
+                    <p style="margin-top: 12px;">隨時可以用 ChatGPT 繼續擴充更多頁面！</p>
                 </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 我的網頁 | 用 AI + GitHub Pages 免費架設 | 完整內容需密碼</p>
+        <p>© 2026 我的網頁 | 用 ChatGPT + GitHub Pages 免費架設 | 完整內容需密碼</p>
     </footer>
 
     <script>
