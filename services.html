@@ -14,48 +14,31 @@
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: #333;
-        }
-        nav {
-            background: white;
-            padding: 15px 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            text-align: center;
-        }
-        nav a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-            padding: 5px 10px;
-        }
-        nav a:hover, nav a.active {
-            color: #667eea;
-            border-bottom: 2px solid #667eea;
+            background: #fafafa;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 60px 20px;
         }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .service-card {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
+        h1 {
             text-align: center;
-            transition: transform 0.3s;
+            color: #667eea;
+            margin-bottom: 40px;
         }
-        .service-card:hover {
-            transform: translateY(-5px);
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
-        .service-card h3 {
+        .service-item {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-left: 5px solid #667eea;
+        }
+        .service-item h3 {
             color: #667eea;
             margin-bottom: 15px;
         }
@@ -69,29 +52,42 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">首頁</a>
-        <a href="about.html">關於</a>
-        <a href="services.html" class="active">服務</a>
-    </nav>
+    <div id="nav-placeholder"></div>
+    <script>
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+                setTimeout(() => {
+                    const links = document.querySelectorAll('#nav-placeholder nav a');
+                    links.forEach(link => {
+                        if (link.getAttribute('href') === 'services.html') {
+                            link.style.color = '#667eea';
+                            link.style.borderBottom = '2px solid #667eea';
+                        }
+                    });
+                }, 100);
+            })
+            .catch(error => console.log('導航載入失敗:', error));
+    </script>
 
     <div class="container">
-        <h1 style="text-align: center;">我們的服務</h1>
-        <div class="services-grid">
-            <div class="service-card">
+        <h1>我們的服務</h1>
+        <div class="service-list">
+            <div class="service-item">
                 <h3>🚀 網站開發</h3>
                 <p>快速建置專業品牌官網，響應式設計，手機電腦都完美顯示。</p>
-                <p style="margin-top: 15px; color: #667eea;">✔ 一鍵部署<br>✔ 永久免費託管<br>✔ 自訂網域</p>
+                <p>✔ 一鍵部署<br>✔ 永久免費託管<br>✔ 自訂網域</p>
             </div>
-            <div class="service-card">
+            <div class="service-item">
                 <h3>🎨 品牌設計</h3>
                 <p>打造獨特的視覺識別系統，讓你的品牌與眾不同。</p>
-                <p style="margin-top: 15px; color: #667eea;">✔ Logo 設計<br>✔ 配色方案<br>✔ 品牌識別手冊</p>
+                <p>✔ Logo 設計<br>✔ 配色方案<br>✔ 品牌識別手冊</p>
             </div>
-            <div class="service-card">
+            <div class="service-item">
                 <h3>🤖 AI 顧問</h3>
                 <p>導入 AI 工具，提升工作效率 10 倍，降低營運成本。</p>
-                <p style="margin-top: 15px; color: #667eea;">✔ 工作流程優化<br>✔ AI 工具導入<br>✔ 客製化開發</p>
+                <p>✔ 工作流程優化<br>✔ AI 工具導入<br>✔ 客製化開發</p>
             </div>
         </div>
     </div>
