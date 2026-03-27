@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>筆記 | 我的品牌</title>
+    <title>學習筆記 | 我的品牌</title>
     <style>
         * {
             margin: 0;
@@ -14,51 +14,79 @@
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: #fafafa;
+            background: #f8fafc;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 70px 20px;
         }
         h1 {
             text-align: center;
             color: #667eea;
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
-        .note-list {
+        .intro {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+        .notes-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
-        .note-item {
+        .note-card {
             background: white;
-            border-radius: 16px;
-            padding: 25px 30px;
+            border-radius: 24px;
+            padding: 30px 35px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border-left: 5px solid #667eea;
-            transition: transform 0.2s;
+            border-left: 6px solid #667eea;
+            transition: all 0.2s;
         }
-        .note-item:hover {
-            transform: translateX(5px);
+        .note-card:hover {
+            transform: translateX(6px);
+            box-shadow: 0 12px 24px rgba(102,126,234,0.12);
         }
-        .note-item h3 {
-            margin-bottom: 10px;
+        .note-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: #1e293b;
         }
-        .note-item a {
-            color: #667eea;
+        .note-card p {
+            color: #5b6e8c;
+            margin-bottom: 18px;
+        }
+        .note-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #667eea;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.2s;
         }
-        .note-item a:hover {
-            text-decoration: underline;
+        .note-link:hover {
+            background: #5a67d8;
+            text-decoration: none;
         }
         footer {
-            background: #333;
-            color: white;
+            background: #1e293b;
+            color: #94a3b8;
             text-align: center;
-            padding: 30px;
+            padding: 40px 20px;
             margin-top: 60px;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .note-card { padding: 22px; }
+            .note-card h3 { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -66,7 +94,7 @@
     <div id="nav-placeholder"></div>
     <script>
         fetch('nav.html')
-            .then(response => response.text())
+            .then(res => res.text())
             .then(data => {
                 document.getElementById('nav-placeholder').innerHTML = data;
                 setTimeout(() => {
@@ -79,20 +107,21 @@
                     });
                 }, 100);
             })
-            .catch(error => console.log('導航載入失敗:', error));
+            .catch(err => console.log('導航載入失敗:', err));
     </script>
 
     <div class="container">
         <h1>📘 學習筆記</h1>
-        <div class="note-list">
-            <div class="note-item">
-                <h3>📖 GitHub Pages 多頁面架站教學</h3>
-                <p>從零開始，免費部署品牌官網，無需後端。</p>
-                <a href="github-notes.html" target="_blank">👉 完整教學筆記（新分頁開啟）</a>
+        <p class="intro">記錄技術、設計與 AI 應用，陪你一步步成長</p>
+        <div class="notes-list">
+            <div class="note-card">
+                <h3>🚀 GitHub Pages 多頁面架站完整教學</h3>
+                <p>從零開始，免費部署品牌官網，無需後端，一鍵上線。包含共用導航、多頁面架構、自訂網域等技巧。</p>
+                <a href="github-notes.html" class="note-link" target="_blank">📖 閱讀完整筆記 →</a>
             </div>
-            <div class="note-item">
-                <h3>🚧 更多筆記即將上線</h3>
-                <p>AI 工具教學、設計資源分享、SEO 優化技巧⋯⋯敬請期待！</p>
+            <div class="note-card">
+                <h3>✨ 更多內容即將上線</h3>
+                <p>AI 工具教學、SEO 優化技巧、設計資源分享⋯⋯敬請期待！</p>
             </div>
         </div>
     </div>
