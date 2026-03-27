@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>學習筆記 | 我的品牌</title>
+    <title>筆記 | 我的品牌</title>
     <style>
         * {
             margin: 0;
@@ -13,63 +13,162 @@
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #1e293b;
             background: #f8fafc;
         }
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 70px 20px;
+            padding: 60px 24px;
         }
-        h1 {
+        /* 頁首 */
+        .hero {
             text-align: center;
-            color: #667eea;
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 40px;
         }
-        .intro {
-            text-align: center;
-            color: #666;
-            margin-bottom: 50px;
-            font-size: 1.1rem;
-        }
-        .notes-list {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        .note-card {
-            background: white;
-            border-radius: 24px;
-            padding: 30px 35px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border-left: 6px solid #667eea;
-            transition: all 0.2s;
-        }
-        .note-card:hover {
-            transform: translateX(6px);
-            box-shadow: 0 12px 24px rgba(102,126,234,0.12);
-        }
-        .note-card h3 {
-            font-size: 1.6rem;
+        .hero h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #1e293b, #4f46e5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
             margin-bottom: 12px;
-            color: #1e293b;
         }
-        .note-card p {
-            color: #5b6e8c;
-            margin-bottom: 18px;
+        /* 公開大綱區塊 */
+        .outline-card {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #eef2ff;
+        }
+        .outline-card h2 {
+            font-size: 1.5rem;
+            color: #0f172a;
+            margin-bottom: 20px;
+            border-left: 5px solid #4f46e5;
+            padding-left: 16px;
+        }
+        .step-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        .step-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .step-number {
+            background: #eef2ff;
+            color: #4f46e5;
+            width: 32px;
+            height: 32px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .lock-icon {
+            margin-left: auto;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+        /* 密碼保護區塊 */
+        .password-section {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid #4f46e5;
+        }
+        .password-box {
+            text-align: center;
+            padding: 20px;
+        }
+        .password-box input {
+            padding: 12px 18px;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            width: 250px;
+            margin-right: 10px;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .password-box input:focus {
+            border-color: #4f46e5;
+        }
+        .password-box button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .password-box button:hover {
+            background: #6366f1;
+        }
+        .error-msg {
+            color: #e11d48;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        /* 詳細內容（預設隱藏） */
+        .detailed-content {
+            display: none;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #e2e8f0;
+        }
+        .detailed-content.show {
+            display: block;
+        }
+        .step-detail {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .step-detail h3 {
+            color: #4f46e5;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        .step-detail code {
+            background: #e2e8f0;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-family: monospace;
+        }
+        .step-detail pre {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 16px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 0.85rem;
         }
         footer {
-            background: #1e293b;
+            background: #0f172a;
             color: #94a3b8;
             text-align: center;
-            padding: 40px 20px;
+            padding: 36px 20px;
             margin-top: 60px;
         }
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .note-card { padding: 22px; }
-            .note-card h3 { font-size: 1.3rem; }
+            .password-box input { width: 100%; margin-bottom: 12px; }
+            .step-list li { flex-wrap: wrap; }
+            .lock-icon { margin-left: 40px; }
         }
     </style>
 </head>
@@ -94,18 +193,129 @@
     </script>
 
     <div class="container">
-        <h1>📘 學習筆記</h1>
-        <p class="intro">記錄技術、設計與 AI 應用，陪你一步步成長</p>
-        <div class="notes-list">
-            <div class="note-card">
-                <h3>✨ 更多內容即將上線</h3>
-                <p>AI 工具教學、SEO 優化技巧、設計資源分享⋯⋯敬請期待！</p>
+        <div class="hero">
+            <h1>📘 GitHub Pages 架站筆記</h1>
+            <p>公開大綱 · 完整教學需要密碼</p>
+        </div>
+
+        <!-- 公開的大綱區塊（所有人都看得到） -->
+        <div class="outline-card">
+            <h2>📌 課程大綱</h2>
+            <ul class="step-list">
+                <li><span class="step-number">1</span> 建立 GitHub 帳號與倉庫 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">2</span> 建立首頁 index.html <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">3</span> 新增多個頁面 + 導航欄 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">4</span> 開啟 GitHub Pages <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+                <li><span class="step-number">5</span> 自訂設計與進階功能 <span class="lock-icon">🔒 詳細步驟需密碼</span></li>
+            </ul>
+            <p style="color: #64748b; margin-top: 16px;">✨ 完整教學包含：實際程式碼、響應式設計、共用導航欄、自訂網域設定⋯⋯</p>
+        </div>
+
+        <!-- 密碼解鎖區塊 -->
+        <div class="password-section">
+            <div class="password-box">
+                <input type="password" id="passwordInput" placeholder="請輸入密碼">
+                <button onclick="checkPassword()">解鎖完整內容</button>
+                <div id="errorMsg" class="error-msg"></div>
+            </div>
+
+            <!-- 隱藏的詳細內容（密碼正確後顯示） -->
+            <div id="detailedContent" class="detailed-content">
+                <h2 style="color: #4f46e5; margin-bottom: 20px;">🔓 完整教學筆記</h2>
+                
+                <div class="step-detail">
+                    <h3>📁 步驟 1：建立 GitHub 帳號與倉庫</h3>
+                    <p>1. 前往 <a href="https://github.com" target="_blank">GitHub.com</a> 註冊免費帳號</p>
+                    <p>2. 點擊右上角「+」→ New repository</p>
+                    <p>3. Repository name 輸入：<code>你的帳號.github.io</code>（例如 <code>seira0972-glitch.github.io</code>）</p>
+                    <p>4. 勾選 Add a README file，保持 Public，點擊 Create repository</p>
+                    <div class="tip">💡 這個名稱會直接成為你的網站網址！</div>
+                </div>
+
+                <div class="step-detail">
+                    <h3>🌐 步驟 2：建立首頁 index.html</h3>
+                    <p>在倉庫內點擊 Add file → Create new file，檔名輸入 <code>index.html</code>，貼上以下代碼：</p>
+                    <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;我的品牌&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;歡迎來到我的品牌&lt;/h1&gt;
+    &lt;p&gt;我的第一個 GitHub Pages 網站！&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    <p>點擊 Commit changes 儲存。</p>
+                </div>
+
+                <div class="step-detail">
+                    <h3>📄 步驟 3：新增多個頁面 + 導航欄</h3>
+                    <p>重複上述步驟，建立 <code>about.html</code>、<code>services.html</code>、<code>notes.html</code>。</p>
+                    <p>每個頁面都要加上導航欄，讓訪客可以在頁面之間跳轉：</p>
+                    <pre>&lt;nav&gt;
+    &lt;a href="index.html"&gt;首頁&lt;/a&gt;
+    &lt;a href="about.html"&gt;關於&lt;/a&gt;
+    &lt;a href="services.html"&gt;服務&lt;/a&gt;
+    &lt;a href="notes.html"&gt;筆記&lt;/a&gt;
+&lt;/nav&gt;</pre>
+                    <p>✨ 進階：可建立 <code>nav.html</code> 用 JavaScript 載入，一處修改全部同步。</p>
+                </div>
+
+                <div class="step-detail">
+                    <h3>⚙️ 步驟 4：開啟 GitHub Pages</h3>
+                    <p>1. 進入倉庫 → Settings → Pages</p>
+                    <p>2. 在 Branch 選擇 main，點 Save</p>
+                    <p>3. 等待 1-2 分鐘，網站就會在 <code>https://你的帳號.github.io/</code> 上線</p>
+                    <p>每次修改檔案並 Commit，網站會自動更新。</p>
+                </div>
+
+                <div class="step-detail">
+                    <h3>🎨 步驟 5：自訂設計與進階功能</h3>
+                    <p><strong>自訂設計：</strong> 修改 CSS 樣式，使用 v0.dev 或 ChatGPT 生成現代化版面。</p>
+                    <p><strong>自訂網域：</strong> 在 Pages 設定中填入你的網域，再到網域商設定 DNS。</p>
+                    <p><strong>聯絡表單：</strong> 使用 Formspree 或 Google 表單嵌入。</p>
+                    <p><strong>共用導航欄：</strong> 建立 nav.html，用 fetch 載入到所有頁面。</p>
+                </div>
+
+                <div style="background: #eef2ff; padding: 20px; border-radius: 20px; margin-top: 20px;">
+                    <p>🎉 恭喜！你已經學會用 GitHub Pages 免費建立多頁面品牌官網了！</p>
+                    <p>👉 成果範例：<a href="https://seira0972-glitch.github.io/seira/" target="_blank">https://seira0972-glitch.github.io/seira/</a></p>
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 我的品牌 | 用 GitHub Pages 免費架設</p>
+        <p>© 2026 我的品牌 | 用 GitHub Pages 免費架設 | 筆記內容受密碼保護</p>
     </footer>
+
+    <script>
+        // 設定密碼（請改成你自己想要的）
+        const CORRECT_PASSWORD = "1234";
+
+        function checkPassword() {
+            const inputPassword = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+            const detailedContent = document.getElementById('detailedContent');
+
+            if (inputPassword === CORRECT_PASSWORD) {
+                detailedContent.classList.add('show');
+                errorMsg.textContent = '';
+                // 可選：清空密碼框
+                document.getElementById('passwordInput').value = '';
+            } else {
+                errorMsg.textContent = '❌ 密碼錯誤，請再試一次';
+                detailedContent.classList.remove('show');
+            }
+        }
+
+        // 允許按 Enter 鍵送出
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
 </body>
 </html>
