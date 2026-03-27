@@ -216,11 +216,6 @@
             color: #5b6e8c;
             font-size: 0.9rem;
         }
-        .code-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
         @media (max-width: 768px) {
             .container { padding: 40px 20px; }
             .hero h1 { font-size: 2rem; }
@@ -265,9 +260,8 @@
                 <li><span class="step-number">2</span> 用 Gemini 生成共用導航欄 (nav.html) <span class="lock-icon">🔒 需密碼</span></li>
                 <li><span class="step-number">3</span> 用 Gemini 生成各頁面內容 (首頁、關於我、聯繫方式、其他) <span class="lock-icon">🔒 需密碼</span></li>
                 <li><span class="step-number">4</span> 上傳檔案到 GitHub 並開啟 Pages <span class="lock-icon">🔒 需密碼</span></li>
-                <li><span class="step-number">5</span> 用 Gemini 持續優化與擴充網站 <span class="lock-icon">🔒 需密碼</span></li>
             </ul>
-            <p style="color: #5b6e8c; margin-top: 24px;">✨ 完全免費 · 不需要寫程式經驗 · 跟著步驟做就對了！</p>
+            <p style="color: #5b6e8c; margin-top: 24px;">✨ 不需要寫程式經驗 · 跟著步驟做就對了！</p>
         </div>
 
         <div class="password-section">
@@ -291,29 +285,31 @@
                         <li>輸入 Email、密碼、使用者名稱</li>
                         <li>完成驗證後就擁有帳號了！</li>
                     </ul>
-                    <div class="tip">💡 使用者名稱會影響你的網站網址，建議用英文或數字，例如：seira0972-glitch</div>
+                    <div class="tip">💡 使用者名稱會影響你的網站網址，建議用英文或數字</div>
 
                     <h4>1.2 建立倉庫（Repository）</h4>
                     <p>倉庫就像一個「資料夾」，放你網站的檔案。</p>
                     <ul style="margin: 10px 0 10px 25px;">
                         <li>登入後，點擊右上角 <strong>「+」→ New repository</strong></li>
                         <li><strong>Repository name</strong> 輸入：<code>你的帳號.github.io</code><br>
-                        <span style="color:#64748b;">⚠️ 注意：要把「你的帳號」換成你註冊時的使用者名稱！</span><br>
-                        例如你的帳號是 <code>seira0972-glitch</code>，就輸入 <code>seira0972-glitch.github.io</code></li>
+                        <span style="color:#64748b;">⚠️ 注意：要把「你的帳號」換成你註冊時的使用者名稱！</span></li>
                         <li>勾選 <strong>Add a README file</strong></li>
                         <li>保持 Public（公開）</li>
                         <li>點擊 <strong>Create repository</strong></li>
                     </ul>
 
                     <h4>1.3 找到你的網站網址</h4>
-                    <p>倉庫建立後，你的網站網址就是：</p>
-                    <pre>https://你的帳號.github.io/</pre>
-                    <p>例如：<code>https://seira0972-glitch.github.io/</code></p>
+                    <p>倉庫建立後，去哪裡看你的網站網址？</p>
+                    <ul style="margin: 10px 0 10px 25px;">
+                        <li>進入你剛建立的倉庫</li>
+                        <li>點擊上方的 <strong>Settings</strong>（設定）</li>
+                        <li>左邊選單找到 <strong>Pages</strong></li>
+                        <li>在 Pages 頁面中，會顯示 <strong>"Your site is live at"</strong> 後面就是你的網址！</li>
+                    </ul>
                     <div class="warning-box">
                         ⚠️ 目前網站還看不到東西，因為還沒有上傳任何檔案！<br>
                         我們會在第 2、3 步用 Gemini 生成檔案，第 4 步上傳。
                     </div>
-                    <div class="tip">💡 小技巧：記住這個網址規則 — <code>你的帳號.github.io</code> 就是你的免費網站網址！</div>
                 </div>
 
                 <div class="step-detail">
@@ -352,8 +348,7 @@
     .navbar { background: #fff; height: 70px; position: fixed; top: 0; width: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; }
     .nav-container { max-width: 1200px; height: 100%; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
     .nav-logo { font-size: 1.5rem; font-weight: bold; color: #333; text-decoration: none; }
-    .nav-menu { display: flex; list-style: none; }
-    .nav-item { margin-left: 30px; }
+    .nav-menu { display: flex; list-style: none; gap: 30px; }
     .nav-link { text-decoration: none; color: #333; font-weight: 500; position: relative; padding: 5px 0; }
     .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background: #007bff; transition: width 0.3s; }
     .nav-link:hover::after { width: 100%; }
@@ -361,84 +356,69 @@
     .bar { width: 25px; height: 3px; background: #333; margin: 4px 0; }
     @media (max-width: 768px) {
         .nav-toggle { display: flex; }
-        .nav-menu { position: absolute; top: 70px; left: -100%; flex-direction: column; background: #fff; width: 100%; text-align: center; transition: 0.3s; }
+        .nav-menu { position: fixed; top: 70px; left: -100%; flex-direction: column; background: #fff; width: 100%; text-align: center; padding: 20px 0; transition: 0.3s; gap: 20px; }
         .nav-menu.active { left: 0; }
-        .nav-item { margin: 20px 0; }
     }
 &lt;/style&gt;
 
 &lt;script&gt;
     const toggle = document.getElementById('nav-toggle');
     const menu = document.getElementById('nav-menu');
-    toggle.addEventListener('click', () => menu.classList.toggle('active'));
-    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => menu.classList.remove('active')));
+    if (toggle && menu) {
+        toggle.addEventListener('click', () => menu.classList.toggle('active'));
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => menu.classList.remove('active')));
+    }
 &lt;/script&gt;</pre>
                 </div>
 
                 <div class="step-detail">
                     <h3>📄 步驟 3：用 Gemini 生成各頁面內容</h3>
-                    <p>繼續跟 Gemini 對話，生成其他頁面：</p>
+                    <p>繼續跟 Gemini 對話，用以下提示詞生成其他頁面：</p>
                     
-                    <h4>📄 首頁 (index.html)</h4>
-                    <pre>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-Hant"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;我的個人網站&lt;/title&gt;
-    &lt;style&gt;
-        :root { --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', "Microsoft JhengHei", sans-serif; }
-        body { background: #f8f9fa; padding-top: 70px; }
-        #nav-placeholder { width: 100%; }
-        .hero { height: 60vh; background: var(--primary-gradient); display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
-        .about-section { max-width: 900px; margin: -50px auto 60px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        footer { background: #222; color: #aaa; text-align: center; padding: 40px; }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div id="nav-placeholder"&gt;&lt;/div&gt;
-    &lt;section class="hero"&gt;&lt;h1&gt;歡迎來到我的網站&lt;/h1&gt;&lt;p&gt;用 AI 打造你的數位空間&lt;/p&gt;&lt;/section&gt;
-    &lt;main class="about-section"&gt;&lt;h2&gt;關於我&lt;/h2&gt;&lt;p&gt;你好！這是我用 Gemini + GitHub Pages 做出來的網站。&lt;/p&gt;&lt;/main&gt;
-    &lt;footer&gt;&lt;p&gt;&copy; 2026 My Website&lt;/p&gt;&lt;/footer&gt;
-    &lt;script&gt;fetch('nav.html').then(r=&gt;r.text()).then(data=&gt;{document.getElementById('nav-placeholder').innerHTML=data;});&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</pre>
+                    <h4>📌 提示詞範例（首頁）</h4>
+                    <pre>幫我生成 index.html，內容包含：
+- 頁面頂部載入 nav.html（用 fetch 方式）
+- 一個漂亮的歡迎區塊（英雄區塊）
+- 自我介紹區塊
+- 頁尾
+風格：現代簡潔、藍紫漸層、響應式設計
+請給我完整的 HTML + CSS 程式碼。</pre>
 
-                    <h4>📄 關於我 (about.html)</h4>
-                    <pre>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-Hant"&gt;
-&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;&lt;title&gt;關於我&lt;/title&gt;
-&lt;style&gt;:root { --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: #f8f9fa; padding-top: 70px; }
-.header-banner { height: 30vh; background: var(--primary-gradient); display: flex; justify-content: center; align-items: center; color: white; }
-.container { max-width: 800px; margin: -40px auto 60px; background: white; padding: 40px; border-radius: 15px; }
-.skill-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-.tag { background: #f0f2f5; color: #2575fc; padding: 5px 15px; border-radius: 20px; }
-footer { background: #222; color: #aaa; text-align: center; padding: 30px; }
-&lt;/style&gt;&lt;/head&gt;
-&lt;body&gt;
-&lt;div id="nav-placeholder"&gt;&lt;/div&gt;
-&lt;section class="header-banner"&gt;&lt;h1&gt;關於我&lt;/h1&gt;&lt;/section&gt;
-&lt;main class="container"&gt;
-&lt;h2&gt;我的故事&lt;/h2&gt;&lt;p&gt;我是一名熱愛技術的開發者。&lt;/p&gt;
-&lt;h3&gt;核心技能&lt;/h3&gt;&lt;div class="skill-tags"&gt;&lt;span class="tag"&gt;HTML/CSS&lt;/span&gt;&lt;span class="tag"&gt;JavaScript&lt;/span&gt;&lt;/div&gt;
-&lt;/main&gt;&lt;footer&gt;&lt;p&gt;&copy; 2026&lt;/p&gt;&lt;/footer&gt;
-&lt;script&gt;fetch('nav.html').then(r=&gt;r.text()).then(data=&gt;{document.getElementById('nav-placeholder').innerHTML=data;});&lt;/script&gt;
-&lt;/body&gt;&lt;/html&gt;</pre>
+                    <h4>📌 提示詞範例（關於我）</h4>
+                    <pre>幫我生成 about.html，內容包含：
+- 頁面頂部載入 nav.html（用 fetch 方式）
+- 一個標題 banner
+- 自我介紹文字
+- 技能標籤（HTML、CSS、JavaScript 等）
+- 頁尾
+風格：簡潔、乾淨、響應式設計</pre>
 
-                    <div class="tip">💡 其他頁面（contact.html、other.html）也可以用同樣方式生成！</div>
+                    <h4>📌 提示詞範例（聯繫方式）</h4>
+                    <pre>幫我生成 contact.html，內容包含：
+- 頁面頂部載入 nav.html（用 fetch 方式）
+- 一個標題 banner
+- 聯絡表單（姓名、Email、訊息欄位）
+- 頁尾
+風格：簡潔、響應式設計</pre>
+
+                    <h4>📌 提示詞範例（其他分頁）</h4>
+                    <pre>幫我生成 other.html，內容包含：
+- 頁面頂部載入 nav.html（用 fetch 方式）
+- 一個標題 banner
+- 卡片式網格，展示 3 個項目（專案 A、專案 B、日誌）
+- 頁尾
+風格：現代、卡片 hover 效果、響應式設計</pre>
+
+                    <div class="tip">💡 提示詞越詳細，Gemini 生成的結果越接近你想要的樣子！可以不斷對話調整。</div>
                 </div>
 
                 <div class="step-detail">
                     <h3>📤 步驟 4：上傳檔案並開啟 GitHub Pages</h3>
                     <p><strong>上傳檔案：</strong></p>
                     <ul style="margin: 10px 0 10px 25px;">
-                        <li>回到你的 GitHub 倉庫（例如 seira0972-glitch.github.io）</li>
+                        <li>回到你的 GitHub 倉庫（名稱是：你的帳號.github.io）</li>
                         <li>點擊 <strong>Add file → Create new file</strong></li>
-                        <li>檔名輸入 <code>nav.html</code>，貼上 Gemini 生成的程式碼 → Commit changes</li>
+                        <li>檔名輸入 <code>nav.html</code>，貼上 Gemini 生成的導航欄程式碼 → Commit changes</li>
                         <li>重複步驟，依序建立 <code>index.html</code>、<code>about.html</code>、<code>contact.html</code>、<code>other.html</code></li>
                     </ul>
                     <p><strong>開啟 GitHub Pages：</strong></p>
@@ -446,30 +426,20 @@ footer { background: #222; color: #aaa; text-align: center; padding: 30px; }
                         <li>進入倉庫 → 點擊上方的 <strong>Settings</strong></li>
                         <li>左邊選單找到 <strong>Pages</strong></li>
                         <li>在 <strong>Branch</strong> 選擇 <code>main</code>，點擊 <strong>Save</strong></li>
-                        <li>等待 1-2 分鐘，網站就上線了！</li>
+                        <li>等待 1-2 分鐘，網站在 Settings → Pages 就會顯示你的網址</li>
                     </ul>
-                    <div class="tip">🎉 網站網址就是：<code>https://你的帳號.github.io/</code> 或 <code>https://你的帳號.github.io/倉庫名/</code></div>
-                </div>
-
-                <div class="step-detail">
-                    <h3>✨ 步驟 5：用 Gemini 優化與擴充</h3>
-                    <p>• <strong>修改內容：</strong> 把網站網址貼給 Gemini，請它幫你優化設計</p>
-                    <p>• <strong>新增頁面：</strong> 在 nav.html 加連結，再用 Gemini 生成新頁面</p>
-                    <p>• <strong>自訂網域：</strong> 想用自己買的網址？在 Pages 設定中可以綁定</p>
-                    <p>• <strong>聯絡表單：</strong> 請 Gemini 幫你嵌入 Formspree，讓訪客可以寄信給你</p>
+                    <div class="tip">🎉 網站上線後，每次修改檔案並 Commit，網站會自動更新！</div>
                 </div>
 
                 <div style="background: linear-gradient(135deg, #eef2ff, #ffffff); padding: 28px; border-radius: 24px; margin-top: 20px; text-align: center;">
                     <p style="font-size: 1.2rem; font-weight: 600; color: #3b82f6;">🎉 恭喜！你現在有自己的網站了！</p>
-                    <p>共用導航欄 + 多頁面網站 + Gemini 輔助生成</p>
-                    <p style="margin-top: 12px;">隨時可以用 Gemini 繼續擴充更多頁面！</p>
                 </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 我的網頁 | 用 Gemini + GitHub Pages 免費架設 | 完整內容需密碼</p>
+        <p>© 2026 我的網頁 | 用 Gemini + GitHub Pages 架設 | 完整內容需密碼</p>
     </footer>
 
     <script>
