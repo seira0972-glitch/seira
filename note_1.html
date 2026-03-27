@@ -81,6 +81,7 @@
             font-weight: bold;
             font-size: 1rem;
             box-shadow: 0 4px 8px rgba(59,130,246,0.2);
+            flex-shrink: 0;
         }
         .lock-icon {
             margin-left: auto;
@@ -89,6 +90,7 @@
             background: #f1f5f9;
             padding: 4px 12px;
             border-radius: 40px;
+            white-space: nowrap;
         }
         .password-section {
             background: white;
@@ -162,6 +164,13 @@
             font-size: 1.4rem;
             font-weight: 600;
         }
+        .step-detail h4 {
+            color: #0f172a;
+            margin: 20px 0 10px;
+            font-size: 1.1rem;
+            border-left: 3px solid #3b82f6;
+            padding-left: 12px;
+        }
         .step-detail code {
             background: #e2e8f0;
             padding: 3px 10px;
@@ -180,6 +189,7 @@
             font-size: 0.85rem;
             font-family: 'SF Mono', monospace;
             line-height: 1.5;
+            max-height: 500px;
         }
         .tip {
             background: linear-gradient(135deg, #eef2ff, #ffffff);
@@ -190,12 +200,26 @@
             font-size: 0.95rem;
             color: #1e293b;
         }
+        .warning-box {
+            background: #fef9e3;
+            padding: 16px 20px;
+            border-radius: 20px;
+            margin: 20px 0 0;
+            border-left: 4px solid #f59e0b;
+            font-size: 0.95rem;
+            color: #92400e;
+        }
         footer {
             text-align: center;
             padding: 40px 20px;
             margin-top: 60px;
             color: #5b6e8c;
             font-size: 0.9rem;
+        }
+        .code-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
         @media (max-width: 768px) {
             .container { padding: 40px 20px; }
@@ -204,6 +228,7 @@
             .step-list li { flex-wrap: wrap; }
             .lock-icon { margin-left: 52px; }
             .outline-card, .password-section { padding: 28px; }
+            .step-detail pre { max-height: 300px; }
         }
     </style>
 </head>
@@ -217,7 +242,7 @@
                 setTimeout(() => {
                     const links = document.querySelectorAll('#nav-placeholder nav a');
                     links.forEach(link => {
-                        if (link.getAttribute('href') === 'notes.html') {
+                        if (link.getAttribute('href') === 'note_1.html') {
                             link.style.color = '#3b82f6';
                             link.style.borderBottom = '2px solid #3b82f6';
                         }
@@ -230,19 +255,19 @@
     <div class="container">
         <div class="hero">
             <h1>用 AI 做網站</h1>
-            <p>ChatGPT + GitHub Pages · 從零到上線</p>
+            <p>Gemini + GitHub Pages · 從零到上線 · 新手完整教學</p>
         </div>
 
         <div class="outline-card">
-            <h2>課程大綱</h2>
+            <h2>📌 課程大綱</h2>
             <ul class="step-list">
-                <li><span class="step-number">1</span> 建立 GitHub 帳號與倉庫 <span class="lock-icon">🔒 需密碼</span></li>
-                <li><span class="step-number">2</span> 用 ChatGPT 生成共用導航欄 <span class="lock-icon">🔒 需密碼</span></li>
-                <li><span class="step-number">3</span> 用 ChatGPT 生成各頁面內容 <span class="lock-icon">🔒 需密碼</span></li>
-                <li><span class="step-number">4</span> 上傳檔案並開啟 GitHub Pages <span class="lock-icon">🔒 需密碼</span></li>
-                <li><span class="step-number">5</span> 用 ChatGPT 優化與擴充 <span class="lock-icon">🔒 需密碼</span></li>
+                <li><span class="step-number">1</span> 註冊 GitHub 帳號 + 建立倉庫 + 找到你的網站網址 <span class="lock-icon">🔒 需密碼</span></li>
+                <li><span class="step-number">2</span> 用 Gemini 生成共用導航欄 (nav.html) <span class="lock-icon">🔒 需密碼</span></li>
+                <li><span class="step-number">3</span> 用 Gemini 生成各頁面內容 (首頁、關於我、聯繫方式、其他) <span class="lock-icon">🔒 需密碼</span></li>
+                <li><span class="step-number">4</span> 上傳檔案到 GitHub 並開啟 Pages <span class="lock-icon">🔒 需密碼</span></li>
+                <li><span class="step-number">5</span> 用 Gemini 持續優化與擴充網站 <span class="lock-icon">🔒 需密碼</span></li>
             </ul>
-            <p style="color: #5b6e8c; margin-top: 24px;">學習用 ChatGPT 生成網頁，搭配 GitHub Pages 免費發佈</p>
+            <p style="color: #5b6e8c; margin-top: 24px;">✨ 完全免費 · 不需要寫程式經驗 · 跟著步驟做就對了！</p>
         </div>
 
         <div class="password-section">
@@ -253,20 +278,47 @@
             </div>
 
             <div id="detailedContent" class="detailed-content">
-                <h2 style="color: #3b82f6; margin-bottom: 24px;">🔓 完整教學</h2>
+                <h2 style="color: #3b82f6; margin-bottom: 24px;">🔓 完整教學（從零開始）</h2>
                 
                 <div class="step-detail">
-                    <h3>步驟 1：建立 GitHub 帳號與倉庫</h3>
-                    <p>1. 前往 <a href="https://github.com" target="_blank">GitHub.com</a> 註冊免費帳號</p>
-                    <p>2. 點擊右上角「+」→ New repository</p>
-                    <p>3. Repository name 輸入：<code>你的帳號.github.io</code></p>
-                    <p>4. 勾選 Add a README file，保持 Public，點擊 Create repository</p>
-                    <div class="tip">💡 這個名稱會直接成為你的網站網址！</div>
+                    <h3>📁 步驟 1：註冊 GitHub 帳號 + 建立倉庫 + 找到你的網站網址</h3>
+                    <p><strong>🔹 什麼是 GitHub？</strong><br>GitHub 是一個免費存放程式碼的地方，還可以把你的網站免費發佈到網路上！</p>
+                    
+                    <h4>1.1 註冊 GitHub 帳號</h4>
+                    <p>👉 前往 <a href="https://github.com" target="_blank">https://github.com</a></p>
+                    <ul style="margin: 10px 0 10px 25px;">
+                        <li>點擊右上角 <strong>Sign up</strong></li>
+                        <li>輸入 Email、密碼、使用者名稱</li>
+                        <li>完成驗證後就擁有帳號了！</li>
+                    </ul>
+                    <div class="tip">💡 使用者名稱會影響你的網站網址，建議用英文或數字，例如：seira0972-glitch</div>
+
+                    <h4>1.2 建立倉庫（Repository）</h4>
+                    <p>倉庫就像一個「資料夾」，放你網站的檔案。</p>
+                    <ul style="margin: 10px 0 10px 25px;">
+                        <li>登入後，點擊右上角 <strong>「+」→ New repository</strong></li>
+                        <li><strong>Repository name</strong> 輸入：<code>你的帳號.github.io</code><br>
+                        <span style="color:#64748b;">⚠️ 注意：要把「你的帳號」換成你註冊時的使用者名稱！</span><br>
+                        例如你的帳號是 <code>seira0972-glitch</code>，就輸入 <code>seira0972-glitch.github.io</code></li>
+                        <li>勾選 <strong>Add a README file</strong></li>
+                        <li>保持 Public（公開）</li>
+                        <li>點擊 <strong>Create repository</strong></li>
+                    </ul>
+
+                    <h4>1.3 找到你的網站網址</h4>
+                    <p>倉庫建立後，你的網站網址就是：</p>
+                    <pre>https://你的帳號.github.io/</pre>
+                    <p>例如：<code>https://seira0972-glitch.github.io/</code></p>
+                    <div class="warning-box">
+                        ⚠️ 目前網站還看不到東西，因為還沒有上傳任何檔案！<br>
+                        我們會在第 2、3 步用 Gemini 生成檔案，第 4 步上傳。
+                    </div>
+                    <div class="tip">💡 小技巧：記住這個網址規則 — <code>你的帳號.github.io</code> 就是你的免費網站網址！</div>
                 </div>
 
                 <div class="step-detail">
-                    <h3>步驟 2：用 ChatGPT 生成共用導航欄</h3>
-                    <p>打開 ChatGPT，輸入以下提示詞：</p>
+                    <h3>🤖 步驟 2：用 Gemini 生成共用導航欄 (nav.html)</h3>
+                    <p>打開 <a href="https://gemini.google.com" target="_blank">Google Gemini</a>，輸入以下提示詞：</p>
                     <pre>幫我建立一個 nav.html 檔案，裡面是網站的導航欄，包含：
 - 首頁 (index.html)
 - 關於我 (about.html)
@@ -276,45 +328,148 @@
 樣式：白色背景、置頂固定、hover 底線效果、手機響應式。
 請給我完整的 HTML + CSS 程式碼。</pre>
                     <div class="tip">💡 導航欄先做好，之後每個頁面都可以共用，修改一次全部同步。</div>
+                    
+                    <h4>📄 Gemini 生成的 nav.html（可直接複製）</h4>
+                    <pre>&lt;nav class="navbar"&gt;
+    &lt;div class="nav-container"&gt;
+        &lt;a href="index.html" class="nav-logo"&gt;MyWebsite&lt;/a&gt;
+        &lt;button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation"&gt;
+            &lt;span class="bar"&gt;&lt;/span&gt;
+            &lt;span class="bar"&gt;&lt;/span&gt;
+            &lt;span class="bar"&gt;&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;ul class="nav-menu" id="nav-menu"&gt;
+            &lt;li&gt;&lt;a href="index.html" class="nav-link"&gt;首頁&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="about.html" class="nav-link"&gt;關於我&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="contact.html" class="nav-link"&gt;聯繫方式&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="other.html" class="nav-link"&gt;其他分頁&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;style&gt;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .navbar { background: #fff; height: 70px; position: fixed; top: 0; width: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; }
+    .nav-container { max-width: 1200px; height: 100%; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { font-size: 1.5rem; font-weight: bold; color: #333; text-decoration: none; }
+    .nav-menu { display: flex; list-style: none; }
+    .nav-item { margin-left: 30px; }
+    .nav-link { text-decoration: none; color: #333; font-weight: 500; position: relative; padding: 5px 0; }
+    .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background: #007bff; transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+    .nav-toggle { display: none; flex-direction: column; cursor: pointer; background: none; border: none; }
+    .bar { width: 25px; height: 3px; background: #333; margin: 4px 0; }
+    @media (max-width: 768px) {
+        .nav-toggle { display: flex; }
+        .nav-menu { position: absolute; top: 70px; left: -100%; flex-direction: column; background: #fff; width: 100%; text-align: center; transition: 0.3s; }
+        .nav-menu.active { left: 0; }
+        .nav-item { margin: 20px 0; }
+    }
+&lt;/style&gt;
+
+&lt;script&gt;
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('active'));
+    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => menu.classList.remove('active')));
+&lt;/script&gt;</pre>
                 </div>
 
                 <div class="step-detail">
-                    <h3>步驟 3：用 ChatGPT 生成各頁面內容</h3>
-                    <p>範例提示詞（首頁）：</p>
-                    <pre>幫我生成 index.html，內容包含：
-- 頁面頂部載入 nav.html（用 fetch）
-- 歡迎區塊、自我介紹、頁尾
-風格：現代簡潔、藍紫漸層、響應式設計</pre>
-                    <p>同樣方式生成：<code>about.html</code>、<code>contact.html</code>、<code>other.html</code></p>
+                    <h3>📄 步驟 3：用 Gemini 生成各頁面內容</h3>
+                    <p>繼續跟 Gemini 對話，生成其他頁面：</p>
+                    
+                    <h4>📄 首頁 (index.html)</h4>
+                    <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-Hant"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;我的個人網站&lt;/title&gt;
+    &lt;style&gt;
+        :root { --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', "Microsoft JhengHei", sans-serif; }
+        body { background: #f8f9fa; padding-top: 70px; }
+        #nav-placeholder { width: 100%; }
+        .hero { height: 60vh; background: var(--primary-gradient); display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .about-section { max-width: 900px; margin: -50px auto 60px; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        footer { background: #222; color: #aaa; text-align: center; padding: 40px; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="nav-placeholder"&gt;&lt;/div&gt;
+    &lt;section class="hero"&gt;&lt;h1&gt;歡迎來到我的網站&lt;/h1&gt;&lt;p&gt;用 AI 打造你的數位空間&lt;/p&gt;&lt;/section&gt;
+    &lt;main class="about-section"&gt;&lt;h2&gt;關於我&lt;/h2&gt;&lt;p&gt;你好！這是我用 Gemini + GitHub Pages 做出來的網站。&lt;/p&gt;&lt;/main&gt;
+    &lt;footer&gt;&lt;p&gt;&copy; 2026 My Website&lt;/p&gt;&lt;/footer&gt;
+    &lt;script&gt;fetch('nav.html').then(r=&gt;r.text()).then(data=&gt;{document.getElementById('nav-placeholder').innerHTML=data;});&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+                    <h4>📄 關於我 (about.html)</h4>
+                    <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-Hant"&gt;
+&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;&lt;title&gt;關於我&lt;/title&gt;
+&lt;style&gt;:root { --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f8f9fa; padding-top: 70px; }
+.header-banner { height: 30vh; background: var(--primary-gradient); display: flex; justify-content: center; align-items: center; color: white; }
+.container { max-width: 800px; margin: -40px auto 60px; background: white; padding: 40px; border-radius: 15px; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.tag { background: #f0f2f5; color: #2575fc; padding: 5px 15px; border-radius: 20px; }
+footer { background: #222; color: #aaa; text-align: center; padding: 30px; }
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="nav-placeholder"&gt;&lt;/div&gt;
+&lt;section class="header-banner"&gt;&lt;h1&gt;關於我&lt;/h1&gt;&lt;/section&gt;
+&lt;main class="container"&gt;
+&lt;h2&gt;我的故事&lt;/h2&gt;&lt;p&gt;我是一名熱愛技術的開發者。&lt;/p&gt;
+&lt;h3&gt;核心技能&lt;/h3&gt;&lt;div class="skill-tags"&gt;&lt;span class="tag"&gt;HTML/CSS&lt;/span&gt;&lt;span class="tag"&gt;JavaScript&lt;/span&gt;&lt;/div&gt;
+&lt;/main&gt;&lt;footer&gt;&lt;p&gt;&copy; 2026&lt;/p&gt;&lt;/footer&gt;
+&lt;script&gt;fetch('nav.html').then(r=&gt;r.text()).then(data=&gt;{document.getElementById('nav-placeholder').innerHTML=data;});&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;</pre>
+
+                    <div class="tip">💡 其他頁面（contact.html、other.html）也可以用同樣方式生成！</div>
                 </div>
 
                 <div class="step-detail">
-                    <h3>步驟 4：上傳檔案並開啟 GitHub Pages</h3>
-                    <p><strong>上傳檔案：</strong> Add file → Create new file，依序建立 nav.html、index.html、about.html、contact.html、other.html，貼上 ChatGPT 生成的程式碼。</p>
-                    <p><strong>開啟 Pages：</strong> Settings → Pages → Branch 選 main → Save</p>
-                    <p>等待 1-2 分鐘，網站就會在 <code>https://你的帳號.github.io/</code> 上線！</p>
-                    <div class="tip">🎉 每次修改檔案並 Commit，網站會自動更新。</div>
+                    <h3>📤 步驟 4：上傳檔案並開啟 GitHub Pages</h3>
+                    <p><strong>上傳檔案：</strong></p>
+                    <ul style="margin: 10px 0 10px 25px;">
+                        <li>回到你的 GitHub 倉庫（例如 seira0972-glitch.github.io）</li>
+                        <li>點擊 <strong>Add file → Create new file</strong></li>
+                        <li>檔名輸入 <code>nav.html</code>，貼上 Gemini 生成的程式碼 → Commit changes</li>
+                        <li>重複步驟，依序建立 <code>index.html</code>、<code>about.html</code>、<code>contact.html</code>、<code>other.html</code></li>
+                    </ul>
+                    <p><strong>開啟 GitHub Pages：</strong></p>
+                    <ul style="margin: 10px 0 10px 25px;">
+                        <li>進入倉庫 → 點擊上方的 <strong>Settings</strong></li>
+                        <li>左邊選單找到 <strong>Pages</strong></li>
+                        <li>在 <strong>Branch</strong> 選擇 <code>main</code>，點擊 <strong>Save</strong></li>
+                        <li>等待 1-2 分鐘，網站就上線了！</li>
+                    </ul>
+                    <div class="tip">🎉 網站網址就是：<code>https://你的帳號.github.io/</code> 或 <code>https://你的帳號.github.io/倉庫名/</code></div>
                 </div>
 
                 <div class="step-detail">
-                    <h3>步驟 5：用 ChatGPT 優化與擴充</h3>
-                    <p>• <strong>優化設計：</strong> 貼給 ChatGPT 請它「優化視覺、加動畫、改善手機版」</p>
-                    <p>• <strong>新增頁面：</strong> 在 nav.html 加連結，再用 ChatGPT 生成新頁面</p>
-                    <p>• <strong>自訂網域：</strong> Pages 設定中填入網域，再到網域商設定 DNS</p>
-                    <p>• <strong>聯絡表單：</strong> 請 ChatGPT 幫你嵌入 Formspree 表單</p>
+                    <h3>✨ 步驟 5：用 Gemini 優化與擴充</h3>
+                    <p>• <strong>修改內容：</strong> 把網站網址貼給 Gemini，請它幫你優化設計</p>
+                    <p>• <strong>新增頁面：</strong> 在 nav.html 加連結，再用 Gemini 生成新頁面</p>
+                    <p>• <strong>自訂網域：</strong> 想用自己買的網址？在 Pages 設定中可以綁定</p>
+                    <p>• <strong>聯絡表單：</strong> 請 Gemini 幫你嵌入 Formspree，讓訪客可以寄信給你</p>
                 </div>
 
                 <div style="background: linear-gradient(135deg, #eef2ff, #ffffff); padding: 28px; border-radius: 24px; margin-top: 20px; text-align: center;">
-                    <p style="font-size: 1.2rem; font-weight: 600; color: #3b82f6;">完成！</p>
-                    <p>你現在擁有：共用導航欄 + 多頁面網站 + ChatGPT 輔助生成</p>
-                    <p style="margin-top: 12px;">隨時可以用 ChatGPT 繼續擴充更多頁面！</p>
+                    <p style="font-size: 1.2rem; font-weight: 600; color: #3b82f6;">🎉 恭喜！你現在有自己的網站了！</p>
+                    <p>共用導航欄 + 多頁面網站 + Gemini 輔助生成</p>
+                    <p style="margin-top: 12px;">隨時可以用 Gemini 繼續擴充更多頁面！</p>
                 </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 我的網頁 | 用 ChatGPT + GitHub Pages 免費架設 | 完整內容需密碼</p>
+        <p>© 2026 我的網頁 | 用 Gemini + GitHub Pages 免費架設 | 完整內容需密碼</p>
     </footer>
 
     <script>
