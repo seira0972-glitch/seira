@@ -12,32 +12,49 @@
         }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             color: #333;
             background: #fafafa;
         }
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
         .about-card {
             background: white;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-radius: 28px;
+            padding: 50px 45px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
             text-align: center;
         }
         .about-card h1 {
             color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
+        .about-card p {
+            font-size: 1.1rem;
+            color: #555;
             margin-bottom: 20px;
         }
+        .highlight {
+            background: #f0f4ff;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0 10px;
+            text-align: left;
+        }
         footer {
-            background: #333;
-            color: white;
+            background: #1e293b;
+            color: #94a3b8;
             text-align: center;
-            padding: 30px;
+            padding: 40px 20px;
             margin-top: 60px;
+        }
+        @media (max-width: 768px) {
+            .about-card { padding: 30px 25px; }
+            .about-card h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -45,7 +62,7 @@
     <div id="nav-placeholder"></div>
     <script>
         fetch('nav.html')
-            .then(response => response.text())
+            .then(res => res.text())
             .then(data => {
                 document.getElementById('nav-placeholder').innerHTML = data;
                 setTimeout(() => {
@@ -58,14 +75,17 @@
                     });
                 }, 100);
             })
-            .catch(error => console.log('導航載入失敗:', error));
+            .catch(err => console.log('導航載入失敗:', err));
     </script>
 
     <div class="container">
         <div class="about-card">
             <h1>📖 關於我們</h1>
-            <p style="font-size: 1.2rem; margin: 20px 0;">我們是一群熱愛技術與設計的創作者，致力於幫助個人與小品牌用最簡單的方式建立專業網站。</p>
-            <p>透過 GitHub Pages 結合 AI 工具，讓網站架設不再是難事。無論你是創業者、創作者還是自由工作者，都能輕鬆擁有自己的數位門面。</p>
+            <p>我們是一群熱愛技術與設計的創作者，致力於幫助個人與小品牌用最簡單的方式建立專業網站。</p>
+            <p>透過 <strong>GitHub Pages</strong> 結合 <strong>AI 工具</strong>，讓網站架設不再是難事。無論你是創業者、創作者還是自由工作者，都能輕鬆擁有自己的數位門面。</p>
+            <div class="highlight">
+                <p>🎯 <strong>我們的使命</strong><br>讓每個人都能零成本建立專業品牌官網，專注於創造價值，而不是煩惱技術細節。</p>
+            </div>
         </div>
     </div>
 
