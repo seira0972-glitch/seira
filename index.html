@@ -19,55 +19,76 @@
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 80px 20px;
+            padding: 100px 20px;
             text-align: center;
+        }
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 60px 20px;
         }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+        }
         .services {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 20px;
         }
         .service-card {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
+            background: white;
+            padding: 35px 25px;
+            border-radius: 20px;
             text-align: center;
-            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(102,126,234,0.15);
         }
         .service-card h3 {
             color: #667eea;
+            font-size: 1.6rem;
             margin-bottom: 15px;
         }
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
         footer {
-            background: #333;
-            color: white;
+            background: #1e293b;
+            color: #94a3b8;
             text-align: center;
-            padding: 30px;
+            padding: 40px 20px;
             margin-top: 60px;
         }
         @media (max-width: 768px) {
-            header h1 { font-size: 32px; }
+            header h1 { font-size: 2rem; }
+            header p { font-size: 1rem; }
+            .section-title { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
-    <!-- 共用導航欄會載入到這裡 -->
     <div id="nav-placeholder"></div>
     <script>
         fetch('nav.html')
-            .then(response => response.text())
+            .then(res => res.text())
             .then(data => {
                 document.getElementById('nav-placeholder').innerHTML = data;
-                // 標記當前頁面的導航為 active
                 setTimeout(() => {
                     const links = document.querySelectorAll('#nav-placeholder nav a');
                     links.forEach(link => {
@@ -78,7 +99,7 @@
                     });
                 }, 100);
             })
-            .catch(error => console.log('導航載入失敗:', error));
+            .catch(err => console.log('導航載入失敗:', err));
     </script>
 
     <header>
@@ -87,19 +108,19 @@
     </header>
 
     <div class="container">
-        <h2 style="text-align: center;">我們的服務</h2>
+        <h2 class="section-title">我們的服務</h2>
         <div class="services">
             <div class="service-card">
                 <h3>🚀 網站開發</h3>
-                <p>快速建置專業品牌官網，響應式設計</p>
+                <p>快速建置專業品牌官網，響應式設計，手機電腦完美顯示。</p>
             </div>
             <div class="service-card">
                 <h3>🎨 品牌設計</h3>
-                <p>打造獨特的視覺識別系統</p>
+                <p>打造獨特的視覺識別系統，讓你的品牌與眾不同。</p>
             </div>
             <div class="service-card">
                 <h3>🤖 AI 顧問</h3>
-                <p>導入 AI 工具，提升工作效率 10 倍</p>
+                <p>導入 AI 工具，提升工作效率 10 倍，降低營運成本。</p>
             </div>
         </div>
     </div>
