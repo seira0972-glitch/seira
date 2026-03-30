@@ -4,269 +4,181 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>用 AI 做網站｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400&family=Noto+Serif+TC:wght@200;300;500&family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #a68b5b;
+            --accent: #a68b5b; /* 靈感閣專屬金棕色 */
             --bg: #ffffff;
             --text-main: #2c2c2c;
-            --text-light: #7a7a7a;
-            --border-light: #ece5e0;
+            --text-light: #888;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        body { 
+            font-family: 'Noto Serif TC', serif; 
+            background: var(--bg); 
+            color: var(--text-main); 
+            line-height: 1.8; 
         }
 
-        body {
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background: var(--bg);
-            color: var(--text-main);
-            line-height: 1.7;
-        }
-
-        #nav-placeholder {
-            min-height: 70px;
-        }
-
-        /* 英雄區塊 */
+        /* 💡 標題區塊：還原漂亮的質感 */
         .hero-section {
             max-width: 900px;
             margin: 0 auto;
-            padding: 120px 40px 60px;
-            text-align: left;
+            padding: 160px 40px 60px;
+            text-align: left; /* 改為靠左，更有現代藝廊感 */
         }
 
         .brand-en {
             font-family: 'Bodoni Moda', serif;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-style: italic;
             color: var(--accent);
-            letter-spacing: 0.5em;
+            letter-spacing: 0.6em;
             text-transform: uppercase;
+            display: block;
             margin-bottom: 20px;
         }
 
         .brand-zh {
             font-family: 'Noto Serif TC', serif;
-            font-size: 2.6rem;
-            font-weight: 400;
-            letter-spacing: 0.2em;
+            font-size: 2.8rem;
+            font-weight: 200; /* 極細宋體 */
+            letter-spacing: 0.45em;
             color: var(--text-main);
-            line-height: 1.3;
+            line-height: 1.2;
             margin-bottom: 20px;
         }
 
         .hero-sub {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 0.95rem;
             color: var(--text-light);
-            letter-spacing: 0.08em;
+            letter-spacing: 0.2em;
             font-weight: 300;
         }
 
-        /* 內容容器 */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 40px 100px;
-        }
+        /* 💡 內容容器 */
+        .container { max-width: 900px; margin: 0 auto; padding: 0 40px 100px; }
 
-        /* 課程大綱卡片 */
+        /* 💡 課程大綱卡片：去除過重的藍色漸層，改用金線質感 */
         .outline-card {
             background: #fff;
-            border-left: 2px solid var(--accent);
-            padding: 40px 40px 40px 48px;
+            border-left: 1px solid var(--accent);
+            padding: 40px;
             margin-bottom: 60px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
 
         .outline-card h2 {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.3rem;
-            font-weight: 500;
-            margin-bottom: 32px;
-            letter-spacing: 0.12em;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            letter-spacing: 0.3em;
             color: var(--text-main);
         }
 
-        .step-list {
-            list-style: none;
-        }
-
+        .step-list { list-style: none; }
         .step-list li {
             display: flex;
             align-items: center;
             gap: 20px;
-            padding: 18px 0;
-            border-bottom: 1px solid var(--border-light);
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
             font-size: 0.95rem;
-            letter-spacing: 0.03em;
-            color: #5a5a5a;
+            letter-spacing: 0.1em;
+            color: #555;
         }
 
         .step-number {
             font-family: 'Bodoni Moda', serif;
             color: var(--accent);
-            font-size: 1rem;
-            font-weight: 500;
-            width: 36px;
+            font-size: 1.2rem;
+            font-style: italic;
+            width: 30px;
         }
 
         .lock-icon {
             margin-left: auto;
-            font-size: 0.7rem;
-            color: #bbb;
-            letter-spacing: 0.05em;
+            font-size: 0.75rem;
+            color: #ccc;
+            letter-spacing: 0.1em;
         }
 
-        /* 密碼解鎖區塊 */
+        /* 💡 密碼解鎖區塊 */
         .password-section {
             text-align: center;
-            padding: 48px 0 32px;
-            border-top: 1px solid var(--border-light);
+            padding: 60px 0;
+            border-top: 1px solid #eee;
         }
 
         .password-box input {
             padding: 12px 20px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
+            font-family: inherit;
             border: 1px solid #ddd;
-            background: #fff;
+            border-radius: 0; /* 去除圓角，改用直角更有設計感 */
             width: 240px;
             outline: none;
-            letter-spacing: 0.1em;
-            transition: all 0.2s;
+            letter-spacing: 0.2em;
+            transition: all 0.3s;
         }
 
-        .password-box input:focus {
-            border-color: var(--accent);
-        }
+        .password-box input:focus { border-color: var(--accent); }
 
         .password-box button {
             background: var(--text-main);
             color: white;
             border: none;
-            padding: 12px 28px;
+            padding: 12px 30px;
             cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            transition: opacity 0.2s;
+            font-family: inherit;
+            letter-spacing: 0.2em;
+            margin-left: -5px; /* 讓按鈕與輸入框無縫接軌 */
+            transition: opacity 0.3s;
         }
 
-        .password-box button:hover {
-            opacity: 0.85;
-        }
+        .password-box button:hover { opacity: 0.8; }
 
-        .error-msg {
-            color: #c77a5a;
-            font-size: 0.75rem;
-            margin-top: 16px;
-            letter-spacing: 0.05em;
-        }
+        .detailed-content { display: none; margin-top: 80px; text-align: left; }
+        .detailed-content.show { display: block; }
 
-        /* 詳細內容 */
-        .detailed-content {
-            display: none;
-            margin-top: 60px;
-            text-align: left;
-        }
-
-        .detailed-content.show {
-            display: block;
-        }
-
-        .step-detail {
-            margin-bottom: 64px;
-        }
-
-        .step-detail h3 {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.3rem;
-            font-weight: 500;
-            color: var(--accent);
-            margin-bottom: 24px;
-            letter-spacing: 0.08em;
-        }
-
-        .step-detail p {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            color: #5a5a5a;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .step-detail code {
-            font-family: monospace;
-            background: #f5f5f5;
-            padding: 2px 6px;
-            font-size: 0.85rem;
-            color: #a68b5b;
+        .step-detail { margin-bottom: 80px; }
+        .step-detail h3 { 
+            font-size: 1.5rem; 
+            font-weight: 400; 
+            color: var(--accent); 
+            margin-bottom: 30px; 
+            letter-spacing: 0.2em;
         }
 
         .step-detail pre {
-            background: #fafaf8;
-            padding: 20px 24px;
-            border-left: 2px solid var(--accent);
-            font-size: 0.8rem;
-            font-family: monospace;
-            color: #4a4a4a;
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 0;
+            border-left: 3px solid var(--accent);
+            font-size: 0.85rem;
+            color: #444;
             overflow-x: auto;
             line-height: 1.6;
             margin: 20px 0;
         }
 
-        .tip {
-            background: #fefaf5;
-            padding: 16px 20px;
-            margin-top: 16px;
-            border-left: 2px solid var(--accent);
-            font-size: 0.85rem;
-            color: #6a6a6a;
-        }
-
-        footer {
-            padding: 80px 40px 60px;
-            text-align: center;
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.4em;
-            color: #ccc;
-            text-transform: uppercase;
-            border-top: 1px solid var(--border-light);
-            margin-top: 40px;
+        footer { 
+            padding: 100px 40px; 
+            text-align: center; 
+            font-family: 'Bodoni Moda', serif; 
+            font-size: 0.65rem; 
+            letter-spacing: 0.5em; 
+            color: #ccc; 
+            text-transform: uppercase; 
         }
 
         @media (max-width: 768px) {
-            .hero-section {
-                padding: 100px 24px 40px;
-            }
-            .brand-zh {
-                font-size: 2rem;
-                letter-spacing: 0.15em;
-            }
-            .container {
-                padding: 0 24px 80px;
-            }
-            .outline-card {
-                padding: 28px 24px;
-            }
-            .step-list li {
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            .lock-icon {
-                margin-left: 50px;
-            }
-            .password-box input {
-                width: 100%;
-                margin-bottom: 12px;
-            }
+            .hero-section { padding: 120px 30px 40px; }
+            .brand-zh { font-size: 2rem; letter-spacing: 0.3em; }
+            .password-box input { width: 100%; margin-bottom: 10px; }
+            .password-box button { width: 100%; margin-left: 0; }
         }
     </style>
 </head>
@@ -274,74 +186,58 @@
     <div id="nav-placeholder"></div>
 
     <header class="hero-section">
-        <div class="brand-en">WunderKammer  </div>
+        <span class="brand-en">WunderKammer / Course 01</span>
         <h1 class="brand-zh">用 AI 做網站</h1>
         <p class="hero-sub">Gemini + GitHub Pages · 從零到上線的數位實踐</p>
     </header>
 
     <div class="container">
         <div class="outline-card">
-            <h2>課程大綱</h2>
+            <h2>📌 課程大綱</h2>
             <ul class="step-list">
-                <li><span class="step-number">01</span> 註冊 GitHub 與建立倉庫 <span class="lock-icon">需密碼</span></li>
-                <li><span class="step-number">02</span> 用 Gemini 生成共用導航欄 <span class="lock-icon">需密碼</span></li>
-                <li><span class="step-number">03</span> 生成各頁面內容 (index/about) <span class="lock-icon">需密碼</span></li>
-                <li><span class="step-number">04</span> 上傳檔案與開啟 Pages <span class="lock-icon">需密碼</span></li>
+                <li><span class="step-number">01</span> 註冊 GitHub 與建立倉庫 <span class="lock-icon">🔒 需密碼</span></li>
+                <li><span class="step-number">02</span> 用 Gemini 生成共用導航欄 <span class="lock-icon">🔒 需密碼</span></li>
+                <li><span class="step-number">03</span> 生成各頁面內容 (index/about) <span class="lock-icon">🔒 需密碼</span></li>
+                <li><span class="step-number">04</span> 上傳檔案與開啟 Pages <span class="lock-icon">🔒 需密碼</span></li>
             </ul>
         </div>
 
         <div class="password-section">
             <div class="password-box">
-                <input type="password" id="passwordInput" placeholder="輸入密碼">
+                <input type="password" id="passwordInput" placeholder="ENTER CODE">
                 <button onclick="checkPassword()">解鎖教學</button>
             </div>
-            <div id="errorMsg" class="error-msg"></div>
+            <div id="errorMsg" style="color: #c00; font-size: 0.8rem; margin-top: 15px;"></div>
 
             <div id="detailedContent" class="detailed-content">
                 <div class="step-detail">
-                    <h3>步驟 1：建立 GitHub 帳號與倉庫</h3>
-                    <p>前往 <a href="https://github.com" target="_blank">GitHub.com</a> 註冊免費帳號。點擊右上角「+」→ New repository。</p>
-                    <p>Repository name 輸入：<code>你的帳號.github.io</code>，勾選 Add a README file，保持 Public，點擊 Create repository。</p>
-                    <div class="tip">💡 這個名稱會直接成為你的網站網址！</div>
+                    <h3>📁 步驟 1：基礎環境建置</h3>
+                    <p>前往 GitHub 建立一個名為 <code>username.github.io</code> 的倉庫，這是開啟免費網址的第一步。</p>
+                    <pre>// 提示詞參考
+"我想要建立一個簡潔的個人網頁，請幫我規劃基礎檔案結構。"</pre>
                 </div>
-            </div>
+                </div>
         </div>
     </div>
 
     <footer>WUNDERKAMMER · 2026</footer>
 
     <script>
-        fetch('nav.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-                const scripts = document.querySelectorAll('#nav-placeholder script');
-                scripts.forEach(oldScript => {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = oldScript.textContent;
-                    oldScript.parentNode.replaceChild(newScript, oldScript);
-                });
-            })
-            .catch(err => console.log('導航載入失敗:', err));
+        // 載入導航欄
+        fetch('nav.html').then(res => res.text()).then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+        });
 
+        // 密碼邏輯
         function checkPassword() {
-            const inputPassword = document.getElementById('passwordInput').value;
-            const errorMsg = document.getElementById('errorMsg');
-            const detailedContent = document.getElementById('detailedContent');
-
-            if (inputPassword === "1234") {
-                detailedContent.classList.add('show');
-                errorMsg.textContent = '';
-                document.getElementById('passwordInput').value = '';
+            const pass = document.getElementById('passwordInput').value;
+            if (pass === "1234") {
+                document.getElementById('detailedContent').classList.add('show');
+                document.getElementById('errorMsg').textContent = "";
             } else {
-                errorMsg.textContent = '密碼錯誤，請再試一次';
-                detailedContent.classList.remove('show');
+                document.getElementById('errorMsg').textContent = "密碼錯誤";
             }
         }
-
-        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') checkPassword();
-        });
     </script>
 </body>
 </html>
