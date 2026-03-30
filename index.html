@@ -19,10 +19,12 @@
             font-family: 'Bodoni Moda', serif; font-size: 0.7rem; letter-spacing: 0.65em;
             text-indent: 0.65em; color: #a68b5b; text-transform: uppercase; margin-bottom: 50px;
         }
-        /* 💡 更新後的標語樣式 */
+        
+        /* 💡 標語樣式優化：拿掉句點，增加輕盈感 */
         header p { 
             font-family: 'Noto Serif TC', serif; font-size: 1rem; color: #666; 
-            max-width: 600px; margin: 0 auto; font-weight: 300; letter-spacing: 0.25em; 
+            max-width: 600px; margin: 0 auto; font-weight: 300; letter-spacing: 0.28em; 
+            opacity: 0.8;
         }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 80px 24px; }
@@ -41,6 +43,7 @@
             font-size: 0.7rem; letter-spacing: 0.2em; border-bottom: 1px solid rgba(166, 139, 91, 0.2);
             padding-bottom: 4px; transition: 0.3s;
         }
+        
         footer { padding: 120px 20px 60px; text-align: center; font-family: 'Bodoni Moda', serif; font-size: 0.65rem; letter-spacing: 0.5em; color: #ccc; }
     </style>
 </head>
@@ -79,7 +82,6 @@
             .then(data => {
                 const placeholder = document.getElementById('nav-placeholder');
                 placeholder.innerHTML = data;
-                // 💡 強制執行 nav.html 內的腳本，解決高亮問題
                 const scripts = placeholder.querySelectorAll('script');
                 scripts.forEach(oldScript => {
                     const newScript = document.createElement('script');
