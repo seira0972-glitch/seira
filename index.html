@@ -6,168 +6,63 @@
     <title>靈感閣｜WunderKammer</title>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500&family=Inter:wght@200;400&display=swap" rel="stylesheet">
     <style>
-        /* 全域視覺優化 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased; /* 讓字體邊緣更平滑細緻 */
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body {
-            font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
             line-height: 1.8;
-            color: #333; 
-            background: #fdfcfb; /* 暖調紙張感背景 */
+            color: #333;
+            background: #fdfcfb;
             letter-spacing: 0.05em;
-            overflow-x: hidden;
         }
+        #nav-placeholder { min-height: 80px; }
 
-        /* 導航欄佔位 */
-        #nav-placeholder {
-            min-height: 80px;
-        }
-
-        /* Header 視覺焦點區 */
-        header {
-            padding: 180px 20px 100px;
-            text-align: center;
-        }
-
+        header { padding: 180px 20px 100px; text-align: center; }
         header h1 {
             font-family: 'Noto Serif TC', serif;
-            font-size: 2.7rem;      /* 稍微縮小字級，減輕繁體字壓迫感 */
-            font-weight: 400;       /* 調降字重至 400，讓「靈」字的筆畫變細 */
-            letter-spacing: 0.45em; /* 增加呼吸感 */
-            text-indent: 0.45em;    /* 關鍵：補償字距造成的視覺偏移 */
-            color: rgba(40, 40, 40, 0.9); /* 使用帶透明度的炭灰，讓邊緣與背景融合 */
+            font-size: 2.7rem;
+            font-weight: 400;
+            letter-spacing: 0.45em;
+            text-indent: 0.45em; /* 修正視覺偏心 */
+            color: rgba(40, 40, 40, 0.9);
             margin-bottom: 20px;
         }
-
         .subtitle {
             font-family: 'Bodoni Moda', serif;
             font-size: 0.7rem;
-            letter-spacing: 0.65em; /* 強化精品雜誌的排版感 */
-            text-indent: 0.65em;    /* 補償偏移 */
-            color: #a68b5b;         /* 古銅金，提升精緻度 */
+            letter-spacing: 0.65em;
+            text-indent: 0.65em;
+            color: #a68b5b;
             text-transform: uppercase;
             margin-bottom: 50px;
             font-weight: 300;
         }
+        header p { font-size: 0.85rem; color: #999; max-width: 450px; margin: 0 auto; font-weight: 300; letter-spacing: 0.15em; }
 
-        header p {
-            font-size: 0.85rem;
-            color: #999;
-            max-width: 450px;
-            margin: 0 auto;
-            font-weight: 300;
-            letter-spacing: 0.15em;
-        }
-
-        /* 內容容器 */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 80px 24px;
-        }
-
+        .container { max-width: 1000px; margin: 0 auto; padding: 80px 24px; }
         .section-title {
             text-align: left;
             font-family: 'Bodoni Moda', 'Noto Serif TC', serif;
             font-size: 1.1rem;
-            font-weight: 400;
-            color: #1a1a1a;
             margin-bottom: 60px;
             letter-spacing: 0.3em;
             display: flex;
             align-items: center;
         }
+        .section-title::after { content: ''; flex-grow: 1; height: 1px; background: rgba(0,0,0,0.05); margin-left: 30px; }
 
-        .section-title::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background: rgba(0,0,0,0.05);
-            margin-left: 30px;
-        }
-
-        /* 作品展示區 */
-        .portfolio {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 80px 40px;
-            margin-bottom: 120px;
-        }
-
-        .portfolio-card {
-            background: transparent;
-        }
-
-        .card-visual {
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            background: #f5f3f0;
-            margin-bottom: 28px;
-            border: 1px solid rgba(0,0,0,0.01);
-            transition: opacity 0.4s ease;
-        }
-
-        .portfolio-card:hover .card-visual {
-            opacity: 0.75;
-        }
-
-        .portfolio-card h3 {
-            font-family: 'Noto Serif TC', serif;
-            color: #1a1a1a;
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 12px;
-            letter-spacing: 0.1em;
-        }
-
-        .portfolio-card p {
-            color: #888;
-            font-size: 0.85rem;
-            font-weight: 300;
-        }
-
+        .portfolio { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 80px 40px; }
+        .portfolio-card { background: transparent; }
+        .card-visual { width: 100%; aspect-ratio: 16 / 10; background: #f5f3f0; margin-bottom: 28px; border: 1px solid rgba(0,0,0,0.01); }
+        .portfolio-card h3 { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 12px; }
+        .portfolio-card p { color: #888; font-size: 0.85rem; font-weight: 300; }
         .portfolio-card a {
-            display: inline-block;
-            margin-top: 20px;
-            color: #a68b5b;
-            text-decoration: none;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            border-bottom: 1px solid rgba(166, 139, 91, 0.2);
-            padding-bottom: 4px;
-            transition: 0.3s;
+            display: inline-block; margin-top: 20px; color: #a68b5b; text-decoration: none;
+            font-size: 0.7rem; letter-spacing: 0.2em; border-bottom: 1px solid rgba(166, 139, 91, 0.2);
+            padding-bottom: 4px; transition: 0.3s;
         }
+        .portfolio-card a:hover { border-bottom-color: #a68b5b; }
 
-        .portfolio-card a:hover {
-            border-bottom-color: #a68b5b;
-        }
-
-        /* 頁腳：純粹化處理 */
-        footer {
-            padding: 120px 20px 60px;
-            text-align: center;
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.5em;
-            color: #ccc;
-            text-transform: uppercase;
-        }
-
-        /* 滾動條美化 */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #fdfcfb; }
-        ::-webkit-scrollbar-thumb { background: #e0e0e0; }
-
-        @media (max-width: 768px) {
-            header { padding: 120px 20px 80px; }
-            header h1 { font-size: 2.2rem; letter-spacing: 0.3em; text-indent: 0.3em; }
-            .container { padding: 40px 24px; }
-        }
+        footer { padding: 120px 20px 60px; text-align: center; font-family: 'Bodoni Moda', serif; font-size: 0.65rem; letter-spacing: 0.5em; color: #ccc; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -197,15 +92,23 @@
         </div>
     </div>
 
-    <footer>
-        WUNDERKAMMER · 2026
-    </footer>
+    <footer>WUNDERKAMMER · 2026</footer>
 
     <script>
         fetch('nav.html')
             .then(res => res.text())
             .then(data => {
                 document.getElementById('nav-placeholder').innerHTML = data;
+                
+                // 💡 一勞永逸的自動高亮腳本
+                const currentPage = window.location.pathname.split("/").pop() || "index.html";
+                const navLinks = document.querySelectorAll('.nav-links a');
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === currentPage) {
+                        link.style.color = "#a68b5b"; // 點亮目前的頁面
+                        link.style.fontWeight = "500";
+                    }
+                });
             })
             .catch(err => console.error('Nav load error:', err));
     </script>
