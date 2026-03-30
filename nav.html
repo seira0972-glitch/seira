@@ -6,12 +6,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px 60px; /* 稍微縮小高度，讓比例更精煉 */
-        background: rgba(253, 252, 251, 0.95);
+        padding: 25px 60px; /* 稍微縮小高度，讓比例更精煉 */
+        background: rgba(253, 252, 251, 0.96);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         z-index: 9999;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     }
 
     /* 💡 這裡是關鍵：將 Logo 改造成微縮標誌 */
@@ -25,20 +25,21 @@
 
     .nav-logo-main {
         font-family: 'Noto Serif TC', serif;
-        font-size: 0.9rem;      /* 縮小到恰好能閱讀 */
+        font-size: 0.95rem;      /* 縮小到恰好能閱讀，維持優雅 */
         font-weight: 500;
-        letter-spacing: 0.25em;
+        letter-spacing: 0.25em;  /* 增加呼吸感 */
         color: #1a1a1a;
-        text-indent: 0.25em;    /* 修正視覺重心 */
+        text-indent: 0.25em;    /* 重要：補償字距造成的視覺偏移 */
     }
 
     .nav-logo-sub {
         font-family: 'Bodoni Moda', serif;
-        font-size: 0.45rem;     /* 極小化，呈現高級感 */
-        letter-spacing: 0.3em;
+        font-size: 0.45rem;     /* 極小化，呈現精品雜誌質感 */
+        letter-spacing: 0.35em;
         color: #a68b5b;         /* 沿用古銅金 */
         text-transform: uppercase;
-        margin-top: 2px;
+        margin-top: 3px;        /* 微調中英文間距 */
+        opacity: 0.9;
     }
 
     .nav-links {
@@ -52,17 +53,21 @@
         font-size: 0.7rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
+        position: relative;
     }
 
+    /* 懸停與點亮樣式 */
     .nav-links a:hover, .nav-links a.active {
         color: #a68b5b;
         font-weight: 500;
     }
 
+    /* 手機版適配 */
     @media (max-width: 768px) {
-        nav { padding: 15px 24px; }
-        .nav-links { gap: 15px; }
+        nav { padding: 18px 25px; }
+        .nav-links { gap: 20px; }
+        .nav-logo-main { font-size: 0.85rem; letter-spacing: 0.2em; text-indent: 0.2em; }
     }
 </style>
 
@@ -81,9 +86,14 @@
 </nav>
 
 <script>
+    /**
+     * 自動偵測頁面腳本：
+     * 確保使用者在不同頁面時，選單會自動變色
+     */
     (function() {
         const currentPath = window.location.pathname.split("/").pop() || "index.html";
         const navLinks = document.querySelectorAll('.nav-links a');
+        
         navLinks.forEach(link => {
             if (link.getAttribute('href') === currentPath) {
                 link.classList.add('active');
