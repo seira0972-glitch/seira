@@ -4,92 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於這裡｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Noto+Sans+TC:wght@100;300&family=Inter:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        
-        body { 
-            font-family: 'Inter', 'Noto Sans TC', sans-serif; 
-            background: #ffffff; 
-            color: #1a1a1a; 
-            letter-spacing: 0.05em;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
         }
 
-        #nav-placeholder { min-height: 80px; }
-
-        .container { 
-            max-width: 1000px; 
-            margin: 0 auto; 
-            padding: 260px 80px 100px;
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: #ffffff;
+            color: #1e1e1e;
+            letter-spacing: 0.03em;
         }
-        
-        /* 💡 座標金線：維持極致纖細 */
+
+        #nav-placeholder {
+            min-height: 80px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 200px 60px 100px;
+        }
+
+        /* 左側金線 */
         .content-wrapper {
-            max-width: 700px;
-            border-left: 1px solid #a68b5b; 
-            padding-left: 50px;
-            position: relative;
+            max-width: 680px;
+            border-left: 1px solid #d4b483;
+            padding-left: 56px;
         }
 
-        /* 💡 重新定義標題：不再是「大字」，而是「精緻標記」 */
+        /* 品牌標題區 */
         .brand-header {
-            margin-bottom: 100px;
-            display: flex;
-            align-items: center; /* 橫向排列，減少大字的壓迫感 */
-            gap: 25px;
+            margin-bottom: 80px;
         }
-        
-        /* 中文：縮小到與英文副標呼應，消除詭異感 */
+
+        /* 中文：沉穩、有重量 */
         .brand-zh {
-            font-family: 'Noto Sans TC', sans-serif;
-            font-size: 0.95rem; /* 💡 縮小，不再是大頭字 */
-            font-weight: 100; 
-            color: #1a1a1a;
-            letter-spacing: 0.8em; /* 💡 極寬字距，增加裝飾感 */
-            display: block;
-            border-right: 1px solid #ddd; /* 中英文間的一道極細分隔線 */
-            padding-right: 25px;
-            line-height: 1;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #2a2a2a;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
         }
-        
-        /* 英文：作為座標的延伸 */
+
+        /* 英文：細緻、低調金 */
         .brand-en {
             font-family: 'Bodoni Moda', serif;
-            font-size: 0.65rem; 
-            color: #a68b5b;
-            letter-spacing: 0.5em; 
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #b59d6e;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            font-weight: 500; 
-            line-height: 1;
         }
 
-        /* 💡 核心敘述：這裡才是視覺真正的重量所在 */
+        /* 內文 */
         .description-text {
             font-family: 'Noto Sans TC', sans-serif;
-            font-size: 1.05rem; 
-            color: #444; 
-            line-height: 3.2; 
+            font-size: 1rem;
             font-weight: 300;
-            letter-spacing: 0.28em; 
-            text-align: left;
+            line-height: 2.2;
+            color: #4a4a4a;
+            letter-spacing: 0.08em;
         }
 
-        footer { 
-            margin-top: 200px;
-            padding: 60px 50px; 
-            text-align: left;
-            font-family: 'Bodoni Moda', serif; 
-            font-size: 0.6rem; 
-            letter-spacing: 0.6em; 
-            color: #eee; 
-            text-transform: uppercase; 
+        /* 頁尾 */
+        footer {
+            margin-top: 160px;
+            padding: 40px 60px;
+            border-top: 1px solid #ece5e0;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            color: #b59d6e;
+            text-transform: uppercase;
         }
 
         @media (max-width: 768px) {
-            .container { padding: 200px 35px 80px; }
-            .brand-header { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .brand-zh { border-right: none; border-bottom: 1px solid #ddd; padding-right: 0; padding-bottom: 15px; font-size: 0.85rem; }
-            .description-text { font-size: 0.95rem; line-height: 2.8; }
+            .container {
+                padding: 140px 32px 80px;
+            }
+            .content-wrapper {
+                padding-left: 28px;
+            }
+            .brand-zh {
+                font-size: 1.4rem;
+                letter-spacing: 0.08em;
+            }
+            .description-text {
+                font-size: 0.9rem;
+                line-height: 2;
+            }
+            footer {
+                padding: 32px 32px;
+                margin-top: 100px;
+            }
         }
     </style>
 </head>
@@ -98,11 +111,10 @@
 
     <div class="container">
         <div class="content-wrapper">
-            <header class="brand-header">
-                <span class="brand-zh">靈感閣</span>
-                <span class="brand-en">WunderKammer</span>
-            </header>
-            
+            <div class="brand-header">
+                <div class="brand-zh">靈感閣</div>
+                <div class="brand-en">WunderKammer</div>
+            </div>
             <p class="description-text">
                 這裡是一個無聲的數位座標<br>
                 於廣袤的荒原中，存放閃爍的奇思異想
@@ -124,7 +136,8 @@
                     newScript.textContent = oldScript.textContent;
                     oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
-            });
+            })
+            .catch(err => console.log('導航載入失敗:', err));
     </script>
 </body>
 </html>
