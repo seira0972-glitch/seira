@@ -7,33 +7,27 @@
         backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
         z-index: 9999; border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     }
-
     .nav-logo-group {
         text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2;
     }
-
     .nav-logo-main {
         font-family: 'Noto Serif TC', serif; font-size: 0.95rem; font-weight: 500;
         letter-spacing: 0.25em; color: #1a1a1a; text-indent: 0.25em;
     }
-
     .nav-logo-sub {
         font-family: 'Bodoni Moda', serif; font-size: 0.45rem;
         letter-spacing: 0.35em; color: #a68b5b; text-transform: uppercase; margin-top: 3px;
     }
-
     .nav-links { display: flex; gap: 40px; }
-
     .nav-links a {
         text-decoration: none; color: #999; font-size: 0.7rem;
         letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s ease;
     }
-
-    /* 💡 統一的高亮樣式 */
-    .nav-links a.active { color: #a68b5b; font-weight: 500; }
+    /* 統一高亮樣式 */
+    .nav-links a.active { color: #a68b5b !important; font-weight: 500; }
 </style>
 
-<nav id="main-nav">
+<nav>
     <a href="index.html" class="nav-logo-group">
         <span class="nav-logo-main">靈感閣</span>
         <span class="nav-logo-sub">WunderKammer</span>
@@ -47,21 +41,12 @@
 </nav>
 
 <script>
-    // 💡 這裡是核心：自我偵測邏輯
     (function() {
-        // 取得目前的檔案路徑
         const currentFile = window.location.pathname.split("/").pop() || "index.html";
-        
-        // 選取當前這個 nav 內部的連結
         const links = document.querySelectorAll('.nav-links a');
-        
         links.forEach(link => {
-            const href = link.getAttribute('href');
-            // 精確比對：移除 active 重新上色，確保唯一性
-            if (href === currentFile) {
+            if (link.getAttribute('href') === currentFile) {
                 link.classList.add('active');
-            } else {
-                link.classList.remove('active');
             }
         });
     })();
