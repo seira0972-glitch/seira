@@ -4,29 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於這裡｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Noto+Serif+TC:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;1,6..96,500&family=Noto+Serif+TC:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --accent: #b59d6e; /* 古典金棕色 */
+            --text-main: #2c2c2c;
+            --text-sub: #5a5a5a;
+            --line: #ece5e0;
         }
 
-        body {
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background: #ffffff;
-            color: #2c2c2c;
-            line-height: 1.6;
-        }
-
-        #nav-placeholder {
-            min-height: 70px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #ffffff; color: var(--text-main); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        #nav-placeholder { min-height: 70px; }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 100px 40px 120px;
+            padding: 120px 40px 120px;
         }
 
         .about-grid {
@@ -38,33 +32,44 @@
 
         .about-left {
             position: sticky;
-            top: 100px;
+            top: 120px;
         }
 
+        /* 💡 強化後的標籤：ABOUT / 關於這裡 */
         .page-label {
             font-family: 'Bodoni Moda', serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.3em;
-            color: #b5b5b5;
+            font-size: 0.8rem;
+            font-style: italic;
+            letter-spacing: 0.4em;
+            color: var(--accent); /* 改用金棕色增加辨識度 */
             text-transform: uppercase;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .page-label::after {
+            content: "";
+            width: 30px;
+            height: 1px;
+            background: var(--line);
         }
 
         .brand-zh {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: #2c2c2c;
-            letter-spacing: 0.15em;
-            margin-bottom: 8px;
-            line-height: 1.3;
+            font-size: 2.2rem; /* 稍微放大 */
+            font-weight: 300;
+            color: var(--text-main);
+            letter-spacing: 0.2em;
+            margin-bottom: 12px;
+            line-height: 1.2;
         }
 
         .brand-en {
             font-family: 'Bodoni Moda', serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.4em;
-            color: #b59d6e;
+            font-size: 0.85rem;
+            letter-spacing: 0.5em;
+            color: #999;
             text-transform: uppercase;
         }
 
@@ -72,61 +77,47 @@
             display: flex;
             flex-direction: column;
             gap: 32px;
+            padding-top: 45px; /* 與左側標題視覺對齊 */
         }
 
         .poem-line {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 300;
-            color: #5a5a5a;
-            letter-spacing: 0.08em;
-            line-height: 1.9;
+            color: var(--text-sub);
+            letter-spacing: 0.1em;
+            line-height: 2.2; /* 增加行高，提升閱讀質感 */
         }
 
         .core {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 400;
-            color: #b59d6e;
-            letter-spacing: 0.12em;
-            margin-top: 16px;
-            padding-top: 24px;
-            border-top: 1px solid #ece5e0;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-top: 20px;
+            padding-top: 30px;
+            border-top: 1px solid var(--line);
         }
 
         footer {
-            margin-top: 80px;
-            padding: 40px 40px;
+            margin-top: 100px;
+            padding: 60px 40px;
             text-align: center;
-            border-top: 1px solid #f0ede8;
             font-family: 'Bodoni Moda', serif;
-            font-size: 0.6rem;
-            letter-spacing: 0.3em;
-            color: #b59d6e;
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
+            color: #ccc;
             text-transform: uppercase;
+            border-top: 1px solid #f9f9f9;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 70px 24px 80px;
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .about-left {
-                position: static;
-                text-align: left;
-            }
-            .brand-zh {
-                font-size: 1.6rem;
-            }
-            .poem-line {
-                font-size: 0.95rem;
-            }
-            .core {
-                font-size: 1.1rem;
-            }
+            .container { padding: 80px 28px; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-left { position: static; }
+            .brand-zh { font-size: 1.8rem; }
+            .about-right { padding-top: 0; }
         }
     </style>
 </head>
@@ -136,15 +127,21 @@
     <div class="container">
         <div class="about-grid">
             <div class="about-left">
-                <div class="page-label">About</div>
+                <div class="page-label">ABOUT / 關於這裡</div>
                 <div class="brand-zh">靈感閣</div>
                 <div class="brand-en">WunderKammer</div>
             </div>
 
             <div class="about-right">
                 <div class="poem-line">這裡是一個無聲的數位空間</div>
+                <div class="poem-line">於廣袤的荒原中，存放閃爍的奇思異想</div>
                 <div class="poem-line">收藏著那些在日常中閃現的想法</div>
+                
                 <div class="core">「收藏奇思，存放日常」</div>
+                
+                <div class="poem-line" style="font-size: 0.9rem; color: #aaa; margin-top: 20px;">
+                    如果你也喜歡這樣的角落，歡迎隨時翻閱。
+                </div>
             </div>
         </div>
     </div>
@@ -157,14 +154,14 @@
             .then(data => {
                 const placeholder = document.getElementById('nav-placeholder');
                 placeholder.innerHTML = data;
+                // 執行 nav.html 中的腳本（如手機選單功能）
                 const scripts = placeholder.querySelectorAll('script');
                 scripts.forEach(oldScript => {
                     const newScript = document.createElement('script');
                     newScript.textContent = oldScript.textContent;
                     oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
-            })
-            .catch(err => console.log('導航載入失敗:', err));
+            });
     </script>
 </body>
 </html>
