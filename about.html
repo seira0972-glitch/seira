@@ -4,149 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於這裡｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Noto+Serif+TC:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --accent: #a68b5b;
-            --bg: #ffffff;
-            --text-main: #2c2c2c;
-            --text-sub: #6a6a6a;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background: var(--bg);
-            color: var(--text-main);
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: #ffffff;
+            color: #2c2c2c;
             line-height: 1.6;
         }
 
         #nav-placeholder {
-            min-height: 72px;
+            min-height: 70px;
         }
 
         .container {
-            max-width: 780px;
+            max-width: 680px;
             margin: 0 auto;
-            padding: 100px 32px 120px;
+            padding: 100px 24px 120px;
             text-align: center;
         }
 
-        /* 頁面標記 */
+        /* 標記 */
         .page-label {
             font-family: 'Bodoni Moda', serif;
             font-size: 0.7rem;
-            letter-spacing: 0.4em;
-            color: #d4d4d4;
+            letter-spacing: 0.3em;
+            color: #b5b5b5;
             text-transform: uppercase;
-            margin-bottom: 48px;
+            margin-bottom: 60px;
         }
 
-        /* 品牌區塊 */
-        .brand-header {
-            margin-bottom: 80px;
-        }
-        .brand-en {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: var(--accent);
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            font-style: italic;
-            margin-bottom: 16px;
-        }
+        /* 品牌 */
         .brand-zh {
             font-family: 'Noto Serif TC', serif;
-            font-size: 2rem;
-            font-weight: 350;
-            color: var(--text-main);
-            letter-spacing: 0.25em;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: #2c2c2c;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
         }
 
-        /* 三句核心文字 */
-        .line-first {
-            font-family: 'Noto Sans TC', sans-serif;
-            font-size: 1rem;
-            font-weight: 320;
-            color: var(--text-sub);
-            letter-spacing: 0.12em;
-            line-height: 1.8;
-            margin-bottom: 20px;
+        .brand-en {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            color: #b59d6e;
+            text-transform: uppercase;
+            margin-bottom: 64px;
         }
 
-        .line-second {
-            font-family: 'Noto Sans TC', sans-serif;
-            font-size: 1rem;
-            font-weight: 320;
-            color: var(--text-sub);
-            letter-spacing: 0.12em;
-            line-height: 1.8;
+        /* 內文 */
+        .poem-line {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #5a5a5a;
+            letter-spacing: 0.08em;
+            line-height: 2;
+            margin-bottom: 24px;
+        }
+
+        .poem-line:last-of-type {
             margin-bottom: 56px;
         }
 
-        .core-message {
+        .core {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.5rem;
-            font-weight: 320;
-            color: var(--accent);
-            letter-spacing: 0.2em;
-            line-height: 1.5;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #b59d6e;
+            letter-spacing: 0.12em;
+            border-top: 1px solid #ece5e0;
+            padding-top: 48px;
+            display: inline-block;
         }
 
         /* 頁尾 */
         footer {
-            margin-top: 120px;
-            padding: 48px 32px;
+            margin-top: 100px;
+            padding: 40px 24px;
             text-align: center;
-            border-top: 1px solid #ece5e0;
+            border-top: 1px solid #f0ede8;
             font-family: 'Bodoni Moda', serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.35em;
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
             color: #b59d6e;
             text-transform: uppercase;
         }
 
-        /* 手機版微調 */
         @media (max-width: 768px) {
             .container {
-                padding: 70px 24px 80px;
+                padding: 70px 20px 80px;
             }
             .brand-zh {
-                font-size: 1.6rem;
-                letter-spacing: 0.2em;
+                font-size: 1.8rem;
             }
-            .line-first, .line-second {
-                font-size: 0.9rem;
-                letter-spacing: 0.1em;
-                margin-bottom: 16px;
+            .poem-line {
+                font-size: 1rem;
+                line-height: 1.9;
             }
-            .line-second {
-                margin-bottom: 40px;
-            }
-            .core-message {
-                font-size: 1.25rem;
-                letter-spacing: 0.18em;
-            }
-            footer {
-                margin-top: 80px;
-                padding: 32px 24px;
-            }
-        }
-
-        /* 小螢幕但大於手機 */
-        @media (max-width: 480px) {
-            .brand-zh {
-                font-size: 1.4rem;
-            }
-            .core-message {
+            .core {
                 font-size: 1.1rem;
+                padding-top: 36px;
             }
         }
     </style>
@@ -157,17 +122,13 @@
     <div class="container">
         <div class="page-label">About</div>
 
-        <div class="brand-header">
-            <div class="brand-en">WunderKammer</div>
-            <div class="brand-zh">靈感閣</div>
-        </div>
+        <div class="brand-zh">靈感閣</div>
+        <div class="brand-en">WunderKammer</div>
 
-        <div class="line-first">這裡是一個無聲的數位空間</div>
-        <div class="line-second">收藏著那些在日常中閃現的想法。</div>
+        <div class="poem-line">這裡是一個無聲的數位空間</div>
+        <div class="poem-line">收藏著那些在日常中閃現的想法。</div>
 
-        <div class="core-message">
-            「收藏奇思，存放日常」
-        </div>
+        <div class="core">「收藏奇思，存放日常」</div>
     </div>
 
     <footer>WUNDERKAMMER · 靈感閣</footer>
