@@ -16,38 +16,43 @@
             padding: 220px 80px 120px;
         }
         
-        /* 💡 靈魂金線：左側垂直座標線 */
+        /* 💡 靈魂金線：保持左側垂直座標 */
         .content-wrapper {
             max-width: 700px;
-            border-left: 1px solid #a68b5b; /* 極細金線 */
-            padding-left: 50px; /* 文字與線的呼吸空間 */
+            border-left: 1px solid #a68b5b; 
+            padding-left: 50px;
             position: relative;
         }
 
-        /* 💡 美感標題：層次分明 */
+        /* 💡 標題區塊：中文在上，英文在下化作裝飾 */
         .brand-header {
-            margin-bottom: 60px;
-            line-height: 1.1;
+            margin-bottom: 70px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
         
-        .brand-en {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.9rem;
-            color: #a68b5b;
-            letter-spacing: 0.65em;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 12px;
-            font-weight: 300;
-        }
-        
+        /* 中文：主標題 */
         .brand-zh {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.9rem;
-            font-weight: 200; /* 極細，增加空靈感 */
+            font-size: 2.2rem;
+            font-weight: 300;
             color: #1a1a1a;
-            letter-spacing: 0.45em;
+            letter-spacing: 0.4em;
             display: block;
+            margin-bottom: 8px; /* 緊貼下方的英文 */
+        }
+        
+        /* 英文：小到像底線的副標 */
+        .brand-en {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.55rem; /* 💡 極小 */
+            color: #a68b5b;
+            letter-spacing: 0.85em; /* 💡 極寬，營造底線感 */
+            text-transform: uppercase;
+            display: block;
+            font-weight: 400;
+            text-indent: 0.85em; /* 補償最後一個字母的間距 */
         }
 
         /* 💡 你的靈魂台詞 */
@@ -55,7 +60,7 @@
             font-family: 'Noto Serif TC', serif;
             font-size: 1.05rem;
             color: #444;
-            line-height: 2.8; /* 寬廣行距 */
+            line-height: 2.8;
             font-weight: 300;
             letter-spacing: 0.22em;
             text-align: left;
@@ -75,7 +80,8 @@
         @media (max-width: 768px) {
             .container { padding: 160px 35px 80px; }
             .content-wrapper { padding-left: 25px; }
-            .brand-zh { font-size: 1.5rem; }
+            .brand-zh { font-size: 1.8rem; }
+            .brand-en { font-size: 0.5rem; letter-spacing: 0.6em; }
             .description-text { font-size: 0.95rem; line-height: 2.4; }
             footer { padding: 60px 35px; }
         }
@@ -87,8 +93,8 @@
     <div class="container">
         <div class="content-wrapper">
             <header class="brand-header">
-                <span class="brand-en">WunderKammer</span>
                 <span class="brand-zh">靈感閣</span>
+                <span class="brand-en">WunderKammer</span>
             </header>
             
             <p class="description-text">
