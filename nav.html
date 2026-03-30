@@ -7,8 +7,6 @@
         backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
         z-index: 9999; border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     }
-
-    /* 💡 移除 WK，改為中英品牌組合 */
     .nav-logo-group {
         text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2;
     }
@@ -20,23 +18,13 @@
         font-family: 'Bodoni Moda', serif; font-size: 0.45rem;
         letter-spacing: 0.35em; color: #a68b5b; text-transform: uppercase; margin-top: 3px;
     }
-
     .nav-links { display: flex; gap: 40px; }
     .nav-links a {
         text-decoration: none; color: #999; font-size: 0.7rem;
         letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s ease;
     }
-
-    /* 💡 當前頁面點亮樣式 */
-    .nav-links a.active {
-        color: #a68b5b !important;
-        font-weight: 500;
-    }
-
-    @media (max-width: 768px) {
-        nav { padding: 18px 25px; }
-        .nav-links { gap: 18px; }
-    }
+    /* 點亮顏色 */
+    .nav-links a.active { color: #a68b5b !important; font-weight: 500; }
 </style>
 
 <nav>
@@ -53,14 +41,12 @@
 </nav>
 
 <script>
-    // 💡 導航欄自我檢查：根據網址自動上色
     (function() {
         const path = window.location.pathname;
         const page = path.split("/").pop() || "index.html";
         const links = document.querySelectorAll('.nav-links a');
         links.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === page) {
+            if (link.getAttribute('href') === page) {
                 link.classList.add('active');
             } else {
                 link.classList.remove('active');
