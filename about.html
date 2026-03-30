@@ -4,129 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於這裡｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400&family=Noto+Sans+TC:wght@100;300;400&family=Inter:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400&family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #a68b5b;
+            --accent: #a68b5b; /* 古典金棕色 */
             --bg: #ffffff;
-            --text: #1a1a1a;
-            --text-light: #888;
+            --text-main: #2c2c2c;
+            --text-sub: #7a7a7a;
         }
 
-        /* 💡 抗鋸齒優化 */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.8; overflow-x: hidden; }
+        #nav-placeholder { min-height: 80px; }
+
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 160px 80px 100px; 
+            display: flex;
+            flex-direction: column;
+            gap: 70px;
+        }
+
+        /* 💡 漂亮標題：文藝復興風格的中西混排 */
+        .brand-header {
+            margin-bottom: 30px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
         
-        /* 💡 縮小導覽列佔位高度 */
-        #nav-placeholder { min-height: 60px; }
-
-        .container { max-width: 800px; margin: 0 auto; padding: 120px 40px 100px; }
-
-        /* 💡 導引標籤：縮小間距 */
-        .page-label {
-            font-size: 0.7rem;
-            letter-spacing: 0.4em;
+        /* 英文：使用 Bodoni Italics，極大字距，像古老壓紋 */
+        .brand-en {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.95rem;
+            font-weight: 400;
             color: var(--accent);
+            letter-spacing: 0.65em; /* 極致字距 */
             text-transform: uppercase;
-            margin-bottom: 40px;
+            display: block;
+            margin-bottom: 15px;
+            font-style: italic; /* 古典斜體 */
+        }
+        
+        /* 💡 中文：你的漂亮標題 (Noto Serif TC)，莊重且空靈 */
+        .brand-zh {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.5rem;
+            font-weight: 300; /* 極細，增加空靈感 */
+            color: var(--text-main);
+            letter-spacing: 0.45em; /* 莊重的字距 */
+            display: block;
+            line-height: 1.1;
+        }
+
+        /* 💡 關於導引 (在標題上方) */
+        .page-label {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.5em;
+            color: #ddd;
+            text-transform: uppercase;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
+        }
+        .page-label::after { content: ""; height: 1px; width: 40px; background: #ddd; }
+
+        /* 💡 你的內文排版 (左側座標線進化) */
+        .content-wrapper {
+            max-width: 750px;
+            border-left: 1px solid rgba(166, 139, 91, 0.4); /* 極細金線座標 */
+            padding-left: 55px; /* 文字與線的呼吸空間 */
+        }
+
+        /* 💡 核心宣言 */
+        .manifesto {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            line-height: 3.2; /* 極寬行距 */
             font-weight: 300;
-        }
-        .page-label::after { content: ""; height: 1px; width: 30px; background: var(--accent); opacity: 0.2; }
-
-        /* 💡 標題重設計：讓疊加更自然 */
-        .hero-section { position: relative; margin-bottom: 80px; }
-        .hero-en {
-            font-family: 'Bodoni Moda', serif;
-            font-size: clamp(3.5rem, 10vw, 5.5rem); /* 自適應大小 */
-            font-style: italic;
-            color: rgba(166, 139, 91, 0.06); /* 帶一點金色的淡影 */
-            line-height: 0.8;
-            user-select: none;
-            display: block;
-        }
-        .hero-zh {
-            font-family: 'Noto Sans TC', sans-serif;
-            font-size: clamp(1.6rem, 5vw, 2.4rem);
-            font-weight: 100; /* 核心修正：極細 */
-            letter-spacing: 0.4em;
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            white-space: nowrap;
+            letter-spacing: 0.3em; /* 詩意的字距 */
+            margin-bottom: 60px;
         }
 
-        /* 💡 內文排版：增加空氣感 */
-        .manifesto-box { border-left: 1px solid rgba(166, 139, 91, 0.4); padding-left: 30px; margin-bottom: 60px; }
-        .main-statement { 
-            font-size: 1.05rem; 
-            font-weight: 300; 
-            letter-spacing: 0.2em; 
-            line-height: 2.8; 
-            color: #222; 
-            margin-bottom: 25px; 
+        /* 💡 截圖文字區塊：優雅流動 */
+        .article-text {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 2.8;
+            font-weight: 300;
+            letter-spacing: 0.18em;
+            text-align: justify;
         }
-        .sub-statement { font-size: 0.9rem; font-weight: 300; letter-spacing: 0.12em; color: var(--text-light); }
 
-        /* 💡 核心金句 */
-        .quote-wrap { margin-top: 60px; padding-left: 30px; }
-        .quote-main {
-            font-size: 1.1rem;
-            color: var(--accent);
-            letter-spacing: 0.35em;
-            display: block;
-            margin-bottom: 30px;
-            font-weight: 400;
+        /* 💡 收藏奇思卡片 */
+        .quote-block {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.2rem;
+            color: var(--accent); /* 金色核心註解 */
+            letter-spacing: 0.45em;
+            margin: 70px 0;
+            line-height: 1;
         }
-        .welcome-text { font-size: 0.85rem; color: #aaa; letter-spacing: 0.15em; font-weight: 300; }
 
         footer { 
-            border-top: 1px solid #f5f5f5;
-            padding: 80px 40px; 
+            margin-top: 150px;
+            padding: 80px 80px 60px; 
+            text-align: left;
             font-family: 'Bodoni Moda', serif; 
-            font-size: 0.6rem; 
-            letter-spacing: 0.5em; 
-            color: #ccc; 
+            font-size: 0.7rem; 
+            letter-spacing: 0.6em; 
+            color: #eee; 
             text-transform: uppercase; 
-            text-align: center;
         }
 
         @media (max-width: 768px) {
-            .container { padding: 80px 25px 60px; }
-            .hero-zh { letter-spacing: 0.2em; }
-            .main-statement { line-height: 2.4; }
+            .container { padding: 140px 35px 80px; }
+            .content-wrapper { padding-left: 25px; }
+            .brand-zh { font-size: 1.8rem; letter-spacing: 0.35em; }
+            .manifesto { font-size: 1rem; line-height: 2.6; }
+            .article-text { line-height: 2.4; }
+            .quote-block { font-size: 1.1rem; }
+            footer { padding: 60px 35px; }
         }
     </style>
 </head>
 <body>
     <div id="nav-placeholder"></div>
 
-    <div class="container">
-        <div class="page-label">關於這裡 / About</div>
+    <main class="container">
+        <div class="page-label">About</div>
 
-        <div class="hero-section">
-            <span class="hero-en">WunderKammer</span>
-            <h1 class="hero-zh">靈感閣</h1>
-        </div>
-
-        <div class="manifesto-box">
-            <p class="main-statement">
+        <header class="brand-header">
+            <span class="brand-en">WunderKammer</span>
+            <h1 class="brand-zh">靈感閣</h1>
+        </header>
+        
+        <div class="content-wrapper">
+            <p class="manifesto">
                 這裡是一個無聲的數位空間<br>
                 於廣袤的荒原中，存放閃爍的奇思異想
             </p>
-            <p class="sub-statement">
-                靈感閣收藏著那些在日常中閃現的想法。
+            
+            <p class="article-text">
+                靈感閣收藏著那些在日常中閃現的想法。如果你也喜歡這樣的角落，歡迎隨時翻閱。
             </p>
+            
+            <div class="quote-block">
+                「收藏奇思，存放日常」
+            </div>
         </div>
-
-        <div class="quote-wrap">
-            <span class="quote-main">「收藏奇思，存放日常」</span>
-            <p class="welcome-text">如果你也喜歡這樣的角落，歡迎隨時翻閱。</p>
-        </div>
-    </div>
+    </main>
 
     <footer>WUNDERKAMMER · 2026</footer>
 
@@ -136,15 +169,13 @@
             .then(data => {
                 const placeholder = document.getElementById('nav-placeholder');
                 placeholder.innerHTML = data;
-                // 確保導覽列加載後不影響佈局
                 const scripts = placeholder.querySelectorAll('script');
                 scripts.forEach(oldScript => {
                     const newScript = document.createElement('script');
                     newScript.textContent = oldScript.textContent;
                     oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
-            })
-            .catch(err => console.error("Nav load failed:", err));
+            });
     </script>
 </body>
 </html>
