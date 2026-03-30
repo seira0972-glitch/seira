@@ -13,26 +13,44 @@
             --line: #ece5e0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #ffffff; color: var(--text-main); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-        #nav-placeholder { min-height: 70px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: #ffffff;
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #nav-placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 100px 40px 120px;
+            padding: 0 40px;
+            width: 100%;
         }
 
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 60px;
-            align-items: start;
-        }
-
-        /* 移除 sticky，正常滾動 */
-        .about-left {
-            /* 不再 sticky */
+            align-items: center;
         }
 
         .page-label {
@@ -47,6 +65,7 @@
             align-items: center;
             gap: 12px;
         }
+
         .page-label::after {
             content: "";
             width: 40px;
@@ -108,8 +127,11 @@
         }
 
         footer {
-            margin-top: 80px;
-            padding: 48px 40px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px 40px;
             text-align: center;
             font-family: 'Bodoni Moda', serif;
             font-size: 0.6rem;
@@ -117,14 +139,23 @@
             color: #ccc;
             text-transform: uppercase;
             border-top: 1px solid #f0ede8;
+            background: #ffffff;
         }
 
         @media (max-width: 768px) {
-            .container { padding: 70px 24px 80px; }
+            body {
+                height: auto;
+                min-height: 100vh;
+                justify-content: center;
+                padding: 80px 0 100px;
+            }
+            .container { padding: 0 24px; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
             .brand-zh { font-size: 1.6rem; }
             .poem-line { font-size: 0.95rem; }
             .core { font-size: 1.1rem; }
+            footer { position: relative; margin-top: 60px; }
+            #nav-placeholder { position: relative; }
         }
     </style>
 </head>
