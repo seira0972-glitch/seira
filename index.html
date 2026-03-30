@@ -1,235 +1,144 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>靈感閣｜WunderKammer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans TC', sans-serif;
-            line-height: 1.6;
-            color: #2c2c2c;
-            background: #ffffff;
-        }
-        header {
-            background: #ffffff;
-            padding: 120px 20px 80px;
-            text-align: center;
-            border-bottom: 1px solid #f0e6d0;
-        }
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 12px;
-            font-weight: 400;
-            letter-spacing: 4px;
-            color: #2c2c2c;
-        }
-        .subtitle {
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            color: #c9a87b;
-            font-weight: 300;
-            margin-bottom: 24px;
-        }
-        header p {
-            font-size: 1rem;
-            color: #8b8b8b;
-            max-width: 500px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 1.6rem;
-            font-weight: 400;
-            color: #2c2c2c;
-            margin-bottom: 56px;
-            letter-spacing: 2px;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 1px;
-            background: #c9a87b;
-            margin: 16px auto 0;
-        }
-        .portfolio {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-        .portfolio-card {
-            background: #ffffff;
-            padding: 40px 28px;
-            text-align: center;
-            border: 1px solid #f0e6d0;
-            transition: all 0.3s ease;
-        }
-        .portfolio-card:hover {
-            border-color: #c9a87b;
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.03);
-        }
-        .portfolio-card h3 {
-            color: #c9a87b;
-            font-size: 1.4rem;
-            font-weight: 500;
-            margin-bottom: 16px;
-            letter-spacing: 1px;
-        }
-        .portfolio-card p {
-            color: #8b8b8b;
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-        .portfolio-card a {
-            display: inline-block;
-            margin-top: 20px;
-            color: #c9a87b;
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #f0e6d0;
-            padding-bottom: 4px;
-            transition: border-color 0.2s;
-        }
-        .portfolio-card a:hover {
-            border-bottom-color: #c9a87b;
-        }
-        .notes-preview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 20px;
-        }
-        .note-card {
-            background: #ffffff;
-            padding: 28px;
-            border: 1px solid #f0e6d0;
-            transition: all 0.2s;
-        }
-        .note-card:hover {
-            border-color: #c9a87b;
-        }
-        .note-card h3 {
-            color: #c9a87b;
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-        .note-card p {
-            color: #8b8b8b;
-            font-size: 0.9rem;
-            margin-bottom: 16px;
-            line-height: 1.6;
-        }
-        .note-card a {
-            color: #c9a87b;
-            text-decoration: none;
-            font-size: 0.85rem;
-            border-bottom: 1px solid #f0e6d0;
-            padding-bottom: 2px;
-        }
-        footer {
-            background: #fcfaf7;
-            color: #a0a0a0;
-            text-align: center;
-            padding: 48px 20px;
-            margin-top: 40px;
-            border-top: 1px solid #f0e6d0;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-        @media (max-width: 768px) {
-            header { padding: 80px 20px 60px; }
-            header h1 { font-size: 2.2rem; }
-            .container { padding: 50px 20px; }
-            .section-title { font-size: 1.3rem; margin-bottom: 40px; }
-        }
-    </style>
-</head>
-<body>
-    <div id="nav-placeholder"></div>
-    <script>
-        fetch('nav.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-                setTimeout(() => {
-                    const links = document.querySelectorAll('#nav-placeholder nav a');
-                    links.forEach(link => {
-                        if (link.getAttribute('href') === 'index.html') {
-                            link.style.color = '#c9a87b';
-                            link.style.borderBottom = '1px solid #c9a87b';
-                        }
-                    });
-                }, 100);
-            })
-            .catch(err => console.log('導航載入失敗:', err));
-    </script>
+<style>
+    /* 引入高級感字體 */
+    @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;500&display=swap');
 
-    <header>
-        <h1>靈感閣</h1>
-        <div class="subtitle">WunderKammer</div>
-        <p>收藏奇思 · 存放日常</p>
-    </header>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <div class="container">
-        <h2 class="section-title">精選作品</h2>
-        <div class="portfolio">
-            <div class="portfolio-card">
-                <h3>用 AI 做網站</h3>
-                <p>Gemini + GitHub Pages 完整教學筆記，從零到上線。</p>
-                <a href="note_1.html">閱讀筆記 →</a>
-            </div>
-            <div class="portfolio-card">
-                <h3>品牌識別設計</h3>
-                <p>簡約而深刻的視覺語言，讓品牌留下印象。</p>
-                <a href="#">查看作品 →</a>
-            </div>
-            <div class="portfolio-card">
-                <h3>日常練習</h3>
-                <p>一些小實驗、草稿、與程式碼的對話。</p>
-                <a href="#">更多 →</a>
-            </div>
-        </div>
+    body {
+        font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        line-height: 1.8;
+        color: #333;
+        background: #fdfcf9; /* 帶一點米色的紙張感，比純白更溫潤 */
+    }
 
-        <h2 class="section-title">最新筆記</h2>
-        <div class="notes-preview">
-            <div class="note-card">
-                <h3>📘 用 Gemini 做網站</h3>
-                <p>從註冊 GitHub 到網站上線，每一步都有詳細說明。</p>
-                <a href="note_1.html">閱讀全文 →</a>
-            </div>
-            <div class="note-card">
-                <h3>🎨 靈感收集方法</h3>
-                <p>如何建立自己的靈感資料庫，讓創作不卡關。</p>
-                <a href="#">閱讀全文 →</a>
-            </div>
-            <div class="note-card">
-                <h3>⚙️ 數位工具推薦</h3>
-                <p>提升效率的免費工具清單，適合創作者與開發者。</p>
-                <a href="#">閱讀全文 →</a>
-            </div>
-        </div>
-    </div>
+    header {
+        padding: 160px 20px 100px; /* 增加留白，讓標題「深呼吸」 */
+        text-align: center;
+        background: radial-gradient(circle at center, #ffffff 0%, #fdfcf9 100%);
+    }
 
-    <footer>
-        <p>靈感閣 · WunderKammer</p>
-        <p style="margin-top: 8px;">© 2026</p>
-    </footer>
-</body>
-</html>
+    header h1 {
+        font-family: 'Bodoni Moda', 'Noto Serif TC', serif; /* 換成古典襯線體 */
+        font-size: 3.8rem;
+        font-weight: 300;
+        letter-spacing: 0.15em;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.75rem;
+        text-transform: uppercase; /* 英文全大寫增加精品感 */
+        letter-spacing: 0.4em;
+        color: #b08d57;
+        margin-bottom: 30px;
+    }
+
+    header p {
+        font-size: 0.95rem;
+        color: #999;
+        font-weight: 300;
+        letter-spacing: 0.1em;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 100px 20px;
+    }
+
+    .section-title {
+        font-family: 'Bodoni Moda', 'Noto Serif TC', serif;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 400;
+        color: #1a1a1a;
+        margin-bottom: 80px;
+        letter-spacing: 0.1em;
+    }
+
+    /* 裝飾線條優化：更細、更淡 */
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: #d4c1a5;
+        margin: 24px auto 0;
+    }
+
+    .portfolio {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 60px; /* 增加間距 */
+        margin-bottom: 120px;
+    }
+
+    /* 作品卡片：去掉生硬邊框，改用隱約的陰影 */
+    .portfolio-card {
+        background: transparent;
+        padding: 0; /* 移除內部邊距，讓內容更純粹 */
+        text-align: left; /* 改成靠左對齊通常比置中更有設計感 */
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .portfolio-card h3 {
+        font-family: 'Noto Serif TC', serif;
+        color: #1a1a1a;
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin-bottom: 12px;
+        position: relative;
+    }
+
+    .portfolio-card p {
+        color: #777;
+        font-size: 0.9rem;
+        font-weight: 300;
+        line-height: 1.8;
+    }
+
+    .portfolio-card a {
+        display: inline-block;
+        margin-top: 24px;
+        color: #b08d57;
+        text-decoration: none;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        border-bottom: 1px solid rgba(176, 141, 87, 0.2);
+        transition: border-color 0.3s;
+    }
+
+    .portfolio-card a:hover {
+        border-bottom-color: #b08d57;
+    }
+
+    /* 筆記區塊：採用更輕盈的卡片感 */
+    .note-card {
+        background: #ffffff;
+        padding: 40px;
+        border: 1px solid rgba(0, 0, 0, 0.03); /* 極淡的邊框 */
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02); /* 幾乎察覺不到的陰影 */
+        transition: all 0.3s ease;
+    }
+
+    .note-card:hover {
+        box-shadow: 0 15px 50px rgba(176, 141, 87, 0.08);
+        border-color: rgba(176, 141, 87, 0.1);
+    }
+
+    footer {
+        padding: 100px 20px;
+        background: #fdfcf9;
+        border-top: 1px solid #f0e6d0;
+        color: #bbb;
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+</style>
