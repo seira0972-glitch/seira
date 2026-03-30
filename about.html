@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於這裡｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&family=Noto+Serif+TC:wght@200;400&family=Inter:wght@200;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&family=Noto+Serif+TC:wght@200;300;400&family=Inter:wght@200;400&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #fdfcfb; color: #1a1a1a; letter-spacing: 0.05em; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        
+        body { 
+            font-family: 'Inter', 'Noto Serif TC', serif; 
+            background: #fdfcfb; 
+            color: #222; 
+            letter-spacing: 0.05em; 
+            /* 💡 增加一點顆粒感，讓白色不那麼刺眼 */
+            background-image: radial-gradient(#e5e5e5 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+            background-attachment: fixed;
+        }
+
         #nav-placeholder { min-height: 80px; }
 
         .container { 
@@ -18,72 +29,71 @@
         
         .content-wrapper {
             max-width: 700px;
-            border-left: 1px solid #a68b5b; 
-            padding-left: 55px;
+            border-left: 1px solid rgba(166, 139, 91, 0.5); /* 💡 降低線條濃度，讓它更像光影 */
+            padding-left: 60px;
             position: relative;
         }
 
-        /* 💡 標題：極致的粗細對比 */
+        /* 💡 標題：消除「詭異感」的排版 */
         .brand-header {
-            margin-bottom: 75px;
+            margin-bottom: 80px;
             display: inline-flex;
             flex-direction: column;
             align-items: flex-start;
         }
         
-        /* 💡 中文：極細 (200)，空靈且大氣 */
+        /* 💡 中文：放大、變細、變淡 */
         .brand-zh {
             font-family: 'Noto Serif TC', serif;
-            font-size: 2.5rem;
-            font-weight: 200; /* 極細 */
-            color: #1a1a1a;
-            letter-spacing: 0.45em;
+            font-size: 2.8rem; /* 再放大，用尺寸壓住詭異感 */
+            font-weight: 200; /* 鎖定最細 */
+            color: rgba(26, 26, 26, 0.85); /* 💡 稍微透明，減少死黑感 */
+            letter-spacing: 0.5em; /* 拉開字距，讓每個字都像獨立標本 */
             display: block;
-            margin-bottom: 5px; 
-            line-height: 1;
+            margin-bottom: 12px; 
+            line-height: 1.1;
         }
         
-        /* 💡 英文：較粗 (500)，作為穩重的金色底座 */
+        /* 💡 英文：金色底座，強化粗細對比 */
         .brand-en {
             font-family: 'Bodoni Moda', serif;
-            font-size: 0.5rem; 
+            font-size: 0.55rem; 
             color: #a68b5b;
-            letter-spacing: 1.1em; /* 💡 拉到極寬，形成底線般的寬度 */
+            letter-spacing: 1.2em; /* 極寬字距 */
             text-transform: uppercase;
             display: block;
-            font-weight: 500; /* 💡 增加厚度 */
-            text-indent: 1.1em; 
+            font-weight: 600; /* 💡 再加粗一點，形成穩定的「地基」 */
+            text-indent: 1.2em; 
             opacity: 0.9;
         }
 
+        /* 💡 內文：優雅流動 */
         .description-text {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.05rem;
-            color: #444;
-            line-height: 2.8;
+            color: #555;
+            line-height: 3.2; /* 💡 再拉大行高，讓閱讀變慢 */
             font-weight: 300;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.25em;
             text-align: left;
         }
 
         footer { 
-            margin-top: 150px;
+            margin-top: 180px;
             padding: 60px 80px; 
             text-align: left;
             font-family: 'Bodoni Moda', serif; 
-            font-size: 0.65rem; 
+            font-size: 0.6rem; 
             letter-spacing: 0.6em; 
-            color: #ccc; 
+            color: #bbb; 
             text-transform: uppercase; 
         }
 
         @media (max-width: 768px) {
             .container { padding: 160px 35px 80px; }
             .content-wrapper { padding-left: 25px; }
-            .brand-zh { font-size: 1.8rem; letter-spacing: 0.3em; }
-            .brand-en { font-size: 0.45rem; letter-spacing: 0.8em; }
-            .description-text { font-size: 0.95rem; line-height: 2.4; }
-            footer { padding: 60px 35px; }
+            .brand-zh { font-size: 1.9rem; letter-spacing: 0.35em; }
+            .description-text { font-size: 0.95rem; line-height: 2.6; }
         }
     </style>
 </head>
