@@ -36,7 +36,16 @@
             margin-bottom: 50px;
             font-weight: 300;
         }
-        header p { font-size: 0.85rem; color: #999; max-width: 450px; margin: 0 auto; font-weight: 300; letter-spacing: 0.15em; }
+        /* 💡 這裡是更新後的標語 */
+        header p { 
+            font-family: 'Noto Serif TC', serif;
+            font-size: 0.95rem; 
+            color: #777; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            font-weight: 300; 
+            letter-spacing: 0.2em; 
+        }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 80px 24px; }
         .section-title {
@@ -71,7 +80,7 @@
     <header>
         <h1>靈感閣</h1>
         <div class="subtitle">WUNDERKAMMER</div>
-        <p>於數位荒原中，開墾一片存放奇思的自留地。</p>
+        <p>於數位荒原中，存放閃爍的奇思異想。</p>
     </header>
 
     <div class="container">
@@ -95,19 +104,19 @@
     <footer>WUNDERKAMMER · 2026</footer>
 
     <script>
+        // 🚀 強化版載入腳本：確保與 nav.html 的高亮邏輯同步
         fetch('nav.html')
             .then(res => res.text())
             .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
+                const placeholder = document.getElementById('nav-placeholder');
+                placeholder.innerHTML = data;
                 
-                // 💡 一勞永逸的自動高亮腳本
-                const currentPage = window.location.pathname.split("/").pop() || "index.html";
-                const navLinks = document.querySelectorAll('.nav-links a');
-                navLinks.forEach(link => {
-                    if (link.getAttribute('href') === currentPage) {
-                        link.style.color = "#a68b5b"; // 點亮目前的頁面
-                        link.style.fontWeight = "500";
-                    }
+                // 💡 強制觸發 nav.html 內部的 script 執行
+                const scripts = placeholder.querySelectorAll('script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = oldScript.textContent;
+                    oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
             })
             .catch(err => console.error('Nav load error:', err));
