@@ -1,82 +1,43 @@
 <style>
     nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 25px 60px; /* 稍微縮小高度，讓比例更精煉 */
+        position: fixed; top: 0; width: 100%;
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 25px 60px;
         background: rgba(253, 252, 251, 0.96);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        z-index: 9999;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        z-index: 9999; border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     }
 
-    /* 💡 這裡是關鍵：將 Logo 改造成微縮標誌 */
     .nav-logo-group {
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        line-height: 1.2;
+        text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2;
     }
 
     .nav-logo-main {
-        font-family: 'Noto Serif TC', serif;
-        font-size: 0.95rem;      /* 縮小到恰好能閱讀，維持優雅 */
-        font-weight: 500;
-        letter-spacing: 0.25em;  /* 增加呼吸感 */
-        color: #1a1a1a;
-        text-indent: 0.25em;    /* 重要：補償字距造成的視覺偏移 */
+        font-family: 'Noto Serif TC', serif; font-size: 0.95rem; font-weight: 500;
+        letter-spacing: 0.25em; color: #1a1a1a; text-indent: 0.25em;
     }
 
     .nav-logo-sub {
-        font-family: 'Bodoni Moda', serif;
-        font-size: 0.45rem;     /* 極小化，呈現精品雜誌質感 */
-        letter-spacing: 0.35em;
-        color: #a68b5b;         /* 沿用古銅金 */
-        text-transform: uppercase;
-        margin-top: 3px;        /* 微調中英文間距 */
-        opacity: 0.9;
+        font-family: 'Bodoni Moda', serif; font-size: 0.45rem;
+        letter-spacing: 0.35em; color: #a68b5b; text-transform: uppercase; margin-top: 3px;
     }
 
-    .nav-links {
-        display: flex;
-        gap: 40px;
-    }
+    .nav-links { display: flex; gap: 40px; }
 
     .nav-links a {
-        text-decoration: none;
-        color: #999;
-        font-size: 0.7rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        transition: all 0.3s ease;
-        position: relative;
+        text-decoration: none; color: #999; font-size: 0.7rem;
+        letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s ease;
     }
 
-    /* 懸停與點亮樣式 */
-    .nav-links a:hover, .nav-links a.active {
-        color: #a68b5b;
-        font-weight: 500;
-    }
-
-    /* 手機版適配 */
-    @media (max-width: 768px) {
-        nav { padding: 18px 25px; }
-        .nav-links { gap: 20px; }
-        .nav-logo-main { font-size: 0.85rem; letter-spacing: 0.2em; text-indent: 0.2em; }
-    }
+    /* 💡 統一的高亮樣式 */
+    .nav-links a.active { color: #a68b5b; font-weight: 500; }
 </style>
 
-<nav>
+<nav id="main-nav">
     <a href="index.html" class="nav-logo-group">
         <span class="nav-logo-main">靈感閣</span>
         <span class="nav-logo-sub">WunderKammer</span>
     </a>
-    
     <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -86,17 +47,21 @@
 </nav>
 
 <script>
-    /**
-     * 自動偵測頁面腳本：
-     * 確保使用者在不同頁面時，選單會自動變色
-     */
+    // 💡 這裡是核心：自我偵測邏輯
     (function() {
-        const currentPath = window.location.pathname.split("/").pop() || "index.html";
-        const navLinks = document.querySelectorAll('.nav-links a');
+        // 取得目前的檔案路徑
+        const currentFile = window.location.pathname.split("/").pop() || "index.html";
         
-        navLinks.forEach(link => {
-            if (link.getAttribute('href') === currentPath) {
+        // 選取當前這個 nav 內部的連結
+        const links = document.querySelectorAll('.nav-links a');
+        
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            // 精確比對：移除 active 重新上色，確保唯一性
+            if (href === currentFile) {
                 link.classList.add('active');
+            } else {
+                link.classList.remove('active');
             }
         });
     })();
