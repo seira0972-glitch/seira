@@ -9,54 +9,39 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #fdfcfb; color: #333; letter-spacing: 0.05em; }
         #nav-placeholder { min-height: 80px; }
-        .container { max-width: 700px; margin: 0 auto; padding: 180px 24px 100px; text-align: left; }
-        
+        .container { max-width: 700px; margin: 0 auto; padding: 180px 24px; text-align: left; }
         .page-header { margin-bottom: 60px; }
         .page-header .en-title { font-family: 'Bodoni Moda', serif; font-size: 0.7rem; letter-spacing: 0.5em; color: #a68b5b; text-transform: uppercase; margin-bottom: 12px; }
         .page-header h1 { font-family: 'Noto Serif TC', serif; font-size: 2.2rem; font-weight: 500; letter-spacing: 0.3em; color: #1a1a1a; }
-        
         .content p { font-family: 'Noto Serif TC', serif; font-size: 1.05rem; color: #444; line-height: 2.2; font-weight: 300; }
-        .status-tag { margin-top: 100px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 30px; }
-        .status-tag p { font-size: 0.7rem; color: #bbb; letter-spacing: 0.2em; text-transform: uppercase; }
-        
         footer { padding: 60px 20px; text-align: center; font-family: 'Bodoni Moda', serif; font-size: 0.6rem; letter-spacing: 0.5em; color: #ccc; }
     </style>
 </head>
 <body>
     <div id="nav-placeholder"></div>
-
     <div class="container">
         <header class="page-header">
             <div class="en-title">ABOUT THE SPACE</div>
             <h1>關於這裡</h1>
         </header>
-
         <div class="content">
-            <p>於數位荒原中，存放閃爍的奇思異想。</p>
-        </div>
-
-        <div class="status-tag">
-            <p>Archive / Since 2026</p>
+            <p>存放數位荒原中閃爍的奇思異想</p>
         </div>
     </div>
-
     <footer>WUNDERKAMMER · 2026</footer>
-
     <script>
         fetch('nav.html')
             .then(res => res.text())
             .then(data => {
                 const placeholder = document.getElementById('nav-placeholder');
                 placeholder.innerHTML = data;
-                // 💡 強制執行載入內容中的腳本，解決高亮不一致
                 const scripts = placeholder.querySelectorAll('script');
                 scripts.forEach(oldScript => {
                     const newScript = document.createElement('script');
                     newScript.textContent = oldScript.textContent;
                     oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
-            })
-            .catch(err => console.error('Nav load error:', err));
+            });
     </script>
 </body>
 </html>
