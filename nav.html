@@ -6,23 +6,39 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 30px 60px;
-        background: rgba(253, 252, 251, 0.9); /* 磨砂玻璃背景 */
+        padding: 20px 60px; /* 稍微縮小高度，讓比例更精煉 */
+        background: rgba(253, 252, 251, 0.95);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         z-index: 9999;
-        transition: all 0.4s ease;
         border-bottom: 1px solid rgba(0, 0, 0, 0.02);
     }
 
-    .nav-logo {
-        font-family: 'Bodoni Moda', serif;
-        font-size: 1rem;
-        letter-spacing: 0.3em;
-        color: #1a1a1a;
+    /* 💡 這裡是關鍵：將 Logo 改造成微縮標誌 */
+    .nav-logo-group {
         text-decoration: none;
-        font-weight: 400;
-        text-indent: 0.3em;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1.2;
+    }
+
+    .nav-logo-main {
+        font-family: 'Noto Serif TC', serif;
+        font-size: 0.9rem;      /* 縮小到恰好能閱讀 */
+        font-weight: 500;
+        letter-spacing: 0.25em;
+        color: #1a1a1a;
+        text-indent: 0.25em;    /* 修正視覺重心 */
+    }
+
+    .nav-logo-sub {
+        font-family: 'Bodoni Moda', serif;
+        font-size: 0.45rem;     /* 極小化，呈現高級感 */
+        letter-spacing: 0.3em;
+        color: #a68b5b;         /* 沿用古銅金 */
+        text-transform: uppercase;
+        margin-top: 2px;
     }
 
     .nav-links {
@@ -36,24 +52,26 @@
         font-size: 0.7rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        transition: color 0.3s;
-        position: relative;
+        transition: all 0.3s;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover, .nav-links a.active {
         color: #a68b5b;
+        font-weight: 500;
     }
 
-    /* 響應式：手機版縮小間距 */
     @media (max-width: 768px) {
-        nav { padding: 20px 30px; }
-        .nav-links { gap: 20px; }
-        .nav-logo { font-size: 0.9rem; }
+        nav { padding: 15px 24px; }
+        .nav-links { gap: 15px; }
     }
 </style>
 
 <nav>
-    <a href="index.html" class="nav-logo">WK</a>
+    <a href="index.html" class="nav-logo-group">
+        <span class="nav-logo-main">靈感閣</span>
+        <span class="nav-logo-sub">WunderKammer</span>
+    </a>
+    
     <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -61,3 +79,15 @@
         <a href="services.html">Services</a>
     </div>
 </nav>
+
+<script>
+    (function() {
+        const currentPath = window.location.pathname.split("/").pop() || "index.html";
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    })();
+</script>
