@@ -7,10 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400&family=Noto+Serif+TC:wght@300;500&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent-color: #a68b5b; /* 經典金棕 */
-            --bg-color: #f4f4f2;    /* 暖灰色，像陳年紙張 */
+            --accent-color: #a68b5b; 
+            --bg-color: #f4f4f2;    
             --text-main: #2c2c2c;
-            --text-sub: #7a7a7a;
+            --text-sub: #666;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -20,116 +20,113 @@
             background: var(--bg-color); 
             color: var(--text-main); 
             line-height: 1.8;
-            overflow-x: hidden;
         }
 
         #nav-placeholder { min-height: 80px; }
 
-        /* 💡 佈局容器：左側留白增加深邃感 */
         .main-content { 
             max-width: 1100px; 
             margin: 0 auto; 
             padding: 160px 100px 120px; 
             display: flex;
             flex-direction: column;
-            gap: 80px;
+            gap: 70px;
         }
 
-        /* 💡 藝術標題：疊加式排版 */
+        /* 💡 疊加式標題：化解中文單獨存在的生硬感 */
         .hero-title {
             position: relative;
             display: inline-block;
+            margin-bottom: 20px;
         }
 
         .hero-en {
             font-family: 'Bodoni Moda', serif;
-            font-size: 5rem;
+            font-size: 5.5rem;
             font-style: italic;
-            color: rgba(166, 139, 91, 0.12); /* 極淡的背景英文 */
-            letter-spacing: 0.1em;
-            line-height: 1;
+            color: rgba(166, 139, 91, 0.12); 
+            letter-spacing: 0.05em;
+            line-height: 0.8;
             user-select: none;
         }
 
         .hero-zh {
             font-family: 'Noto Serif TC', serif;
-            font-size: 2.4rem;
+            font-size: 2.6rem;
             font-weight: 500;
             color: var(--text-main);
             position: absolute;
-            left: 0.2em;
-            bottom: -0.2em;
-            letter-spacing: 0.4em;
+            left: 0.1em;
+            bottom: -0.1em;
+            letter-spacing: 0.45em;
         }
 
-        /* 💡 宣言區：這句最重要 */
+        /* 💡 核心宣言 */
         .manifesto {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.2rem;
-            letter-spacing: 0.2em;
+            font-size: 1.15rem;
+            letter-spacing: 0.25em;
             color: var(--text-main);
             border-left: 2px solid var(--accent-color);
             padding-left: 35px;
-            margin-bottom: 20px;
+            line-height: 2.8;
         }
 
-        /* 💡 內容細節區：來自截圖的文字 */
+        /* 💡 截圖文字區塊 */
         .detail-section {
-            max-width: 650px;
-            margin-left: 40px; /* 與宣言對齊 */
+            max-width: 680px;
+            margin-left: 40px; 
         }
 
-        .detail-text {
+        .article-text {
             font-size: 0.95rem;
             color: var(--text-sub);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
+            line-height: 2.6;
             margin-bottom: 2.5rem;
             text-align: justify;
         }
 
+        /* 💡 引用卡片：收藏奇思 */
         .quote-card {
-            background: rgba(255, 255, 255, 0.5);
-            padding: 40px;
-            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 45px;
+            border-left: 1px solid var(--accent-color);
             margin: 60px 0;
             position: relative;
         }
 
-        .quote-card::before {
-            content: "“";
-            font-family: 'Bodoni Moda', serif;
-            font-size: 4rem;
-            color: var(--accent-color);
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            opacity: 0.3;
-        }
-
         .quote-content {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--accent-color);
-            letter-spacing: 0.3em;
+            letter-spacing: 0.4em;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .quote-sub {
+            font-size: 0.85rem;
+            color: #999;
+            letter-spacing: 0.1em;
         }
 
         footer { 
-            padding: 100px 100px 60px;
+            padding: 80px 100px;
             font-family: 'Bodoni Moda', serif; 
-            font-size: 0.7rem; 
-            letter-spacing: 0.5em; 
-            color: #aaa; 
+            font-size: 0.65rem; 
+            letter-spacing: 0.6em; 
+            color: #ccc; 
             text-transform: uppercase; 
         }
 
         @media (max-width: 768px) {
-            .main-content { padding: 120px 40px 60px; }
-            .hero-en { font-size: 3.5rem; }
+            .main-content { padding: 120px 30px 60px; }
+            .hero-en { font-size: 3.8rem; }
             .hero-zh { font-size: 1.8rem; }
             .detail-section { margin-left: 0; }
-            footer { padding: 60px 40px; }
+            .manifesto { font-size: 1rem; padding-left: 20px; }
+            footer { padding: 60px 30px; }
         }
     </style>
 </head>
@@ -148,17 +145,17 @@
         </div>
 
         <div class="detail-section">
-            <p class="detail-text">
-                靈感閣收藏著那些在日常中閃現的靈光、反覆推敲的草稿、與逐漸成形的想法。在這裡，你會找到關於網站架設的完整教學、設計練習的筆記、以及一些數位工具的探索。
+            <p class="article-text">
+                靈感閣收藏著那些在日常中閃現的靈光、反覆推敲的草稿、與逐漸成形的想法。在這裡，你會找到關於網站架設的完整教學、設計練習的筆記、以及一些數位工具的探索。沒有演算法打擾，沒有多餘的資訊轟炸——只有安靜整理的內容，與願願意停留閱讀的你。
             </p>
 
             <div class="quote-card">
                 <span class="quote-content">「收藏奇思，存放日常」</span>
-                <span style="font-size: 0.85rem; color: #999;">是我為這個空間留下的唯一註解。</span>
+                <span class="quote-sub">是我為這個空間留下的唯一註解。</span>
             </div>
 
-            <p class="detail-text">
-                如果你也喜歡這樣的角落，歡迎隨時翻閱。希望這裡的內容，能成為你創作路上的一點陪伴。
+            <p class="article-text">
+                如果你也喜歡這樣的角落，歡迎隨時翻閱。若有任何想法或疑問，可以透過「聯繫」頁面找到我。希望這裡的內容，能成為你創作路上的一點陪伴。
             </p>
         </div>
     </main>
