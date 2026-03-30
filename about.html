@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於這裡｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,92 +16,96 @@
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
             background: #ffffff;
-            color: #1e1e1e;
-            letter-spacing: 0.03em;
+            color: #2a2a2a;
+            line-height: 1.7;
         }
 
         #nav-placeholder {
-            min-height: 80px;
+            min-height: 72px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 200px 60px 100px;
+            padding: 80px 32px 100px;
         }
 
-        /* 左側金線 */
-        .content-wrapper {
-            max-width: 680px;
-            border-left: 1px solid #d4b483;
-            padding-left: 56px;
-        }
-
-        /* 品牌標題區 */
-        .brand-header {
-            margin-bottom: 80px;
-        }
-
-        /* 中文：沉穩、有重量 */
-        .brand-zh {
+        /* 主標題 */
+        .page-title {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 500;
-            color: #2a2a2a;
-            letter-spacing: 0.12em;
-            margin-bottom: 12px;
+            color: #1e1e1e;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
         }
 
-        /* 英文：細緻、低調金 */
-        .brand-en {
+        /* 副標題 / 金色分隔線 */
+        .subhead {
             font-family: 'Bodoni Moda', serif;
             font-size: 0.7rem;
             font-weight: 400;
             color: #b59d6e;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
+            margin-bottom: 48px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ece5e0;
         }
 
-        /* 內文 */
-        .description-text {
+        /* 文章段落 */
+        .article-text {
             font-family: 'Noto Sans TC', sans-serif;
-            font-size: 1rem;
             font-weight: 300;
-            line-height: 2.2;
+            font-size: 1rem;
+            line-height: 1.9;
             color: #4a4a4a;
-            letter-spacing: 0.08em;
+            margin-bottom: 32px;
+        }
+
+        .article-text:last-of-type {
+            margin-bottom: 0;
+        }
+
+        /* 引言區塊（可選） */
+        .quote-block {
+            margin: 48px 0;
+            padding-left: 24px;
+            border-left: 2px solid #b59d6e;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #5e5e5e;
+            font-style: normal;
         }
 
         /* 頁尾 */
         footer {
-            margin-top: 160px;
-            padding: 40px 60px;
+            margin-top: 80px;
+            padding: 32px 32px;
+            text-align: center;
             border-top: 1px solid #ece5e0;
             font-family: 'Bodoni Moda', serif;
             font-size: 0.65rem;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.2em;
             color: #b59d6e;
             text-transform: uppercase;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 140px 32px 80px;
+                padding: 60px 24px 80px;
             }
-            .content-wrapper {
-                padding-left: 28px;
+            .page-title {
+                font-size: 1.8rem;
             }
-            .brand-zh {
-                font-size: 1.4rem;
-                letter-spacing: 0.08em;
+            .article-text {
+                font-size: 0.95rem;
+                line-height: 1.8;
             }
-            .description-text {
-                font-size: 0.9rem;
-                line-height: 2;
-            }
-            footer {
-                padding: 32px 32px;
-                margin-top: 100px;
+            .quote-block {
+                font-size: 0.95rem;
+                margin: 32px 0;
             }
         }
     </style>
@@ -110,19 +114,28 @@
     <div id="nav-placeholder"></div>
 
     <div class="container">
-        <div class="content-wrapper">
-            <div class="brand-header">
-                <div class="brand-zh">靈感閣</div>
-                <div class="brand-en">WunderKammer</div>
-            </div>
-            <p class="description-text">
-                這裡是一個無聲的數位座標<br>
-                於廣袤的荒原中，存放閃爍的奇思異想
-            </p>
+        <h1 class="page-title">關於這裡</h1>
+        <div class="subhead">WunderKammer · 靈感閣</div>
+
+        <p class="article-text">
+            靈感閣不是一個喧囂的地方。它更像一座小小的奇珍櫃（WunderKammer），收藏著那些在日常中閃現的靈光、反覆推敲的草稿、與逐漸成形的想法。
+        </p>
+
+        <p class="article-text">
+            在這裡，你會找到關於網站架設的完整教學、設計練習的筆記、以及一些數位工具的探索。沒有演算法打擾，沒有多餘的資訊轟炸——只有安靜整理的內容，與願意停留閱讀的你。
+        </p>
+
+        <div class="quote-block">
+            「收藏奇思，存放日常」<br>
+            是我為這個空間留下的唯一註解。
         </div>
+
+        <p class="article-text">
+            如果你也喜歡這樣的角落，歡迎隨意翻閱。若有任何想法或疑問，可以透過「聯繫」頁面找到我。希望這裡的內容，能成為你創作路上的一點陪伴。
+        </p>
     </div>
 
-    <footer>WUNDERKAMMER · 2026</footer>
+    <footer>WUNDERKAMMER · 靈感閣</footer>
 
     <script>
         fetch('nav.html')
