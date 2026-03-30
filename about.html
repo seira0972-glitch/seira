@@ -7,43 +7,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500&family=Inter:wght@200;400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #fdfcfb; color: #333; letter-spacing: 0.05em; line-height: 1.8; height: 100vh; display: flex; flex-direction: column; }
-        #nav-placeholder { min-height: 80px; width: 100%; }
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #fdfcfb; color: #333; letter-spacing: 0.05em; line-height: 1.8; }
+        #nav-placeholder { min-height: 80px; }
 
-        /* 讓內容垂直居中，營造空間感 */
+        /* 💡 容器：調整為上方留白較多，左對齊 */
         .container { 
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 40px;
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 180px 60px 100px; 
         }
         
+        /* 💡 內容區塊：強化文字的呼吸感 */
         .content-wrapper {
-            max-width: 600px;
-            text-align: center; /* 居中排版更顯莊重 */
+            max-width: 650px;
+            border-top: 1px solid rgba(0,0,0,0.06); /* 加一條極細的線，增加精緻感 */
+            padding-top: 50px;
         }
 
         .main-text {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.15rem;
-            color: #333;
-            line-height: 2.8;
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 2.6; /* 💡 拉高行間距，讓文字在荒原中散開 */
             font-weight: 300;
-            letter-spacing: 0.2em;
-        }
-
-        .en-brand {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.8rem;
-            letter-spacing: 0.5em;
-            color: #a68b5b;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            display: block;
+            letter-spacing: 0.22em;
+            text-align: justify;
         }
 
         footer { 
+            margin-top: 120px;
             padding: 60px 20px; 
             text-align: center; 
             font-family: 'Bodoni Moda', serif; 
@@ -54,6 +46,7 @@
         }
 
         @media (max-width: 768px) {
+            .container { padding: 140px 30px 60px; }
             .main-text { font-size: 1rem; line-height: 2.4; }
         }
     </style>
@@ -63,7 +56,6 @@
 
     <div class="container">
         <div class="content-wrapper">
-            <span class="en-brand">WunderKammer</span>
             <p class="main-text">
                 靈感閣 / WunderKammer<br>
                 淵源於文藝復興時期的珍奇屋<br>
@@ -81,15 +73,13 @@
             .then(data => {
                 const placeholder = document.getElementById('nav-placeholder');
                 placeholder.innerHTML = data;
-                // 強制執行導航欄腳本，確保 About 高亮
                 const scripts = placeholder.querySelectorAll('script');
                 scripts.forEach(oldScript => {
                     const newScript = document.createElement('script');
                     newScript.textContent = oldScript.textContent;
                     oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
-            })
-            .catch(err => console.error('Error:', err));
+            });
     </script>
 </body>
 </html>
