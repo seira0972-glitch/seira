@@ -6,31 +6,20 @@
     <title>關於這裡｜WunderKammer</title>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500&family=Inter:wght@200;400&display=swap" rel="stylesheet">
     <style>
+        /* 基礎樣式保持一致 */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
             line-height: 2;
             color: #333;
-            background: #fdfcfb; /* 統一象牙白背景 */
+            background: #fdfcfb;
             letter-spacing: 0.05em;
         }
-
         #nav-placeholder { min-height: 80px; }
+        .container { max-width: 700px; margin: 0 auto; padding: 120px 24px; }
 
-        /* 內容容器：窄版排版更有閱讀質感 */
-        .container {
-            max-width: 700px; 
-            margin: 0 auto;
-            padding: 120px 24px;
-        }
-
-        /* 標題區 */
-        .page-header {
-            margin-bottom: 80px;
-            text-align: left;
-        }
-
+        /* 標題與內容排版 */
+        .page-header { margin-bottom: 80px; text-align: left; }
         .page-header h1 {
             font-family: 'Noto Serif TC', serif;
             font-size: 2.2rem;
@@ -39,7 +28,6 @@
             color: #1a1a1a;
             margin-bottom: 10px;
         }
-
         .page-header .en-title {
             font-family: 'Bodoni Moda', serif;
             font-size: 0.75rem;
@@ -48,55 +36,14 @@
             text-transform: uppercase;
         }
 
-        /* 文章內容 */
-        article section {
-            margin-bottom: 60px;
-        }
+        article section { margin-bottom: 60px; }
+        article p { font-size: 0.95rem; color: #4a4a4a; margin-bottom: 28px; font-weight: 300; text-align: justify; }
 
-        article p {
-            font-size: 0.95rem;
-            color: #4a4a4a;
-            margin-bottom: 28px;
-            font-weight: 300;
-            text-align: justify;
-        }
+        .philosophy { border-left: 1px solid #a68b5b; padding-left: 30px; margin: 50px 0; }
+        .philosophy h2 { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 15px; }
+        .philosophy p { font-style: italic; color: #888; font-size: 0.9rem; }
 
-        /* 引用/強調區塊：改用細線條裝飾 */
-        .philosophy {
-            border-left: 1px solid #a68b5b;
-            padding-left: 30px;
-            margin: 50px 0;
-        }
-
-        .philosophy h2 {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-        }
-
-        .philosophy p {
-            font-style: italic;
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        /* 頁腳 */
-        footer {
-            padding: 100px 20px 60px;
-            text-align: center;
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.5em;
-            color: #ccc;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 768px) {
-            .container { padding: 80px 24px; }
-            .page-header h1 { font-size: 1.8rem; }
-        }
+        footer { padding: 100px 20px 60px; text-align: center; font-family: 'Bodoni Moda', serif; font-size: 0.65rem; letter-spacing: 0.5em; color: #ccc; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -110,23 +57,14 @@
 
         <article>
             <section>
-                <p>
-                    「靈感閣」（WunderKammer）一詞源於文藝復興時期的「珍奇屋」。在那樣的空間裡，收藏家們不按常規地擺放標本、藝術品與古物，建立起屬於個人的微型宇宙。
-                </p>
-                <p>
-                    在當前瑣碎且快速流動的數位環境中，我們往往遺忘了思考的重量。這裡不追求流量，也不跟隨趨勢，僅僅是作為一個靜態的座標，存放那些在日常縫隙中閃爍的奇思異想。
-                </p>
+                <p>「靈感閣」（WunderKammer）源於文藝復興時期的珍奇屋。這裡不追求速度，僅僅是作為一個座標，存放數位荒原中閃爍的奇思異想。</p>
             </section>
-
             <div class="philosophy">
                 <h2>收藏的哲學</h2>
                 <p>「我們所收藏的，最終都會定義我們是誰。」</p>
             </div>
-
             <section>
-                <p>
-                    我們相信極簡並非空無一物，而是一種經過篩選後的飽滿。透過 AI 的協作與 GitHub 的穩定傳承，我們希望在建構網頁的過程中，重新找回對文字與美學的掌控權。
-                </p>
+                <p>我們相信極簡並非空無一物，而是一種經過篩選後的飽滿。透過 AI 的協作與 GitHub 的穩定傳承，重新找回對文字與美學的掌控權。</p>
             </section>
         </article>
     </div>
@@ -134,13 +72,29 @@
     <footer>WUNDERKAMMER · 2026</footer>
 
     <script>
+        // 🚀 強化的自動點亮邏輯
         fetch('nav.html')
             .then(res => res.text())
             .then(data => {
                 document.getElementById('nav-placeholder').innerHTML = data;
-                // nav.html 內建的腳本會自動抓取當前頁面並點亮
+                
+                // 確保 nav 載入後立即執行高亮
+                const currentFile = window.location.pathname.split("/").pop() || "index.html";
+                // 這裡加入一個微小的延遲，確保 DOM 已經渲染完成
+                setTimeout(() => {
+                    const navLinks = document.querySelectorAll('.nav-links a');
+                    navLinks.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href === currentFile) {
+                            link.style.color = "#a68b5b"; // 強制賦予顏色
+                            link.style.fontWeight = "500";
+                            // 如果你在 nav.html 有定義 .active class，也可以改用：
+                            // link.classList.add('active');
+                        }
+                    });
+                }, 10);
             })
-            .catch(err => console.error('Nav load error:', err));
+            .catch(err => console.error('導航載入失敗:', err));
     </script>
 </body>
 </html>
