@@ -13,68 +13,91 @@
             --text-light: #888;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
-        #nav-placeholder { min-height: 80px; }
+        /* 💡 抗鋸齒優化 */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        /* 💡 縮小導覽列佔位高度 */
+        #nav-placeholder { min-height: 60px; }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 180px 60px 100px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 120px 40px 100px; }
 
-        /* 💡 頂部導引標題：關於這裡 / About */
+        /* 💡 導引標籤：縮小間距 */
         .page-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.5em;
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            font-weight: 300;
         }
-        .page-label::after { content: ""; height: 1px; width: 40px; background: var(--accent); opacity: 0.3; }
+        .page-label::after { content: ""; height: 1px; width: 30px; background: var(--accent); opacity: 0.2; }
 
-        /* 💡 主標題設計：WunderKammer 疊加 靈感閣 */
-        .hero-section { position: relative; margin-bottom: 100px; }
+        /* 💡 標題重設計：讓疊加更自然 */
+        .hero-section { position: relative; margin-bottom: 80px; }
         .hero-en {
             font-family: 'Bodoni Moda', serif;
-            font-size: 5rem;
+            font-size: clamp(3.5rem, 10vw, 5.5rem); /* 自適應大小 */
             font-style: italic;
-            color: rgba(0, 0, 0, 0.03); /* 極淡背景，消除文字生硬感 */
+            color: rgba(166, 139, 91, 0.06); /* 帶一點金色的淡影 */
             line-height: 0.8;
             user-select: none;
+            display: block;
         }
         .hero-zh {
             font-family: 'Noto Sans TC', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 100; /* 極細黑體，高冷美感 */
-            letter-spacing: 0.5em;
+            font-size: clamp(1.6rem, 5vw, 2.4rem);
+            font-weight: 100; /* 核心修正：極細 */
+            letter-spacing: 0.4em;
             position: absolute;
             left: 0;
-            bottom: -10px;
+            bottom: -5px;
+            white-space: nowrap;
         }
 
-        /* 💡 內文排版 */
-        .manifesto-box { border-left: 1px solid var(--accent); padding-left: 40px; margin-bottom: 80px; }
-        .main-statement { font-size: 1.1rem; font-weight: 300; letter-spacing: 0.25em; line-height: 3; color: #333; margin-bottom: 30px; }
-        .sub-statement { font-size: 0.95rem; font-weight: 300; letter-spacing: 0.15em; color: var(--text-light); }
+        /* 💡 內文排版：增加空氣感 */
+        .manifesto-box { border-left: 1px solid rgba(166, 139, 91, 0.4); padding-left: 30px; margin-bottom: 60px; }
+        .main-statement { 
+            font-size: 1.05rem; 
+            font-weight: 300; 
+            letter-spacing: 0.2em; 
+            line-height: 2.8; 
+            color: #222; 
+            margin-bottom: 25px; 
+        }
+        .sub-statement { font-size: 0.9rem; font-weight: 300; letter-spacing: 0.12em; color: var(--text-light); }
 
-        /* 💡 核心金句卡片 */
-        .quote-wrap { margin: 80px 0; padding-left: 40px; }
+        /* 💡 核心金句 */
+        .quote-wrap { margin-top: 60px; padding-left: 30px; }
         .quote-main {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--accent);
-            letter-spacing: 0.4em;
+            letter-spacing: 0.35em;
             display: block;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            font-weight: 400;
         }
-        .welcome-text { font-size: 0.9rem; color: #999; letter-spacing: 0.2em; font-weight: 300; }
+        .welcome-text { font-size: 0.85rem; color: #aaa; letter-spacing: 0.15em; font-weight: 300; }
 
-        footer { padding: 100px 60px; font-family: 'Bodoni Moda', serif; font-size: 0.65rem; letter-spacing: 0.6em; color: #ddd; text-transform: uppercase; }
+        footer { 
+            border-top: 1px solid #f5f5f5;
+            padding: 80px 40px; 
+            font-family: 'Bodoni Moda', serif; 
+            font-size: 0.6rem; 
+            letter-spacing: 0.5em; 
+            color: #ccc; 
+            text-transform: uppercase; 
+            text-align: center;
+        }
 
         @media (max-width: 768px) {
-            .container { padding: 140px 30px 60px; }
-            .hero-en { font-size: 3.5rem; }
-            .hero-zh { font-size: 1.6rem; }
-            .main-statement { font-size: 1rem; line-height: 2.6; }
+            .container { padding: 80px 25px 60px; }
+            .hero-zh { letter-spacing: 0.2em; }
+            .main-statement { line-height: 2.4; }
         }
     </style>
 </head>
@@ -113,13 +136,15 @@
             .then(data => {
                 const placeholder = document.getElementById('nav-placeholder');
                 placeholder.innerHTML = data;
+                // 確保導覽列加載後不影響佈局
                 const scripts = placeholder.querySelectorAll('script');
                 scripts.forEach(oldScript => {
                     const newScript = document.createElement('script');
                     newScript.textContent = oldScript.textContent;
                     oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
-            });
+            })
+            .catch(err => console.error("Nav load failed:", err));
     </script>
 </body>
 </html>
