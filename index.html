@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>靈感閣｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;500&family=Inter:wght@200;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500&family=Inter:wght@200;400&display=swap" rel="stylesheet">
     <style>
         /* 全域視覺優化 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
+            -webkit-font-smoothing: antialiased; /* 讓字體邊緣更平滑細緻 */
         }
 
         body {
             font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
             line-height: 1.8;
-            color: #3a3a3a; /* 炭灰色，比純黑溫潤 */
-            background: #fdfcfb; /* 帶有紙張感的暖白 */
+            color: #333; 
+            background: #fdfcfb; /* 暖調紙張感背景 */
             letter-spacing: 0.05em;
             overflow-x: hidden;
         }
@@ -30,18 +30,18 @@
 
         /* Header 視覺焦點區 */
         header {
-            padding: 160px 20px 100px;
+            padding: 180px 20px 100px;
             text-align: center;
         }
 
         header h1 {
             font-family: 'Noto Serif TC', serif;
-            font-size: 2.8rem; /* 縮小字級以減少繁體字的沉重感 */
-            font-weight: 500;
+            font-size: 2.7rem;      /* 稍微縮小字級，減輕繁體字壓迫感 */
+            font-weight: 400;       /* 調降字重至 400，讓「靈」字的筆畫變細 */
             letter-spacing: 0.45em; /* 增加呼吸感 */
-            text-indent: 0.45em;    /* 重要：補償字距造成的視覺偏心 */
-            color: rgba(26, 26, 26, 0.85); 
-            margin-bottom: 18px;
+            text-indent: 0.45em;    /* 關鍵：補償字距造成的視覺偏移 */
+            color: rgba(40, 40, 40, 0.9); /* 使用帶透明度的炭灰，讓邊緣與背景融合 */
+            margin-bottom: 20px;
         }
 
         .subtitle {
@@ -49,7 +49,7 @@
             font-size: 0.7rem;
             letter-spacing: 0.65em; /* 強化精品雜誌的排版感 */
             text-indent: 0.65em;    /* 補償偏移 */
-            color: #a68b5b;         /* 古銅金，平衡視覺重心 */
+            color: #a68b5b;         /* 古銅金，提升精緻度 */
             text-transform: uppercase;
             margin-bottom: 50px;
             font-weight: 300;
@@ -87,7 +87,7 @@
             content: '';
             flex-grow: 1;
             height: 1px;
-            background: rgba(0,0,0,0.04);
+            background: rgba(0,0,0,0.05);
             margin-left: 30px;
         }
 
@@ -113,7 +113,7 @@
         }
 
         .portfolio-card:hover .card-visual {
-            opacity: 0.7;
+            opacity: 0.75;
         }
 
         .portfolio-card h3 {
@@ -147,7 +147,7 @@
             border-bottom-color: #a68b5b;
         }
 
-        /* 頁腳 */
+        /* 頁腳：純粹化處理 */
         footer {
             padding: 120px 20px 60px;
             text-align: center;
@@ -161,9 +161,10 @@
         /* 滾動條美化 */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: #fdfcfb; }
-        ::-webkit-scrollbar-thumb { background: #eee; }
+        ::-webkit-scrollbar-thumb { background: #e0e0e0; }
 
         @media (max-width: 768px) {
+            header { padding: 120px 20px 80px; }
             header h1 { font-size: 2.2rem; letter-spacing: 0.3em; text-indent: 0.3em; }
             .container { padding: 40px 24px; }
         }
@@ -175,7 +176,7 @@
     <header>
         <h1>靈感閣</h1>
         <div class="subtitle">WUNDERKAMMER</div>
-        <p>收藏日常中的奇思，存放數位荒原裡的自留地。</p>
+        <p>於數位荒原中，開墾一片存放奇思的自留地。</p>
     </header>
 
     <div class="container">
@@ -197,7 +198,7 @@
     </div>
 
     <footer>
-        WUNDERKAMMER · COLLECTED IN 2026
+        WUNDERKAMMER · 2026
     </footer>
 
     <script>
