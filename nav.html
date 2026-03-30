@@ -1,126 +1,63 @@
-<nav class="navbar">
-    <div class="nav-container">
-        <a href="index.html" class="nav-logo">靈感閣</a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-        <ul class="nav-menu" id="nav-menu">
-            <li><a href="index.html" class="nav-link">首頁</a></li>
-            <li><a href="about.html" class="nav-link">關於</a></li>
-            <li><a href="contact.html" class="nav-link">聯繫</a></li>
-            <li><a href="other.html" class="nav-link">其他</a></li>
-            <li><a href="note_1.html" class="nav-link">教學筆記</a></li>
-        </ul>
-    </div>
-</nav>
-
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    .navbar {
-        background: #ffffff;
-        height: 70px;
+    nav {
         position: fixed;
         top: 0;
         width: 100%;
-        border-bottom: 1px solid #f0e6d0;
-        z-index: 1000;
-    }
-    .nav-container {
-        max-width: 1200px;
-        height: 100%;
-        margin: 0 auto;
-        padding: 0 24px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 30px 60px;
+        background: rgba(253, 252, 251, 0.9); /* 與 body 背景一致，帶透明感 */
+        backdrop-filter: blur(10px); /* 磨砂玻璃效果 */
+        z-index: 9999;
+        transition: all 0.4s ease;
     }
+
     .nav-logo {
-        font-size: 1.2rem;
-        font-weight: 400;
-        letter-spacing: 2px;
-        color: #2c2c2c;
+        font-family: 'Bodoni Moda', serif;
+        font-size: 1rem;
+        letter-spacing: 0.3em;
+        color: #1a1a1a;
         text-decoration: none;
+        font-weight: 400;
     }
-    .nav-menu {
+
+    .nav-links {
         display: flex;
-        list-style: none;
-        gap: 36px;
+        gap: 40px;
     }
-    .nav-link {
+
+    .nav-links a {
         text-decoration: none;
-        color: #6b6b6b;
-        font-weight: 400;
-        font-size: 0.9rem;
-        letter-spacing: 1px;
+        color: #999;
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        transition: color 0.3s;
         position: relative;
-        padding: 4px 0;
     }
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 1px;
-        bottom: 0;
-        left: 0;
-        background: #c9a87b;
-        transition: width 0.3s;
+
+    .nav-links a:hover {
+        color: #a68b5b;
     }
-    .nav-link:hover::after {
-        width: 100%;
+
+    /* 當前頁面指示器 (簡單版) */
+    .nav-links a.active {
+        color: #1a1a1a;
     }
-    .nav-link:hover {
-        color: #c9a87b;
-    }
-    .nav-toggle {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-        background: none;
-        border: none;
-    }
-    .bar {
-        width: 24px;
-        height: 1px;
-        background: #6b6b6b;
-        margin: 5px 0;
-    }
+
     @media (max-width: 768px) {
-        .nav-toggle {
-            display: flex;
-        }
-        .nav-menu {
-            position: fixed;
-            top: 70px;
-            left: -100%;
-            flex-direction: column;
-            background: #ffffff;
-            width: 100%;
-            text-align: center;
-            padding: 32px 0;
-            transition: 0.3s;
-            gap: 24px;
-            border-bottom: 1px solid #f0e6d0;
-        }
-        .nav-menu.active {
-            left: 0;
-        }
-        .nav-logo {
-            font-size: 1rem;
-        }
+        nav { padding: 20px 30px; }
+        .nav-links { gap: 20px; }
     }
 </style>
 
-<script>
-    const toggle = document.getElementById('nav-toggle');
-    const menu = document.getElementById('nav-menu');
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => menu.classList.toggle('active'));
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => menu.classList.remove('active')));
-    }
-</script>
+<nav>
+    <a href="index.html" class="nav-logo">WK</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="note_1.html">Notes</a>
+        <a href="services.html">Services</a>
+    </div>
+</nav>
