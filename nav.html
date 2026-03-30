@@ -23,61 +23,64 @@
         box-sizing: border-box;
     }
     .navbar {
-        background: #fff;
+        background: #ffffff;
         height: 70px;
         position: fixed;
         top: 0;
         width: 100%;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-bottom: 1px solid #f0e6d0;
         z-index: 1000;
     }
     .nav-container {
         max-width: 1200px;
         height: 100%;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 0 24px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
     .nav-logo {
-        font-size: 1.3rem;
-        font-weight: 500;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
+        font-size: 1.2rem;
+        font-weight: 400;
+        letter-spacing: 2px;
+        color: #2c2c2c;
         text-decoration: none;
-        letter-spacing: 1px;
+        transition: opacity 0.2s;
+    }
+    .nav-logo:hover {
+        opacity: 0.7;
     }
     .nav-menu {
         display: flex;
         list-style: none;
-        gap: 30px;
+        gap: 36px;
     }
     .nav-link {
         text-decoration: none;
-        color: #333;
-        font-weight: 500;
+        color: #6b6b6b;
+        font-weight: 400;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
         position: relative;
-        padding: 5px 0;
+        padding: 4px 0;
         transition: color 0.2s;
     }
     .nav-link::after {
         content: '';
         position: absolute;
         width: 0;
-        height: 2px;
+        height: 1px;
         bottom: 0;
         left: 0;
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        background: #c9a87b;
         transition: width 0.3s;
     }
     .nav-link:hover::after {
         width: 100%;
     }
     .nav-link:hover {
-        color: #667eea;
+        color: #c9a87b;
     }
     .nav-toggle {
         display: none;
@@ -87,11 +90,11 @@
         border: none;
     }
     .bar {
-        width: 25px;
-        height: 3px;
-        background: #333;
-        margin: 4px 0;
-        transition: 0.3s;
+        width: 24px;
+        height: 1px;
+        background: #6b6b6b;
+        margin: 5px 0;
+        transition: 0.2s;
     }
     @media (max-width: 768px) {
         .nav-toggle {
@@ -102,19 +105,19 @@
             top: 70px;
             left: -100%;
             flex-direction: column;
-            background: #fff;
+            background: #ffffff;
             width: 100%;
             text-align: center;
-            padding: 20px 0;
+            padding: 32px 0;
             transition: 0.3s;
-            gap: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            gap: 24px;
+            border-bottom: 1px solid #f0e6d0;
         }
         .nav-menu.active {
             left: 0;
         }
         .nav-logo {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
     }
 </style>
