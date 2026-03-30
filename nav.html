@@ -7,10 +7,12 @@
         justify-content: space-between;
         align-items: center;
         padding: 30px 60px;
-        background: rgba(253, 252, 251, 0.9); /* 與 body 背景一致，帶透明感 */
-        backdrop-filter: blur(10px); /* 磨砂玻璃效果 */
+        background: rgba(253, 252, 251, 0.9); /* 磨砂玻璃背景 */
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         z-index: 9999;
         transition: all 0.4s ease;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.02);
     }
 
     .nav-logo {
@@ -20,6 +22,7 @@
         color: #1a1a1a;
         text-decoration: none;
         font-weight: 400;
+        text-indent: 0.3em;
     }
 
     .nav-links {
@@ -41,14 +44,11 @@
         color: #a68b5b;
     }
 
-    /* 當前頁面指示器 (簡單版) */
-    .nav-links a.active {
-        color: #1a1a1a;
-    }
-
+    /* 響應式：手機版縮小間距 */
     @media (max-width: 768px) {
         nav { padding: 20px 30px; }
         .nav-links { gap: 20px; }
+        .nav-logo { font-size: 0.9rem; }
     }
 </style>
 
