@@ -4,67 +4,276 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>靈感閣｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;500&family=Inter:wght@200;400&display=swap" rel="stylesheet">
     <style>
+        /* 基礎重設與優化 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-font-smoothing: antialiased; /* 字體平滑化 */
+            -webkit-font-smoothing: antialiased; /* 讓字體邊緣更銳利細膩 */
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, 'Noto Sans TC', sans-serif;
+            font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
             line-height: 1.8;
-            color: #1a1a1a;
-            background: #fdfcfb; /* 象牙白，比純白更有質感 */
-            letter-spacing: 0.05em;
+            color: #2a2a2a; /* 炭灰色，避免純黑的生硬感 */
+            background: #fdfcfb; /* 暖調象牙白背景，增加閱讀舒適度 */
+            letter-spacing: 0.03em;
         }
 
-        /* 導航欄佔位 */
+        /* 導航欄佔位：保持頂部空間 */
         #nav-placeholder {
-            height: 80px;
+            height: 70px;
         }
 
+        /* Header 視覺重心 */
         header {
-            padding: 180px 20px 120px;
+            padding: 160px 20px 100px;
             text-align: center;
         }
 
         header h1 {
             font-family: 'Noto Serif TC', serif;
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             font-weight: 500;
-            letter-spacing: 0.3em; /* 標題適度拉開 */
+            letter-spacing: 0.35em; /* 拉開主標題，營造大氣感 */
             color: #1a1a1a;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            margin-left: 0.35em; /* 補償因字距產生的偏移，使其真正置中 */
         }
 
         .subtitle {
             font-family: 'Bodoni Moda', serif;
-            font-size: 0.8rem;
-            letter-spacing: 0.6em; /* 副標題極度拉開，呈現精品感 */
-            color: #b08d57;
+            font-size: 0.75rem;
+            letter-spacing: 0.6em; /* 極大字距，這是高級感的靈魂 */
+            color: #a68b5b; /* 古銅金，平衡黑色的沉重 */
             text-transform: uppercase;
-            margin-bottom: 40px;
-            font-weight: 300;
+            margin-bottom: 45px;
+            font-weight: 400;
         }
 
         header p {
             font-size: 0.9rem;
             color: #888;
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
             font-weight: 300;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
         }
 
+        /* 容器與內容排版 */
         .container {
-            max-width: 1000px; /* 縮窄容器，讓視覺更集中 */
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 60px 24px;
         }
 
         .section-title {
-            text-align: left; /* 靠左排版通常比置中更具現代設計感 */
-            font-family: 'Bodoni Moda', 'Noto Serif TC',
+            text-align: left;
+            font-family: 'Bodoni Moda', 'Noto Serif TC', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 60px;
+            letter-spacing: 0.25em;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: rgba(0,0,0,0.06); /* 極細的水平分割線 */
+            margin-left: 30px;
+        }
+
+        /* 作品集區塊 */
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 70px 50px;
+            margin-bottom: 120px;
+        }
+
+        .portfolio-card {
+            background: transparent;
+            text-align: left;
+        }
+
+        .card-visual {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: #f5f3f0; /* 略深於背景的區塊感 */
+            margin-bottom: 24px;
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-card:hover .card-visual {
+            opacity: 0.8; /* 靜態網頁微小的互動感 */
+        }
+
+        .portfolio-card h3 {
+            font-family: 'Noto Serif TC', serif;
+            color: #1a1a1a;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: 0.08em;
+        }
+
+        .portfolio-card p {
+            color: #777;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* 連結樣式優化 */
+        .portfolio-card a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #a68b5b;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            border-bottom: 1px solid rgba(166, 139, 91, 0.2);
+            padding-bottom: 3px;
+            transition: all 0.3s;
+        }
+
+        .portfolio-card a:hover {
+            border-bottom-color: #a68b5b;
+            color: #8e7345;
+        }
+
+        /* 筆記區塊 - 簡約條列式 */
+        .notes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .note-item {
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .note-info h3 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .note-info p {
+            font-size: 0.8rem;
+            color: #999;
+            font-weight: 300;
+        }
+
+        .read-link {
+            font-size: 0.7rem;
+            color: #bbb;
+            text-decoration: none;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .read-link:hover {
+            color: #a68b5b;
+        }
+
+        /* 頁腳 */
+        footer {
+            padding: 120px 20px 60px;
+            text-align: center;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.5em;
+            color: #ccc;
+            text-transform: uppercase;
+        }
+
+        /* 反白細節控 */
+        ::selection {
+            background: #f0e6d0;
+            color: #1a1a1a;
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            header { padding: 100px 20px 60px; }
+            header h1 { font-size: 2.4rem; letter-spacing: 0.2em; }
+            .container { padding: 40px 24px; }
+            .note-item { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <header>
+        <h1>靈感閣</h1>
+        <div class="subtitle">WUNDERKAMMER</div>
+        <p>收藏日常中的奇思，存放數位荒原裡的自留地。</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">WORKS</h2>
+        <div class="portfolio">
+            <div class="portfolio-card">
+                <div class="card-visual"></div>
+                <h3>用 AI 做網站</h3>
+                <p>Gemini + GitHub Pages 完整教學筆記，探索 AI 協作的無限可能。</p>
+                <a href="note_1.html">EXPLORE MORE →</a>
+            </div>
+            <div class="portfolio-card">
+                <div class="card-visual"></div>
+                <h3>視覺識別設計</h3>
+                <p>簡約而深刻的視覺語彙，為品牌注入獨一無二的靈魂。</p>
+                <a href="#">VIEW PROJECT →</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">JOURNAL</h2>
+        <div class="notes-list">
+            <div class="note-item">
+                <div class="note-info">
+                    <h3>📘 數位工具的選型與哲學</h3>
+                    <p>為什麼在 2026 年，我們依然追求靜態的美學與慢思考？</p>
+                </div>
+                <a href="#" class="read-link">Read Journal</a>
+            </div>
+            <div class="note-item">
+                <div class="note-info">
+                    <h3>🎨 靈感收集方法論</h3>
+                    <p>如何建立一個能自主生長、不隨時間消逝的知識體系。</p>
+                </div>
+                <a href="#" class="read-link">Read Journal</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        WUNDERKAMMER · COLLECTED IN 2026
+    </footer>
+
+    <script>
+        // 載入導航欄
+        fetch('nav.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+                // 自動啟動當前頁面導航高亮 (如果需要)
+            })
+            .catch(err => console.error('Nav load error:', err));
+    </script>
+</body>
+</html>
