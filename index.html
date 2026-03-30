@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首頁 | 我的品牌</title>
+    <title>WunderKammer｜靈感閣</title>
     <style>
         * {
             margin: 0;
@@ -41,13 +41,13 @@
             color: #333;
             margin-bottom: 40px;
         }
-        .services {
+        .portfolio {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 20px;
+            margin-bottom: 80px;
         }
-        .service-card {
+        .portfolio-card {
             background: white;
             padding: 35px 25px;
             border-radius: 20px;
@@ -55,18 +55,54 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .service-card:hover {
+        .portfolio-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 25px rgba(102,126,234,0.15);
         }
-        .service-card h3 {
+        .portfolio-card h3 {
             color: #667eea;
             font-size: 1.6rem;
             margin-bottom: 15px;
         }
-        .service-card p {
+        .portfolio-card p {
             color: #666;
             line-height: 1.6;
+        }
+        .portfolio-card a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .notes-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .note-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .note-card:hover {
+            transform: translateY(-4px);
+        }
+        .note-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .note-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .note-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
         }
         footer {
             background: #1e293b;
@@ -103,30 +139,52 @@
     </script>
 
     <header>
-        <h1>歡迎來到我的品牌</h1>
-        <p>用 AI 打造你的數位資產，完全免費上線！</p>
+        <h1>WunderKammer</h1>
+        <p>靈感閣 — 收藏奇思，存放日常</p>
     </header>
 
     <div class="container">
-        <h2 class="section-title">我們的服務</h2>
-        <div class="services">
-            <div class="service-card">
-                <h3>🚀 網站開發</h3>
-                <p>快速建置專業品牌官網，響應式設計，手機電腦完美顯示。</p>
+        <h2 class="section-title">📌 精選作品</h2>
+        <div class="portfolio">
+            <div class="portfolio-card">
+                <h3>用 AI 做網站</h3>
+                <p>Gemini + GitHub Pages 完整教學筆記，從零到上線。</p>
+                <a href="note_1.html">閱讀筆記 →</a>
             </div>
-            <div class="service-card">
-                <h3>🎨 品牌設計</h3>
-                <p>打造獨特的視覺識別系統，讓你的品牌與眾不同。</p>
+            <div class="portfolio-card">
+                <h3>品牌識別設計</h3>
+                <p>簡約而深刻的視覺語言，讓品牌留下印象。</p>
+                <a href="#">查看作品 →</a>
             </div>
-            <div class="service-card">
-                <h3>🤖 AI 顧問</h3>
-                <p>導入 AI 工具，提升工作效率 10 倍，降低營運成本。</p>
+            <div class="portfolio-card">
+                <h3>日常練習</h3>
+                <p>一些小實驗、草稿、與程式碼的對話。</p>
+                <a href="#">更多 →</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">📖 最新筆記</h2>
+        <div class="notes-preview">
+            <div class="note-card">
+                <h3>📘 用 Gemini 做網站</h3>
+                <p>從註冊 GitHub 到網站上線，每一步都有詳細說明。</p>
+                <a href="note_1.html">閱讀全文 →</a>
+            </div>
+            <div class="note-card">
+                <h3>🎨 靈感收集方法</h3>
+                <p>如何建立自己的靈感資料庫，讓創作不卡關。</p>
+                <a href="#">閱讀全文 →</a>
+            </div>
+            <div class="note-card">
+                <h3>⚙️ 數位工具推薦</h3>
+                <p>提升效率的免費工具清單，適合創作者與開發者。</p>
+                <a href="#">閱讀全文 →</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 我的品牌 | 用 GitHub Pages 免費架設</p>
+        <p>© 2026 WunderKammer｜靈感閣</p>
     </footer>
 </body>
 </html>
