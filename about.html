@@ -24,30 +24,42 @@
         }
 
         .container {
-            max-width: 680px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 100px 24px 120px;
-            text-align: center;
+            padding: 100px 40px 120px;
         }
 
-        /* 標記 */
+        /* 左至右的網格佈局 */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* 左側：標記 + 品牌 */
+        .about-left {
+            position: sticky;
+            top: 100px;
+        }
+
         .page-label {
             font-family: 'Bodoni Moda', serif;
             font-size: 0.7rem;
             letter-spacing: 0.3em;
             color: #b5b5b5;
             text-transform: uppercase;
-            margin-bottom: 60px;
+            margin-bottom: 32px;
         }
 
-        /* 品牌 */
         .brand-zh {
             font-family: 'Noto Serif TC', serif;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 400;
             color: #2c2c2c;
             letter-spacing: 0.15em;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            line-height: 1.3;
         }
 
         .brand-en {
@@ -56,39 +68,39 @@
             letter-spacing: 0.4em;
             color: #b59d6e;
             text-transform: uppercase;
-            margin-bottom: 64px;
         }
 
-        /* 內文 */
+        /* 右側：內文 */
+        .about-right {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
         .poem-line {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 300;
             color: #5a5a5a;
             letter-spacing: 0.08em;
-            line-height: 2;
-            margin-bottom: 24px;
-        }
-
-        .poem-line:last-of-type {
-            margin-bottom: 56px;
+            line-height: 1.9;
         }
 
         .core {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 400;
             color: #b59d6e;
             letter-spacing: 0.12em;
+            margin-top: 16px;
+            padding-top: 24px;
             border-top: 1px solid #ece5e0;
-            padding-top: 48px;
-            display: inline-block;
         }
 
         /* 頁尾 */
         footer {
-            margin-top: 100px;
-            padding: 40px 24px;
+            margin-top: 80px;
+            padding: 40px 40px;
             text-align: center;
             border-top: 1px solid #f0ede8;
             font-family: 'Bodoni Moda', serif;
@@ -100,18 +112,24 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 70px 20px 80px;
+                padding: 70px 24px 80px;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-left {
+                position: static;
+                text-align: left;
             }
             .brand-zh {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             .poem-line {
-                font-size: 1rem;
-                line-height: 1.9;
+                font-size: 0.95rem;
             }
             .core {
                 font-size: 1.1rem;
-                padding-top: 36px;
             }
         }
     </style>
@@ -120,15 +138,21 @@
     <div id="nav-placeholder"></div>
 
     <div class="container">
-        <div class="page-label">About</div>
+        <div class="about-grid">
+            <!-- 左側：品牌區 -->
+            <div class="about-left">
+                <div class="page-label">About</div>
+                <div class="brand-zh">靈感閣</div>
+                <div class="brand-en">WunderKammer</div>
+            </div>
 
-        <div class="brand-zh">靈感閣</div>
-        <div class="brand-en">WunderKammer</div>
-
-        <div class="poem-line">這裡是一個無聲的數位空間</div>
-        <div class="poem-line">收藏著那些在日常中閃現的想法。</div>
-
-        <div class="core">「收藏奇思，存放日常」</div>
+            <!-- 右側：內文區 -->
+            <div class="about-right">
+                <div class="poem-line">這裡是一個無聲的數位空間</div>
+                <div class="poem-line">收藏著那些在日常中閃現的想法。</div>
+                <div class="core">「收藏奇思，存放日常」</div>
+            </div>
+        </div>
     </div>
 
     <footer>WUNDERKAMMER · 靈感閣</footer>
