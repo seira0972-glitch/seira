@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WunderKammer｜靈感閣</title>
+    <title>靈感閣｜WunderKammer</title>
     <style>
         * {
             margin: 0;
@@ -21,14 +21,23 @@
             color: white;
             padding: 100px 20px;
             text-align: center;
+            position: relative;
         }
         header h1 {
             font-size: 3rem;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+            font-weight: 300;
         }
         header p {
             font-size: 1.2rem;
             opacity: 0.95;
+            margin-top: 20px;
         }
         .container {
             max-width: 1200px;
@@ -40,6 +49,7 @@
             font-size: 2rem;
             color: #333;
             margin-bottom: 40px;
+            font-weight: 500;
         }
         .portfolio {
             display: grid;
@@ -110,6 +120,7 @@
             text-align: center;
             padding: 40px 20px;
             margin-top: 60px;
+            font-size: 0.9rem;
         }
         @media (max-width: 768px) {
             header h1 { font-size: 2rem; }
@@ -139,8 +150,9 @@
     </script>
 
     <header>
-        <h1>WunderKammer</h1>
-        <p>靈感閣 — 收藏奇思，存放日常</p>
+        <h1>靈感閣</h1>
+        <div class="subtitle">WunderKammer</div>
+        <p>收藏奇思 · 存放日常</p>
     </header>
 
     <div class="container">
@@ -184,7 +196,8 @@
     </div>
 
     <footer>
-        <p>© 2026 WunderKammer｜靈感閣</p>
+        <p>靈感閣 · WunderKammer</p>
+        <p style="font-size: 0.8rem; margin-top: 8px;">© 2026</p>
     </footer>
 </body>
 </html>
