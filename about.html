@@ -7,64 +7,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@200;300;400&family=Inter:wght@200;400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        /* 💡 背景使用更柔和的米白，增加紙張質感 */
         body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #fdfcfb; color: #1a1a1a; letter-spacing: 0.05em; line-height: 1.8; }
         #nav-placeholder { min-height: 80px; }
 
         .container { 
-            max-width: 900px; 
+            max-width: 1000px; 
             margin: 0 auto; 
-            padding: 220px 60px 120px; /* 上方留出極大空白，營造莊重感 */
-            text-align: left; /* 堅決左對齊 */
+            padding: 220px 80px 120px;
         }
         
+        /* 💡 靈魂金線：左側垂直座標線 */
         .content-wrapper {
-            max-width: 650px;
+            max-width: 700px;
+            border-left: 1px solid #a68b5b; /* 極細金線 */
+            padding-left: 50px; /* 文字與線的呼吸空間 */
             position: relative;
         }
 
-        /* 💡 美感標題：文藝復興風格的中西混排 */
+        /* 💡 美感標題：層次分明 */
         .brand-header {
-            margin-bottom: 70px; /* 拉開與內文的距離 */
-            line-height: 1.2;
+            margin-bottom: 60px;
+            line-height: 1.1;
         }
         
-        /* 英文：使用 Bodoni 細體，極大字距，像古老壓紋 */
         .brand-en {
             font-family: 'Bodoni Moda', serif;
-            font-size: 1rem;
-            font-weight: 300;
-            color: #a68b5b; /* 金褐色 */
-            letter-spacing: 0.6em; /* 極致字距 */
+            font-size: 0.9rem;
+            color: #a68b5b;
+            letter-spacing: 0.65em;
             text-transform: uppercase;
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-weight: 300;
         }
         
-        /* 中文：使用 Noto Serif 極細體，空靈且冷冽 */
         .brand-zh {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.8rem;
-            font-weight: 300; /* 極細 */
+            font-size: 1.9rem;
+            font-weight: 200; /* 極細，增加空靈感 */
             color: #1a1a1a;
-            letter-spacing: 0.4em; /* 莊重的字距 */
+            letter-spacing: 0.45em;
             display: block;
         }
 
-        /* 💡 你的靈魂台詞：回歸主角地位 */
+        /* 💡 你的靈魂台詞 */
         .description-text {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.05rem;
             color: #444;
-            line-height: 3; /* 極寬的行距，讓文字在荒原中散開 */
+            line-height: 2.8; /* 寬廣行距 */
             font-weight: 300;
-            letter-spacing: 0.25em; /* 詩意的字距 */
-            text-align: justify; /* 讓段落邊緣整齊 */
+            letter-spacing: 0.22em;
+            text-align: left;
         }
 
         footer { 
             margin-top: 150px;
-            padding: 60px 60px; 
+            padding: 60px 80px; 
             text-align: left;
             font-family: 'Bodoni Moda', serif; 
             font-size: 0.65rem; 
@@ -74,11 +73,11 @@
         }
 
         @media (max-width: 768px) {
-            .container { padding: 160px 30px 80px; }
-            .brand-en { font-size: 0.8rem; letter-spacing: 0.4em; }
-            .brand-zh { font-size: 1.5rem; letter-spacing: 0.3em; }
-            .description-text { font-size: 0.95rem; line-height: 2.6; }
-            footer { padding: 60px 30px; }
+            .container { padding: 160px 35px 80px; }
+            .content-wrapper { padding-left: 25px; }
+            .brand-zh { font-size: 1.5rem; }
+            .description-text { font-size: 0.95rem; line-height: 2.4; }
+            footer { padding: 60px 35px; }
         }
     </style>
 </head>
