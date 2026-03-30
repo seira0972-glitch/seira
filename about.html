@@ -4,58 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於這裡｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@200;300;400&family=Inter:wght@200;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&family=Noto+Serif+TC:wght@200;400&family=Inter:wght@200;400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #fdfcfb; color: #1a1a1a; letter-spacing: 0.05em; line-height: 1.8; }
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #fdfcfb; color: #1a1a1a; letter-spacing: 0.05em; }
         #nav-placeholder { min-height: 80px; }
 
         .container { 
             max-width: 1000px; 
             margin: 0 auto; 
-            padding: 220px 80px 120px;
+            padding: 220px 80px 100px;
         }
         
-        /* 💡 靈魂金線：保持左側垂直座標 */
         .content-wrapper {
             max-width: 700px;
             border-left: 1px solid #a68b5b; 
-            padding-left: 50px;
+            padding-left: 55px;
             position: relative;
         }
 
-        /* 💡 標題區塊：中文在上，英文在下化作裝飾 */
+        /* 💡 標題：極致的粗細對比 */
         .brand-header {
-            margin-bottom: 70px;
+            margin-bottom: 75px;
             display: inline-flex;
             flex-direction: column;
             align-items: flex-start;
         }
         
-        /* 中文：主標題 */
+        /* 💡 中文：極細 (200)，空靈且大氣 */
         .brand-zh {
             font-family: 'Noto Serif TC', serif;
-            font-size: 2.2rem;
-            font-weight: 300;
+            font-size: 2.5rem;
+            font-weight: 200; /* 極細 */
             color: #1a1a1a;
-            letter-spacing: 0.4em;
+            letter-spacing: 0.45em;
             display: block;
-            margin-bottom: 8px; /* 緊貼下方的英文 */
+            margin-bottom: 5px; 
+            line-height: 1;
         }
         
-        /* 英文：小到像底線的副標 */
+        /* 💡 英文：較粗 (500)，作為穩重的金色底座 */
         .brand-en {
             font-family: 'Bodoni Moda', serif;
-            font-size: 0.55rem; /* 💡 極小 */
+            font-size: 0.5rem; 
             color: #a68b5b;
-            letter-spacing: 0.85em; /* 💡 極寬，營造底線感 */
+            letter-spacing: 1.1em; /* 💡 拉到極寬，形成底線般的寬度 */
             text-transform: uppercase;
             display: block;
-            font-weight: 400;
-            text-indent: 0.85em; /* 補償最後一個字母的間距 */
+            font-weight: 500; /* 💡 增加厚度 */
+            text-indent: 1.1em; 
+            opacity: 0.9;
         }
 
-        /* 💡 你的靈魂台詞 */
         .description-text {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.05rem;
@@ -80,8 +80,8 @@
         @media (max-width: 768px) {
             .container { padding: 160px 35px 80px; }
             .content-wrapper { padding-left: 25px; }
-            .brand-zh { font-size: 1.8rem; }
-            .brand-en { font-size: 0.5rem; letter-spacing: 0.6em; }
+            .brand-zh { font-size: 1.8rem; letter-spacing: 0.3em; }
+            .brand-en { font-size: 0.45rem; letter-spacing: 0.8em; }
             .description-text { font-size: 0.95rem; line-height: 2.4; }
             footer { padding: 60px 35px; }
         }
