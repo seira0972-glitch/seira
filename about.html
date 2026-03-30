@@ -10,34 +10,33 @@
         body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #fdfcfb; color: #333; letter-spacing: 0.05em; line-height: 1.8; }
         #nav-placeholder { min-height: 80px; }
 
-        /* 💡 容器：調整為上方留白較多，左對齊 */
+        /* 💡 容器：確保文字從左側優雅開啟 */
         .container { 
-            max-width: 900px; 
+            max-width: 1000px; 
             margin: 0 auto; 
-            padding: 180px 60px 100px; 
+            padding: 200px 80px 100px; /* 增加左側內距，讓文字不要貼邊 */
         }
         
-        /* 💡 內容區塊：強化文字的呼吸感 */
         .content-wrapper {
-            max-width: 650px;
-            border-top: 1px solid rgba(0,0,0,0.06); /* 加一條極細的線，增加精緻感 */
-            padding-top: 50px;
+            max-width: 600px;
+            border-left: 2px solid #a68b5b; /* 💡 左側加入一條垂直金褐色細線，象徵座標點 */
+            padding-left: 40px; /* 文字與線的距離 */
         }
 
         .main-text {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.1rem;
-            color: #444;
-            line-height: 2.6; /* 💡 拉高行間距，讓文字在荒原中散開 */
+            color: #333;
+            line-height: 2.8; /* 寬廣的行距 */
             font-weight: 300;
-            letter-spacing: 0.22em;
-            text-align: justify;
+            letter-spacing: 0.25em;
+            text-align: left; /* 💡 絕對左對齊 */
         }
 
         footer { 
-            margin-top: 120px;
-            padding: 60px 20px; 
-            text-align: center; 
+            margin-top: 150px;
+            padding: 60px 80px; 
+            text-align: left; /* 💡 Footer 也改為左對齊，維持視覺一致性 */
             font-family: 'Bodoni Moda', serif; 
             font-size: 0.6rem; 
             letter-spacing: 0.6em; 
@@ -46,8 +45,10 @@
         }
 
         @media (max-width: 768px) {
-            .container { padding: 140px 30px 60px; }
+            .container { padding: 150px 30px 60px; }
+            .content-wrapper { padding-left: 20px; }
             .main-text { font-size: 1rem; line-height: 2.4; }
+            footer { padding: 60px 30px; }
         }
     </style>
 </head>
