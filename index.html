@@ -9,7 +9,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #fdfcfb; color: #333; letter-spacing: 0.05em; }
         #nav-placeholder { min-height: 80px; }
-
         header { padding: 180px 20px 100px; text-align: center; }
         header h1 {
             font-family: 'Noto Serif TC', serif; font-size: 2.7rem; font-weight: 400;
@@ -19,23 +18,18 @@
             font-family: 'Bodoni Moda', serif; font-size: 0.7rem; letter-spacing: 0.65em;
             text-indent: 0.65em; color: #a68b5b; text-transform: uppercase; margin-bottom: 50px;
         }
-        
-        /* 💡 標語樣式：存放數位荒原中閃爍的奇思異想 */
         header p { 
             font-family: 'Noto Serif TC', serif; font-size: 1rem; color: #666; 
-            max-width: 600px; margin: 0 auto; font-weight: 300; letter-spacing: 0.28em; 
-            opacity: 0.8;
+            max-width: 600px; margin: 0 auto; font-weight: 300; letter-spacing: 0.28em; opacity: 0.8;
         }
-
         .container { max-width: 1000px; margin: 0 auto; padding: 80px 24px; }
         .section-title {
             text-align: left; font-family: 'Bodoni Moda', serif; font-size: 1.1rem;
             margin-bottom: 60px; letter-spacing: 0.3em; display: flex; align-items: center;
         }
         .section-title::after { content: ''; flex-grow: 1; height: 1px; background: rgba(0,0,0,0.05); margin-left: 30px; }
-
         .portfolio { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 80px 40px; }
-        .card-visual { width: 100%; aspect-ratio: 16 / 10; background: #f5f3f0; margin-bottom: 28px; border: 1px solid rgba(0,0,0,0.02); }
+        .card-visual { width: 100%; aspect-ratio: 16 / 10; background: #f5f3f0; margin-bottom: 28px; }
         .portfolio-card h3 { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 12px; }
         .portfolio-card p { color: #888; font-size: 0.85rem; font-weight: 300; }
         .portfolio-card a {
@@ -43,19 +37,16 @@
             font-size: 0.7rem; letter-spacing: 0.2em; border-bottom: 1px solid rgba(166, 139, 91, 0.2);
             padding-bottom: 4px; transition: 0.3s;
         }
-        
-        footer { padding: 120px 20px 60px; text-align: center; font-family: 'Bodoni Moda', serif; font-size: 0.65rem; letter-spacing: 0.5em; color: #ccc; text-transform: uppercase; }
+        footer { padding: 120px 20px 60px; text-align: center; font-family: 'Bodoni Moda', serif; font-size: 0.65rem; letter-spacing: 0.5em; color: #ccc; }
     </style>
 </head>
 <body>
     <div id="nav-placeholder"></div>
-
     <header>
         <h1>靈感閣</h1>
         <div class="subtitle">WUNDERKAMMER</div>
         <p>存放數位荒原中閃爍的奇思異想</p>
     </header>
-
     <div class="container">
         <h2 class="section-title">WORKS</h2>
         <div class="portfolio">
@@ -73,11 +64,8 @@
             </div>
         </div>
     </div>
-
     <footer>WUNDERKAMMER · 2026</footer>
-
     <script>
-        // 🚀 強制觸發 nav.html 內的腳本，解決高亮問題
         fetch('nav.html')
             .then(res => res.text())
             .then(data => {
@@ -89,8 +77,7 @@
                     newScript.textContent = oldScript.textContent;
                     oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
-            })
-            .catch(err => console.error('Nav load error:', err));
+            });
     </script>
 </body>
 </html>
