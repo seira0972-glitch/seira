@@ -1,144 +1,70 @@
-<style>
-    /* 引入高級感字體 */
-    @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;500&display=swap');
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>靈感閣｜WunderKammer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased; /* 字體平滑化 */
+        }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Noto Sans TC', sans-serif;
+            line-height: 1.8;
+            color: #1a1a1a;
+            background: #fdfcfb; /* 象牙白，比純白更有質感 */
+            letter-spacing: 0.05em;
+        }
 
-    body {
-        font-family: 'Inter', 'Noto Sans TC', sans-serif;
-        line-height: 1.8;
-        color: #333;
-        background: #fdfcf9; /* 帶一點米色的紙張感，比純白更溫潤 */
-    }
+        /* 導航欄佔位 */
+        #nav-placeholder {
+            height: 80px;
+        }
 
-    header {
-        padding: 160px 20px 100px; /* 增加留白，讓標題「深呼吸」 */
-        text-align: center;
-        background: radial-gradient(circle at center, #ffffff 0%, #fdfcf9 100%);
-    }
+        header {
+            padding: 180px 20px 120px;
+            text-align: center;
+        }
 
-    header h1 {
-        font-family: 'Bodoni Moda', 'Noto Serif TC', serif; /* 換成古典襯線體 */
-        font-size: 3.8rem;
-        font-weight: 300;
-        letter-spacing: 0.15em;
-        color: #1a1a1a;
-        margin-bottom: 8px;
-    }
+        header h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 3.2rem;
+            font-weight: 500;
+            letter-spacing: 0.3em; /* 標題適度拉開 */
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
 
-    .subtitle {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.75rem;
-        text-transform: uppercase; /* 英文全大寫增加精品感 */
-        letter-spacing: 0.4em;
-        color: #b08d57;
-        margin-bottom: 30px;
-    }
+        .subtitle {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.6em; /* 副標題極度拉開，呈現精品感 */
+            color: #b08d57;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
 
-    header p {
-        font-size: 0.95rem;
-        color: #999;
-        font-weight: 300;
-        letter-spacing: 0.1em;
-    }
+        header p {
+            font-size: 0.9rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+        }
 
-    .container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 100px 20px;
-    }
+        .container {
+            max-width: 1000px; /* 縮窄容器，讓視覺更集中 */
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
 
-    .section-title {
-        font-family: 'Bodoni Moda', 'Noto Serif TC', serif;
-        text-align: center;
-        font-size: 1.8rem;
-        font-weight: 400;
-        color: #1a1a1a;
-        margin-bottom: 80px;
-        letter-spacing: 0.1em;
-    }
-
-    /* 裝飾線條優化：更細、更淡 */
-    .section-title::after {
-        content: '';
-        display: block;
-        width: 40px;
-        height: 1px;
-        background: #d4c1a5;
-        margin: 24px auto 0;
-    }
-
-    .portfolio {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 60px; /* 增加間距 */
-        margin-bottom: 120px;
-    }
-
-    /* 作品卡片：去掉生硬邊框，改用隱約的陰影 */
-    .portfolio-card {
-        background: transparent;
-        padding: 0; /* 移除內部邊距，讓內容更純粹 */
-        text-align: left; /* 改成靠左對齊通常比置中更有設計感 */
-        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    .portfolio-card h3 {
-        font-family: 'Noto Serif TC', serif;
-        color: #1a1a1a;
-        font-size: 1.25rem;
-        font-weight: 500;
-        margin-bottom: 12px;
-        position: relative;
-    }
-
-    .portfolio-card p {
-        color: #777;
-        font-size: 0.9rem;
-        font-weight: 300;
-        line-height: 1.8;
-    }
-
-    .portfolio-card a {
-        display: inline-block;
-        margin-top: 24px;
-        color: #b08d57;
-        text-decoration: none;
-        font-size: 0.8rem;
-        letter-spacing: 0.1em;
-        border-bottom: 1px solid rgba(176, 141, 87, 0.2);
-        transition: border-color 0.3s;
-    }
-
-    .portfolio-card a:hover {
-        border-bottom-color: #b08d57;
-    }
-
-    /* 筆記區塊：採用更輕盈的卡片感 */
-    .note-card {
-        background: #ffffff;
-        padding: 40px;
-        border: 1px solid rgba(0, 0, 0, 0.03); /* 極淡的邊框 */
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02); /* 幾乎察覺不到的陰影 */
-        transition: all 0.3s ease;
-    }
-
-    .note-card:hover {
-        box-shadow: 0 15px 50px rgba(176, 141, 87, 0.08);
-        border-color: rgba(176, 141, 87, 0.1);
-    }
-
-    footer {
-        padding: 100px 20px;
-        background: #fdfcf9;
-        border-top: 1px solid #f0e6d0;
-        color: #bbb;
-        font-size: 0.75rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-    }
-</style>
+        .section-title {
+            text-align: left; /* 靠左排版通常比置中更具現代設計感 */
+            font-family: 'Bodoni Moda', 'Noto Serif TC',
