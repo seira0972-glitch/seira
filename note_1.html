@@ -1,19 +1,360 @@
-<div class="support-section" style="text-align: center; margin: 40px 0; padding: 30px; border-top: 1px solid #ece5e0; border-bottom: 1px solid #ece5e0;">
-    
-    <p style="font-size: 0.9rem; color: #5a5a5a; margin-bottom: 15px;">
-        💛 支持這份筆記，將捐出 收入的10%給公益團體
-    </p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用 AI 做網站｜WunderKammer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #b59d6e;
+            --bg: #ffffff;
+            --text-main: #2c2c2c;
+            --text-light: #888;
+            --line: #ece5e0;
+        }
 
-    <p style="margin-bottom: 10px;">
-        <a href="https://p.ecpay.com.tw/你的連結" target="_blank" style="color: #b59d6e; text-decoration: none; font-size: 1rem; letter-spacing: 0.1em;">
-            💝 支持我
-        </a>
-    </p>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        body { 
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: var(--bg); 
+            color: var(--text-main); 
+            line-height: 1.7; 
+        }
 
-    <p>
-        <a href="https://drive.google.com/drive/folders/1IywwNOo8CV4HV-E1prEeGGqDd8_9nqTc" target="_blank" style="color: #bbb; text-decoration: underline; font-size: 0.75rem;">
-            📄 捐款收據
-        </a>
-    </p>
-    
-</div>
+        /* 導航欄預留空間 */
+        #nav-placeholder { min-height: 70px; }
+
+        .hero-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 40px 60px;
+            text-align: left;
+        }
+
+        .brand-en {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.75rem;
+            font-style: italic;
+            color: var(--accent);
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .brand-zh {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.4rem;
+            font-weight: 450;
+            letter-spacing: 0.2em;
+            color: var(--text-main);
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .hero-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            letter-spacing: 0.15em;
+            font-weight: 300;
+        }
+
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 0 40px 100px; 
+        }
+
+        .outline-card {
+            background: #fff;
+            border-left: 1px solid var(--accent);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .outline-card h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            letter-spacing: 0.15em;
+            color: var(--text-main);
+        }
+
+        .step-list { list-style: none; }
+        .step-list li {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            color: #5a5a5a;
+        }
+
+        .step-number {
+            font-family: 'Bodoni Moda', serif;
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-style: italic;
+            width: 36px;
+        }
+
+        .lock-icon {
+            margin-left: auto;
+            font-size: 0.7rem;
+            color: #bbb;
+            letter-spacing: 0.05em;
+        }
+
+        /* 💛 支持與公益區塊 */
+        .support-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 40px 32px;
+            background: #fdfcf9;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .support-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 32px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .support-btn:hover { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(181, 157, 110, 0.2); }
+
+        .support-link {
+            color: var(--accent);
+            text-decoration: underline;
+            font-size: 0.75rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* 密碼鎖區塊 */
+        .password-section {
+            text-align: center;
+            padding: 48px 0 32px;
+        }
+
+        .password-box input {
+            padding: 12px 20px;
+            font-family: 'Inter', sans-serif;
+            border: 1px solid #ddd;
+            width: 240px;
+            outline: none;
+            letter-spacing: 0.1em;
+            margin-right: -4px;
+        }
+
+        .password-box button {
+            background: var(--text-main);
+            color: white;
+            border: none;
+            padding: 13px 28px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.15em;
+            transition: background 0.3s;
+        }
+
+        .password-box button:hover { background: #000; }
+
+        /* 解鎖後的內容區 */
+        .detailed-content { display: none; margin-top: 80px; text-align: left; }
+        .detailed-content.show { display: block; animation: fadeIn 1s ease forwards; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .step-detail { margin-bottom: 60px; }
+        .step-detail h3 { 
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.4rem; 
+            font-weight: 500; 
+            color: var(--accent); 
+            margin-bottom: 20px; 
+            letter-spacing: 0.05em;
+        }
+
+        .step-detail pre {
+            background: #fafaf8;
+            padding: 24px;
+            border-left: 2px solid var(--accent);
+            font-size: 0.85rem;
+            font-family: 'Inter', monospace;
+            color: #4a4a4a;
+            overflow-x: auto;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .tip {
+            background: #fefaf5;
+            padding: 18px 24px;
+            border-left: 2px solid var(--accent);
+            font-size: 0.85rem;
+            color: #6a6a6a;
+            margin-top: 15px;
+        }
+
+        footer { 
+            padding: 80px 40px; 
+            text-align: center; 
+            font-family: 'Bodoni Moda', serif; 
+            font-size: 0.65rem; 
+            letter-spacing: 0.5em; 
+            color: #ccc; 
+            text-transform: uppercase;
+            border-top: 1px solid #f0ede8;
+            margin-top: 60px;
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .hero-section { padding: 80px 24px 40px; }
+            .brand-zh { font-size: 1.8rem; }
+            .container { padding: 0 24px 80px; }
+            .password-box input { width: 100%; margin-bottom: 12px; }
+            .password-box button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <header class="hero-section">
+        <div class="brand-en">WunderKammer</div>
+        <h1 class="brand-zh">用 AI 做網站</h1>
+        <p class="hero-sub">Gemini + GitHub Pages · 從零到上線的數位實踐筆記</p>
+    </header>
+
+    <div class="container">
+        <div class="outline-card">
+            <h2>實踐大綱</h2>
+            <ul class="step-list">
+                <li><span class="step-number">01</span> 註冊 GitHub 與建立倉庫 <span class="lock-icon">🔒 需解鎖</span></li>
+                <li><span class="step-number">02</span> 用 Gemini 生成共用導航欄 <span class="lock-icon">🔒 需解鎖</span></li>
+                <li><span class="step-number">03</span> 生成各頁面內容與邏輯 <span class="lock-icon">🔒 需解鎖</span></li>
+                <li><span class="step-number">04</span> 上傳檔案與開啟 Pages 上線 <span class="lock-icon">🔒 需解鎖</span></li>
+            </ul>
+        </div>
+
+        <div class="support-section">
+            <p style="font-family: 'Noto Serif TC', serif; font-size: 0.9rem; color: #b59d6e; margin-bottom: 10px;">💛 讓知識流動</p>
+            <p style="font-size: 0.85rem; color: #5a5a5a; line-height: 1.8;">
+                本筆記收入之 **10%** 將撥付公益金<br>
+                支持教育平權與弱勢孩童計畫
+            </p>
+            <a href="https://p.ecpay.com.tw/YourLink" target="_blank" class="support-btn">💝 支持開發者</a>
+            <br>
+            <a href="https://drive.google.com/drive/folders/1IywwNOo8CV4HV-E1prEeGGqDd8_9nqTc" target="_blank" class="support-link">📄 查看捐款明細 (Google Drive)</a>
+        </div>
+
+        <div class="password-section">
+            <div class="password-box">
+                <input type="password" id="passwordInput" placeholder="輸入解鎖密碼">
+                <button onclick="checkPassword()" id="unlockBtn">解鎖全文</button>
+            </div>
+            <div id="errorMsg" style="color: #c77a5a; font-size: 0.75rem; margin-top: 16px;"></div>
+
+            <div id="detailedContent" class="detailed-content">
+                
+                <div class="step-detail">
+                    <h3>📁 步驟 1：建立 GitHub 帳號與倉庫</h3>
+                    <p>前往 <a href="https://github.com" target="_blank">GitHub</a> 註冊。點擊右上角「+」選 New repository。</p>
+                    <p>Repository name 設定為 <code>你的帳號.github.io</code>。這將是你未來的永久網址。</p>
+                    <div class="tip">💡 勾選 Add a README file 可以讓倉庫初始化更順利。</div>
+                </div>
+
+                <div class="step-detail">
+                    <h3>🤖 步驟 2：利用 Gemini 生成導航欄</h3>
+                    <p>在 Gemini 輸入提示詞，獲取 <code>nav.html</code> 的程式碼：</p>
+                    <pre>幫我寫一個簡約的導航欄，背景純白，連結包含：首頁、關於、聯絡。
+需要支援手機版隱藏選單。</pre>
+                    <div class="tip">💡 這是網站的心臟，修改一次，全站同步更新。</div>
+                </div>
+
+                <div class="step-detail">
+                    <h3>📄 步驟 3：生成頁面與內容填充</h3>
+                    <p>利用 Gemini 生成各頁面的 <code>index.html</code> 與 <code>about.html</code>。請記得在程式碼中加入 fetch 語法來引入 nav.html。</p>
+                </div>
+
+                <div class="step-detail">
+                    <h3>📤 步驟 4：上傳檔案與 Settings 設定</h3>
+                    <p>點擊 Add file -> Upload files，將所有檔案上傳。最後到 Settings -> Pages 將 Branch 改為 main 並儲存。</p>
+                    <div class="tip">🎉 大功告成！約等待一分鐘，網站就會在 你的帳號.github.io 上線。</div>
+                </div>
+
+                <div style="background: #fefaf5; padding: 40px; text-align: center; border: 1px solid var(--line);">
+                    <p style="font-size: 1.1rem; color: #b59d6e; font-family: 'Noto Serif TC', serif;">
+                        恭喜！你已完成第一座數位資產的建立。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>WUNDERKAMMER · 2026</footer>
+
+    <script>
+        // 載入導航欄功能
+        fetch('nav.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+                // 重新觸發導航欄內的 script
+                const scripts = document.querySelectorAll('#nav-placeholder script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = oldScript.textContent;
+                    oldScript.parentNode.replaceChild(newScript, oldScript);
+                });
+            })
+            .catch(err => console.log('導航欄尚未備妥，請確保根目錄有 nav.html'));
+
+        // 密碼檢查 (Base64 防線)
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const errorMsg = document.getElementById('errorMsg');
+            const content = document.getElementById('detailedContent');
+            const btn = document.getElementById('unlockBtn');
+
+            // 密碼：IDEA20260301 的 Base64 為 SURFQTIwMjYwMzAx
+            if (btoa(input.value) === "SURFQTIwMjYwMzAx") {
+                content.classList.add('show');
+                errorMsg.textContent = '';
+                btn.textContent = "解鎖成功";
+                btn.style.background = "#b59d6e";
+                
+                // 平滑捲動至內容起點
+                setTimeout(() => {
+                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 150);
+                
+                input.value = '';
+            } else {
+                errorMsg.textContent = '密碼不正確，請檢查付款通知信';
+                content.classList.remove('show');
+            }
+        }
+
+        // 支援 Enter 鍵解鎖
+        document.getElementById('passwordInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkPassword();
+        });
+    </script>
+</body>
+</html>
