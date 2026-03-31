@@ -1,93 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>note_01</title>
-    <style>
-      body {
-        font-family: "Noto Serif TC", serif;
-        margin: 20px;
-        line-height: 1.6;
-        background-color: #fff;
-        color: #333;
-      }
-      h2 {
-        border-bottom: 2px solid #333;
-        padding-bottom: 5px;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-      }
-      th,
-      td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-      }
-      th {
-        background-color: #f2f2f2;
-      }
-      .summary {
-        background-color: #f9f9f9;
-        padding: 10px;
-        border-left: 5px solid #333;
-        margin-bottom: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>實踐筆記 note_01</h1>
+<!-- 開頭 -->
+<header class="hero-section">
+    <div class="brand-en">WunderKammer / Note 01</div>
+    <h1 class="brand-zh">用 AI 做網站</h1>
+    <p class="hero-sub">Gemini + GitHub Pages · 從零到上線的數位實踐</p>
+</header>
 
-    <div class="summary">
-      <p><strong>大綱：</strong></p>
-      <ul>
-        <li>建立基本 HTML 結構與 CSS 樣式。</li>
-        <li>觀察 0050 與 00981A 的數據差異。</li>
-        <li>實作簡單的表格呈現與區塊排版。</li>
-      </ul>
+<!-- 課程大綱 -->
+<div class="outline-card">
+    <h2>課程大綱</h2>
+    <ul class="step-list">
+        <li>01 註冊 GitHub 與建立倉庫</li>
+        <li>02 用 Gemini 生成共用導航欄</li>
+        <li>03 生成各頁面內容</li>
+        <li>04 上傳檔案與開啟 Pages</li>
+    </ul>
+</div>
+
+<!-- 密碼解鎖區 -->
+<div class="password-section">
+    <input type="password" id="passwordInput" placeholder="輸入密碼">
+    <button onclick="checkPassword()">解鎖教學</button>
+    <div id="detailedContent" class="detailed-content">
+        <!-- 步驟 1 的詳細內容 -->
     </div>
-
-    <h2>一、數據觀察</h2>
-    <p>針對 0050 的長期持有成本與年底淨值進行初步整理：</p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>年度</th>
-          <th>持有成本</th>
-          <th>年底淨值</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2021</td>
-          <td>1,000,000</td>
-          <td>1,250,000</td>
-        </tr>
-        <tr>
-          <td>2022</td>
-          <td>1,000,000</td>
-          <td>1,120,000</td>
-        </tr>
-        <tr>
-          <td>2023</td>
-          <td>1,000,000</td>
-          <td>1,450,000</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h2>二、心得筆記</h2>
-    <p>
-      數據呈現是第一步，後續將加入更多自動化逻辑。
-      目前先確保排版簡潔、易讀。
-    </p>
-
-    <div style="margin-top: 50px; font-size: 0.8em; color: #888;">
-      最後更新：115.03.31
-    </div>
-  </body>
-</html>
+</div>
