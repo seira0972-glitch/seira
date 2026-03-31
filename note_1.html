@@ -1,136 +1,93 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>靈感閣 | note_01</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>note_01</title>
     <style>
-        body { font-family: 'Inter', 'Noto Serif TC', serif; margin: 0; color: #333; line-height: 1.8; background-color: #fff; }
-        section { max-width: 700px; margin: 0 auto; padding: 60px 20px; }
-        .btn { display: inline-block; padding: 12px 35px; background: #2c2c2c; color: #fff; text-decoration: none; letter-spacing: 0.1em; font-size: 0.85rem; cursor: pointer; border: none; }
-        .btn:hover { background: #555; }
-        input[type="password"] { width: 250px; padding: 10px; border: 1px solid #eee; text-align: center; outline: none; margin-bottom: 20px; background: #fafafa; }
-        .stat-box { border-top: 1px solid #f2f2f2; background: #fafafa; text-align: center; margin-top: 100px; padding: 40px 20px; }
-        #secret-content { display: none; margin-top: 50px; animation: fadeIn 1s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        /* 恢復你原本的大綱與表格樣式 */
-        h2 { font-weight: 500; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 40px; }
-        h3 { font-weight: 500; color: #666; margin-top: 30px; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
-        th, td { padding: 12px; border: 1px solid #eee; text-align: left; }
-        th { background-color: #f9f9f9; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
+      body {
+        font-family: "Noto Serif TC", serif;
+        margin: 20px;
+        line-height: 1.6;
+        background-color: #fff;
+        color: #333;
+      }
+      h2 {
+        border-bottom: 2px solid #333;
+        padding-bottom: 5px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .summary {
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-left: 5px solid #333;
+        margin-bottom: 20px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <h1>實踐筆記 note_01</h1>
 
-    <section style="text-align: center; padding-bottom: 0;">
-        <h1 style="font-weight: 500; letter-spacing: 0.15em;">《用 AI 做網站》實踐筆記</h1>
-        <p style="color: #999; margin-bottom: 30px;">note_01: 寫給數據導向者的網頁實踐手冊</p>
-        
-        <div style="margin-bottom: 50px; padding: 30px; border: 1px solid #f0ede8;">
-            <p style="font-size: 1.2rem; margin-bottom: 5px;">NT$ 3,000</p>
-            <p style="font-size: 0.8rem; color: #a68b5b; margin-bottom: 20px;">
-                本計畫每份提撥 $1,000 作為公益基金<br>
-                將於次月 10 號統一撥付並公示收據
-            </p>
-            <a href="你的綠界連結" target="_blank" class="btn">立即購買並獲獲取密碼</a>
-        </div>
-    </section>
+    <div class="summary">
+      <p><strong>大綱：</strong></p>
+      <ul>
+        <li>建立基本 HTML 結構與 CSS 樣式。</li>
+        <li>觀察 0050 與 00981A 的數據差異。</li>
+        <li>實作簡單的表格呈現與區塊排版。</li>
+      </ul>
+    </div>
 
-    <section id="unlock-area" style="text-align: center; border-top: 1px solid #f9f9f9; padding-top: 60px;">
-        <h3 style="color: #a68b5b; font-weight: 400; margin-bottom: 25px;">輸入密碼以解鎖大綱與正文</h3>
-        
-        <div id="input-group">
-            <input type="password" id="passInput" placeholder="IDEA2026....">
-            <br>
-            <button onclick="unlockContent()" class="btn" style="padding: 10px 30px; font-size: 0.8rem;">解鎖內容</button>
-            <p id="error-msg" style="color: #d9534f; font-size: 0.8rem; margin-top: 15px; display: none;">密碼不正確</p>
-        </div>
+    <h2>一、數據觀察</h2>
+    <p>針對 0050 的長期持有成本與年底淨值進行初步整理：</p>
 
-        <div id="secret-content">
-            <div style="text-align: left; color: #444;">
-                
-                <h2>一、前言：為什麼我們需要這份筆記？</h2>
-                <p>在資訊爆炸的時代，我們不缺工具，缺的是「整合工具的邏輯」。這份筆記記錄了如何利用 AI 輔助，在不需要深厚程式背景的情況下，搭建出具備美感與功能的數位資產。</p>
+    <table>
+      <thead>
+        <tr>
+          <th>年度</th>
+          <th>持有成本</th>
+          <th>年底淨值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2021</td>
+          <td>1,000,000</td>
+          <td>1,250,000</td>
+        </tr>
+        <tr>
+          <td>2022</td>
+          <td>1,000,000</td>
+          <td>1,120,000</td>
+        </tr>
+        <tr>
+          <td>2023</td>
+          <td>1,000,000</td>
+          <td>1,450,000</td>
+        </tr>
+      </tbody>
+    </table>
 
-                <h2>二、note_01 實踐大綱</h2>
-                <ul>
-                    <li><strong>建立基礎結構</strong>：HTML5 語義化標籤的運用。</li>
-                    <li><strong>美感排版邏輯</strong>：如何利用 Google Fonts 與簡約 CSS 營造專業感。</li>
-                    <li><strong>數據看板實踐</strong>：將投資回測數據轉化為網頁圖表。</li>
-                    <li><strong>自動化金流部署</strong>：個人開發者如何低成本接入綠界支付。</li>
-                </ul>
+    <h2>二、心得筆記</h2>
+    <p>
+      數據呈現是第一步，後續將加入更多自動化逻辑。
+      目前先確保排版簡潔、易讀。
+    </p>
 
-                <h2>三、0050 多年度對比數據實踐</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>年份</th>
-                            <th>持有成本 (NT$)</th>
-                            <th>年底淨值 (NT$)</th>
-                            <th>備註</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>2021</td><td>1,000,000</td><td>1,250,000</td><td>牛市擴張期</td></tr>
-                        <tr><td>2022</td><td>1,000,000</td><td>1,120,000</td><td>市場回檔期</td></tr>
-                        <tr><td>2023</td><td>1,000,000</td><td>1,450,000</td><td>技術復甦期</td></tr>
-                    </tbody>
-                </table>
-
-                <h2>四、結語與行動清單</h2>
-                <p>數據只是起點，實踐才是終點。請依照清單完成你的第一個網頁部署...</p>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="stat-box">
-        <div style="font-size: 0.6rem; letter-spacing: 0.3em; color: #b59d6e; margin-bottom: 30px;">IMPACT</div>
-        <div style="margin-bottom: 30px;">
-            <p style="font-size: 0.85rem; color: #888; margin-bottom: 5px;">115.4月 當前累積人數</p>
-            <span style="font-size: 2rem; font-family: 'Inter'; font-weight: 300;">12</span> <span style="font-size: 0.9rem;">位</span>
-        </div>
-        <div style="padding-top: 20px; border-top: 1px dashed #e0e0e0; width: 150px; margin: 0 auto;">
-            <div style="font-size: 0.75rem; color: #bbb;">
-                115.3月 已累計：20 人<br>
-                <small>(已於 4/10 完成捐贈)</small>
-            </div>
-        </div>
-        <div style="margin-top: 40px;">
-            <a href="https://drive.google.com/drive/folders/1IywwNOo8CV4HV-E1prEeGGqDd8_9nqTc" target="_blank" 
-               style="color: #a68b5b; font-size: 0.75rem; text-decoration: none; border-bottom: 1px solid #d4c5af; padding-bottom: 3px;">
-               查看雲端收據明細 (Google Drive)
-            </a>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 40px 20px; color: #ccc; font-size: 0.6rem; letter-spacing: 0.1em;">
-        © 2026 INSPIRATION PAVILION 
-    </footer>
-
-    <script>
-        function unlockContent() {
-            const input = document.getElementById('passInput').value;
-            const content = document.getElementById('secret-content');
-            const error = document.getElementById('error-msg');
-            const inputGroup = document.getElementById('input-group');
-
-            // 密碼：IDEA20260301 (Base64: SURFQTIwMjYwMzAx)
-            if (btoa(input) === "SURFQTIwMjYwMzAx") {
-                inputGroup.style.display = "none";
-                content.style.display = "block";
-                error.style.display = "none";
-                window.scrollTo({ top: content.offsetTop - 50, behavior: 'smooth' });
-            } else {
-                error.style.display = "block";
-                document.getElementById('passInput').value = "";
-            }
-        }
-    </script>
-</body>
+    <div style="margin-top: 50px; font-size: 0.8em; color: #888;">
+      最後更新：115.03.31
+    </div>
+  </body>
 </html>
