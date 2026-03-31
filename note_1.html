@@ -114,7 +114,7 @@
             letter-spacing: 0.05em;
         }
 
-        /* 支持統計區塊 */
+        /* 支持區塊（懶人版） */
         .support-section {
             text-align: center;
             margin: 40px 0;
@@ -245,25 +245,16 @@
             </ul>
         </div>
 
-        <!-- 💛 支持統計區塊 -->
+        <!-- 💛 支持區塊（懶人版） -->
         <div class="support-section">
-            <p style="font-family: 'Noto Serif TC', serif; font-size: 0.85rem; color: #b59d6e; letter-spacing: 0.15em; margin-bottom: 12px;">💛 筆記支持・部分捐出</p>
-            <p style="font-family: 'Noto Serif TC', serif; font-size: 1rem; color: #2c2c2c; letter-spacing: 0.05em;">
-                2026年3月收到 
-                <strong style="color: #b59d6e; font-size: 1.3rem;" id="supportCount">7</strong> 人支持
+            <p style="font-family: 'Noto Serif TC', serif; font-size: 0.85rem; color: #b59d6e; letter-spacing: 0.15em; margin-bottom: 12px;">💛 支持這份筆記</p>
+            <p style="font-family: 'Noto Serif TC', serif; font-size: 0.95rem; color: #5a5a5a; letter-spacing: 0.08em; margin-bottom: 20px;">
+                收入的 10% 將捐出 · 收據會公布於此
             </p>
-            <p style="font-family: 'Noto Serif TC', serif; font-size: 1rem; color: #2c2c2c; letter-spacing: 0.05em;">
-                總金額 
-                <strong style="color: #b59d6e; font-size: 1.3rem;" id="totalAmount">21,000</strong> 元<br>
-                （每份筆記 3,000 元）
-            </p>
-            <p style="font-family: 'Noto Serif TC', serif; font-size: 1rem; color: #b59d6e; letter-spacing: 0.05em; margin-top: 16px;">
-                💝 其中 
-                <strong style="font-size: 1.3rem;" id="donateAmount">7,000</strong> 元將捐出<br>
-                （每份筆記捐 1,000 元）
-            </p>
-            <p style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #aaa; letter-spacing: 0.08em; margin-top: 16px;">
-                將於4月10日前完成捐款 · 明細會公布於此
+            <!-- 🔽 記得換成你的綠界付款連結 -->
+            <a href="https://p.ecpay.com.tw/你的連結" target="_blank" style="display: inline-block; background: #b59d6e; color: white; padding: 12px 32px; text-decoration: none; font-family: 'Inter', sans-serif; letter-spacing: 0.1em; font-size: 0.9rem;">💝 支持我</a>
+            <p style="font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #aaa; letter-spacing: 0.08em; margin-top: 20px;">
+                <a href="https://drive.google.com/drive/folders/1IywwNOo8CV4HV-E1prEeGGqDd8_9nqTc" target="_blank" style="color: #b59d6e;">捐款收據</a>
             </p>
         </div>
 
@@ -288,18 +279,6 @@
     </div>
 
     <footer>WUNDERKAMMER · 2026</footer>
-
-    <script>
-        // 📌 每月更新：修改這個數字就好！
-        var supportPeople = 7;
-        
-        // 自動計算（不用動）
-        var pricePerPerson = 3000;
-        var donatePerPerson = 1000;
-        document.getElementById('supportCount').innerText = supportPeople;
-        document.getElementById('totalAmount').innerText = (supportPeople * pricePerPerson).toLocaleString();
-        document.getElementById('donateAmount').innerText = (supportPeople * donatePerPerson).toLocaleString();
-    </script>
 
     <script>
         fetch('nav.html')
