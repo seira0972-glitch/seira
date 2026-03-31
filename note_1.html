@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>靈感閣 | 實踐筆記 note_01</title>
+    <title>靈感閣 | note_01</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', 'Noto Serif TC', serif; margin: 0; color: #333; line-height: 1.8; background-color: #fff; }
@@ -15,86 +15,93 @@
         #secret-content { display: none; margin-top: 50px; animation: fadeIn 1s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* 保留你原本的表格樣式 */
-        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 0.9rem; }
+        /* 恢復你原本的大綱與表格樣式 */
+        h2 { font-weight: 500; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 40px; }
+        h3 { font-weight: 500; color: #666; margin-top: 30px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
         th, td { padding: 12px; border: 1px solid #eee; text-align: left; }
-        th { background-color: #f9f9f9; font-weight: 500; }
-        hr { border: 0; border-top: 1px solid #eee; margin: 30px 0; }
+        th { background-color: #f9f9f9; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
     <section style="text-align: center; padding-bottom: 0;">
-        <h1 style="font-weight: 500; letter-spacing: 0.15em; font-size: 1.8rem; margin-bottom: 10px;">《用 AI 做網站》實踐筆記</h1>
-        <p style="color: #999; margin-bottom: 30px; font-size: 0.9rem;">note_01: 數據驅動的網頁佈局實踐</p>
+        <h1 style="font-weight: 500; letter-spacing: 0.15em;">《用 AI 做網站》實踐筆記</h1>
+        <p style="color: #999; margin-bottom: 30px;">note_01: 寫給數據導向者的網頁實踐手冊</p>
         
-        <div style="margin-bottom: 50px; padding: 30px; border: 1px solid #f0ede8; background: #fff;">
-            <p style="font-size: 1.25rem; margin-bottom: 8px;">NT$ 3,000</p>
-            <p style="font-size: 0.8rem; color: #a68b5b; margin-bottom: 25px; line-height: 1.6;">
+        <div style="margin-bottom: 50px; padding: 30px; border: 1px solid #f0ede8;">
+            <p style="font-size: 1.2rem; margin-bottom: 5px;">NT$ 3,000</p>
+            <p style="font-size: 0.8rem; color: #a68b5b; margin-bottom: 20px;">
                 本計畫每份提撥 $1,000 作為公益基金<br>
                 將於次月 10 號統一撥付並公示收據
             </p>
-            <a href="https://payment.ecpay.com.tw/YourLink" target="_blank" class="btn">立即購買並獲取密碼</a>
+            <a href="你的綠界連結" target="_blank" class="btn">立即購買並獲獲取密碼</a>
         </div>
     </section>
 
     <section id="unlock-area" style="text-align: center; border-top: 1px solid #f9f9f9; padding-top: 60px;">
-        <h3 style="color: #a68b5b; font-weight: 400; margin-bottom: 30px; letter-spacing: 0.1em;">輸入密碼以解鎖正文</h3>
+        <h3 style="color: #a68b5b; font-weight: 400; margin-bottom: 25px;">輸入密碼以解鎖大綱與正文</h3>
         
         <div id="input-group">
             <input type="password" id="passInput" placeholder="IDEA2026....">
             <br>
             <button onclick="unlockContent()" class="btn" style="padding: 10px 30px; font-size: 0.8rem;">解鎖內容</button>
-            <p id="error-msg" style="color: #d9534f; font-size: 0.8rem; margin-top: 15px; display: none;">密碼不正確，請檢查付款通知信</p>
+            <p id="error-msg" style="color: #d9534f; font-size: 0.8rem; margin-top: 15px; display: none;">密碼不正確</p>
         </div>
 
         <div id="secret-content">
             <div style="text-align: left; color: #444;">
-                <h2 style="font-weight: 500; color: #2c2c2c;">0050 多年度對比數據：持有成本分析</h2>
-                <hr>
-                <p>這是 note_01 的核心實踐內容。透過數據回測，我們可以看到在不同時間維度下，長期持有與短線操作的成本差異。</p>
                 
+                <h2>一、前言：為什麼我們需要這份筆記？</h2>
+                <p>在資訊爆炸的時代，我們不缺工具，缺的是「整合工具的邏輯」。這份筆記記錄了如何利用 AI 輔助，在不需要深厚程式背景的情況下，搭建出具備美感與功能的數位資產。</p>
+
+                <h2>二、note_01 實踐大綱</h2>
+                <ul>
+                    <li><strong>建立基礎結構</strong>：HTML5 語義化標籤的運用。</li>
+                    <li><strong>美感排版邏輯</strong>：如何利用 Google Fonts 與簡約 CSS 營造專業感。</li>
+                    <li><strong>數據看板實踐</strong>：將投資回測數據轉化為網頁圖表。</li>
+                    <li><strong>自動化金流部署</strong>：個人開發者如何低成本接入綠界支付。</li>
+                </ul>
+
+                <h2>三、0050 多年度對比數據實踐</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>年度 (Year)</th>
-                            <th>累積投入 (NT$)</th>
+                            <th>年份</th>
+                            <th>持有成本 (NT$)</th>
                             <th>年底淨值 (NT$)</th>
-                            <th>年度報酬率</th>
+                            <th>備註</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>2021</td><td>1,000,000</td><td>1,250,000</td><td>+25.0%</td></tr>
-                        <tr><td>2022</td><td>1,000,000</td><td>1,120,000</td><td>-10.4%</td></tr>
-                        <tr><td>2023</td><td>1,000,000</td><td>1,450,000</td><td>+29.4%</td></tr>
-                        <tr><td>2024</td><td>1,000,000</td><td>1,780,000</td><td>+22.7%</td></tr>
-                        <tr><td>2025</td><td>1,000,000</td><td>2,100,000</td><td>+17.9%</td></tr>
+                        <tr><td>2021</td><td>1,000,000</td><td>1,250,000</td><td>牛市擴張期</td></tr>
+                        <tr><td>2022</td><td>1,000,000</td><td>1,120,000</td><td>市場回檔期</td></tr>
+                        <tr><td>2023</td><td>1,000,000</td><td>1,450,000</td><td>技術復甦期</td></tr>
                     </tbody>
                 </table>
 
-                <p style="font-size: 0.85rem; color: #888; background: #f9f9f9; padding: 15px;">
-                    ※ 備註：上述數據為模擬回測，包含配息再投入之計算結果。
-                </p>
+                <h2>四、結語與行動清單</h2>
+                <p>數據只是起點，實踐才是終點。請依照清單完成你的第一個網頁部署...</p>
+
             </div>
         </div>
     </section>
 
     <section class="stat-box">
-        <div style="font-size: 0.6rem; letter-spacing: 0.4em; color: #b59d6e; margin-bottom: 30px;">COMMUNITY IMPACT</div>
-        <div style="margin-bottom: 35px;">
+        <div style="font-size: 0.6rem; letter-spacing: 0.3em; color: #b59d6e; margin-bottom: 30px;">IMPACT</div>
+        <div style="margin-bottom: 30px;">
             <p style="font-size: 0.85rem; color: #888; margin-bottom: 5px;">115.4月 當前累積人數</p>
-            <span style="font-size: 2.2rem; font-family: 'Inter'; font-weight: 300;">12</span> <span style="font-size: 0.9rem;">位</span>
-            <p style="font-size: 0.75rem; color: #b59d6e; margin-top: 8px;">◈ 預計 115.5.10 撥付公益金 ◈</p>
+            <span style="font-size: 2rem; font-family: 'Inter'; font-weight: 300;">12</span> <span style="font-size: 0.9rem;">位</span>
         </div>
-        
-        <div style="padding-top: 25px; border-top: 1px dashed #e0e0e0; width: 180px; margin: 0 auto;">
+        <div style="padding-top: 20px; border-top: 1px dashed #e0e0e0; width: 150px; margin: 0 auto;">
             <div style="font-size: 0.75rem; color: #bbb;">
                 115.3月 已累計：20 人<br>
                 <small>(已於 4/10 完成捐贈)</small>
             </div>
         </div>
-
-        <div style="margin-top: 50px;">
+        <div style="margin-top: 40px;">
             <a href="https://drive.google.com/drive/folders/1IywwNOo8CV4HV-E1prEeGGqDd8_9nqTc" target="_blank" 
                style="color: #a68b5b; font-size: 0.75rem; text-decoration: none; border-bottom: 1px solid #d4c5af; padding-bottom: 3px;">
                查看雲端收據明細 (Google Drive)
@@ -102,8 +109,8 @@
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 60px 20px; color: #ccc; font-size: 0.65rem; letter-spacing: 0.15em;">
-        © 2026 INSPIRATION PAVILION
+    <footer style="text-align: center; padding: 40px 20px; color: #ccc; font-size: 0.6rem; letter-spacing: 0.1em;">
+        © 2026 INSPIRATION PAVILION 
     </footer>
 
     <script>
