@@ -110,7 +110,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* 支持區塊 - 簡潔版 */
         .support-section {
             text-align: center;
             margin: 40px 0;
@@ -129,7 +128,10 @@
             letter-spacing: 0.1em;
             font-size: 0.9rem;
             margin: 12px 0;
+            transition: 0.3s;
         }
+        
+        .support-btn:hover { opacity: 0.8; transform: translateY(-1px); }
 
         .support-link {
             color: var(--accent);
@@ -151,8 +153,6 @@
             letter-spacing: 0.1em;
         }
 
-        .password-box input:focus { border-color: var(--accent); }
-
         .password-box button {
             background: var(--text-main);
             color: white;
@@ -161,12 +161,13 @@
             cursor: pointer;
             font-family: 'Inter', sans-serif;
             letter-spacing: 0.15em;
+            transition: 0.3s;
         }
 
-        .password-box button:hover { opacity: 0.85; }
-
         .detailed-content { display: none; margin-top: 60px; text-align: left; }
-        .detailed-content.show { display: block; }
+        .detailed-content.show { display: block; animation: fadeIn 0.8s ease; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .step-detail { margin-bottom: 60px; }
         .step-detail h3 { 
@@ -175,64 +176,41 @@
             font-weight: 500; 
             color: var(--accent); 
             margin-bottom: 20px; 
-            letter-spacing: 0.1em;
-        }
-
-        .step-detail p {
-            font-size: 0.95rem;
-            color: #5a5a5a;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .step-detail code {
-            font-family: monospace;
-            background: #f5f5f5;
-            padding: 2px 6px;
-            color: var(--accent);
         }
 
         .step-detail pre {
             background: #fafaf8;
-            padding: 20px 24px;
+            padding: 20px;
             border-left: 2px solid var(--accent);
             font-size: 0.85rem;
             font-family: monospace;
-            color: #4a4a4a;
             overflow-x: auto;
-            line-height: 1.6;
             margin: 20px 0;
         }
 
         .tip {
             background: #fefaf5;
-            padding: 16px 20px;
+            padding: 16px;
             border-left: 2px solid var(--accent);
             font-size: 0.85rem;
             color: #6a6a6a;
         }
 
         footer { 
-            padding: 60px 40px 40px; 
+            padding: 60px 40px; 
             text-align: center; 
             font-family: 'Bodoni Moda', serif; 
             font-size: 0.6rem; 
             letter-spacing: 0.4em; 
             color: #ccc; 
-            text-transform: uppercase; 
             border-top: 1px solid #f0ede8;
-            margin-top: 40px;
         }
 
         @media (max-width: 768px) {
             .hero-section { padding: 80px 24px 40px; }
-            .brand-zh { font-size: 1.8rem; letter-spacing: 0.15em; }
+            .brand-zh { font-size: 1.8rem; }
             .container { padding: 0 24px 80px; }
-            .outline-card { padding: 28px 24px; }
-            .step-list li { flex-wrap: wrap; gap: 10px; }
-            .lock-icon { margin-left: 46px; }
-            .password-box input { width: 100%; margin-bottom: 12px; }
-            .password-box button { width: 100%; }
+            .password-box input, .password-box button { width: 100%; margin-bottom: 10px; }
         }
     </style>
 </head>
@@ -249,78 +227,56 @@
         <div class="outline-card">
             <h2>課程大綱</h2>
             <ul class="step-list">
-                <li><span class="step-number">01</span> 註冊 GitHub 與建立倉庫 <span class="lock-icon">需密碼</span></li>
-                <li><span class="step-number">02</span> 用 Gemini 生成共用導航欄 <span class="lock-icon">需密碼</span></li>
-                <li><span class="step-number">03</span> 生成各頁面內容 <span class="lock-icon">需密碼</span></li>
-                <li><span class="step-number">04</span> 上傳檔案與開啟 Pages <span class="lock-icon">需密碼</span></li>
+                <li><span class="step-number">01</span> 註冊 GitHub 與建立倉庫 <span class="lock-icon">需密碼解鎖</span></li>
+                <li><span class="step-number">02</span> 用 Gemini 生成共用導航欄 <span class="lock-icon">需密碼解鎖</span></li>
+                <li><span class="step-number">03</span> 生成各頁面內容 <span class="lock-icon">需密碼解鎖</span></li>
+                <li><span class="step-number">04</span> 上傳檔案與開啟 Pages <span class="lock-icon">需密碼解鎖</span></li>
             </ul>
         </div>
 
-        <!-- 💛 支持區塊 - 簡潔版 -->
         <div class="support-section">
             <p style="font-family: 'Noto Serif TC', serif; font-size: 0.85rem; color: #b59d6e; margin-bottom: 8px;">💛 支持這份筆記</p>
-            <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 12px;">收入的 10% 將捐出</p>
-            <a href="https://p.ecpay.com.tw/你的連結" target="_blank" class="support-btn">💝 支持我</a>
+            <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 12px;">收入的 10% 將撥付公益金</p>
+            <a href="https://p.ecpay.com.tw/你的連結" target="_blank" class="support-btn">💝 支持開發者</a>
             <p style="margin-top: 12px;">
-                <a href="https://drive.google.com/drive/folders/1IywwNOo8CV4HV-E1prEeGGqDd8_9nqTc" target="_blank" class="support-link">📄 捐款收據</a>
+                <a href="https://drive.google.com/drive/folders/1IywwNOo8CV4HV-E1prEeGGqDd8_9nqTc" target="_blank" class="support-link">📄 查看捐款明細</a>
             </p>
         </div>
 
         <div class="password-section">
             <div class="password-box">
-                <input type="password" id="passwordInput" placeholder="輸入密碼">
-                <button onclick="checkPassword()">解鎖教學</button>
+                <input type="password" id="passwordInput" placeholder="輸入解鎖密碼">
+                <button onclick="checkPassword()" id="unlockBtn">解鎖教學內容</button>
             </div>
             <div id="errorMsg" style="color: #c77a5a; font-size: 0.75rem; margin-top: 16px;"></div>
 
             <div id="detailedContent" class="detailed-content">
-                <!-- 步驟 1 -->
                 <div class="step-detail">
                     <h3>📁 步驟 1：建立 GitHub 帳號與倉庫</h3>
-                    <p>前往 <a href="https://github.com" target="_blank">GitHub.com</a> 註冊免費帳號。點擊右上角「+」→ New repository。</p>
-                    <p>Repository name 輸入：<code>你的帳號.github.io</code>，勾選 Add a README file，保持 Public，點擊 Create repository。</p>
-                    <div class="tip">💡 這個名稱會直接成為你的網站網址！</div>
+                    <p>前往 <a href="https://github.com" target="_blank">GitHub.com</a>。點擊右上角「+」→ New repository。</p>
+                    <p>名稱建議：<code>你的帳號.github.io</code>，勾選 Add a README file，點擊 Create。</p>
+                    <div class="tip">💡 這是你的個人網站基地！</div>
                 </div>
 
-                <!-- 步驟 2 -->
                 <div class="step-detail">
-                    <h3>🤖 步驟 2：用 Gemini 生成共用導航欄</h3>
-                    <p>打開 <a href="https://gemini.google.com" target="_blank">Google Gemini</a>，輸入以下提示詞：</p>
-                    <pre>幫我建立一個 nav.html 檔案，裡面是網站的導航欄，包含：
-- 首頁 (index.html)
-- 關於我 (about.html)
-- 聯繫方式 (contact.html)
-- 其他分頁 (other.html)
-
-樣式：白色背景、置頂固定、hover 底線效果、手機響應式。
-請給我完整的 HTML + CSS 程式碼。</pre>
-                    <div class="tip">💡 導航欄先做好，之後每個頁面都可以共用，修改一次全部同步。</div>
+                    <h3>🤖 步驟 2：用 Gemini 生成導航欄</h3>
+                    <p>輸入 Prompt：</p>
+                    <pre>幫我建立一個 nav.html，包含首頁、關於我、聯繫方式。
+白色背景、置頂固定、簡約風格。</pre>
                 </div>
 
-                <!-- 步驟 3 -->
                 <div class="step-detail">
-                    <h3>📄 步驟 3：用 Gemini 生成各頁面內容</h3>
-                    <p>繼續跟 Gemini 對話，用以下提示詞生成其他頁面：</p>
-                    <pre>幫我生成 index.html，內容包含：
-- 頁面頂部載入 nav.html（用 fetch 方式）
-- 一個漂亮的歡迎區塊（英雄區塊）
-- 自我介紹區塊
-- 頁尾
-風格：現代簡潔、藍紫漸層、響應式設計</pre>
-                    <div class="tip">💡 提示詞越詳細，Gemini 生成的結果越接近你想要的樣子！</div>
+                    <h3>📄 步驟 3：生成各頁面內容</h3>
+                    <p>利用 Gemini 生成 index.html，並在開頭引入 nav.html。</p>
                 </div>
 
-                <!-- 步驟 4 -->
                 <div class="step-detail">
-                    <h3>📤 步驟 4：上傳檔案並開啟 GitHub Pages</h3>
-                    <p><strong>上傳檔案：</strong> Add file → Create new file，依序建立 nav.html、index.html、about.html、contact.html、other.html，貼上 Gemini 生成的程式碼。</p>
-                    <p><strong>開啟 Pages：</strong> Settings → Pages → Branch 選 main → Save</p>
-                    <p>等待 1-2 分鐘，網站就會在 <code>https://你的帳號.github.io/</code> 上線！</p>
-                    <div class="tip">🎉 每次修改檔案並 Commit，網站會自動更新。</div>
+                    <h3>📤 步驟 4：開啟 Pages</h3>
+                    <p>在 Settings → Pages 中開啟部署，約一分鐘後即可看見網站上線。</p>
                 </div>
 
                 <div style="background: #fefaf5; padding: 28px; text-align: center; margin-top: 20px;">
-                    <p style="font-size: 1rem; color: #b59d6e;">🎉 恭喜！你現在有自己的網站了！</p>
+                    <p style="font-size: 1rem; color: #b59d6e;">🎉 恭喜完成數位資產部署！</p>
                 </div>
             </div>
         </div>
@@ -329,6 +285,7 @@
     <footer>WUNDERKAMMER · 2026</footer>
 
     <script>
+        // 載入導航欄
         fetch('nav.html')
             .then(res => res.text())
             .then(data => {
@@ -340,22 +297,35 @@
                     oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
             })
-            .catch(err => console.log('導航載入失敗:', err));
+            .catch(err => console.log('導航尚未部署，但不影響解鎖測試'));
 
+        // 密碼檢查邏輯
         function checkPassword() {
             var input = document.getElementById('passwordInput');
             var errorMsg = document.getElementById('errorMsg');
             var content = document.getElementById('detailedContent');
-            if (input.value === "IDEA20260301") {
+            var btn = document.getElementById('unlockBtn');
+
+            // 密碼 Base64 編碼 (IDEA20260301)
+            if (btoa(input.value) === "SURFQTIwMjYwMzAx") {
                 content.classList.add('show');
                 errorMsg.textContent = '';
+                btn.textContent = "解鎖成功";
+                btn.style.background = "#b59d6e";
+                
+                // 自動平滑捲動
+                setTimeout(() => {
+                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+                
                 input.value = '';
             } else {
-                errorMsg.textContent = '密碼錯誤，請再試一次';
+                errorMsg.textContent = '密碼錯誤，請檢查付款通知信件';
                 content.classList.remove('show');
             }
         }
 
+        // 支援 Enter 鍵
         document.getElementById('passwordInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') checkPassword();
         });
