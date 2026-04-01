@@ -19,7 +19,7 @@
             padding-top: 70px;
         }
 
-        /* ===== 導航欄樣式 ===== */
+        /* ===== 導航欄樣式 (與首頁完全相同) ===== */
         .navbar {
             background-color: #ffffff;
             height: 70px;
@@ -82,14 +82,6 @@
         }
 
         .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link.active {
-            color: #007bff;
-        }
-
-        .nav-link.active::after {
             width: 100%;
         }
 
@@ -310,7 +302,7 @@
     </style>
 </head>
 <body>
-    <!-- 導航欄 HTML 結構 -->
+    <!-- 導航欄 (與首頁完全相同，許願池連結加上 active 效果) -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">靈感閣</a>
@@ -321,7 +313,7 @@
             </button>
             <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">首頁</a></li>
-                <li class="nav-item"><a href="wishpool.html" class="nav-link active">許願池</a></li>
+                <li class="nav-item"><a href="wishpool.html" class="nav-link" style="color: #007bff;">許願池</a></li>
             </ul>
         </div>
     </nav>
@@ -355,19 +347,17 @@
     </div>
 
     <script>
-        // 手機版選單切換功能
+        // 手機版選單切換邏輯
         const toggleButton = document.getElementById('nav-toggle');
         const navMenu = document.getElementById('nav-menu');
 
-        if (toggleButton && navMenu) {
-            toggleButton.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
+        toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
 
-            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            }));
-        }
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        }));
 
         // ===== 許願池功能 =====
         const STORAGE_KEY = 'wunderkammer_wishes';
