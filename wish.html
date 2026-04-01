@@ -45,47 +45,71 @@
 
         footer { text-align: center; padding: 56px 24px 48px; border-top: 1px solid #f0ede8; font-family: 'Bodoni Moda', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; margin-top: 40px; }
 
-        /* 🎆 煙花動畫 */
-        .rocket {
+        /* 🎆 煙花：從下往上放大 */
+        .firework-burst {
             position: fixed;
-            bottom: -30px;
-            width: 6px;
+            bottom: -100px;
+            left: 50%;
+            width: 20px;
             height: 20px;
-            background: linear-gradient(180deg, #f9d976, #e6b422);
-            border-radius: 3px;
+            background: radial-gradient(circle, #f9e0a0, #f0b27a);
+            border-radius: 50%;
             pointer-events: none;
             z-index: 10000;
-            animation: launch 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+            animation: riseAndExpand 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.2) forwards;
+            box-shadow: 0 0 15px rgba(249, 217, 118, 0.6);
         }
-        @keyframes launch {
-            0% { bottom: -30px; opacity: 1; }
-            100% { bottom: 40%; opacity: 0.8; }
+        @keyframes riseAndExpand {
+            0% {
+                bottom: -100px;
+                width: 20px;
+                height: 20px;
+                opacity: 1;
+                transform: translateX(-50%) scale(0.5);
+            }
+            40% {
+                bottom: 35%;
+                width: 50px;
+                height: 50px;
+                opacity: 1;
+                transform: translateX(-50%) scale(1.2);
+            }
+            70% {
+                bottom: 35%;
+                width: 120px;
+                height: 120px;
+                opacity: 0.9;
+                transform: translateX(-50%) scale(1.5);
+            }
+            100% {
+                bottom: 35%;
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+                transform: translateX(-50%) scale(2);
+            }
         }
 
-        .firework {
+        /* 金色粒子 */
+        .sparkle {
             position: fixed;
-            pointer-events: none;
-            z-index: 10001;
-            animation: explode 0.6s ease-out forwards;
-        }
-        @keyframes explode {
-            0% { opacity: 1; transform: scale(0); }
-            100% { opacity: 0; transform: scale(1.5); }
-        }
-
-        .spark {
-            position: fixed;
-            width: 4px;
-            height: 4px;
+            width: 6px;
+            height: 6px;
             background: radial-gradient(circle, #f9e0a0, #e6b422);
             border-radius: 50%;
             pointer-events: none;
-            z-index: 10002;
-            animation: fadeOut 0.8s ease-out forwards;
+            z-index: 10001;
+            animation: floatAway 1.2s ease-out forwards;
         }
-        @keyframes fadeOut {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0); }
+        @keyframes floatAway {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
         }
 
         .success-message {
@@ -94,31 +118,38 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             letter-spacing: 0.2em;
             color: #b59d6e;
-            background: rgba(255,255,240,0.9);
-            padding: 16px 32px;
+            background: rgba(255,255,240,0.95);
+            padding: 18px 36px;
             border-radius: 60px;
             white-space: nowrap;
             pointer-events: none;
             z-index: 10010;
-            animation: fadeUp 1s ease-out forwards;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            animation: successFade 1.5s ease-out forwards;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            font-weight: 400;
         }
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translate(-50%, 20px); }
+        @keyframes successFade {
+            0% { opacity: 0; transform: translate(-50%, 30px); }
             20% { opacity: 1; transform: translate(-50%, -50%); }
-            80% { opacity: 1; transform: translate(-50%, -50%); }
-            100% { opacity: 0; transform: translate(-50%, -80px); }
+            70% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -100px); }
         }
 
         @media (max-width: 768px) {
             .container { padding: 60px 20px 80px; }
             .hero-zh { font-size: 1.8rem; }
             .wish-form { padding: 28px 24px; margin: 24px 0 40px; }
-            .success-message { font-size: 1.1rem; white-space: nowrap; padding: 12px 24px; }
+            .success-message { font-size: 1.2rem; padding: 12px 24px; white-space: nowrap; }
+            @keyframes riseAndExpand {
+                0% { bottom: -100px; width: 15px; height: 15px; }
+                40% { bottom: 35%; width: 40px; height: 40px; }
+                70% { bottom: 35%; width: 90px; height: 90px; }
+                100% { bottom: 35%; width: 150px; height: 150px; }
+            }
         }
     </style>
 </head>
@@ -160,49 +191,32 @@
             document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
         }).catch(e => console.log('導航載入失敗:', e));
 
-        // 🎆 發射煙花
-        function launchFirework(targetX, targetY) {
-            // 從底部發射火箭
-            const rocket = document.createElement('div');
-            rocket.className = 'rocket';
-            const startX = targetX + (Math.random() - 0.5) * 60;
-            rocket.style.left = startX + 'px';
-            document.body.appendChild(rocket);
-            
-            // 火箭到達後爆炸
-            setTimeout(() => {
-                rocket.remove();
-                burstFirework(targetX, targetY);
-            }, 550);
-        }
-
+        // 🎆 綻放煙花（從下往上放大）
         function burstFirework(x, y) {
-            // 主爆點
-            const mainBurst = document.createElement('div');
-            mainBurst.className = 'firework';
-            mainBurst.style.left = x + 'px';
-            mainBurst.style.top = y + 'px';
-            mainBurst.style.width = '40px';
-            mainBurst.style.height = '40px';
-            mainBurst.style.background = 'radial-gradient(circle, #f9d976, #f39c12)';
-            mainBurst.style.borderRadius = '50%';
-            document.body.appendChild(mainBurst);
-            setTimeout(() => mainBurst.remove(), 600);
-
-            // 金色粒子
-            const sparkCount = 45;
+            // 主煙花
+            const mainFirework = document.createElement('div');
+            mainFirework.className = 'firework-burst';
+            mainFirework.style.left = x + 'px';
+            document.body.appendChild(mainFirework);
+            
+            // 粒子效果（圍繞煙花）
+            const sparkCount = 60;
             for (let i = 0; i < sparkCount; i++) {
-                const spark = document.createElement('div');
-                spark.className = 'spark';
-                const angle = Math.random() * Math.PI * 2;
-                const distance = 60 + Math.random() * 80;
-                const dx = Math.cos(angle) * distance;
-                const dy = Math.sin(angle) * distance;
-                spark.style.left = (x + dx) + 'px';
-                spark.style.top = (y + dy) + 'px';
-                document.body.appendChild(spark);
-                setTimeout(() => spark.remove(), 800);
+                setTimeout(() => {
+                    const spark = document.createElement('div');
+                    spark.className = 'sparkle';
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 80 + Math.random() * 100;
+                    const dx = Math.cos(angle) * distance;
+                    const dy = Math.sin(angle) * distance;
+                    spark.style.left = (x + dx) + 'px';
+                    spark.style.top = (y + dy) + 'px';
+                    document.body.appendChild(spark);
+                    setTimeout(() => spark.remove(), 1200);
+                }, i * 12);
             }
+            
+            setTimeout(() => mainFirework.remove(), 1400);
         }
 
         function showSuccess() {
@@ -210,28 +224,25 @@
             msg.className = 'success-message';
             msg.textContent = '✨ 許願成功 ✨';
             document.body.appendChild(msg);
-            setTimeout(() => msg.remove(), 1200);
+            setTimeout(() => msg.remove(), 1600);
         }
 
         function celebrate() {
-            // 在許願池上方綻放煙花
-            const poolCenter = {
-                x: window.innerWidth / 2,
-                y: window.innerHeight * 0.35
-            };
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight * 0.4; // 許願池上方
             
-            // 發射 3 發煙花
+            // 連續 3 發煙花
             for (let i = 0; i < 3; i++) {
                 setTimeout(() => {
-                    const offsetX = (Math.random() - 0.5) * 150;
-                    launchFirework(poolCenter.x + offsetX, poolCenter.y);
-                }, i * 300);
+                    const offsetX = (Math.random() - 0.5) * 200;
+                    burstFirework(centerX + offsetX, centerY);
+                }, i * 400);
             }
             
-            // 最後顯示成功訊息
+            // 顯示成功訊息
             setTimeout(() => {
                 showSuccess();
-            }, 900);
+            }, 1000);
         }
 
         async function loadWishes() {
@@ -280,8 +291,8 @@
             if(await addWish(n||'匿名', w)) {
                 document.getElementById('nameInput').value = '';
                 document.getElementById('wishInput').value = '';
-                celebrate(); // 🎆 發射煙花！
-                setTimeout(() => loadWishes(), 1300);
+                celebrate(); // 🎆 綻放煙花！
+                setTimeout(() => loadWishes(), 1500);
             } else {
                 alert('送出失敗，請稍後再試');
             }
