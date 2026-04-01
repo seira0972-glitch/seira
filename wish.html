@@ -40,7 +40,7 @@
         @keyframes ripple { 0% { opacity: 0; transform: translateX(-6px); } 100% { opacity: 1; transform: translateX(0); } }
         .wish-name { font-family: 'Noto Serif TC', serif; font-weight: 500; color: #b59d6e; font-size: 0.9rem; margin-bottom: 10px; letter-spacing: 0.05em; }
         .wish-text { font-size: 0.98rem; color: #3a3a3a; line-height: 1.65; margin-bottom: 12px; padding-left: 4px; }
-        .wish-time { font-size: 0.7rem; color: #bbb; text-align: right; margin-top: 8px; }
+        .wish-time { font-size: 0.7rem; color: #bbb; text-align: right; margin-top: 8px; font-family: monospace; letter-spacing: 0.5px; }
         .loading { text-align: center; color: #aaa; padding: 60px 20px; font-size: 0.9rem; }
 
         footer { text-align: center; padding: 56px 24px 48px; border-top: 1px solid #f0ede8; font-family: 'Bodoni Moda', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; margin-top: 40px; }
@@ -90,7 +90,6 @@
             }
         }
 
-        /* 金色粒子 */
         .sparkle {
             position: fixed;
             width: 6px;
@@ -102,14 +101,8 @@
             animation: floatAway 1.2s ease-out forwards;
         }
         @keyframes floatAway {
-            0% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0);
-            }
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
         }
 
         .success-message {
@@ -130,7 +123,6 @@
             animation: successFade 1.5s ease-out forwards;
             backdrop-filter: blur(6px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            font-weight: 400;
         }
         @keyframes successFade {
             0% { opacity: 0; transform: translate(-50%, 30px); }
@@ -144,6 +136,7 @@
             .hero-zh { font-size: 1.8rem; }
             .wish-form { padding: 28px 24px; margin: 24px 0 40px; }
             .success-message { font-size: 1.2rem; padding: 12px 24px; white-space: nowrap; }
+            .wish-time { font-size: 0.65rem; }
             @keyframes riseAndExpand {
                 0% { bottom: -100px; width: 15px; height: 15px; }
                 40% { bottom: 35%; width: 40px; height: 40px; }
@@ -191,15 +184,12 @@
             document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
         }).catch(e => console.log('導航載入失敗:', e));
 
-        // 🎆 綻放煙花（從下往上放大）
         function burstFirework(x, y) {
-            // 主煙花
             const mainFirework = document.createElement('div');
             mainFirework.className = 'firework-burst';
             mainFirework.style.left = x + 'px';
             document.body.appendChild(mainFirework);
             
-            // 粒子效果（圍繞煙花）
             const sparkCount = 60;
             for (let i = 0; i < sparkCount; i++) {
                 setTimeout(() => {
@@ -215,7 +205,6 @@
                     setTimeout(() => spark.remove(), 1200);
                 }, i * 12);
             }
-            
             setTimeout(() => mainFirework.remove(), 1400);
         }
 
@@ -229,20 +218,14 @@
 
         function celebrate() {
             const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight * 0.4; // 許願池上方
-            
-            // 連續 3 發煙花
+            const centerY = window.innerHeight * 0.4;
             for (let i = 0; i < 3; i++) {
                 setTimeout(() => {
                     const offsetX = (Math.random() - 0.5) * 200;
                     burstFirework(centerX + offsetX, centerY);
                 }, i * 400);
             }
-            
-            // 顯示成功訊息
-            setTimeout(() => {
-                showSuccess();
-            }, 1000);
+            setTimeout(() => showSuccess(), 1000);
         }
 
         async function loadWishes() {
@@ -257,7 +240,7 @@
                         let wish = w.wish;
                         if (name === undefined || name === null) name = '';
                         if (wish === undefined || wish === null) wish = '';
-                        return `<div class="wish-item"><div class="wish-name">✨ ${escapeHtml(String(name)) || '一位訪客'}</div><div class="wish-text">「${escapeHtml(String(wish))}」</div><div class="wish-time">${formatDate(w.time)}</div></div>`;
+                        return `<div class="wish-item"><div class="wish-name">✨ ${escapeHtml(String(name)) || '一位訪客'}</div><div class="wish-text">「${escapeHtml(String(wish))}」</div><div class="wish-time">${formatDateTime(w.time)}</div></div>`;
                     }).join('');
                 } else {
                     c.innerHTML = '<div class="loading">還沒有許願，來當第一個吧 ✨</div>';
@@ -278,7 +261,22 @@
         }
         
         function escapeHtml(s) { if(!s) return ''; return s.replace(/[&<>]/g,m=>({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]||m)); }
-        function formatDate(ds) { if(!ds) return ''; try { const d=new Date(ds); return `${d.getMonth()+1}/${d.getDate()} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`; } catch(e) { return ''; } }
+        
+        // 🔧 時間格式：年/月/日 時:分
+        function formatDateTime(dateStr) {
+            if (!dateStr) return '';
+            try {
+                const date = new Date(dateStr);
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                const day = date.getDate().toString().padStart(2, '0');
+                const hours = date.getHours().toString().padStart(2, '0');
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+                return `${year}/${month}/${day} ${hours}:${minutes}`;
+            } catch(e) {
+                return '';
+            }
+        }
 
         document.getElementById('submitBtn').onclick = async () => {
             const n = document.getElementById('nameInput').value.trim();
@@ -291,7 +289,7 @@
             if(await addWish(n||'匿名', w)) {
                 document.getElementById('nameInput').value = '';
                 document.getElementById('wishInput').value = '';
-                celebrate(); // 🎆 綻放煙花！
+                celebrate();
                 setTimeout(() => loadWishes(), 1500);
             } else {
                 alert('送出失敗，請稍後再試');
