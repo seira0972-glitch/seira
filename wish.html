@@ -7,56 +7,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #ffffff; color: #2c2c2c; line-height: 1.7; }
+        body { 
+            font-family: 'Inter', 'Noto Sans TC', sans-serif; 
+            background: #ffffff; 
+            color: #2c2c2c; 
+            line-height: 1.7; 
+            position: relative;
+            overflow-x: hidden;
+        }
         #nav-placeholder { min-height: 70px; }
 
-        .container { max-width: 800px; margin: 0 auto; padding: 80px 24px 120px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 80px 24px 120px; position: relative; z-index: 5; background: #ffffff; }
 
         .hero { text-align: center; margin-bottom: 80px; }
         .hero-en { font-family: 'Bodoni Moda', serif; font-size: 0.75rem; font-style: italic; color: #b59d6e; letter-spacing: 0.5em; text-transform: uppercase; margin-bottom: 20px; }
         .hero-zh { font-family: 'Noto Serif TC', serif; font-size: 2.4rem; font-weight: 400; letter-spacing: 0.2em; color: #2c2c2c; margin-bottom: 20px; }
         .hero p { font-size: 0.9rem; color: #888; letter-spacing: 0.08em; }
-
-        /* 許願池動畫區 — 金幣雨專用 */
-        .fountain-area {
-            position: relative;
-            height: 180px;
-            margin: 40px 0 20px;
-            background: linear-gradient(180deg, #fefaf5 0%, #fff7ef 100%);
-            border-radius: 100px 100px 60px 60px;
-            overflow: hidden;
-            box-shadow: inset 0 4px 12px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.02);
-        }
-        .fountain-area::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            background: repeating-linear-gradient(transparent, transparent 28px, rgba(181,157,110,0.2) 28px, rgba(181,157,110,0.2) 32px);
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        /* 金幣樣式 */
-        .coin-rain {
-            position: absolute;
-            top: -40px;
-            width: 28px;
-            height: 28px;
-            background: radial-gradient(circle at 35% 35%, #f9e0a0, #e6b422);
-            border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,200,0.8);
-            pointer-events: none;
-            z-index: 10;
-            animation: fallCoin 1.2s ease-in forwards;
-        }
-        @keyframes fallCoin {
-            0% { top: -40px; transform: rotate(0deg); opacity: 1; }
-            70% { opacity: 0.9; }
-            100% { top: 160px; transform: rotate(720deg); opacity: 0; }
-        }
 
         .wish-form { background: #fefaf5; padding: 40px 36px; margin: 40px 0 56px; border: 1px solid #ece5e0; border-radius: 4px; }
         .form-group { margin-bottom: 28px; }
@@ -80,14 +46,31 @@
 
         footer { text-align: center; padding: 56px 24px 48px; border-top: 1px solid #f0ede8; font-family: 'Bodoni Moda', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; margin-top: 40px; }
 
+        /* 🌟 全畫面金幣雨 */
+        .coin-fullscreen {
+            position: fixed;
+            top: -50px;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle at 35% 35%, #f9e0a0, #e6b422);
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,200,0.8);
+            pointer-events: none;
+            z-index: 9999;
+            animation: fallFullScreen 1.5s linear forwards;
+        }
+        @keyframes fallFullScreen {
+            0% { top: -50px; transform: rotate(0deg); opacity: 1; }
+            80% { opacity: 0.9; }
+            100% { top: 120vh; transform: rotate(720deg); opacity: 0; }
+        }
+
         @media (max-width: 768px) {
             .container { padding: 60px 20px 80px; }
             .hero-zh { font-size: 1.8rem; }
             .wish-form { padding: 28px 24px; margin: 24px 0 40px; }
-            .fountain-area { height: 140px; margin: 20px 0 10px; }
-            .coin-rain { width: 22px; height: 22px; }
-            @keyframes fallCoin { 100% { top: 120px; } }
-            .wish-item { padding: 18px 20px; }
+            .coin-fullscreen { width: 22px; height: 22px; }
         }
     </style>
 </head>
@@ -99,9 +82,6 @@
             <h1 class="hero-zh">許願池</h1>
             <p>留下你的願望、想學的內容、或任何想對我說的話</p>
         </div>
-
-        <!-- 金幣雨區 -->
-        <div class="fountain-area" id="fountainArea"></div>
 
         <div class="wish-form">
             <div class="form-group">
@@ -132,21 +112,23 @@
             document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
         }).catch(e => console.log('導航載入失敗:', e));
 
-        // 🌟 金幣雨
+        // 🌟 全畫面金幣雨
         function startCoinRain() {
-            const area = document.getElementById('fountainArea');
-            const coinCount = Math.floor(Math.random() * 8) + 12; // 12~20 枚
+            const coinCount = Math.floor(Math.random() * 15) + 20; // 20~35 枚
             for (let i = 0; i < coinCount; i++) {
                 setTimeout(() => {
                     const coin = document.createElement('div');
-                    coin.className = 'coin-rain';
-                    const randomLeft = Math.random() * (area.clientWidth - 40) + 20;
-                    const randomDelay = Math.random() * 0.3;
+                    coin.className = 'coin-fullscreen';
+                    const randomLeft = Math.random() * window.innerWidth;
+                    const randomDelay = Math.random() * 0.4;
+                    const randomSize = 22 + Math.random() * 12;
                     coin.style.left = `${randomLeft}px`;
+                    coin.style.width = `${randomSize}px`;
+                    coin.style.height = `${randomSize}px`;
                     coin.style.animationDelay = `${randomDelay}s`;
-                    area.appendChild(coin);
-                    setTimeout(() => coin.remove(), 1400);
-                }, i * 40);
+                    document.body.appendChild(coin);
+                    setTimeout(() => coin.remove(), 1600);
+                }, i * 35);
             }
         }
 
@@ -190,7 +172,7 @@
             const w = document.getElementById('wishInput').value.trim();
             if(!w) return alert('請寫下你的願望～');
             
-            // 🪙 下金幣雨！
+            // 🪙 全畫面金幣雨！
             startCoinRain();
             
             const btn = document.getElementById('submitBtn');
