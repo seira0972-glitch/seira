@@ -221,7 +221,6 @@
     <footer>WUNDERKAMMER · 靈感閣</footer>
 
     <script>
-        // 🔽 你的 Apps Script 網址
         const API_URL = 'https://script.google.com/macros/s/AKfycbzKUkgjIG4wjE2WGJk76y4xVI3eo9mi6KSCNUnBwMhBFlTwxBOSPrllUqtvR4GpSGp9/exec';
 
         // 載入導航欄
@@ -245,14 +244,20 @@
             try {
                 const response = await fetch(API_URL);
                 const data = await response.json();
-                if (data.success && data.wishes.length > 0) {
-                    container.innerHTML = data.wishes.map(wish => `
-                        <div class="wish-item">
-                            <div class="wish-name">${escapeHtml(wish.name) || '匿名'}</div>
-                            <div class="wish-text">${escapeHtml(wish.wish)}</div>
-                            <div class="wish-time">${formatDate(wish.time)}</div>
-                        </div>
-                    `).join('');
+                if (data.success && data.wishes && data.wishes.length > 0) {
+                    container.innerHTML = data.wishes.map(wish => {
+                        let name = wish.name;
+                        let wishText = wish.wish;
+                        if (name === undefined || name === null) name = '';
+                        if (wishText === undefined || wishText === null) wishText = '';
+                        return `
+                            <div class="wish-item">
+                                <div class="wish-name">${escapeHtml(String(name)) || '匿名'}</div>
+                                <div class="wish-text">${escapeHtml(String(wishText))}</div>
+                                <div class="wish-time">${formatDate(wish.time)}</div>
+                            </div>
+                        `;
+                    }).join('');
                 } else {
                     container.innerHTML = '<div class="loading">還沒有許願，來當第一個吧 ✨</div>';
                 }
