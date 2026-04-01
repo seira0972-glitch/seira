@@ -12,7 +12,6 @@
             background: #ffffff; 
             color: #2c2c2c; 
             line-height: 1.7; 
-            position: relative;
             overflow-x: hidden;
         }
         #nav-placeholder { min-height: 70px; }
@@ -46,11 +45,11 @@
 
         footer { text-align: center; padding: 56px 24px 48px; border-top: 1px solid #f0ede8; font-family: 'Bodoni Moda', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; margin-top: 40px; }
 
-        /* 🌟 全畫面金幣雨 */
-        .coin-fullscreen {
+        /* 🪙 從下往上拋金幣 */
+        .coin-up {
             position: fixed;
-            top: -50px;
-            left: 0;
+            bottom: -30px;
+            left: 50%;
             width: 30px;
             height: 30px;
             background: radial-gradient(circle at 35% 35%, #f9e0a0, #e6b422);
@@ -58,19 +57,25 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,200,0.8);
             pointer-events: none;
             z-index: 9999;
-            animation: fallFullScreen 1.5s linear forwards;
+            animation: throwUp 1s cubic-bezier(0.2, 0.9, 0.4, 1.2) forwards;
         }
-        @keyframes fallFullScreen {
-            0% { top: -50px; transform: rotate(0deg); opacity: 1; }
-            80% { opacity: 0.9; }
-            100% { top: 120vh; transform: rotate(720deg); opacity: 0; }
+        @keyframes throwUp {
+            0% { bottom: -30px; transform: translateX(-50%) rotate(0deg); opacity: 1; }
+            40% { bottom: 300px; transform: translateX(-50%) rotate(280deg); }
+            70% { bottom: 150px; transform: translateX(-50%) rotate(520deg); opacity: 0.9; }
+            100% { bottom: -80px; transform: translateX(-50%) rotate(720deg); opacity: 0; }
         }
 
         @media (max-width: 768px) {
             .container { padding: 60px 20px 80px; }
             .hero-zh { font-size: 1.8rem; }
             .wish-form { padding: 28px 24px; margin: 24px 0 40px; }
-            .coin-fullscreen { width: 22px; height: 22px; }
+            .coin-up { width: 24px; height: 24px; }
+            @keyframes throwUp {
+                0% { bottom: -30px; }
+                40% { bottom: 220px; }
+                100% { bottom: -60px; }
+            }
         }
     </style>
 </head>
@@ -112,29 +117,26 @@
             document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
         }).catch(e => console.log('導航載入失敗:', e));
 
-        // 🌟 全畫面金幣雨
-        function startCoinRain() {
-            const coinCount = Math.floor(Math.random() * 15) + 20; // 20~35 枚
+        // 🪙 從下往上拋金幣
+        function throwCoin() {
+            const coinCount = Math.floor(Math.random() * 5) + 6; // 6~10 枚
             for (let i = 0; i < coinCount; i++) {
                 setTimeout(() => {
                     const coin = document.createElement('div');
-                    coin.className = 'coin-fullscreen';
-                    const randomLeft = Math.random() * window.innerWidth;
-                    const randomDelay = Math.random() * 0.4;
-                    const randomSize = 22 + Math.random() * 12;
-                    coin.style.left = `${randomLeft}px`;
-                    coin.style.width = `${randomSize}px`;
-                    coin.style.height = `${randomSize}px`;
+                    coin.className = 'coin-up';
+                    const randomX = (Math.random() - 0.5) * 300;
+                    coin.style.left = `calc(50% + ${randomX}px)`;
+                    const randomDelay = Math.random() * 0.3;
                     coin.style.animationDelay = `${randomDelay}s`;
                     document.body.appendChild(coin);
-                    setTimeout(() => coin.remove(), 1600);
-                }, i * 35);
+                    setTimeout(() => coin.remove(), 1300);
+                }, i * 60);
             }
         }
 
         async function loadWishes() {
             const c = document.getElementById('wishesList');
-            c.innerHTML = '<div class="loading">✨ 水面微動，願望浮現 ✨</div>';
+            c.innerHTML = '<div class="loading">載入中...</div>';
             try {
                 const r = await fetch(API_URL);
                 const d = await r.json();
@@ -147,11 +149,11 @@
                         return `<div class="wish-item"><div class="wish-name">✨ ${escapeHtml(String(name)) || '一位訪客'}</div><div class="wish-text">「${escapeHtml(String(wish))}」</div><div class="wish-time">${formatDate(w.time)}</div></div>`;
                     }).join('');
                 } else {
-                    c.innerHTML = '<div class="loading">🍃 還沒有許願，來當第一個吧 ✨</div>';
+                    c.innerHTML = '<div class="loading">還沒有許願，來當第一個吧 ✨</div>';
                 }
             } catch(e) {
                 console.error(e);
-                c.innerHTML = '<div class="loading">⛲ 池水靜止，稍後再試</div>';
+                c.innerHTML = '<div class="loading">載入失敗，請稍後再試</div>';
             }
         }
 
@@ -172,8 +174,8 @@
             const w = document.getElementById('wishInput').value.trim();
             if(!w) return alert('請寫下你的願望～');
             
-            // 🪙 全畫面金幣雨！
-            startCoinRain();
+            // 🪙 拋金幣！
+            throwCoin();
             
             const btn = document.getElementById('submitBtn');
             btn.disabled = true; btn.textContent = '許願中...';
