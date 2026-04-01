@@ -11,60 +11,84 @@
         #nav-placeholder { min-height: 70px; }
 
         .container { max-width: 800px; margin: 0 auto; padding: 80px 24px 120px; }
-        .hero { text-align: center; margin-bottom: 60px; }
+
+        .hero { text-align: center; margin-bottom: 80px; }
         .hero-en { font-family: 'Bodoni Moda', serif; font-size: 0.75rem; font-style: italic; color: #b59d6e; letter-spacing: 0.5em; text-transform: uppercase; margin-bottom: 20px; }
         .hero-zh { font-family: 'Noto Serif TC', serif; font-size: 2.4rem; font-weight: 400; letter-spacing: 0.2em; color: #2c2c2c; margin-bottom: 20px; }
         .hero p { font-size: 0.9rem; color: #888; letter-spacing: 0.08em; }
 
-        /* 許願池動畫區 */
+        /* 許願池動畫區 — 金幣雨專用 */
         .fountain-area {
             position: relative;
-            height: 120px;
-            margin-bottom: 20px;
+            height: 180px;
+            margin: 40px 0 20px;
+            background: linear-gradient(180deg, #fefaf5 0%, #fff7ef 100%);
+            border-radius: 100px 100px 60px 60px;
             overflow: hidden;
+            box-shadow: inset 0 4px 12px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.02);
         }
-        .coin {
+        .fountain-area::before {
+            content: '';
             position: absolute;
             bottom: 0;
-            left: 50%;
-            width: 30px;
-            height: 30px;
-            background: radial-gradient(circle at 30% 30%, #f9d976, #f39c12);
-            border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-            transform: translateX(-50%);
-            animation: throwCoin 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: repeating-linear-gradient(transparent, transparent 28px, rgba(181,157,110,0.2) 28px, rgba(181,157,110,0.2) 32px);
             pointer-events: none;
-            z-index: 100;
-        }
-        @keyframes throwCoin {
-            0% { bottom: 0; transform: translateX(-50%) rotate(0deg); opacity: 1; }
-            30% { bottom: 80px; transform: translateX(-50%) rotate(180deg); }
-            70% { bottom: 20px; transform: translateX(-50%) rotate(360deg); }
-            100% { bottom: -30px; transform: translateX(-50%) rotate(540deg); opacity: 0; }
+            z-index: 2;
         }
 
-        .wish-form { background: #fefaf5; padding: 32px; margin-bottom: 32px; border: 1px solid #ece5e0; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 0.8rem; letter-spacing: 0.1em; color: #b59d6e; margin-bottom: 8px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ece5e0; font-family: inherit; font-size: 0.9rem; background: white; outline: none; transition: border-color 0.2s; }
-        .form-group input:focus, .form-group textarea:focus { border-color: #b59d6e; }
-        .form-group textarea { resize: vertical; min-height: 80px; }
-        .submit-btn { background: #b59d6e; color: white; border: none; padding: 12px 28px; font-family: inherit; font-size: 0.9rem; letter-spacing: 0.1em; cursor: pointer; transition: opacity 0.2s; }
-        .submit-btn:hover { opacity: 0.85; }
+        /* 金幣樣式 */
+        .coin-rain {
+            position: absolute;
+            top: -40px;
+            width: 28px;
+            height: 28px;
+            background: radial-gradient(circle at 35% 35%, #f9e0a0, #e6b422);
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,200,0.8);
+            pointer-events: none;
+            z-index: 10;
+            animation: fallCoin 1.2s ease-in forwards;
+        }
+        @keyframes fallCoin {
+            0% { top: -40px; transform: rotate(0deg); opacity: 1; }
+            70% { opacity: 0.9; }
+            100% { top: 160px; transform: rotate(720deg); opacity: 0; }
+        }
 
-        .wishes-wall { border-top: 1px solid #ece5e0; padding-top: 40px; }
-        .wishes-wall h3 { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; font-weight: 400; letter-spacing: 0.15em; color: #b59d6e; text-align: center; margin-bottom: 32px; }
-        .wishes-list { display: flex; flex-direction: column; gap: 24px; }
-        .wish-item { background: #ffffff; padding: 20px 24px; border-left: 2px solid #b59d6e; box-shadow: 0 2px 8px rgba(0,0,0,0.02); animation: ripple 0.5s ease-out; }
-        @keyframes ripple { 0% { opacity: 0; transform: scale(0.96); box-shadow: 0 0 0 0 rgba(181, 157, 110, 0.3); } 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(181, 157, 110, 0); } }
-        .wish-name { font-family: 'Noto Serif TC', serif; font-weight: 500; color: #b59d6e; font-size: 0.9rem; margin-bottom: 8px; }
-        .wish-text { font-size: 0.95rem; color: #4a4a4a; line-height: 1.6; margin-bottom: 8px; }
-        .wish-time { font-size: 0.7rem; color: #aaa; text-align: right; }
-        .loading { text-align: center; color: #aaa; padding: 40px; }
+        .wish-form { background: #fefaf5; padding: 40px 36px; margin: 40px 0 56px; border: 1px solid #ece5e0; border-radius: 4px; }
+        .form-group { margin-bottom: 28px; }
+        .form-group label { display: block; font-size: 0.8rem; letter-spacing: 0.12em; color: #b59d6e; margin-bottom: 10px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid #ece5e0; font-family: inherit; font-size: 0.95rem; background: white; outline: none; transition: all 0.2s; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #b59d6e; box-shadow: 0 0 0 2px rgba(181,157,110,0.1); }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .submit-btn { background: #b59d6e; color: white; border: none; padding: 14px 32px; font-family: inherit; font-size: 0.9rem; letter-spacing: 0.15em; cursor: pointer; transition: all 0.2s; width: auto; min-width: 180px; }
+        .submit-btn:hover { background: #9b7e54; transform: translateY(-1px); }
 
-        footer { text-align: center; padding: 40px 24px; border-top: 1px solid #f0ede8; font-family: 'Bodoni Moda', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; }
-        @media (max-width: 768px) { .container { padding: 60px 20px 80px; } .hero-zh { font-size: 1.8rem; } .wish-form { padding: 24px; } .fountain-area { height: 80px; } }
+        .wishes-wall { border-top: 1px solid #ece5e0; padding-top: 56px; margin-top: 16px; }
+        .wishes-wall h3 { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; font-weight: 400; letter-spacing: 0.2em; color: #b59d6e; text-align: center; margin-bottom: 48px; }
+        .wishes-list { display: flex; flex-direction: column; gap: 28px; }
+        .wish-item { background: #ffffff; padding: 24px 28px; border-left: 3px solid #b59d6e; box-shadow: 0 4px 12px rgba(0,0,0,0.02); transition: all 0.2s; animation: ripple 0.5s ease-out; }
+        .wish-item:hover { border-left-color: #c9aa7b; background: #fefcf9; }
+        @keyframes ripple { 0% { opacity: 0; transform: translateX(-6px); } 100% { opacity: 1; transform: translateX(0); } }
+        .wish-name { font-family: 'Noto Serif TC', serif; font-weight: 500; color: #b59d6e; font-size: 0.9rem; margin-bottom: 10px; letter-spacing: 0.05em; }
+        .wish-text { font-size: 0.98rem; color: #3a3a3a; line-height: 1.65; margin-bottom: 12px; padding-left: 4px; }
+        .wish-time { font-size: 0.7rem; color: #bbb; text-align: right; margin-top: 8px; }
+        .loading { text-align: center; color: #aaa; padding: 60px 20px; font-size: 0.9rem; }
+
+        footer { text-align: center; padding: 56px 24px 48px; border-top: 1px solid #f0ede8; font-family: 'Bodoni Moda', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; margin-top: 40px; }
+
+        @media (max-width: 768px) {
+            .container { padding: 60px 20px 80px; }
+            .hero-zh { font-size: 1.8rem; }
+            .wish-form { padding: 28px 24px; margin: 24px 0 40px; }
+            .fountain-area { height: 140px; margin: 20px 0 10px; }
+            .coin-rain { width: 22px; height: 22px; }
+            @keyframes fallCoin { 100% { top: 120px; } }
+            .wish-item { padding: 18px 20px; }
+        }
     </style>
 </head>
 <body>
@@ -76,7 +100,7 @@
             <p>留下你的願望、想學的內容、或任何想對我說的話</p>
         </div>
 
-        <!-- 拋金幣動畫區 -->
+        <!-- 金幣雨區 -->
         <div class="fountain-area" id="fountainArea"></div>
 
         <div class="wish-form">
@@ -88,11 +112,13 @@
                 <label>你的願望 / 想學的內容</label>
                 <textarea id="wishInput" placeholder="許個願吧..."></textarea>
             </div>
-            <button class="submit-btn" id="submitBtn">💫 許願</button>
+            <div style="text-align: center;">
+                <button class="submit-btn" id="submitBtn">💫 拋金幣・許願</button>
+            </div>
         </div>
 
         <div class="wishes-wall">
-            <h3>✨ 大家的許願 ✨</h3>
+            <h3>✨ 池中願望 ✨</h3>
             <div id="wishesList" class="wishes-list"><div class="loading">載入中...</div></div>
         </div>
     </div>
@@ -106,20 +132,27 @@
             document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
         }).catch(e => console.log('導航載入失敗:', e));
 
-        // 拋金幣動畫
-        function throwCoin() {
+        // 🌟 金幣雨
+        function startCoinRain() {
             const area = document.getElementById('fountainArea');
-            const coin = document.createElement('div');
-            coin.className = 'coin';
-            const randomX = (Math.random() - 0.5) * 40;
-            coin.style.left = `calc(50% + ${randomX}px)`;
-            area.appendChild(coin);
-            setTimeout(() => coin.remove(), 900);
+            const coinCount = Math.floor(Math.random() * 8) + 12; // 12~20 枚
+            for (let i = 0; i < coinCount; i++) {
+                setTimeout(() => {
+                    const coin = document.createElement('div');
+                    coin.className = 'coin-rain';
+                    const randomLeft = Math.random() * (area.clientWidth - 40) + 20;
+                    const randomDelay = Math.random() * 0.3;
+                    coin.style.left = `${randomLeft}px`;
+                    coin.style.animationDelay = `${randomDelay}s`;
+                    area.appendChild(coin);
+                    setTimeout(() => coin.remove(), 1400);
+                }, i * 40);
+            }
         }
 
         async function loadWishes() {
             const c = document.getElementById('wishesList');
-            c.innerHTML = '<div class="loading">載入中...</div>';
+            c.innerHTML = '<div class="loading">✨ 水面微動，願望浮現 ✨</div>';
             try {
                 const r = await fetch(API_URL);
                 const d = await r.json();
@@ -132,11 +165,11 @@
                         return `<div class="wish-item"><div class="wish-name">✨ ${escapeHtml(String(name)) || '一位訪客'}</div><div class="wish-text">「${escapeHtml(String(wish))}」</div><div class="wish-time">${formatDate(w.time)}</div></div>`;
                     }).join('');
                 } else {
-                    c.innerHTML = '<div class="loading">還沒有許願，來當第一個吧 ✨</div>';
+                    c.innerHTML = '<div class="loading">🍃 還沒有許願，來當第一個吧 ✨</div>';
                 }
             } catch(e) {
                 console.error(e);
-                c.innerHTML = '<div class="loading">載入失敗，請稍後再試</div>';
+                c.innerHTML = '<div class="loading">⛲ 池水靜止，稍後再試</div>';
             }
         }
 
@@ -157,19 +190,19 @@
             const w = document.getElementById('wishInput').value.trim();
             if(!w) return alert('請寫下你的願望～');
             
-            // 拋金幣動畫
-            throwCoin();
+            // 🪙 下金幣雨！
+            startCoinRain();
             
             const btn = document.getElementById('submitBtn');
             btn.disabled = true; btn.textContent = '許願中...';
             if(await addWish(n||'匿名', w)) {
                 document.getElementById('nameInput').value = '';
                 document.getElementById('wishInput').value = '';
-                setTimeout(() => loadWishes(), 500); // 等金幣動畫再刷新留言
+                setTimeout(() => loadWishes(), 800);
             } else {
                 alert('送出失敗，請稍後再試');
             }
-            btn.disabled = false; btn.textContent = '💫 許願';
+            btn.disabled = false; btn.textContent = '💫 拋金幣・許願';
         };
         loadWishes();
     </script>
