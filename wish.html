@@ -35,17 +35,89 @@
         .wishes-wall { border-top: 1px solid #ece5e0; padding-top: 40px; margin-top: 8px; }
         .wishes-wall h3 { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; font-weight: 400; letter-spacing: 0.2em; color: #b59d6e; text-align: center; margin-bottom: 32px; }
         .wishes-list { display: flex; flex-direction: column; gap: 20px; }
-        .wish-item { background: #ffffff; padding: 18px 24px; border-left: 3px solid #b59d6e; box-shadow: 0 2px 8px rgba(0,0,0,0.02); transition: all 0.2s; animation: ripple 0.5s ease-out; }
+        
+        /* 留言卡片 */
+        .wish-item { 
+            background: #ffffff; 
+            padding: 18px 24px; 
+            border-left: 3px solid #b59d6e; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); 
+            transition: all 0.2s; 
+            animation: ripple 0.5s ease-out;
+        }
         .wish-item:hover { border-left-color: #c9aa7b; background: #fefcf9; }
         @keyframes ripple { 0% { opacity: 0; transform: translateX(-6px); } 100% { opacity: 1; transform: translateX(0); } }
+        
         .wish-name { font-family: 'Noto Serif TC', serif; font-weight: 500; color: #b59d6e; font-size: 0.85rem; margin-bottom: 6px; letter-spacing: 0.05em; }
         .wish-text { font-size: 0.9rem; color: #3a3a3a; line-height: 1.6; margin-bottom: 8px; padding-left: 4px; }
         .wish-time { font-size: 0.65rem; color: #bbb; text-align: right; margin-top: 6px; font-family: monospace; }
+        
+        /* 回覆區塊 */
+        .reply-section {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #ece5e0;
+        }
+        .reply-text {
+            font-size: 0.85rem;
+            color: #b59d6e;
+            background: #fefaf5;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .reply-input-area {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .reply-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ece5e0;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: inherit;
+            outline: none;
+        }
+        .reply-input:focus {
+            border-color: #b59d6e;
+        }
+        .reply-btn {
+            background: #b59d6e;
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .reply-btn:hover {
+            opacity: 0.8;
+        }
+        .reply-time {
+            font-size: 0.6rem;
+            color: #ccc;
+            margin-top: 4px;
+            text-align: right;
+        }
+        .owner-badge {
+            display: inline-block;
+            background: #b59d6e20;
+            color: #b59d6e;
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 12px;
+            margin-left: 8px;
+        }
+
         .loading { text-align: center; color: #aaa; padding: 40px 20px; font-size: 0.85rem; }
 
         footer { text-align: center; padding: 40px 24px 32px; border-top: 1px solid #f0ede8; font-family: 'Bodoni Moda', serif; font-size: 0.55rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; margin-top: 20px; }
 
-        /* 🎆 簡單金色火花 */
+        /* 煙花動畫 */
         .spark-rocket {
             position: fixed;
             bottom: -30px;
@@ -61,7 +133,6 @@
             0% { bottom: -30px; opacity: 1; height: 35px; }
             100% { bottom: 38%; opacity: 0.8; height: 85px; }
         }
-
         .gold-spark {
             position: fixed;
             width: 5px;
@@ -76,7 +147,6 @@
             0% { opacity: 1; transform: scale(0.8) translateY(0); }
             100% { opacity: 0; transform: scale(0.3) translateY(-40px); }
         }
-
         .success-message {
             position: fixed;
             top: 40%;
@@ -108,9 +178,8 @@
             .hero-zh { font-size: 1.6rem; }
             .wish-form { padding: 20px 20px; margin: 24px 0 32px; }
             .success-message { font-size: 1rem; padding: 8px 20px; white-space: nowrap; }
-            @keyframes shootUpSpark {
-                100% { bottom: 38%; height: 65px; }
-            }
+            .reply-input-area { flex-direction: column; }
+            .reply-btn { align-self: flex-end; }
         }
     </style>
 </head>
@@ -146,12 +215,139 @@
 
     <script>
         const API_URL = 'https://script.google.com/macros/s/AKfycbzKUkgjIG4wjE2WGJk76y4xVI3eo9mi6KSCNUnBwMhBFlTwxBOSPrllUqtvR4GpSGp9/exec';
+        
+        // 儲存回覆的資料（存在 localStorage）
+        let replies = {};
 
-        fetch('nav.html').then(res => res.text()).then(data => {
-            document.getElementById('nav-placeholder').innerHTML = data;
-            document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
-        }).catch(e => console.log('導航載入失敗:', e));
+        function loadReplies() {
+            const saved = localStorage.getItem('wishReplies');
+            if (saved) {
+                replies = JSON.parse(saved);
+            }
+        }
 
+        function saveReplies() {
+            localStorage.setItem('wishReplies', JSON.stringify(replies));
+        }
+
+        function addReply(wishIndex, replyText) {
+            if (!replies[wishIndex]) {
+                replies[wishIndex] = [];
+            }
+            replies[wishIndex].push({
+                text: replyText,
+                time: new Date().toISOString()
+            });
+            saveReplies();
+        }
+
+        function formatDateTime(dateStr) {
+            if (!dateStr) return '';
+            try {
+                const date = new Date(dateStr);
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                const day = date.getDate().toString().padStart(2, '0');
+                const hours = date.getHours().toString().padStart(2, '0');
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+                return `${year}/${month}/${day} ${hours}:${minutes}`;
+            } catch(e) {
+                return '';
+            }
+        }
+
+        function formatReplyTime(dateStr) {
+            if (!dateStr) return '';
+            try {
+                const date = new Date(dateStr);
+                return `${date.getMonth()+1}/${date.getDate()} ${date.getHours().toString().padStart(2,'0')}:${date.getMinutes().toString().padStart(2,'0')}`;
+            } catch(e) {
+                return '';
+            }
+        }
+
+        function renderWishes(wishes) {
+            const container = document.getElementById('wishesList');
+            if (!wishes || wishes.length === 0) {
+                container.innerHTML = '<div class="loading">還沒有許願，來當第一個吧 ✨</div>';
+                return;
+            }
+            
+            container.innerHTML = wishes.map((wish, idx) => {
+                let name = wish.name;
+                let wishText = wish.wish;
+                if (name === undefined || name === null) name = '';
+                if (wishText === undefined || wishText === null) wishText = '';
+                
+                const replyList = replies[idx] || [];
+                const replyHtml = replyList.map(r => `
+                    <div class="reply-text">
+                        💬 ${escapeHtml(r.text)}
+                        <div class="reply-time">${formatReplyTime(r.time)}</div>
+                    </div>
+                `).join('');
+                
+                return `
+                    <div class="wish-item" data-idx="${idx}">
+                        <div class="wish-name">✨ ${escapeHtml(String(name)) || '一位訪客'}</div>
+                        <div class="wish-text">「${escapeHtml(String(wishText))}」</div>
+                        <div class="wish-time">${formatDateTime(wish.time)}</div>
+                        <div class="reply-section">
+                            <div class="replies-container">${replyHtml}</div>
+                            <div class="reply-input-area">
+                                <input type="text" class="reply-input" placeholder="回覆此願望..." maxlength="200">
+                                <button class="reply-btn" onclick="handleReply(${idx}, this)">回覆</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        window.handleReply = function(wishIdx, btn) {
+            const input = btn.parentElement.querySelector('.reply-input');
+            const replyText = input.value.trim();
+            if (!replyText) {
+                alert('請輸入回覆內容');
+                return;
+            }
+            
+            addReply(wishIdx, replyText);
+            input.value = '';
+            
+            // 重新載入留言
+            loadWishes();
+        };
+
+        async function loadWishes() {
+            const c = document.getElementById('wishesList');
+            c.innerHTML = '<div class="loading">載入中...</div>';
+            try {
+                const r = await fetch(API_URL);
+                const d = await r.json();
+                if (d.success && d.wishes && d.wishes.length) {
+                    renderWishes(d.wishes);
+                } else {
+                    c.innerHTML = '<div class="loading">還沒有許願，來當第一個吧 ✨</div>';
+                }
+            } catch(e) {
+                console.error(e);
+                c.innerHTML = '<div class="loading">載入失敗，請稍後再試</div>';
+            }
+        }
+
+        async function addWish(n,w) { 
+            try { 
+                await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,wish:w})}); 
+                return true; 
+            } catch(e) { 
+                return false; 
+            } 
+        }
+        
+        function escapeHtml(s) { if(!s) return ''; return s.replace(/[&<>]/g,m=>({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]||m)); }
+
+        // 煙花動畫
         function launchSparkFirework(x, y) {
             const rocket = document.createElement('div');
             rocket.className = 'spark-rocket';
@@ -194,66 +390,26 @@
         function celebrate() {
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight * 0.38;
-            
             for (let i = 0; i < 3; i++) {
                 setTimeout(() => {
                     const offsetX = (Math.random() - 0.5) * 160;
                     launchSparkFirework(centerX + offsetX, centerY);
                 }, i * 380);
             }
-            
             setTimeout(() => showSuccess(), 1000);
         }
 
-        async function loadWishes() {
-            const c = document.getElementById('wishesList');
-            c.innerHTML = '<div class="loading">載入中...</div>';
-            try {
-                const r = await fetch(API_URL);
-                const d = await r.json();
-                if(d.success && d.wishes && d.wishes.length) {
-                    c.innerHTML = d.wishes.map(w => {
-                        let name = w.name;
-                        let wish = w.wish;
-                        if (name === undefined || name === null) name = '';
-                        if (wish === undefined || wish === null) wish = '';
-                        return `<div class="wish-item"><div class="wish-name">✨ ${escapeHtml(String(name)) || '一位訪客'}</div><div class="wish-text">「${escapeHtml(String(wish))}」</div><div class="wish-time">${formatDateTime(w.time)}</div></div>`;
-                    }).join('');
-                } else {
-                    c.innerHTML = '<div class="loading">還沒有許願，來當第一個吧 ✨</div>';
-                }
-            } catch(e) {
-                console.error(e);
-                c.innerHTML = '<div class="loading">載入失敗，請稍後再試</div>';
-            }
-        }
+        // 導航欄載入
+        fetch('nav.html').then(res => res.text()).then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+            document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
+        }).catch(e => console.log('導航載入失敗:', e));
 
-        async function addWish(n,w) { 
-            try { 
-                await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,wish:w})}); 
-                return true; 
-            } catch(e) { 
-                return false; 
-            } 
-        }
-        
-        function escapeHtml(s) { if(!s) return ''; return s.replace(/[&<>]/g,m=>({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]||m)); }
-        
-        function formatDateTime(dateStr) {
-            if (!dateStr) return '';
-            try {
-                const date = new Date(dateStr);
-                const year = date.getFullYear();
-                const month = (date.getMonth() + 1).toString().padStart(2, '0');
-                const day = date.getDate().toString().padStart(2, '0');
-                const hours = date.getHours().toString().padStart(2, '0');
-                const minutes = date.getMinutes().toString().padStart(2, '0');
-                return `${year}/${month}/${day} ${hours}:${minutes}`;
-            } catch(e) {
-                return '';
-            }
-        }
+        // 初始化
+        loadReplies();
+        loadWishes();
 
+        // 許願按鈕
         document.getElementById('submitBtn').onclick = async () => {
             const n = document.getElementById('nameInput').value.trim();
             const w = document.getElementById('wishInput').value.trim();
@@ -272,7 +428,6 @@
             }
             btn.disabled = false; btn.textContent = '💫 許願';
         };
-        loadWishes();
     </script>
 </body>
 </html>
