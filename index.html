@@ -1,83 +1,314 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>靈感閣｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500&family=Inter:wght@200;400&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background: #fdfcfb; color: #333; letter-spacing: 0.05em; }
-        #nav-placeholder { min-height: 80px; }
-        header { padding: 180px 20px 100px; text-align: center; }
-        header h1 {
-            font-family: 'Noto Serif TC', serif; font-size: 2.7rem; font-weight: 400;
-            letter-spacing: 0.45em; text-indent: 0.45em; color: rgba(40, 40, 40, 0.9); margin-bottom: 20px;
+        /* ===== 基礎樣式重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .subtitle {
-            font-family: 'Bodoni Moda', serif; font-size: 0.7rem; letter-spacing: 0.65em;
-            text-indent: 0.65em; color: #a68b5b; text-transform: uppercase; margin-bottom: 50px;
+
+        body {
+            background-color: #faf9f6;
+            color: #1e1e2a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Microsoft JhengHei', sans-serif;
+            line-height: 1.5;
+            padding-top: 70px; /* 為固定導航欄留出空間 */
         }
-        header p { 
-            font-family: 'Noto Serif TC', serif; font-size: 1rem; color: #666; 
-            max-width: 600px; margin: 0 auto; font-weight: 300; letter-spacing: 0.28em; opacity: 0.8;
+
+        /* ===== 導航欄樣式 ===== */
+        .navbar {
+            background-color: #ffffff;
+            height: 70px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .container { max-width: 1000px; margin: 0 auto; padding: 80px 24px; }
-        .section-title {
-            text-align: left; font-family: 'Bodoni Moda', serif; font-size: 1.1rem;
-            margin-bottom: 60px; letter-spacing: 0.3em; display: flex; align-items: center;
+
+        .nav-container {
+            max-width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .section-title::after { content: ''; flex-grow: 1; height: 1px; background: rgba(0,0,0,0.05); margin-left: 30px; }
-        .portfolio { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 80px 40px; }
-        .card-visual { width: 100%; aspect-ratio: 16 / 10; background: #f5f3f0; margin-bottom: 28px; }
-        .portfolio-card h3 { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 12px; }
-        .portfolio-card p { color: #888; font-size: 0.85rem; font-weight: 300; }
-        .portfolio-card a {
-            display: inline-block; margin-top: 20px; color: #a68b5b; text-decoration: none;
-            font-size: 0.7rem; letter-spacing: 0.2em; border-bottom: 1px solid rgba(166, 139, 91, 0.2);
-            padding-bottom: 4px; transition: 0.3s;
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
         }
-        footer { padding: 120px 20px 60px; text-align: center; font-family: 'Bodoni Moda', serif; font-size: 0.65rem; letter-spacing: 0.5em; color: #ccc; }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #007bff;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: #ffffff;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 20px 0;
+            }
+        }
+
+        /* ===== 原有首頁內容樣式 ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* 標題區域 */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subhead {
+            font-size: 1.2rem;
+            color: #5a5a66;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero .description {
+            color: #7a7a86;
+            font-size: 1rem;
+            border-top: 1px solid #e0ded9;
+            display: inline-block;
+            padding-top: 1rem;
+        }
+
+        /* 作品展示區域 */
+        .works-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .work-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid #efede8;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .work-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .work-card h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .work-card p {
+            color: #5a5a66;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .work-link {
+            text-decoration: none;
+            color: #1e1e2a;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.25rem;
+            transition: gap 0.2s;
+        }
+
+        .work-link:hover {
+            gap: 0.75rem;
+            color: #007bff;
+            border-bottom-color: #007bff;
+        }
+
+        /* 頁尾 */
+        .footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eae8e2;
+            color: #aaa8a0;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero .subhead {
+                font-size: 0.9rem;
+                letter-spacing: 0.2em;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+            .work-card {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="nav-placeholder"></div>
-    <header>
-        <h1>靈感閣</h1>
-        <div class="subtitle">WUNDERKAMMER</div>
-        <p>存放數位荒原中閃爍的奇思異想</p>
-    </header>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">靈感閣</a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link active">首頁</a></li>
+                <li class="nav-item"><a href="wishpool.html" class="nav-link">許願池</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <h2 class="section-title">WORKS</h2>
-        <div class="portfolio">
-            <div class="portfolio-card">
-                <div class="card-visual"></div>
+        <!-- 標題區塊 -->
+        <div class="hero">
+            <h1>靈感閣</h1>
+            <div class="subhead">WUNDERKAMMER</div>
+            <div class="description">存放數位荒原中閃爍的奇思異想</div>
+        </div>
+
+        <!-- 作品展示 -->
+        <div class="works-section">
+            <div class="work-card">
                 <h3>用 AI 做網站</h3>
                 <p>Gemini + GitHub Pages 完整教學筆記，探索 AI 協作的無限可能。</p>
-                <a href="note_1.html">DETAILS →</a>
+                <a href="#" class="work-link">DETAILS →</a>
             </div>
-            <div class="portfolio-card">
-                <div class="card-visual"></div>
+            <div class="work-card">
                 <h3>視覺識別設計</h3>
                 <p>簡約而深刻的視覺語彙，為品牌注入獨一無二的靈魂。</p>
-                <a href="#">DETAILS →</a>
+                <a href="#" class="work-link">DETAILS →</a>
             </div>
         </div>
+
+        <div class="footer">
+            WunderKammer — 數位荒原中的奇思異想
+        </div>
     </div>
-    <footer>WUNDERKAMMER · 2026</footer>
+
     <script>
-        fetch('nav.html')
-            .then(res => res.text())
-            .then(data => {
-                const placeholder = document.getElementById('nav-placeholder');
-                placeholder.innerHTML = data;
-                const scripts = placeholder.querySelectorAll('script');
-                scripts.forEach(oldScript => {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = oldScript.textContent;
-                    oldScript.parentNode.replaceChild(newScript, oldScript);
-                });
+        // 手機版選單切換邏輯
+        const toggleButton = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (toggleButton && navMenu) {
+            toggleButton.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
             });
+
+            // 點擊連結後自動關閉選單
+            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            }));
+        }
     </script>
 </body>
 </html>
