@@ -36,7 +36,6 @@
         .wishes-wall h3 { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; font-weight: 400; letter-spacing: 0.2em; color: #b59d6e; text-align: center; margin-bottom: 32px; }
         .wishes-list { display: flex; flex-direction: column; gap: 20px; }
         
-        /* 留言卡片 */
         .wish-item { 
             background: #ffffff; 
             padding: 18px 24px; 
@@ -52,25 +51,37 @@
         .wish-text { font-size: 0.9rem; color: #3a3a3a; line-height: 1.6; margin-bottom: 8px; padding-left: 4px; }
         .wish-time { font-size: 0.65rem; color: #bbb; text-align: right; margin-top: 6px; font-family: monospace; }
         
-        /* 回覆區塊 */
         .reply-section {
             margin-top: 12px;
             padding-top: 12px;
             border-top: 1px dashed #ece5e0;
         }
-        .reply-text {
-            font-size: 0.85rem;
-            color: #b59d6e;
+        .reply-item {
+            font-size: 0.8rem;
+            color: #5a5a5a;
             background: #fefaf5;
-            padding: 10px 14px;
+            padding: 8px 12px;
             border-radius: 8px;
-            margin-bottom: 10px;
-            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        .reply-name {
+            color: #b59d6e;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+        .reply-text {
+            display: inline;
+        }
+        .reply-time {
+            font-size: 0.6rem;
+            color: #ccc;
+            margin-top: 4px;
+            text-align: right;
         }
         .reply-input-area {
             display: flex;
             gap: 8px;
-            margin-top: 8px;
+            margin-top: 10px;
         }
         .reply-input {
             flex: 1;
@@ -97,24 +108,8 @@
         .reply-btn:hover {
             opacity: 0.8;
         }
-        .reply-time {
-            font-size: 0.6rem;
-            color: #ccc;
-            margin-top: 4px;
-            text-align: right;
-        }
-        .owner-badge {
-            display: inline-block;
-            background: #b59d6e20;
-            color: #b59d6e;
-            font-size: 0.6rem;
-            padding: 2px 6px;
-            border-radius: 12px;
-            margin-left: 8px;
-        }
 
         .loading { text-align: center; color: #aaa; padding: 40px 20px; font-size: 0.85rem; }
-
         footer { text-align: center; padding: 40px 24px 32px; border-top: 1px solid #f0ede8; font-family: 'Bodoni Moda', serif; font-size: 0.55rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; margin-top: 20px; }
 
         /* 煙花動畫 */
@@ -177,7 +172,7 @@
             .container { padding: 40px 20px 60px; }
             .hero-zh { font-size: 1.6rem; }
             .wish-form { padding: 20px 20px; margin: 24px 0 32px; }
-            .success-message { font-size: 1rem; padding: 8px 20px; white-space: nowrap; }
+            .success-message { font-size: 1rem; padding: 8px 20px; }
             .reply-input-area { flex-direction: column; }
             .reply-btn { align-self: flex-end; }
         }
@@ -216,44 +211,15 @@
     <script>
         const API_URL = 'https://script.google.com/macros/s/AKfycbzKUkgjIG4wjE2WGJk76y4xVI3eo9mi6KSCNUnBwMhBFlTwxBOSPrllUqtvR4GpSGp9/exec';
         
-        // 儲存回覆的資料（存在 localStorage）
-        let replies = {};
-
-        function loadReplies() {
-            const saved = localStorage.getItem('wishReplies');
-            if (saved) {
-                replies = JSON.parse(saved);
-            }
-        }
-
-        function saveReplies() {
-            localStorage.setItem('wishReplies', JSON.stringify(replies));
-        }
-
-        function addReply(wishIndex, replyText) {
-            if (!replies[wishIndex]) {
-                replies[wishIndex] = [];
-            }
-            replies[wishIndex].push({
-                text: replyText,
-                time: new Date().toISOString()
-            });
-            saveReplies();
-        }
+        let allWishes = [];
+        let allReplies = [];
 
         function formatDateTime(dateStr) {
             if (!dateStr) return '';
             try {
                 const date = new Date(dateStr);
-                const year = date.getFullYear();
-                const month = (date.getMonth() + 1).toString().padStart(2, '0');
-                const day = date.getDate().toString().padStart(2, '0');
-                const hours = date.getHours().toString().padStart(2, '0');
-                const minutes = date.getMinutes().toString().padStart(2, '0');
-                return `${year}/${month}/${day} ${hours}:${minutes}`;
-            } catch(e) {
-                return '';
-            }
+                return `${date.getFullYear()}/${(date.getMonth()+1).toString().padStart(2,'0')}/${date.getDate().toString().padStart(2,'0')} ${date.getHours().toString().padStart(2,'0')}:${date.getMinutes().toString().padStart(2,'0')}`;
+            } catch(e) { return ''; }
         }
 
         function formatReplyTime(dateStr) {
@@ -261,42 +227,41 @@
             try {
                 const date = new Date(dateStr);
                 return `${date.getMonth()+1}/${date.getDate()} ${date.getHours().toString().padStart(2,'0')}:${date.getMinutes().toString().padStart(2,'0')}`;
-            } catch(e) {
-                return '';
-            }
+            } catch(e) { return ''; }
         }
 
-        function renderWishes(wishes) {
+        function escapeHtml(s) { 
+            if (!s) return ''; 
+            return s.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m] || m)); 
+        }
+
+        function renderWishes() {
             const container = document.getElementById('wishesList');
-            if (!wishes || wishes.length === 0) {
+            if (!allWishes || allWishes.length === 0) {
                 container.innerHTML = '<div class="loading">還沒有許願，來當第一個吧 ✨</div>';
                 return;
             }
             
-            container.innerHTML = wishes.map((wish, idx) => {
-                let name = wish.name;
-                let wishText = wish.wish;
-                if (name === undefined || name === null) name = '';
-                if (wishText === undefined || wishText === null) wishText = '';
-                
-                const replyList = replies[idx] || [];
-                const replyHtml = replyList.map(r => `
-                    <div class="reply-text">
-                        💬 ${escapeHtml(r.text)}
+            container.innerHTML = allWishes.map(wish => {
+                const replies = allReplies.filter(r => r.wishId == wish.id);
+                const replyHtml = replies.map(r => `
+                    <div class="reply-item">
+                        <span class="reply-name">${escapeHtml(r.name) || '訪客'}</span>
+                        <span class="reply-text">${escapeHtml(r.text)}</span>
                         <div class="reply-time">${formatReplyTime(r.time)}</div>
                     </div>
                 `).join('');
                 
                 return `
-                    <div class="wish-item" data-idx="${idx}">
-                        <div class="wish-name">✨ ${escapeHtml(String(name)) || '一位訪客'}</div>
-                        <div class="wish-text">「${escapeHtml(String(wishText))}」</div>
+                    <div class="wish-item" data-id="${wish.id}">
+                        <div class="wish-name">✨ ${escapeHtml(String(wish.name)) || '一位訪客'}</div>
+                        <div class="wish-text">「${escapeHtml(String(wish.wish))}」</div>
                         <div class="wish-time">${formatDateTime(wish.time)}</div>
                         <div class="reply-section">
                             <div class="replies-container">${replyHtml}</div>
                             <div class="reply-input-area">
                                 <input type="text" class="reply-input" placeholder="回覆此願望..." maxlength="200">
-                                <button class="reply-btn" onclick="handleReply(${idx}, this)">回覆</button>
+                                <button class="reply-btn" onclick="addReply(${wish.id}, this)">回覆</button>
                             </div>
                         </div>
                     </div>
@@ -304,7 +269,7 @@
             }).join('');
         }
 
-        window.handleReply = function(wishIdx, btn) {
+        window.addReply = async function(wishId, btn) {
             const input = btn.parentElement.querySelector('.reply-input');
             const replyText = input.value.trim();
             if (!replyText) {
@@ -312,40 +277,65 @@
                 return;
             }
             
-            addReply(wishIdx, replyText);
-            input.value = '';
+            btn.disabled = true;
+            btn.textContent = '送出...';
             
-            // 重新載入留言
-            loadWishes();
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'reply',
+                        wishId: wishId,
+                        text: replyText,
+                        name: ''
+                    })
+                });
+                
+                input.value = '';
+                await loadAllData();
+            } catch(e) {
+                console.error(e);
+                alert('回覆失敗，請稍後再試');
+            }
+            
+            btn.disabled = false;
+            btn.textContent = '回覆';
         };
 
-        async function loadWishes() {
-            const c = document.getElementById('wishesList');
-            c.innerHTML = '<div class="loading">載入中...</div>';
+        async function loadAllData() {
+            const container = document.getElementById('wishesList');
+            container.innerHTML = '<div class="loading">載入中...</div>';
             try {
                 const r = await fetch(API_URL);
                 const d = await r.json();
-                if (d.success && d.wishes && d.wishes.length) {
-                    renderWishes(d.wishes);
+                if (d.success) {
+                    allWishes = d.wishes || [];
+                    allReplies = d.replies || [];
+                    renderWishes();
                 } else {
-                    c.innerHTML = '<div class="loading">還沒有許願，來當第一個吧 ✨</div>';
+                    container.innerHTML = '<div class="loading">載入失敗，請稍後再試</div>';
                 }
             } catch(e) {
                 console.error(e);
-                c.innerHTML = '<div class="loading">載入失敗，請稍後再試</div>';
+                container.innerHTML = '<div class="loading">載入失敗，請稍後再試</div>';
             }
         }
 
-        async function addWish(n,w) { 
+        async function addWish(name, wish) { 
             try { 
-                await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,wish:w})}); 
+                await fetch(API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type: 'wish', name: name, wish: wish })
+                }); 
                 return true; 
             } catch(e) { 
                 return false; 
             } 
         }
-        
-        function escapeHtml(s) { if(!s) return ''; return s.replace(/[&<>]/g,m=>({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]||m)); }
 
         // 煙花動畫
         function launchSparkFirework(x, y) {
@@ -354,29 +344,24 @@
             const startX = x + (Math.random() - 0.5) * 70;
             rocket.style.left = startX + 'px';
             document.body.appendChild(rocket);
-            
             setTimeout(() => {
                 rocket.remove();
-                burstSparks(x, y);
+                const sparkCount = 45;
+                for (let i = 0; i < sparkCount; i++) {
+                    setTimeout(() => {
+                        const spark = document.createElement('div');
+                        spark.className = 'gold-spark';
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = 50 + Math.random() * 70;
+                        const dx = Math.cos(angle) * distance;
+                        const dy = Math.sin(angle) * distance;
+                        spark.style.left = (x + dx) + 'px';
+                        spark.style.top = (y + dy) + 'px';
+                        document.body.appendChild(spark);
+                        setTimeout(() => spark.remove(), 900);
+                    }, i * 10);
+                }
             }, 620);
-        }
-
-        function burstSparks(x, y) {
-            const sparkCount = 45;
-            for (let i = 0; i < sparkCount; i++) {
-                setTimeout(() => {
-                    const spark = document.createElement('div');
-                    spark.className = 'gold-spark';
-                    const angle = Math.random() * Math.PI * 2;
-                    const distance = 50 + Math.random() * 70;
-                    const dx = Math.cos(angle) * distance;
-                    const dy = Math.sin(angle) * distance;
-                    spark.style.left = (x + dx) + 'px';
-                    spark.style.top = (y + dy) + 'px';
-                    document.body.appendChild(spark);
-                    setTimeout(() => spark.remove(), 900);
-                }, i * 10);
-            }
         }
 
         function showSuccess() {
@@ -406,8 +391,7 @@
         }).catch(e => console.log('導航載入失敗:', e));
 
         // 初始化
-        loadReplies();
-        loadWishes();
+        loadAllData();
 
         // 許願按鈕
         document.getElementById('submitBtn').onclick = async () => {
@@ -422,7 +406,7 @@
                 document.getElementById('nameInput').value = '';
                 document.getElementById('wishInput').value = '';
                 celebrate();
-                setTimeout(() => loadWishes(), 1500);
+                setTimeout(() => loadAllData(), 1500);
             } else {
                 alert('送出失敗，請稍後再試');
             }
