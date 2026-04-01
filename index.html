@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>靈感閣｜WunderKammer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* ===== 基礎樣式重置 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -13,286 +13,217 @@
         }
 
         body {
-            background-color: #faf9f6;
-            color: #1e1e2a;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Microsoft JhengHei', sans-serif;
-            line-height: 1.5;
-            padding-top: 70px;
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: #ffffff;
+            color: #2c2c2c;
+            line-height: 1.7;
         }
 
-        /* ===== 導航欄樣式 (你原本提供的版本) ===== */
-        .navbar {
-            background-color: #ffffff;
-            height: 70px;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        #nav-placeholder {
+            min-height: 70px;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            height: 100%;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-item {
-            margin-left: 30px;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            position: relative;
-            padding: 5px 0;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #007bff;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #007bff;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        .bar {
-            width: 25px;
-            height: 3px;
-            background-color: #333;
-            margin: 4px 0;
-            transition: 0.3s;
-        }
-
-        @media screen and (max-width: 768px) {
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: absolute;
-                top: 70px;
-                left: -100%;
-                flex-direction: column;
-                background-color: #ffffff;
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-item {
-                margin: 20px 0;
-            }
-        }
-
-        /* ===== 原有首頁內容樣式 ===== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
+        /* 英雄區塊 */
         .hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 40px 80px;
             text-align: center;
-            margin-bottom: 4rem;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero .subhead {
-            font-size: 1.2rem;
-            color: #5a5a66;
-            letter-spacing: 0.3em;
+        .hero-en {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.75rem;
+            font-style: italic;
+            color: #b59d6e;
+            letter-spacing: 0.5em;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
 
-        .hero .description {
-            color: #7a7a86;
-            font-size: 1rem;
-            border-top: 1px solid #e0ded9;
-            display: inline-block;
-            padding-top: 1rem;
+        .hero-zh {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.4rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            color: #2c2c2c;
+            margin-bottom: 20px;
         }
 
-        .works-section {
+        .hero-sub {
+            font-size: 0.9rem;
+            color: #888;
+            letter-spacing: 0.15em;
+        }
+
+        /* 內容容器 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px 100px;
+        }
+
+        /* 區塊標題 */
+        .section-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: #2c2c2c;
+            margin-bottom: 48px;
+            text-align: center;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 1px;
+            background: #b59d6e;
+            margin: 16px auto 0;
+        }
+
+        /* 作品集網格 */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 48px;
+            margin-bottom: 80px;
         }
 
-        .work-card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 2rem;
-            border: 1px solid #efede8;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .work-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
-        }
-
-        .work-card h3 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-        }
-
-        .work-card p {
-            color: #5a5a66;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .work-link {
-            text-decoration: none;
-            color: #1e1e2a;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 0.25rem;
-            transition: gap 0.2s;
-        }
-
-        .work-link:hover {
-            gap: 0.75rem;
-            color: #007bff;
-            border-bottom-color: #007bff;
-        }
-
-        .footer {
+        .card {
             text-align: center;
-            margin-top: 5rem;
-            padding-top: 2rem;
-            border-top: 1px solid #eae8e2;
-            color: #aaa8a0;
+            border-bottom: 1px solid #ece5e0;
+            padding-bottom: 24px;
+            transition: border-color 0.2s;
+        }
+        .card:hover {
+            border-bottom-color: #b59d6e;
+        }
+        .card h3 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #b59d6e;
+            margin-bottom: 12px;
+        }
+        .card p {
+            font-size: 0.9rem;
+            color: #6a6a6a;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .card a {
+            color: #b59d6e;
+            text-decoration: none;
             font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #ece5e0;
+            padding-bottom: 2px;
+        }
+        .card a:hover {
+            border-bottom-color: #b59d6e;
         }
 
-        @media (max-width: 640px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        /* 頁尾 */
+        footer {
+            text-align: center;
+            padding: 60px 40px 40px;
+            border-top: 1px solid #f0ede8;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.4em;
+            color: #ccc;
+            text-transform: uppercase;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 70px 24px 50px;
             }
-            .hero .subhead {
-                font-size: 0.9rem;
-                letter-spacing: 0.2em;
+            .hero-zh {
+                font-size: 1.8rem;
+                letter-spacing: 0.15em;
             }
             .container {
-                padding: 1.5rem;
+                padding: 0 24px 80px;
             }
-            .work-card {
-                padding: 1.5rem;
+            .section-title {
+                font-size: 1.1rem;
+                margin-bottom: 32px;
+            }
+            .grid {
+                gap: 32px;
+                margin-bottom: 60px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 導航欄 (你原本提供的結構，加上許願池連結) -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">靈感閣</a>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link">首頁</a></li>
-                <li class="nav-item"><a href="wishpool.html" class="nav-link">許願池</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div id="nav-placeholder"></div>
+
+    <div class="hero">
+        <div class="hero-en">WunderKammer</div>
+        <h1 class="hero-zh">靈感閣</h1>
+        <p class="hero-sub">收藏奇思 · 存放日常</p>
+    </div>
 
     <div class="container">
-        <div class="hero">
-            <h1>靈感閣</h1>
-            <div class="subhead">WUNDERKAMMER</div>
-            <div class="description">存放數位荒原中閃爍的奇思異想</div>
-        </div>
-
-        <div class="works-section">
-            <div class="work-card">
+        <h2 class="section-title">精選作品</h2>
+        <div class="grid">
+            <div class="card">
                 <h3>用 AI 做網站</h3>
-                <p>Gemini + GitHub Pages 完整教學筆記，探索 AI 協作的無限可能。</p>
-                <a href="#" class="work-link">DETAILS →</a>
+                <p>Gemini + GitHub Pages 完整教學筆記，從零到上線。</p>
+                <a href="note_1.html">閱讀筆記 →</a>
             </div>
-            <div class="work-card">
-                <h3>視覺識別設計</h3>
-                <p>簡約而深刻的視覺語彙，為品牌注入獨一無二的靈魂。</p>
-                <a href="#" class="work-link">DETAILS →</a>
+            <div class="card">
+                <h3>品牌識別設計</h3>
+                <p>簡約而深刻的視覺語言，讓品牌留下印象。</p>
+                <a href="#">查看作品 →</a>
+            </div>
+            <div class="card">
+                <h3>日常練習</h3>
+                <p>一些小實驗、草稿、與程式碼的對話。</p>
+                <a href="#">更多 →</a>
             </div>
         </div>
 
-        <div class="footer">
-            WunderKammer — 數位荒原中的奇思異想
+        <h2 class="section-title">最新筆記</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>用 Gemini 做網站</h3>
+                <p>從註冊 GitHub 到網站上線，每一步都有詳細說明。</p>
+                <a href="note_1.html">閱讀全文 →</a>
+            </div>
+            <div class="card">
+                <h3>靈感收集方法</h3>
+                <p>如何建立自己的靈感資料庫，讓創作不卡關。</p>
+                <a href="#">閱讀全文 →</a>
+            </div>
+            <div class="card">
+                <h3>數位工具推薦</h3>
+                <p>提升效率的免費工具清單，適合創作者與開發者。</p>
+                <a href="#">閱讀全文 →</a>
+            </div>
         </div>
     </div>
 
+    <footer>WUNDERKAMMER · 靈感閣</footer>
+
     <script>
-        // 手機版選單切換邏輯 (你原本提供的)
-        const toggleButton = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
-
-        toggleButton.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-        }));
+        fetch('nav.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+                const scripts = document.querySelectorAll('#nav-placeholder script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = oldScript.textContent;
+                    oldScript.parentNode.replaceChild(newScript, oldScript);
+                });
+            })
+            .catch(err => console.log('導航載入失敗:', err));
     </script>
 </body>
 </html>
