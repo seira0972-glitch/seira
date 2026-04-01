@@ -10,6 +10,7 @@
             --accent: #b59d6e;
             --bg: #ffffff;
             --text-main: #2c2c2c;
+            --text-light: #888;
             --line: #ece5e0;
         }
 
@@ -28,6 +29,7 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 100px 40px 60px;
+            text-align: left;
         }
 
         .brand-en {
@@ -46,12 +48,15 @@
             font-size: 2.4rem;
             font-weight: 450;
             letter-spacing: 0.2em;
+            color: var(--text-main);
+            line-height: 1.3;
             margin-bottom: 20px;
         }
 
         .hero-sub {
+            font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
-            color: #888;
+            color: var(--text-light);
             letter-spacing: 0.15em;
             font-weight: 300;
         }
@@ -63,6 +68,7 @@
         }
 
         .outline-card {
+            background: #fff;
             border-left: 1px solid var(--accent);
             padding: 40px;
             margin-bottom: 40px;
@@ -74,6 +80,7 @@
             font-weight: 500;
             margin-bottom: 30px;
             letter-spacing: 0.15em;
+            color: var(--text-main);
         }
 
         .step-list { list-style: none; }
@@ -84,11 +91,14 @@
             padding: 18px 0;
             border-bottom: 1px solid #f0f0f0;
             font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            color: #5a5a5a;
         }
 
         .step-number {
             font-family: 'Bodoni Moda', serif;
             color: var(--accent);
+            font-size: 1.1rem;
             font-style: italic;
             width: 36px;
         }
@@ -97,71 +107,134 @@
             margin-left: auto;
             font-size: 0.7rem;
             color: #bbb;
+            letter-spacing: 0.05em;
         }
 
-        /* 💛 按照要求「一模一樣」的支持區塊 */
+        /* 支持區塊 */
         .support-section {
             text-align: center;
-            margin: 60px 0;
-            line-height: 2.2;
+            margin: 40px 0;
+            padding: 32px;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
         }
 
-        .support-section a {
-            color: inherit;
+        .support-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 10px 28px;
             text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            margin: 12px 0;
+            transition: opacity 0.2s;
+        }
+        .support-btn:hover { opacity: 0.85; }
+
+        .support-link {
+            color: var(--accent);
+            text-decoration: underline;
+            font-size: 0.75rem;
         }
 
-        /* 密碼區塊 */
         .password-section {
             text-align: center;
-            padding: 40px 0;
+            padding: 48px 0 32px;
         }
 
         .password-box input {
-            padding: 12px;
+            padding: 12px 20px;
+            font-family: 'Inter', sans-serif;
             border: 1px solid #ddd;
-            width: 200px;
+            width: 240px;
             outline: none;
-        }
-
-        .password-box button {
-            background: #2c2c2c;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            cursor: pointer;
             letter-spacing: 0.1em;
         }
 
-        /* 教學內容 */
-        .detailed-content { display: none; margin-top: 60px; }
+        .password-box input:focus { border-color: var(--accent); }
+
+        .password-box button {
+            background: var(--text-main);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.15em;
+            transition: opacity 0.2s;
+        }
+        .password-box button:hover { opacity: 0.85; }
+
+        .detailed-content { display: none; margin-top: 60px; text-align: left; }
         .detailed-content.show { display: block; }
 
         .step-detail { margin-bottom: 60px; }
         .step-detail h3 { 
             font-family: 'Noto Serif TC', serif;
             font-size: 1.3rem; 
+            font-weight: 500; 
             color: var(--accent); 
             margin-bottom: 20px; 
+            letter-spacing: 0.1em;
+        }
+
+        .step-detail p {
+            font-size: 0.95rem;
+            color: #5a5a5a;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .step-detail code {
+            font-family: monospace;
+            background: #f5f5f5;
+            padding: 2px 6px;
+            color: var(--accent);
         }
 
         .step-detail pre {
             background: #fafaf8;
-            padding: 20px;
-            border-left: 1px solid var(--accent);
+            padding: 20px 24px;
+            border-left: 2px solid var(--accent);
             font-size: 0.85rem;
+            font-family: monospace;
+            color: #4a4a4a;
             overflow-x: auto;
+            line-height: 1.6;
             margin: 20px 0;
         }
 
+        .tip {
+            background: #fefaf5;
+            padding: 16px 20px;
+            border-left: 2px solid var(--accent);
+            font-size: 0.85rem;
+            color: #6a6a6a;
+        }
+
         footer { 
-            padding: 60px 40px; 
+            padding: 60px 40px 40px; 
             text-align: center; 
             font-family: 'Bodoni Moda', serif; 
             font-size: 0.6rem; 
             letter-spacing: 0.4em; 
             color: #ccc; 
+            text-transform: uppercase; 
             border-top: 1px solid #f0ede8;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section { padding: 80px 24px 40px; }
+            .brand-zh { font-size: 1.8rem; letter-spacing: 0.15em; }
+            .container { padding: 0 24px 80px; }
+            .outline-card { padding: 28px 24px; }
+            .step-list li { flex-wrap: wrap; gap: 10px; }
+            .lock-icon { margin-left: 46px; }
+            .password-box input { width: 100%; margin-bottom: 12px; }
+            .password-box button { width: 100%; }
         }
     </style>
 </head>
@@ -171,7 +244,7 @@
     <header class="hero-section">
         <div class="brand-en">WunderKammer</div>
         <h1 class="brand-zh">用 AI 做網站</h1>
-        <p class="hero-sub">Gemini + GitHub Pages · 數位實踐筆記</p>
+        <p class="hero-sub">Gemini + GitHub Pages · 從零到上線的數位實踐</p>
     </header>
 
     <div class="container">
@@ -185,10 +258,14 @@
             </ul>
         </div>
 
+        <!-- 支持區塊 -->
         <div class="support-section">
-            <p>💛 支持這份筆記，將捐出 收入的10%給公益團體</p>
-            <p><a href="https://p.ecpay.com.tw/你的連結" target="_blank">💝 支持我</a></p>
-            <p><a href="https://drive.google.com/drive/folders/1IywwNOo8CV4HV-E1prEeGGqDd8_9nqTc" target="_blank">📄 捐款收據</a></p>
+            <p style="font-family: 'Noto Serif TC', serif; font-size: 0.85rem; color: #b59d6e; margin-bottom: 8px;">💛 支持創作</p>
+            <p style="font-size: 0.85rem; color: #5a5a5a; margin-bottom: 12px;">收入的 10% 將捐出</p>
+            <a href="https://p.ecpay.com.tw/你的連結" target="_blank" class="support-btn">支持創作・解鎖完整內容</a>
+            <p style="margin-top: 12px;">
+                <a href="https://drive.google.com/drive/folders/1IywwNOo8CV4HV-E1prEeGGqDd8_9nqTc" target="_blank" class="support-link">📄 捐款收據</a>
+            </p>
         </div>
 
         <div class="password-section">
@@ -199,39 +276,91 @@
             <div id="errorMsg" style="color: #c77a5a; font-size: 0.75rem; margin-top: 16px;"></div>
 
             <div id="detailedContent" class="detailed-content">
+                <!-- 步驟 1 -->
                 <div class="step-detail">
-                    <h3>📁 步驟 1：建立 GitHub 倉庫</h3>
-                    <p>前往 GitHub 建立名為 <code>你的帳號.github.io</code> 的倉庫。</p>
+                    <h3>📁 步驟 1：建立 GitHub 帳號與倉庫</h3>
+                    <p>前往 <a href="https://github.com" target="_blank">GitHub.com</a> 註冊免費帳號。點擊右上角「+」→ New repository。</p>
+                    <p>Repository name 輸入：<code>你的帳號.github.io</code>，勾選 Add a README file，保持 Public，點擊 Create repository。</p>
+                    <div class="tip">💡 這個名稱會直接成為你的網站網址！</div>
                 </div>
+
+                <!-- 步驟 2 -->
                 <div class="step-detail">
-                    <h3>🤖 步驟 2：生成導航欄</h3>
-                    <pre>幫我建立一個 nav.html...</pre>
+                    <h3>🤖 步驟 2：用 Gemini 生成共用導航欄</h3>
+                    <p>打開 <a href="https://gemini.google.com" target="_blank">Google Gemini</a>，輸入以下提示詞：</p>
+                    <pre>幫我建立一個 nav.html 檔案，裡面是網站的導航欄，包含：
+- 首頁 (index.html)
+- 關於我 (about.html)
+- 聯繫方式 (contact.html)
+- 其他分頁 (other.html)
+
+樣式：白色背景、置頂固定、hover 底線效果、手機響應式。
+請給我完整的 HTML + CSS 程式碼。</pre>
+                    <div class="tip">💡 導航欄先做好，之後每個頁面都可以共用，修改一次全部同步。</div>
                 </div>
+
+                <!-- 步驟 3 -->
+                <div class="step-detail">
+                    <h3>📄 步驟 3：用 Gemini 生成各頁面內容</h3>
+                    <p>繼續跟 Gemini 對話，用以下提示詞生成其他頁面：</p>
+                    <pre>幫我生成 index.html，內容包含：
+- 頁面頂部載入 nav.html（用 fetch 方式）
+- 一個漂亮的歡迎區塊（英雄區塊）
+- 自我介紹區塊
+- 頁尾
+風格：現代簡潔、藍紫漸層、響應式設計</pre>
+                    <div class="tip">💡 提示詞越詳細，Gemini 生成的結果越接近你想要的樣子！</div>
                 </div>
+
+                <!-- 步驟 4 -->
+                <div class="step-detail">
+                    <h3>📤 步驟 4：上傳檔案並開啟 GitHub Pages</h3>
+                    <p><strong>上傳檔案：</strong> Add file → Create new file，依序建立 nav.html、index.html、about.html、contact.html、other.html，貼上 Gemini 生成的程式碼。</p>
+                    <p><strong>開啟 Pages：</strong> Settings → Pages → Branch 選 main → Save</p>
+                    <p>等待 1-2 分鐘，網站就會在 <code>https://你的帳號.github.io/</code> 上線！</p>
+                    <div class="tip">🎉 每次修改檔案並 Commit，網站會自動更新。</div>
+                </div>
+
+                <div style="background: #fefaf5; padding: 28px; text-align: center; margin-top: 20px;">
+                    <p style="font-size: 1rem; color: #b59d6e;">🎉 恭喜！你現在有自己的網站了！</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>WUNDERKAMMER · 2026</footer>
 
     <script>
-        // 載入導航欄
         fetch('nav.html')
             .then(res => res.text())
-            .then(data => { document.getElementById('nav-placeholder').innerHTML = data; })
-            .catch(err => console.log('導航尚未部署'));
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+                const scripts = document.querySelectorAll('#nav-placeholder script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = oldScript.textContent;
+                    oldScript.parentNode.replaceChild(newScript, oldScript);
+                });
+            })
+            .catch(err => console.log('導航載入失敗:', err));
 
-        // 密碼檢查 (IDEA20260301)
         function checkPassword() {
             var input = document.getElementById('passwordInput');
+            var errorMsg = document.getElementById('errorMsg');
             var content = document.getElementById('detailedContent');
-            if (btoa(input.value) === "SURFQTIwMjYwMzAx") {
+            if (input.value === "IDEA20260301") {
                 content.classList.add('show');
-                document.getElementById('errorMsg').textContent = '';
-                content.scrollIntoView({ behavior: 'smooth' });
+                errorMsg.textContent = '';
+                input.value = '';
             } else {
-                document.getElementById('errorMsg').textContent = '密碼錯誤';
+                errorMsg.textContent = '密碼錯誤，請再試一次';
+                content.classList.remove('show');
             }
         }
+
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
     </script>
 </body>
 </html>
