@@ -45,37 +45,37 @@
 
         footer { text-align: center; padding: 56px 24px 48px; border-top: 1px solid #f0ede8; font-family: 'Bodoni Moda', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; margin-top: 40px; }
 
-        /* 🎆 條狀煙花 - 從下往上衝 */
-        .rocket {
+        /* 🎆 從下往上的條狀煙花 */
+        .rocket-stripe {
             position: fixed;
-            bottom: -20px;
+            bottom: -30px;
             width: 4px;
-            height: 30px;
+            height: 35px;
             background: linear-gradient(180deg, #f9d976, #f0b27a);
             border-radius: 2px;
             pointer-events: none;
             z-index: 10000;
-            animation: shootUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+            animation: shootUpStripe 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.2) forwards;
         }
-        @keyframes shootUp {
-            0% { bottom: -20px; opacity: 1; height: 30px; }
-            100% { bottom: 35%; opacity: 0.8; height: 80px; }
+        @keyframes shootUpStripe {
+            0% { bottom: -30px; opacity: 1; height: 35px; }
+            100% { bottom: 38%; opacity: 0.8; height: 100px; }
         }
 
-        /* 炸開的條狀光芒 */
-        .ray {
+        /* 炸開的條狀光芒（放射狀） */
+        .ray-stripe {
             position: fixed;
             width: 3px;
-            height: 25px;
+            height: 28px;
             background: linear-gradient(180deg, #f9e0a0, #e6b422);
             border-radius: 2px;
             pointer-events: none;
             z-index: 10001;
-            animation: rayOut 0.8s ease-out forwards;
+            animation: rayOutStripe 0.9s ease-out forwards;
         }
-        @keyframes rayOut {
-            0% { opacity: 1; transform: scale(0.5); }
-            100% { opacity: 0; transform: scale(1.5); }
+        @keyframes rayOutStripe {
+            0% { opacity: 1; transform: scale(0.6); }
+            100% { opacity: 0; transform: scale(1.6); }
         }
 
         .success-message {
@@ -109,6 +109,9 @@
             .hero-zh { font-size: 1.8rem; }
             .wish-form { padding: 28px 24px; margin: 24px 0 40px; }
             .success-message { font-size: 1.2rem; padding: 12px 24px; white-space: nowrap; }
+            @keyframes shootUpStripe {
+                100% { bottom: 38%; height: 70px; }
+            }
         }
     </style>
 </head>
@@ -127,7 +130,7 @@
                 <input type="text" id="nameInput" placeholder="怎麼稱呼你？" maxlength="30">
             </div>
             <div class="form-group">
-                <label>你的願望 / 想學的內容</label>
+                <label>你的願望 / 想學的內容 / 任何想對我說的話</label>
                 <textarea id="wishInput" placeholder="許個願吧..."></textarea>
             </div>
             <div style="text-align: center;">
@@ -150,29 +153,28 @@
             document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
         }).catch(e => console.log('導航載入失敗:', e));
 
-        // 🎆 發射火箭 → 炸開成條狀光芒
+        // 🎆 從下往上發射火箭
         function launchFirework(x, y) {
-            // 從底部發射火箭
             const rocket = document.createElement('div');
-            rocket.className = 'rocket';
-            const startX = x + (Math.random() - 0.5) * 80;
+            rocket.className = 'rocket-stripe';
+            const startX = x + (Math.random() - 0.5) * 70;
             rocket.style.left = startX + 'px';
             document.body.appendChild(rocket);
             
-            // 火箭到達後爆炸成條狀光芒
             setTimeout(() => {
                 rocket.remove();
                 burstRays(x, y);
-            }, 550);
+            }, 650);
         }
 
+        // 炸開成放射狀條狀光芒
         function burstRays(x, y) {
-            const rayCount = 28;
+            const rayCount = 32;
             for (let i = 0; i < rayCount; i++) {
                 const ray = document.createElement('div');
-                ray.className = 'ray';
+                ray.className = 'ray-stripe';
                 const angle = Math.random() * Math.PI * 2;
-                const distance = 50 + Math.random() * 70;
+                const distance = 60 + Math.random() * 80;
                 const dx = Math.cos(angle) * distance;
                 const dy = Math.sin(angle) * distance;
                 const rotate = angle * 180 / Math.PI;
@@ -180,7 +182,7 @@
                 ray.style.top = (y + dy) + 'px';
                 ray.style.transform = `rotate(${rotate}deg)`;
                 document.body.appendChild(ray);
-                setTimeout(() => ray.remove(), 800);
+                setTimeout(() => ray.remove(), 900);
             }
         }
 
@@ -196,15 +198,14 @@
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight * 0.38;
             
-            // 連續 3 發煙花
             for (let i = 0; i < 3; i++) {
                 setTimeout(() => {
-                    const offsetX = (Math.random() - 0.5) * 180;
+                    const offsetX = (Math.random() - 0.5) * 160;
                     launchFirework(centerX + offsetX, centerY);
-                }, i * 350);
+                }, i * 380);
             }
             
-            setTimeout(() => showSuccess(), 1000);
+            setTimeout(() => showSuccess(), 1100);
         }
 
         async function loadWishes() {
@@ -268,7 +269,7 @@
                 document.getElementById('nameInput').value = '';
                 document.getElementById('wishInput').value = '';
                 celebrate();
-                setTimeout(() => loadWishes(), 1500);
+                setTimeout(() => loadWishes(), 1600);
             } else {
                 alert('送出失敗，請稍後再試');
             }
