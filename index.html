@@ -20,7 +20,7 @@
             padding-top: 70px;
         }
 
-        /* ===== 導航欄樣式 ===== */
+        /* ===== 導航欄樣式 (你原本提供的版本) ===== */
         .navbar {
             background-color: #ffffff;
             height: 70px;
@@ -83,14 +83,6 @@
         }
 
         .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link.active {
-            color: #007bff;
-        }
-
-        .nav-link.active::after {
             width: 100%;
         }
 
@@ -248,7 +240,7 @@
     </style>
 </head>
 <body>
-    <!-- 導航欄 HTML 結構 -->
+    <!-- 導航欄 (你原本提供的結構，加上許願池連結) -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">靈感閣</a>
@@ -258,7 +250,7 @@
                 <span class="bar"></span>
             </button>
             <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link active">首頁</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">首頁</a></li>
                 <li class="nav-item"><a href="wishpool.html" class="nav-link">許願池</a></li>
             </ul>
         </div>
@@ -290,19 +282,17 @@
     </div>
 
     <script>
-        // 手機版選單切換功能
+        // 手機版選單切換邏輯 (你原本提供的)
         const toggleButton = document.getElementById('nav-toggle');
         const navMenu = document.getElementById('nav-menu');
 
-        if (toggleButton && navMenu) {
-            toggleButton.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
+        toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
 
-            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            }));
-        }
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        }));
     </script>
 </body>
 </html>
