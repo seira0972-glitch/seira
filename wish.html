@@ -45,36 +45,43 @@
 
         footer { text-align: center; padding: 56px 24px 48px; border-top: 1px solid #f0ede8; font-family: 'Bodoni Moda', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; margin-top: 40px; }
 
-        /* 🎆 星芒煙花 - 從下往上發射 */
-        .star-rocket {
+        /* 🎆 簡單金色火花 */
+        .spark-rocket {
             position: fixed;
             bottom: -30px;
             width: 4px;
-            height: 40px;
+            height: 35px;
             background: linear-gradient(180deg, #f9d976, #f0b27a);
             border-radius: 2px;
             pointer-events: none;
             z-index: 10000;
-            animation: shootStar 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.2) forwards;
+            animation: shootUpSpark 0.65s cubic-bezier(0.2, 0.9, 0.4, 1.2) forwards;
         }
-        @keyframes shootStar {
-            0% { bottom: -30px; opacity: 1; height: 40px; }
-            100% { bottom: 38%; opacity: 0.8; height: 90px; }
+        @keyframes shootUpSpark {
+            0% { bottom: -30px; opacity: 1; height: 35px; }
+            100% { bottom: 38%; opacity: 0.8; height: 85px; }
         }
 
-        /* 星星光芒 */
-        .star-ray {
+        /* 金色火花粒子 */
+        .gold-spark {
             position: fixed;
-            width: 0;
-            height: 0;
+            width: 5px;
+            height: 5px;
+            background: radial-gradient(circle, #f9e0a0, #e6b422);
+            border-radius: 50%;
             pointer-events: none;
             z-index: 10001;
-            animation: starGlow 0.8s ease-out forwards;
+            animation: sparkFloat 0.9s ease-out forwards;
         }
-        @keyframes starGlow {
-            0% { opacity: 0; transform: scale(0) rotate(0deg); }
-            30% { opacity: 1; transform: scale(1.2) rotate(45deg); }
-            100% { opacity: 0; transform: scale(1.8) rotate(90deg); }
+        @keyframes sparkFloat {
+            0% {
+                opacity: 1;
+                transform: scale(0.8) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.3) translateY(-40px);
+            }
         }
 
         .success-message {
@@ -108,6 +115,9 @@
             .hero-zh { font-size: 1.8rem; }
             .wish-form { padding: 28px 24px; margin: 24px 0 40px; }
             .success-message { font-size: 1.2rem; padding: 12px 24px; white-space: nowrap; }
+            @keyframes shootUpSpark {
+                100% { bottom: 38%; height: 65px; }
+            }
         }
     </style>
 </head>
@@ -149,76 +159,36 @@
             document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
         }).catch(e => console.log('導航載入失敗:', e));
 
-        // 🎆 發射星芒火箭
-        function launchStarFirework(x, y) {
+        // 🎆 發射火箭 + 金色火花
+        function launchSparkFirework(x, y) {
             const rocket = document.createElement('div');
-            rocket.className = 'star-rocket';
+            rocket.className = 'spark-rocket';
             const startX = x + (Math.random() - 0.5) * 70;
             rocket.style.left = startX + 'px';
             document.body.appendChild(rocket);
             
             setTimeout(() => {
                 rocket.remove();
-                burstStars(x, y);
-            }, 650);
+                burstSparks(x, y);
+            }, 620);
         }
 
-        // 炸開成星芒
-        function burstStars(x, y) {
-            const starCount = 8; // 8個主星芒
-            for (let i = 0; i < starCount; i++) {
-                const angle = (i / starCount) * Math.PI * 2;
-                const star = document.createElement('div');
-                star.className = 'star-ray';
-                
-                // 星星形狀用多個線條組成
-                for (let j = 0; j < 2; j++) {
-                    const ray = document.createElement('div');
-                    ray.style.position = 'fixed';
-                    ray.style.left = x + 'px';
-                    ray.style.top = y + 'px';
-                    ray.style.width = '3px';
-                    ray.style.height = '28px';
-                    ray.style.background = 'linear-gradient(180deg, #f9e0a0, #e6b422)';
-                    ray.style.borderRadius = '2px';
-                    ray.style.pointerEvents = 'none';
-                    ray.style.zIndex = '10001';
-                    
-                    const offsetAngle = angle + (j * Math.PI / 8);
-                    const distance = 55 + Math.random() * 35;
-                    const dx = Math.cos(offsetAngle) * distance;
-                    const dy = Math.sin(offsetAngle) * distance;
-                    const rotate = offsetAngle * 180 / Math.PI;
-                    
-                    ray.style.transform = `translate(${dx}px, ${dy}px) rotate(${rotate}deg)`;
-                    ray.style.animation = 'starGlow 0.7s ease-out forwards';
-                    document.body.appendChild(ray);
-                    setTimeout(() => ray.remove(), 700);
-                }
-            }
-            
-            // 額外的小星星粒子
-            for (let i = 0; i < 24; i++) {
+        // 炸開成金色火花
+        function burstSparks(x, y) {
+            const sparkCount = 45;
+            for (let i = 0; i < sparkCount; i++) {
                 setTimeout(() => {
                     const spark = document.createElement('div');
-                    spark.style.position = 'fixed';
-                    spark.style.left = x + 'px';
-                    spark.style.top = y + 'px';
-                    spark.style.width = '4px';
-                    spark.style.height = '4px';
-                    spark.style.background = '#f9e0a0';
-                    spark.style.borderRadius = '50%';
-                    spark.style.pointerEvents = 'none';
-                    spark.style.zIndex = '10001';
+                    spark.className = 'gold-spark';
                     const angle = Math.random() * Math.PI * 2;
-                    const distance = 40 + Math.random() * 70;
+                    const distance = 50 + Math.random() * 70;
                     const dx = Math.cos(angle) * distance;
                     const dy = Math.sin(angle) * distance;
-                    spark.style.transform = `translate(${dx}px, ${dy}px)`;
-                    spark.style.animation = 'starGlow 0.5s ease-out forwards';
+                    spark.style.left = (x + dx) + 'px';
+                    spark.style.top = (y + dy) + 'px';
                     document.body.appendChild(spark);
-                    setTimeout(() => spark.remove(), 500);
-                }, i * 15);
+                    setTimeout(() => spark.remove(), 900);
+                }, i * 10);
             }
         }
 
@@ -237,7 +207,7 @@
             for (let i = 0; i < 3; i++) {
                 setTimeout(() => {
                     const offsetX = (Math.random() - 0.5) * 160;
-                    launchStarFirework(centerX + offsetX, centerY);
+                    launchSparkFirework(centerX + offsetX, centerY);
                 }, i * 380);
             }
             
