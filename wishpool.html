@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>許願池 - 靈感閣</title>
     <style>
-        /* ===== 基礎樣式重置 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -311,7 +310,7 @@
     </style>
 </head>
 <body>
-    <!-- 導航欄 -->
+    <!-- 導航欄 HTML 結構 -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">靈感閣</a>
@@ -333,7 +332,6 @@
             <div class="sub">留下你的靈感 — 告訴我你想看到什麼新內容</div>
         </div>
 
-        <!-- 留言表單 -->
         <div class="wish-form">
             <div class="form-group">
                 <label>稱呼 (暱稱)</label>
@@ -347,7 +345,6 @@
             <button id="submitWish">投下願望</button>
         </div>
 
-        <!-- 留言串 -->
         <div id="wishesContainer" class="wishes-list">
             <div class="empty-message">✨ 還沒有願望，來當第一個許願的人吧 ✨</div>
         </div>
@@ -358,7 +355,7 @@
     </div>
 
     <script>
-        // 手機版選單切換邏輯
+        // 手機版選單切換功能
         const toggleButton = document.getElementById('nav-toggle');
         const navMenu = document.getElementById('nav-menu');
 
