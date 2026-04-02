@@ -9,14 +9,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', 'Noto Sans TC', sans-serif; 
-            background: #faf7f2; 
+            background: #f5f0e8; 
             color: #2c2c2c; 
             line-height: 1.6; 
             overflow-x: hidden;
         }
         #nav-placeholder { min-height: 70px; }
 
-        .container { max-width: 800px; margin: 0 auto; padding: 60px 24px 100px; position: relative; z-index: 5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 24px 100px; position: relative; z-index: 5; }
 
         .hero { text-align: center; margin-bottom: 48px; }
         .hero-en { font-family: 'Bodoni Moda', serif; font-size: 0.7rem; font-style: italic; color: #b59d6e; letter-spacing: 0.5em; text-transform: uppercase; margin-bottom: 12px; }
@@ -28,7 +28,7 @@
             display: flex;
             justify-content: flex-end;
             gap: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
         }
         .sort-btn {
             background: none;
@@ -56,6 +56,9 @@
             border-radius: 24px; 
             box-shadow: 0 4px 20px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.05);
             border: 1px solid #efe6dc;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-size: 0.75rem; letter-spacing: 0.12em; color: #b59d6e; margin-bottom: 6px; }
@@ -84,67 +87,83 @@
             text-align: center; margin-bottom: 32px; 
         }
         
+        /* 許願牆 — 瀑布流網格 */
         .wishes-list { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-            gap: 28px; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 24px; 
+            align-items: start;
         }
         
+        /* 便利貼風格卡片 */
         .wish-item { 
-            background: #fffef5;
+            background: #fffef7;
             padding: 0;
-            border-radius: 4px 24px 24px 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.03);
+            border-radius: 2px 16px 16px 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
             position: relative;
-            border: 1px solid #efe0d0;
+            break-inside: avoid;
+            transform: rotate(var(--rot, 0deg));
         }
-        .wish-item::before {
-            content: "🎋";
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            font-size: 1.2rem;
-            opacity: 0.7;
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
-        }
+        
+        /* 隨機旋轉角度，更像貼在牆上 */
+        .wish-item:nth-child(odd) { --rot: -0.8deg; }
+        .wish-item:nth-child(3n) { --rot: 1.2deg; }
+        .wish-item:nth-child(5n) { --rot: -0.3deg; }
+        .wish-item:nth-child(7n) { --rot: 0.6deg; }
+        
         .wish-item:hover { 
-            transform: translateY(-4px); 
-            box-shadow: 0 16px 28px rgba(0,0,0,0.1);
-            border-color: #dccfbf;
+            transform: translateY(-4px) rotate(0deg);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+            z-index: 10;
+        }
+        
+        /* 圖釘效果 */
+        .wish-item::before {
+            content: "📌";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.1rem;
+            opacity: 0.7;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+            pointer-events: none;
         }
         
         .wish-card-inner {
-            padding: 22px 24px 20px 24px;
+            padding: 20px 18px 16px 18px;
         }
         
         .wish-name { 
             font-family: 'Noto Serif TC', serif; 
             font-weight: 500; 
             color: #b59d6e; 
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             letter-spacing: 0.08em;
             margin-bottom: 12px;
             display: inline-block;
             background: #fef3e8;
-            padding: 3px 12px;
+            padding: 3px 10px;
             border-radius: 30px;
         }
         
         .wish-text { 
-            font-size: 0.95rem; 
+            font-size: 0.9rem; 
             color: #3a3a3a; 
-            line-height: 1.7; 
-            margin: 16px 0 12px;
+            line-height: 1.65; 
+            margin: 12px 0 12px;
             font-family: 'Noto Serif TC', serif;
             font-weight: 350;
+            word-break: break-word;
         }
         
         .wish-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px dashed #efe0d0;
+            border-top: 1px solid #efe0d0;
             padding-top: 10px;
             margin-top: 8px;
         }
@@ -152,13 +171,13 @@
         .like-btn {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             background: none;
             border: none;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #aaa;
             cursor: pointer;
-            padding: 4px 10px;
+            padding: 4px 8px;
             border-radius: 30px;
             transition: all 0.2s;
             font-family: inherit;
@@ -171,11 +190,11 @@
             color: #e08e6a;
         }
         .like-count {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
         
         .wish-time { 
-            font-size: 0.6rem; 
+            font-size: 0.55rem; 
             color: #bbb; 
             font-family: monospace;
         }
@@ -183,12 +202,38 @@
         .loading { text-align: center; color: #aaa; padding: 40px 20px; font-size: 0.85rem; }
         footer { text-align: center; padding: 40px 24px 32px; border-top: 1px solid #e8ddd0; font-family: 'Bodoni Moda', serif; font-size: 0.55rem; letter-spacing: 0.4em; color: #ccc; text-transform: uppercase; margin-top: 20px; }
 
+        .success-message {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
+            color: #b59d6e;
+            background: rgba(255,255,240,0.96);
+            padding: 10px 24px;
+            border-radius: 60px;
+            white-space: nowrap;
+            z-index: 10010;
+            animation: fadeOutUp 1.5s ease-out forwards;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        @keyframes fadeOutUp {
+            0% { opacity: 0; transform: translate(-50%, 30px); }
+            20% { opacity: 1; transform: translate(-50%, -50%); }
+            70% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -100px); }
+        }
+
         @media (max-width: 768px) {
             .container { padding: 40px 16px 60px; }
             .hero-zh { font-size: 1.6rem; }
             .wish-form { padding: 20px 20px; }
-            .wishes-list { grid-template-columns: 1fr; gap: 24px; }
+            .wishes-list { grid-template-columns: 1fr; gap: 20px; }
             .sort-bar { justify-content: center; }
+            .wish-item::before { content: "📍"; }
         }
     </style>
 </head>
@@ -208,10 +253,10 @@
             </div>
             <div class="form-group">
                 <label>📖 你的願望・想學的內容・任何想對我說的話</label>
-                <textarea id="wishInput" placeholder="寫下你的念頭，它可能成為這裡的下一個角落..."></textarea>
+                <textarea id="wishInput" placeholder="寫下你的念頭，貼上許願牆..."></textarea>
             </div>
             <div style="text-align: center;">
-                <button class="submit-btn" id="submitBtn">✧ 掛上許願籤 ✧</button>
+                <button class="submit-btn" id="submitBtn">✧ 貼上許願牆 ✧</button>
             </div>
         </div>
 
@@ -220,8 +265,8 @@
                 <button class="sort-btn active" data-sort="time">最新留言</button>
                 <button class="sort-btn" data-sort="likes">最多讚</button>
             </div>
-            <h3>🎐 池中願籤 🎐</h3>
-            <div id="wishesList" class="wishes-list"><div class="loading">載入願籤中...</div></div>
+            <h3>🎐 許願牆 🎐</h3>
+            <div id="wishesList" class="wishes-list"><div class="loading">載入願望中...</div></div>
         </div>
     </div>
     <footer>WUNDERKAMMER · 靈感閣</footer>
@@ -230,14 +275,14 @@
         const API_URL = 'https://script.google.com/macros/s/AKfycbwjE3ZyhGhPG32TzxzBnYC8D-gHUttto7ATc2LvgbjfP89hLHjB9J6OfD4wmhht-vo/exec';
         
         let allWishes = [];
-        let currentSort = 'time'; // 'time' or 'likes'
+        let currentSort = 'time';
         let userLikes = JSON.parse(localStorage.getItem('wishLikes') || '{}');
 
         function formatDateTime(dateStr) {
             if (!dateStr) return '';
             try {
                 const date = new Date(dateStr);
-                return `${date.getFullYear()}/${(date.getMonth()+1).toString().padStart(2,'0')}/${date.getDate().toString().padStart(2,'0')} ${date.getHours().toString().padStart(2,'0')}:${date.getMinutes().toString().padStart(2,'0')}`;
+                return `${date.getFullYear()}/${(date.getMonth()+1).toString().padStart(2,'0')}/${date.getDate().toString().padStart(2,'0')}`;
             } catch(e) { return ''; }
         }
 
@@ -251,7 +296,6 @@
             if (currentSort === 'likes') {
                 return wishes.sort((a, b) => (b.likes || 0) - (a.likes || 0));
             }
-            // 時間排序：最新的在前面（id 大的比較新）
             return wishes.sort((a, b) => b.id - a.id);
         }
 
@@ -295,7 +339,7 @@
         function renderWishes() {
             const container = document.getElementById('wishesList');
             if (!allWishes || allWishes.length === 0) {
-                container.innerHTML = '<div class="loading">🍃 還沒有許願籤，來掛上第一張吧 ✨</div>';
+                container.innerHTML = '<div class="loading">🍃 許願牆還空空的，來貼上第一張吧 ✨</div>';
                 return;
             }
             
@@ -309,7 +353,7 @@
                     <div class="wish-item" data-id="${wish.id}">
                         <div class="wish-card-inner">
                             <div class="wish-name">✎ ${escapeHtml(String(wish.name)) || '一位訪客'}</div>
-                            <div class="wish-text">「${escapeHtml(String(wish.wish))}」</div>
+                            <div class="wish-text">${escapeHtml(String(wish.wish))}</div>
                             <div class="wish-footer">
                                 <button class="like-btn ${liked ? 'liked' : ''}" onclick="likeWish(${wish.id}, this)">
                                     <span>${liked ? '❤️' : '♡'}</span>
@@ -325,7 +369,7 @@
 
         async function loadAllData() {
             const container = document.getElementById('wishesList');
-            container.innerHTML = '<div class="loading">🍃 載入願籤中...</div>';
+            container.innerHTML = '<div class="loading">🍃 載入許願牆...</div>';
             try {
                 const r = await fetch(API_URL);
                 const d = await r.json();
@@ -359,29 +403,25 @@
         function showSuccess() {
             const msg = document.createElement('div');
             msg.className = 'success-message';
-            msg.textContent = '✧ 願籤掛上池中 ✧';
-            msg.style.cssText = 'position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);font-family:Noto Serif TC,serif;font-size:1.2rem;letter-spacing:0.2em;color:#b59d6e;background:rgba(255,255,240,0.96);padding:10px 24px;border-radius:60px;white-space:nowrap;z-index:10010;animation:fadeOutUp 1.5s ease-out forwards;backdrop-filter:blur(6px);';
+            msg.textContent = '✧ 貼上許願牆 ✧';
             document.body.appendChild(msg);
             setTimeout(() => msg.remove(), 1500);
         }
 
-        // 導航欄載入
         fetch('nav.html').then(res => res.text()).then(data => {
             document.getElementById('nav-placeholder').innerHTML = data;
             document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
         }).catch(e => console.log('導航載入失敗:', e));
 
-        // 初始化
         loadAllData();
 
-        // 許願按鈕
         document.getElementById('submitBtn').onclick = async () => {
             const n = document.getElementById('nameInput').value.trim();
             const w = document.getElementById('wishInput').value.trim();
             if(!w) return alert('請寫下你的願望～');
             
             const btn = document.getElementById('submitBtn');
-            btn.disabled = true; btn.textContent = '掛上許願籤中...';
+            btn.disabled = true; btn.textContent = '貼上中...';
             
             if(await addWish(n||'匿名', w)) {
                 document.getElementById('nameInput').value = '';
@@ -391,10 +431,9 @@
             } else {
                 alert('送出失敗，請稍後再試');
             }
-            btn.disabled = false; btn.textContent = '✧ 掛上許願籤 ✧';
+            btn.disabled = false; btn.textContent = '✧ 貼上許願牆 ✧';
         };
         
-        // 排序按鈕
         document.querySelectorAll('.sort-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
