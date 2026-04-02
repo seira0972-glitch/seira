@@ -79,12 +79,27 @@
             text-align: right;
         }
         .reply-input-area {
+            margin-top: 12px;
+        }
+        .reply-row {
             display: flex;
             gap: 8px;
-            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .reply-name-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ece5e0;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: inherit;
+            outline: none;
+        }
+        .reply-name-input:focus {
+            border-color: #b59d6e;
         }
         .reply-input {
-            flex: 1;
+            flex: 2;
             padding: 8px 12px;
             border: 1px solid #ece5e0;
             border-radius: 20px;
@@ -173,7 +188,7 @@
             .hero-zh { font-size: 1.6rem; }
             .wish-form { padding: 20px 20px; margin: 24px 0 32px; }
             .success-message { font-size: 1rem; padding: 8px 20px; }
-            .reply-input-area { flex-direction: column; }
+            .reply-row { flex-direction: column; }
             .reply-btn { align-self: flex-end; }
         }
     </style>
@@ -209,7 +224,7 @@
     <footer>WUNDERKAMMER · 靈感閣</footer>
 
     <script>
-        // 🔽 你的新 Apps Script 網址
+        // Apps Script 網址
         const API_URL = 'https://script.google.com/macros/s/AKfycbwjE3ZyhGhPG32TzxzBnYC8D-gHUttto7ATc2LvgbjfP89hLHjB9J6OfD4wmhht-vo/exec';
         
         let allWishes = [];
@@ -261,8 +276,11 @@
                         <div class="reply-section">
                             <div class="replies-container">${replyHtml}</div>
                             <div class="reply-input-area">
-                                <input type="text" class="reply-input" placeholder="回覆此願望..." maxlength="200">
-                                <button class="reply-btn" onclick="addReply(${wish.id}, this)">回覆</button>
+                                <div class="reply-row">
+                                    <input type="text" class="reply-name-input" placeholder="你的名字" maxlength="20">
+                                    <input type="text" class="reply-input" placeholder="回覆內容..." maxlength="200">
+                                    <button class="reply-btn" onclick="addReply(${wish.id}, this)">回覆</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -271,8 +289,13 @@
         }
 
         window.addReply = async function(wishId, btn) {
-            const input = btn.parentElement.querySelector('.reply-input');
-            const replyText = input.value.trim();
+            const wishItem = btn.closest('.wish-item');
+            const nameInput = wishItem.querySelector('.reply-name-input');
+            const textInput = wishItem.querySelector('.reply-input');
+            
+            const replyName = nameInput.value.trim() || '訪客';
+            const replyText = textInput.value.trim();
+            
             if (!replyText) {
                 alert('請輸入回覆內容');
                 return;
@@ -290,11 +313,12 @@
                         type: 'reply',
                         wishId: wishId,
                         text: replyText,
-                        name: ''
+                        name: replyName
                     })
                 });
                 
-                input.value = '';
+                nameInput.value = '';
+                textInput.value = '';
                 await loadAllData();
             } catch(e) {
                 console.error(e);
