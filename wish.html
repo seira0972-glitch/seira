@@ -84,7 +84,6 @@
             text-align: center; margin-bottom: 32px; 
         }
         
-        /* 許願牆 — 網格佈局 */
         .wishes-list { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
@@ -92,7 +91,6 @@
             align-items: start;
         }
         
-        /* 卡片風格 — 像一張張許願籤 */
         .wish-item { 
             background: #fffef7;
             border-radius: 4px 20px 20px 20px;
@@ -217,7 +215,7 @@
         <div class="hero">
             <div class="hero-en">WunderKammer</div>
             <h1 class="hero-zh">許願池</h1>
-            <p>許下你的奇思妙想，為靈感閣開啟新的一嶼。</p>
+            <p>許下你的奇思妙想，<br>為靈感閣開啟新的一嶼。</p>
         </div>
 
         <div class="wish-form">
@@ -246,7 +244,8 @@
     <footer>WUNDERKAMMER · 靈感閣</footer>
 
     <script>
-        const API_URL = 'https://script.google.com/macros/s/AKfycbwjE3ZyhGhPG32TzxzBnYC8D-gHUttto7ATc2LvgbjfP89hLHjB9J6OfD4wmhht-vo/exec';
+        // ⚠️ 請換成你自己的 Apps Script 網址
+        const API_URL = 'https://script.google.com/macros/s/你的ID/exec';
         
         let allWishes = [];
         let currentSort = 'time';
@@ -382,13 +381,16 @@
             setTimeout(() => msg.remove(), 1500);
         }
 
+        // 導航欄載入
         fetch('nav.html').then(res => res.text()).then(data => {
             document.getElementById('nav-placeholder').innerHTML = data;
             document.querySelectorAll('#nav-placeholder script').forEach(s => { const ns = document.createElement('script'); ns.textContent = s.textContent; s.parentNode.replaceChild(ns, s); });
         }).catch(e => console.log('導航載入失敗:', e));
 
+        // 初始化
         loadAllData();
 
+        // 許願按鈕
         document.getElementById('submitBtn').onclick = async () => {
             const n = document.getElementById('nameInput').value.trim();
             const w = document.getElementById('wishInput').value.trim();
@@ -408,6 +410,7 @@
             btn.disabled = false; btn.textContent = '✧ 貼上許願牆 ✧';
         };
         
+        // 排序按鈕
         document.querySelectorAll('.sort-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
