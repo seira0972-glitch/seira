@@ -68,7 +68,9 @@
     <footer>WUNDERKAMMER · 靈感閣</footer>
 
     <script>
-        const API_URL = 'https://script.google.com/macros/s/你的ID/exec';
+        // ⚠️ 請把下面這行換成你自己的 Apps Script 網址 ⚠️
+        const API_URL = 'https://script.google.com/macros/s/AKfycbwjE3ZyhGhPG32TzxzBnYC8D-gHUttto7ATc2LvgbjfP89hLHjB9J6OfD4wmhht-vo/exec';
+        
         let allWishes = [], currentSort = 'time', userLikes = JSON.parse(localStorage.getItem('wishLikes') || '{}');
 
         function render() {
@@ -122,7 +124,7 @@
         function escapeHtml(s) { return s?.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])) || ''; }
         function formatDate(d) { return d ? new Date(d).toLocaleDateString() : ''; }
 
-        fetch('nav.html').then(r=>r.text()).then(d=>{ document.getElementById('nav-placeholder').innerHTML = d; });
+        fetch('nav.html').then(r=>r.text()).then(d=>{ document.getElementById('nav-placeholder').innerHTML = d; }).catch(e=>console.log('導航載入失敗:', e));
         load();
 
         document.getElementById('submitBtn').onclick = async () => {
