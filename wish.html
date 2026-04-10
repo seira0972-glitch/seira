@@ -406,16 +406,11 @@
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // ---------- 许愿墙核心 ----------
-    const STORAGE_KEY = 'wunderkammer_wishes_v3';
+    // ---------- 许愿墙核心（完全空白的初始状态）----------
+    const STORAGE_KEY = 'wunderkammer_wishes_clean';
     
-    // 默认数据（日期格式为 2026-04-10 样式，但内部用时间戳存储）
-    const DEFAULT_WISHES = [
-        { id: 'init_1', nickname: '林檎同學', message: '希望能學會滑板，在風中寫詩。', likes: 3, createdAt: Date.now() - 86400000 * 2 },
-        { id: 'init_2', nickname: '紙飛機', message: '想讀完《追憶似水年華》並做一套讀書札記。', likes: 5, createdAt: Date.now() - 86400000 },
-        { id: 'init_3', nickname: 'silent moon', message: '但願我的插畫能被更多人看見，也祝靈感閣寧靜自由。', likes: 2, createdAt: Date.now() - 3600000 },
-        { id: 'init_4', nickname: '微風筆記', message: '許願今年學會前端動畫，做出美麗的互動詩頁。', likes: 1, createdAt: Date.now() - 7200000 }
-    ];
+    // 重要：DEFAULT_WISHES 设为空数组！一开始完全没有预设愿望
+    const DEFAULT_WISHES = [];
 
     let currentSort = 'latest';
 
@@ -432,7 +427,7 @@
         if (stored) {
             try {
                 const parsed = JSON.parse(stored);
-                if (Array.isArray(parsed) && parsed.length > 0) {
+                if (Array.isArray(parsed)) {
                     return parsed;
                 } else {
                     saveWishes(DEFAULT_WISHES);
@@ -443,6 +438,7 @@
                 return [...DEFAULT_WISHES];
             }
         } else {
+            // 第一次使用：保存空数组，没有任何预设愿望
             saveWishes(DEFAULT_WISHES);
             return [...DEFAULT_WISHES];
         }
@@ -593,24 +589,28 @@
     }
     
     function init() {
+        // 确保存储是空数组，没有任何预设愿望
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) {
-            saveWishes(DEFAULT_WISHES);
+            saveWishes([]);  // 明确保存空数组
         } else {
             try {
                 const existing = JSON.parse(raw);
-                if (!Array.isArray(existing) || existing.length === 0) {
-                    saveWishes(DEFAULT_WISHES);
+                if (!Array.isArray(existing)) {
+                    saveWishes([]);
                 }
+                // 如果已经有数据，保留用户自己的数据，不添加任何预设
             } catch(e) {
-                saveWishes(DEFAULT_WISHES);
+                saveWishes([]);
             }
         }
         
         renderWishWall('latest');
         
-        document.querySelector('[data-sort="latest"]').addEventListener('click', () => setSort('latest'));
-        document.querySelector('[data-sort="likes"]').addEventListener('click', () => setSort('likes'));
+        const latestBtn = document.querySelector('[data-sort="latest"]');
+        const likesBtn = document.querySelector('[data-sort="likes"]');
+        if (latestBtn) latestBtn.addEventListener('click', () => setSort('latest'));
+        if (likesBtn) likesBtn.addEventListener('click', () => setSort('likes'));
         
         const submitBtn = document.getElementById('submitWishBtn');
         submitBtn.addEventListener('click', () => {
