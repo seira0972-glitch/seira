@@ -94,8 +94,8 @@
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // 请将此网址替换为您自己的 Apps Script 网址
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvJGNCcHabbqvQq7j1Bef-d4tWcfwrmFGMM5S75UGOFgShIrN_HnVTwylEyj3yv_eL/exec';
+    // 已更新为您最新的 Apps Script 网址
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMPydxxqXQjXCvxyR3j2Jqz2ZKvlMM01No9Tib2MuiyKef16soEqN4kwMOeSwk9j9B/exec';
 
     const submitBtn = document.getElementById('submitBtn');
     const nicknameInput = document.getElementById('nickname');
@@ -122,7 +122,16 @@
         wishWall.innerHTML = '<div class="empty-message">🎐 載入中... 🎐</div>';
         try {
             const response = await fetch(APPS_SCRIPT_URL);
-            const wishes = await response.json();
+            const result = await response.json();
+            
+            // 处理可能的错误格式
+            let wishes = result;
+            if (result && !Array.isArray(result) && result.wishes) {
+                wishes = result.wishes;
+            } else if (result && !Array.isArray(result) && result.error) {
+                throw new Error(result.error);
+            }
+            
             if (!wishes || wishes.length === 0) {
                 wishWall.innerHTML = '<div class="empty-message">🎐 許願牆空靈如鏡，等你書寫第一道願望 🎐</div>';
                 return;
