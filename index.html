@@ -73,7 +73,7 @@
             padding: 0 40px 100px;
         }
 
-        /* 區塊標題 — 雅緻底線 */
+        /* 區塊標題 — 雅緻底線 (最新內容使用相同風格) */
         .section-title {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.4rem;
@@ -94,12 +94,12 @@
             opacity: 0.8;
         }
 
-        /* 作品集網格 — 溫潤卡片 */
+        /* 統一的內容網格 — 溫潤卡片，展現最新內容 */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 56px;
-            margin-bottom: 96px;
+            margin-bottom: 0;
         }
 
         .card {
@@ -153,7 +153,7 @@
             letter-spacing: 0.45em;
             color: #bcb2a4;
             text-transform: uppercase;
-            margin-top: 20px;
+            margin-top: 60px;
             background: #fefcf9;
         }
 
@@ -179,7 +179,6 @@
             }
             .grid {
                 gap: 42px;
-                margin-bottom: 70px;
             }
             .card h3 {
                 font-size: 1.15rem;
@@ -223,40 +222,41 @@
     </div>
 
     <div class="container">
-        <!-- 精選作品區塊 (依照需求呈現 用AI做網站/品牌識別設計/日常練習) 完整保留 -->
-        <h2 class="section-title">精選作品</h2>
+        <!-- 根據指示：移除「精選作品」與「最新筆記」標題，改為「最新內容」單一區塊，
+             並融合原先作品與筆記中具代表性的高質量內容，重新編排六則最新分享，呈現創意、技術與靈感的多樣性 -->
+        <h2 class="section-title">最新內容</h2>
         <div class="grid">
+            <!-- 內容1：保留原「用 AI 做網站」之經典筆記 (Gemini + GitHub Pages) 並更新語句，更具吸引力 -->
             <div class="card">
                 <h3>用 AI 做網站</h3>
-                <p>Gemini + GitHub Pages 完整教學筆記，從零到上線。</p>
-                <a href="note_1.html" aria-label="閱讀完整教學筆記">閱讀筆記 →</a>
+                <p>Gemini + GitHub Pages 完整教學筆記，從零到上線，適合創作者與開發者。</p>
+                <a href="note_1.html" aria-label="閱讀用AI做網站的完整教學筆記">閱讀筆記 →</a>
             </div>
+            <!-- 內容2：品牌識別設計 – 源自精選作品，優化描述 -->
             <div class="card">
                 <h3>品牌識別設計</h3>
-                <p>簡約而深刻的視覺語言，讓品牌留下印象。</p>
-                <a href="#" aria-label="查看品牌識別作品">查看作品 →</a>
+                <p>簡約而深刻的視覺語言，讓品牌留下印象 — 符號、字體與色彩的整合思考。</p>
+                <a href="#" aria-label="查看品牌識別設計作品">查看作品 →</a>
             </div>
+            <!-- 內容3：日常練習 – 保留實驗精神 -->
             <div class="card">
                 <h3>日常練習</h3>
-                <p>一些小實驗、草稿、與程式碼的對話。</p>
-                <a href="#" aria-label="瀏覽更多日常練習">更多 →</a>
+                <p>一些小實驗、草稿、與程式碼的對話，積累靈感的碎片。</p>
+                <a href="#" aria-label="瀏覽更多日常練習">探索更多 →</a>
             </div>
-        </div>
-
-        <!-- 最新筆記區塊 (移除您指定的「用 Gemini 做網站」、「靈感收集方法」、「數位工具推薦」三則項目，
-             並以三則全新、不重複且優質的筆記內容取代，風格一致，維持格調) -->
-        <h2 class="section-title">最新筆記</h2>
-        <div class="grid">
+            <!-- 內容4：凝視與書寫 (原最新筆記優質內容，呼應靈感閣氛圍) -->
             <div class="card">
                 <h3>凝視與書寫</h3>
                 <p>日常觀察如何轉化為文字靈感？從散步、速寫到筆記自由書寫的方法。</p>
                 <a href="#" aria-label="閱讀凝視與書寫筆記">閱讀全文 →</a>
             </div>
+            <!-- 內容5：版式編排絮語 – 保留排版美學主題 -->
             <div class="card">
                 <h3>版式編排絮語</h3>
                 <p>淺談書籍與網頁中的留白美學，讓文字與空氣共舞的排版練習。</p>
                 <a href="#" aria-label="閱讀版式編排絮語">閱讀全文 →</a>
             </div>
+            <!-- 內容6：色彩採集計劃 – 豐富視覺資料庫靈感 -->
             <div class="card">
                 <h3>色彩採集計劃</h3>
                 <p>從自然與日常物件提取色票，建立設計師專屬的感性資料庫。</p>
@@ -268,7 +268,7 @@
     <footer>WUNDERKAMMER · 靈感閣</footer>
 
     <script>
-        // 優雅加載導航 nav.html (若檔案存在則引入，不存在時不影響主視覺)
+        // 優雅加載導航 nav.html (若檔案存在則引入，不存在時不影響主視覺，保持乾淨)
         fetch('nav.html')
             .then(res => {
                 if (!res.ok) throw new Error('nav not found');
@@ -278,7 +278,7 @@
                 const navContainer = document.getElementById('nav-placeholder');
                 if (navContainer) {
                     navContainer.innerHTML = data;
-                    // 重新執行可能內嵌的腳本
+                    // 重新執行可能內嵌的腳本，確保動態功能
                     const scripts = navContainer.querySelectorAll('script');
                     scripts.forEach(oldScript => {
                         const newScript = document.createElement('script');
@@ -292,243 +292,13 @@
                 }
             })
             .catch(err => {
-                // 靜默失敗，不影響主要內容呈現，導航區塊可保留空白或提供簡單預設連結
+                // 靜默失敗，導航區塊可選留白，不破壞視覺
                 console.log('導航組件載入略過（可選）:', err);
-                // 為確保視覺完整性，可選擇生成簡單預設導航 (但保留乾淨)
                 const navDiv = document.getElementById('nav-placeholder');
                 if (navDiv && !navDiv.innerHTML.trim()) {
-                    // 低調佔位，不影響美觀
                     navDiv.style.minHeight = '40px';
                 }
             });
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>靈感閣｜WunderKammer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background: #ffffff;
-            color: #2c2c2c;
-            line-height: 1.7;
-        }
-
-        #nav-placeholder {
-            min-height: 70px;
-        }
-
-        /* 英雄區塊 */
-        .hero {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 100px 40px 80px;
-            text-align: center;
-        }
-
-        .hero-en {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.75rem;
-            font-style: italic;
-            color: #b59d6e;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .hero-zh {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 2.4rem;
-            font-weight: 400;
-            letter-spacing: 0.2em;
-            color: #2c2c2c;
-            margin-bottom: 20px;
-        }
-
-        .hero-sub {
-            font-size: 0.9rem;
-            color: #888;
-            letter-spacing: 0.15em;
-        }
-
-        /* 內容容器 */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 40px 100px;
-        }
-
-        /* 區塊標題 */
-        .section-title {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            color: #2c2c2c;
-            margin-bottom: 48px;
-            text-align: center;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 1px;
-            background: #b59d6e;
-            margin: 16px auto 0;
-        }
-
-        /* 作品集網格 */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 48px;
-            margin-bottom: 80px;
-        }
-
-        .card {
-            text-align: center;
-            border-bottom: 1px solid #ece5e0;
-            padding-bottom: 24px;
-            transition: border-color 0.2s;
-        }
-        .card:hover {
-            border-bottom-color: #b59d6e;
-        }
-        .card h3 {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #b59d6e;
-            margin-bottom: 12px;
-        }
-        .card p {
-            font-size: 0.9rem;
-            color: #6a6a6a;
-            margin-bottom: 16px;
-            line-height: 1.6;
-        }
-        .card a {
-            color: #b59d6e;
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-            border-bottom: 1px solid #ece5e0;
-            padding-bottom: 2px;
-        }
-        .card a:hover {
-            border-bottom-color: #b59d6e;
-        }
-
-        /* 頁尾 */
-        footer {
-            text-align: center;
-            padding: 60px 40px 40px;
-            border-top: 1px solid #f0ede8;
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.6rem;
-            letter-spacing: 0.4em;
-            color: #ccc;
-            text-transform: uppercase;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 70px 24px 50px;
-            }
-            .hero-zh {
-                font-size: 1.8rem;
-                letter-spacing: 0.15em;
-            }
-            .container {
-                padding: 0 24px 80px;
-            }
-            .section-title {
-                font-size: 1.1rem;
-                margin-bottom: 32px;
-            }
-            .grid {
-                gap: 32px;
-                margin-bottom: 60px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div id="nav-placeholder"></div>
-
-    <div class="hero">
-        <div class="hero-en">WunderKammer</div>
-        <h1 class="hero-zh">靈感閣</h1>
-        <p class="hero-sub">收藏奇思 · 存放日常</p>
-    </div>
-
-    <div class="container">
-        <h2 class="section-title">精選作品</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>用 AI 做網站</h3>
-                <p>Gemini + GitHub Pages 完整教學筆記，從零到上線。</p>
-                <a href="note_1.html">閱讀筆記 →</a>
-            </div>
-            <div class="card">
-                <h3>品牌識別設計</h3>
-                <p>簡約而深刻的視覺語言，讓品牌留下印象。</p>
-                <a href="#">查看作品 →</a>
-            </div>
-            <div class="card">
-                <h3>日常練習</h3>
-                <p>一些小實驗、草稿、與程式碼的對話。</p>
-                <a href="#">更多 →</a>
-            </div>
-        </div>
-
-        <h2 class="section-title">最新筆記</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>用 Gemini 做網站</h3>
-                <p>從註冊 GitHub 到網站上線，每一步都有詳細說明。</p>
-                <a href="note_1.html">閱讀全文 →</a>
-            </div>
-            <div class="card">
-                <h3>靈感收集方法</h3>
-                <p>如何建立自己的靈感資料庫，讓創作不卡關。</p>
-                <a href="#">閱讀全文 →</a>
-            </div>
-            <div class="card">
-                <h3>數位工具推薦</h3>
-                <p>提升效率的免費工具清單，適合創作者與開發者。</p>
-                <a href="#">閱讀全文 →</a>
-            </div>
-        </div>
-    </div>
-
-    <footer>WUNDERKAMMER · 靈感閣</footer>
-
-    <script>
-        fetch('nav.html')
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-                const scripts = document.querySelectorAll('#nav-placeholder script');
-                scripts.forEach(oldScript => {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = oldScript.textContent;
-                    oldScript.parentNode.replaceChild(newScript, oldScript);
-                });
-            })
-            .catch(err => console.log('導航載入失敗:', err));
     </script>
 </body>
 </html>
