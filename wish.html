@@ -7,208 +7,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #faf8f5;
-            font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans', sans-serif;
-            color: #2c2b28;
-            padding-bottom: 70px;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #faf8f5; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; color: #2c2b28; padding-bottom: 70px; }
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 22px 48px;
-            background: rgba(253, 252, 251, 0.96);
-            backdrop-filter: blur(15px);
-            z-index: 9999;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center;
+            padding: 22px 48px; background: rgba(253, 252, 251, 0.96); backdrop-filter: blur(15px);
+            z-index: 9999; border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
-
-        .nav-logo-group {
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            line-height: 1.2;
-        }
-
-        .nav-logo-main {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.25em;
-            color: #1a1a1a;
-        }
-
-        .nav-logo-sub {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.45rem;
-            letter-spacing: 0.35em;
-            color: #a68b5b;
-            text-transform: uppercase;
-            margin-top: 3px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #999;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a.active {
-            color: #a68b5b !important;
-            font-weight: 500;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 130px auto 60px;
-            padding: 0 28px;
-        }
-
-        .pool-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .pool-header h1 {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 2.4rem;
-            font-weight: 500;
-            color: #3c352c;
-            letter-spacing: 0.12em;
-            margin-bottom: 12px;
-        }
-
-        .pool-header p {
-            font-size: 0.85rem;
-            color: #9b8e7c;
-            border-top: 1px solid #e2d9cf;
-            display: inline-block;
-            padding-top: 14px;
-        }
-
-        .form-card {
-            background: #ffffff;
-            border-radius: 36px;
-            padding: 32px 38px;
-            box-shadow: 0 18px 32px -12px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(166, 139, 91, 0.2);
-        }
-
-        .form-group {
-            margin-bottom: 28px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: #a68b5b;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 20px;
-            font-size: 0.95rem;
-            background: #fefcf9;
-            border: 1px solid #e4dbcf;
-            border-radius: 48px;
-            font-family: inherit;
-            outline: none;
-            color: #2c2b28;
-        }
-
-        .form-group textarea {
-            border-radius: 32px;
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: #c2a277;
-            box-shadow: 0 0 0 3px rgba(166, 139, 91, 0.12);
-        }
-
-        .submit-btn {
-            background: #a68b5b;
-            border: none;
-            padding: 12px 34px;
-            border-radius: 50px;
-            color: white;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .submit-btn:hover {
-            background: #8e734a;
-            transform: translateY(-2px);
-        }
-
-        .submit-btn:disabled {
-            background: #cbbca8;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .toast-msg {
-            position: fixed;
-            bottom: 32px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #2c2b28e6;
-            backdrop-filter: blur(12px);
-            color: #f0ebe2;
-            padding: 10px 28px;
-            border-radius: 60px;
-            font-size: 0.75rem;
-            z-index: 10001;
-            opacity: 0;
-            transition: opacity 0.2s;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 720px) {
-            nav { padding: 18px 24px; }
-            .nav-links { gap: 20px; }
-            .container { margin-top: 110px; padding: 0 20px; }
-            .form-card { padding: 24px; }
-            .pool-header h1 { font-size: 2rem; }
-            .toast-msg { white-space: normal; text-align: center; max-width: 85vw; }
-        }
+        .nav-logo-group { text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
+        .nav-logo-main { font-family: 'Noto Serif TC', serif; font-size: 0.95rem; font-weight: 500; letter-spacing: 0.25em; color: #1a1a1a; }
+        .nav-logo-sub { font-family: 'Bodoni Moda', serif; font-size: 0.45rem; letter-spacing: 0.35em; color: #a68b5b; text-transform: uppercase; margin-top: 3px; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { text-decoration: none; color: #999; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s ease; }
+        .nav-links a.active { color: #a68b5b !important; font-weight: 500; }
+        .container { max-width: 900px; margin: 130px auto 60px; padding: 0 28px; }
+        .pool-header { text-align: center; margin-bottom: 48px; }
+        .pool-header h1 { font-family: 'Noto Serif TC', serif; font-size: 2.4rem; font-weight: 500; color: #3c352c; letter-spacing: 0.12em; margin-bottom: 12px; }
+        .pool-header p { font-size: 0.85rem; color: #9b8e7c; border-top: 1px solid #e2d9cf; display: inline-block; padding-top: 14px; }
+        .form-card { background: #ffffff; border-radius: 36px; padding: 32px 38px; margin-bottom: 48px; box-shadow: 0 18px 32px -12px rgba(0, 0, 0, 0.06); border: 1px solid rgba(166, 139, 91, 0.2); }
+        .form-group { margin-bottom: 28px; }
+        .form-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: #a68b5b; margin-bottom: 10px; font-weight: 500; }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px 20px; font-size: 0.95rem; background: #fefcf9; border: 1px solid #e4dbcf; border-radius: 48px; font-family: inherit; outline: none; color: #2c2b28; }
+        .form-group textarea { border-radius: 32px; resize: vertical; min-height: 100px; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #c2a277; box-shadow: 0 0 0 3px rgba(166, 139, 91, 0.12); }
+        .submit-btn { background: #a68b5b; border: none; padding: 12px 34px; border-radius: 50px; color: white; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.25s ease; font-weight: 500; display: inline-flex; align-items: center; gap: 12px; width: 100%; justify-content: center; }
+        .submit-btn:hover { background: #8e734a; transform: translateY(-2px); }
+        .submit-btn:disabled { background: #cbbca8; cursor: not-allowed; transform: none; }
+        .wall-title { font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 500; color: #a68b5b; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #e8e0d6; display: flex; align-items: center; gap: 10px; }
+        .wish-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin-top: 8px; }
+        .wish-card { background: #ffffff; border-radius: 28px; padding: 22px; transition: all 0.2s ease; border: 1px solid #efe5db; box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.04); }
+        .wish-card:hover { transform: translateY(-3px); border-color: #d6c7b7; box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08); }
+        .wish-nickname { font-family: 'Noto Serif TC', serif; font-weight: 600; font-size: 1rem; color: #4f463b; display: inline-block; border-left: 3px solid #dbbc97; padding-left: 12px; margin-bottom: 14px; }
+        .wish-message { font-size: 0.9rem; line-height: 1.55; color: #3a352e; margin: 12px 0 16px 0; word-break: break-word; white-space: pre-wrap; }
+        .wish-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.65rem; color: #b2a48f; border-top: 1px solid #f0e8df; padding-top: 12px; }
+        .empty-message { text-align: center; padding: 50px 24px; background: #fefaf5; border-radius: 48px; color: #c0ae98; font-size: 0.85rem; grid-column: 1 / -1; }
+        .toast-msg { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: #2c2b28e6; backdrop-filter: blur(12px); color: #f0ebe2; padding: 10px 28px; border-radius: 60px; font-size: 0.75rem; z-index: 10001; opacity: 0; transition: opacity 0.2s; pointer-events: none; white-space: nowrap; }
+        .refresh-btn { background: none; border: 1px solid #e4dbcf; padding: 6px 14px; border-radius: 40px; font-size: 0.65rem; color: #a68b5b; cursor: pointer; margin-left: auto; transition: 0.2s; }
+        .refresh-btn:hover { background: #a68b5b10; border-color: #a68b5b; }
+        @media (max-width: 720px) { nav { padding: 18px 24px; } .nav-links { gap: 20px; } .container { margin-top: 110px; padding: 0 20px; } .form-card { padding: 24px; } .pool-header h1 { font-size: 2rem; } .toast-msg { white-space: normal; text-align: center; max-width: 85vw; } }
     </style>
 </head>
 <body>
@@ -245,64 +81,90 @@
             <i class="fas fa-feather-alt"></i> 貼上許願牆
         </button>
     </div>
+
+    <div class="wall-title">
+        <i class="fas fa-comment-dots"></i> 許願牆
+        <button class="refresh-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i> 更新</button>
+    </div>
+    <div id="wishWall" class="wish-wall">
+        <div class="empty-message">🎐 載入中... 🎐</div>
+    </div>
 </div>
 
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // ========== 请确认这里的网址与您部署的完全一致 ==========
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3HXJ9cP7I9ucQ82MITZhmQ4jy1gGiosvuTT5FRqZaeAAqkBnXv4aq0oiCfgpFAxJr/exec';
-    // =====================================================
+    // 请将此网址替换为您自己的 Apps Script 网址
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvJGNCcHabbqvQq7j1Bef-d4tWcfwrmFGMM5S75UGOFgShIrN_HnVTwylEyj3yv_eL/exec';
 
     const submitBtn = document.getElementById('submitBtn');
     const nicknameInput = document.getElementById('nickname');
     const messageInput = document.getElementById('message');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const wishWall = document.getElementById('wishWall');
 
     function showToast(msg, isSuccess = false) {
         const toast = document.getElementById('toastMsg');
         toast.innerHTML = (isSuccess ? '✓ ' : '') + msg;
         toast.style.opacity = '1';
-        setTimeout(() => {
-            toast.style.opacity = '0';
-        }, 2500);
+        setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+    }
+
+    function formatDate(timestamp) {
+        if (!timestamp) return '未知日期';
+        try {
+            const date = new Date(timestamp);
+            return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+        } catch(e) { return '近期'; }
+    }
+
+    async function loadWishes() {
+        wishWall.innerHTML = '<div class="empty-message">🎐 載入中... 🎐</div>';
+        try {
+            const response = await fetch(APPS_SCRIPT_URL);
+            const wishes = await response.json();
+            if (!wishes || wishes.length === 0) {
+                wishWall.innerHTML = '<div class="empty-message">🎐 許願牆空靈如鏡，等你書寫第一道願望 🎐</div>';
+                return;
+            }
+            wishWall.innerHTML = '';
+            for (let wish of wishes) {
+                const card = document.createElement('div');
+                card.className = 'wish-card';
+                card.innerHTML = `
+                    <div class="wish-nickname">${escapeHtml(wish.nickname || '匿名旅人')}</div>
+                    <div class="wish-message">${escapeHtml(wish.message || '')}</div>
+                    <div class="wish-footer">
+                        <span><i class="far fa-calendar-alt"></i> ${formatDate(wish.timestamp)}</span>
+                    </div>
+                `;
+                wishWall.appendChild(card);
+            }
+        } catch (error) {
+            console.error('读取许愿失败:', error);
+            wishWall.innerHTML = '<div class="empty-message">⚠️ 連線異常，請確認 Apps Script 已正確部署並設定權限為「任何人」</div>';
+        }
     }
 
     async function submitWish() {
         const nickname = nicknameInput.value.trim();
         const message = messageInput.value.trim();
-
-        if (!message) {
-            showToast('✨ 願望不能留空，請寫下靈感 ✨');
-            return;
-        }
-
+        if (!message) { showToast('✨ 願望不能留空，請寫下靈感 ✨'); return; }
         const finalNickname = nickname || '匿名旅人';
-
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> 送出中...';
-
         try {
-            // 使用 POST 方法发送数据
-            const response = await fetch(APPS_SCRIPT_URL, {
+            await fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors',  // 避开 CORS 限制
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    nickname: finalNickname,
-                    message: message
-                })
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nickname: finalNickname, message: message })
             });
-
             showToast('🌟 願望已送入許願池！感謝你 🌟', true);
-            
-            // 清空表单
             nicknameInput.value = '';
             messageInput.value = '';
-            
+            setTimeout(() => loadWishes(), 1000);
         } catch (error) {
-            console.error('送出失败:', error);
             showToast('❌ 連線異常，請稍後再試');
         } finally {
             submitBtn.disabled = false;
@@ -310,16 +172,17 @@
         }
     }
 
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m] || m));
+    }
+
     submitBtn.addEventListener('click', submitWish);
-
-    // Ctrl + Enter 快捷送出
+    refreshBtn.addEventListener('click', loadWishes);
     messageInput.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-            e.preventDefault();
-            submitWish();
-        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); submitWish(); }
     });
+    loadWishes();
 </script>
-
 </body>
 </html>
