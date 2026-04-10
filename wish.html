@@ -133,8 +133,8 @@
     <footer>WUNDERKAMMER · 靈感閣</footer>
 
     <script>
-        // ✅ 已經幫您放好新的 API 網址了！
-        const API_URL = 'https://script.google.com/macros/s/AKfycby5L14PrH5RFxGNpc8ZoU61J4V1wCH-zRGKxe79PN-5Yfv8ck8K080ThTytt8DtyWB8Gg/exec';
+        // ✅ 已更新為您重新部署後的新網址
+        const API_URL = 'https://script.google.com/macros/s/AKfycby_nrCcjoV1UQozoiWNYMuf7wbmro5BTGmGjIiVJuFO62Yt83bjm74WUH2FpWJAWQAPFA/exec';
         
         let allWishes = [];
         let currentSort = 'time';
@@ -268,7 +268,6 @@
             setTimeout(() => msg.remove(), 1500);
         }
 
-        // 載入導航
         fetch('nav.html')
             .then(res => res.text())
             .then(data => {
