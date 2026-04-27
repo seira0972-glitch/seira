@@ -47,18 +47,11 @@
         .wish-card {
             background: #ffffff; border-radius: 28px; padding: 22px; transition: all 0.2s ease;
             border: 1px solid #efe5db; box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.04);
-            position: relative;
         }
         .wish-card:hover { transform: translateY(-3px); border-color: #d6c7b7; box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08); }
         .wish-nickname { font-family: 'Noto Serif TC', serif; font-weight: 600; font-size: 1rem; color: #4f463b; display: inline-block; border-left: 3px solid #dbbc97; padding-left: 12px; margin-bottom: 14px; }
         .wish-message { font-size: 0.9rem; line-height: 1.55; color: #3a352e; margin: 12px 0 16px 0; word-break: break-word; white-space: pre-wrap; }
         .wish-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.65rem; color: #b2a48f; border-top: 1px solid #f0e8df; padding-top: 12px; }
-        .delete-btn {
-            position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.05);
-            border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
-            color: #b2a48f; transition: all 0.2s; display: flex; align-items: center; justify-content: center;
-        }
-        .delete-btn:hover { background: #e8c4b0; color: #c0392b; transform: scale(1.05); }
         .empty-message { text-align: center; padding: 50px 24px; background: #fefaf5; border-radius: 48px; color: #c0ae98; font-size: 0.85rem; grid-column: 1 / -1; }
         .toast-msg {
             position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
@@ -72,20 +65,6 @@
             display: flex; align-items: center; gap: 6px;
         }
         .refresh-btn:hover { background: #a68b5b10; border-color: #a68b5b; }
-        .admin-panel {
-            background: #fff8f0; border-radius: 28px; padding: 16px 24px; margin-bottom: 28px;
-            border: 1px solid #e8d9cc; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
-        }
-        .admin-panel input {
-            flex: 1; min-width: 150px; padding: 10px 16px; border-radius: 40px;
-            border: 1px solid #e4dbcf; background: white; font-size: 0.8rem;
-        }
-        .admin-panel button {
-            background: #a68b5b20; border: 1px solid #a68b5b; padding: 8px 20px;
-            border-radius: 40px; color: #8e734a; cursor: pointer; font-size: 0.7rem;
-            transition: all 0.2s;
-        }
-        .admin-panel button:hover { background: #a68b5b; color: white; }
         .char-counter { text-align: right; font-size: 0.6rem; color: #bcae9a; margin-top: 6px; }
         @media (max-width: 720px) {
             nav { padding: 18px 24px; }
@@ -118,14 +97,6 @@
         <p>許下你的奇思妙想，為靈感閣開啟新的一嶼。</p>
     </div>
 
-    <!-- 后台管理区域 -->
-    <div class="admin-panel">
-        <i class="fas fa-shield-alt" style="color: #a68b5b;"></i>
-        <input type="password" id="adminPassword" placeholder="管理密碼" autocomplete="off">
-        <button id="enableAdminBtn"><i class="fas fa-lock-open"></i> 開啟管理模式</button>
-        <span style="font-size: 0.65rem; color: #b2a48f;">進入後可刪除願望</span>
-    </div>
-
     <div class="form-card">
         <div class="form-group">
             <label>🌿 暱稱</label>
@@ -153,12 +124,7 @@
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // ✅ 已更新为您的新网址
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwIHJ_4c-nnt_1nHrOn7iVS7AV-2iUJT3XdIdGxv8-j4yTt4wuDDSGhguRUc_ONjOph2Q/exec';
-    const ADMIN_PASSWORD = 'admin123';  // 请与 Apps Script 中的密码保持一致
-    
-    let isAdminMode = false;
-    let currentWishes = [];
     
     function showToast(msg, isSuccess = false) {
         const toast = document.getElementById('toastMsg');
@@ -187,18 +153,17 @@
                 throw new Error(result.error || '加载失败');
             }
             
-            currentWishes = result.wishes || [];
+            const wishes = result.wishes || [];
             
-            if (currentWishes.length === 0) {
+            if (wishes.length === 0) {
                 wishWall.innerHTML = '<div class="empty-message">🎐 許願牆空靈如鏡，等你書寫第一道願望 🎐</div>';
                 return;
             }
             
             wishWall.innerHTML = '';
-            for (let wish of currentWishes) {
+            for (let wish of wishes) {
                 const card = document.createElement('div');
                 card.className = 'wish-card';
-                card.setAttribute('data-id', wish.id);
                 card.innerHTML = `
                     <div class="wish-nickname">${escapeHtml(wish.nickname)}</div>
                     <div class="wish-message">${escapeHtml(wish.message)}</div>
@@ -206,19 +171,8 @@
                         <span><i class="far fa-calendar-alt"></i> ${formatDate(wish.timestamp)}</span>
                         <span><i class="fas fa-heart" style="color: #d4b48c;"></i> 粼粼心願</span>
                     </div>
-                    ${isAdminMode ? `<button class="delete-btn" data-id="${wish.id}" title="刪除願望"><i class="fas fa-trash-alt"></i></button>` : ''}
                 `;
                 wishWall.appendChild(card);
-            }
-            
-            if (isAdminMode) {
-                document.querySelectorAll('.delete-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const wishId = btn.getAttribute('data-id');
-                        deleteWish(wishId);
-                    });
-                });
             }
         } catch (error) {
             console.error('加载失败:', error);
@@ -269,43 +223,6 @@
         }
     }
     
-    async function deleteWish(wishId) {
-        if (!confirm('確定要刪除這個願望嗎？')) return;
-        
-        const password = document.getElementById('adminPassword').value;
-        if (!password) {
-            showToast('請先輸入管理密碼');
-            return;
-        }
-        
-        try {
-            const response = await fetch(`${APPS_SCRIPT_URL}?action=delete&id=${wishId}&password=${encodeURIComponent(password)}`, {
-                method: 'DELETE'
-            });
-            const result = await response.json();
-            
-            if (result.success) {
-                showToast('🗑️ 願望已刪除', true);
-                loadWishes();
-            } else {
-                showToast('❌ 刪除失敗：' + (result.error || '密碼錯誤'));
-            }
-        } catch (error) {
-            showToast('❌ 連線異常');
-        }
-    }
-    
-    function enableAdminMode() {
-        const password = document.getElementById('adminPassword').value;
-        if (password === ADMIN_PASSWORD) {
-            isAdminMode = true;
-            showToast('🔓 管理模式已開啟，可點擊垃圾桶刪除願望', true);
-            loadWishes();
-        } else {
-            showToast('❌ 密碼錯誤');
-        }
-    }
-    
     function updateCharCount() {
         const len = document.getElementById('message').value.length;
         document.getElementById('charCount').innerText = len;
@@ -323,9 +240,7 @@
     
     document.getElementById('submitBtn').addEventListener('click', submitWish);
     document.getElementById('refreshBtn').addEventListener('click', loadWishes);
-    document.getElementById('enableAdminBtn').addEventListener('click', enableAdminMode);
     document.getElementById('message').addEventListener('input', updateCharCount);
-    
     document.getElementById('message').addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
             e.preventDefault();
