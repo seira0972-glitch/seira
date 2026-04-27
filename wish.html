@@ -27,24 +27,74 @@
         .form-card { background: #ffffff; border-radius: 36px; padding: 32px 38px; margin-bottom: 48px; box-shadow: 0 18px 32px -12px rgba(0, 0, 0, 0.06); border: 1px solid rgba(166, 139, 91, 0.2); }
         .form-group { margin-bottom: 28px; }
         .form-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: #a68b5b; margin-bottom: 10px; font-weight: 500; }
-        .form-group input, .form-group textarea { width: 100%; padding: 14px 20px; font-size: 0.95rem; background: #fefcf9; border: 1px solid #e4dbcf; border-radius: 48px; font-family: inherit; outline: none; color: #2c2b28; }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px 20px; font-size: 0.95rem; background: #fefcf9; border: 1px solid #e4dbcf; border-radius: 48px; font-family: inherit; outline: none; color: #2c2b28; transition: all 0.2s; }
         .form-group textarea { border-radius: 32px; resize: vertical; min-height: 100px; }
         .form-group input:focus, .form-group textarea:focus { border-color: #c2a277; box-shadow: 0 0 0 3px rgba(166, 139, 91, 0.12); }
-        .submit-btn { background: #a68b5b; border: none; padding: 12px 34px; border-radius: 50px; color: white; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.25s ease; font-weight: 500; display: inline-flex; align-items: center; gap: 12px; width: 100%; justify-content: center; }
+        .submit-btn {
+            background: #a68b5b; border: none; padding: 12px 34px; border-radius: 50px; color: white;
+            font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+            transition: all 0.25s ease; font-weight: 500; display: inline-flex; align-items: center;
+            gap: 12px; width: 100%; justify-content: center;
+        }
         .submit-btn:hover { background: #8e734a; transform: translateY(-2px); }
         .submit-btn:disabled { background: #cbbca8; cursor: not-allowed; transform: none; }
-        .wall-title { font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 500; color: #a68b5b; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #e8e0d6; display: flex; align-items: center; gap: 10px; }
+        .wall-title {
+            font-family: 'Noto Serif TC', serif; font-size: 1.3rem; font-weight: 500; color: #a68b5b;
+            margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #e8e0d6;
+            display: flex; align-items: center; gap: 10px;
+        }
         .wish-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin-top: 8px; }
-        .wish-card { background: #ffffff; border-radius: 28px; padding: 22px; transition: all 0.2s ease; border: 1px solid #efe5db; box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.04); }
+        .wish-card {
+            background: #ffffff; border-radius: 28px; padding: 22px; transition: all 0.2s ease;
+            border: 1px solid #efe5db; box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
         .wish-card:hover { transform: translateY(-3px); border-color: #d6c7b7; box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.08); }
         .wish-nickname { font-family: 'Noto Serif TC', serif; font-weight: 600; font-size: 1rem; color: #4f463b; display: inline-block; border-left: 3px solid #dbbc97; padding-left: 12px; margin-bottom: 14px; }
         .wish-message { font-size: 0.9rem; line-height: 1.55; color: #3a352e; margin: 12px 0 16px 0; word-break: break-word; white-space: pre-wrap; }
         .wish-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.65rem; color: #b2a48f; border-top: 1px solid #f0e8df; padding-top: 12px; }
+        .delete-btn {
+            position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.05);
+            border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+            color: #b2a48f; transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+        }
+        .delete-btn:hover { background: #e8c4b0; color: #c0392b; transform: scale(1.05); }
         .empty-message { text-align: center; padding: 50px 24px; background: #fefaf5; border-radius: 48px; color: #c0ae98; font-size: 0.85rem; grid-column: 1 / -1; }
-        .toast-msg { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: #2c2b28e6; backdrop-filter: blur(12px); color: #f0ebe2; padding: 10px 28px; border-radius: 60px; font-size: 0.75rem; z-index: 10001; opacity: 0; transition: opacity 0.2s; pointer-events: none; white-space: nowrap; }
-        .refresh-btn { background: none; border: 1px solid #e4dbcf; padding: 6px 14px; border-radius: 40px; font-size: 0.65rem; color: #a68b5b; cursor: pointer; margin-left: auto; transition: 0.2s; }
+        .toast-msg {
+            position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+            background: #2c2b28e6; backdrop-filter: blur(12px); color: #f0ebe2;
+            padding: 10px 28px; border-radius: 60px; font-size: 0.75rem;
+            z-index: 10001; opacity: 0; transition: opacity 0.2s; pointer-events: none;
+        }
+        .refresh-btn {
+            background: none; border: 1px solid #e4dbcf; padding: 6px 14px; border-radius: 40px;
+            font-size: 0.65rem; color: #a68b5b; cursor: pointer; margin-left: auto; transition: 0.2s;
+            display: flex; align-items: center; gap: 6px;
+        }
         .refresh-btn:hover { background: #a68b5b10; border-color: #a68b5b; }
-        @media (max-width: 720px) { nav { padding: 18px 24px; } .nav-links { gap: 20px; } .container { margin-top: 110px; padding: 0 20px; } .form-card { padding: 24px; } .pool-header h1 { font-size: 2rem; } .toast-msg { white-space: normal; text-align: center; max-width: 85vw; } }
+        .admin-panel {
+            background: #fff8f0; border-radius: 28px; padding: 16px 24px; margin-bottom: 28px;
+            border: 1px solid #e8d9cc; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+        }
+        .admin-panel input {
+            flex: 1; min-width: 150px; padding: 10px 16px; border-radius: 40px;
+            border: 1px solid #e4dbcf; background: white; font-size: 0.8rem;
+        }
+        .admin-panel button {
+            background: #a68b5b20; border: 1px solid #a68b5b; padding: 8px 20px;
+            border-radius: 40px; color: #8e734a; cursor: pointer; font-size: 0.7rem;
+            transition: all 0.2s;
+        }
+        .admin-panel button:hover { background: #a68b5b; color: white; }
+        .char-counter { text-align: right; font-size: 0.6rem; color: #bcae9a; margin-top: 6px; }
+        @media (max-width: 720px) {
+            nav { padding: 18px 24px; }
+            .nav-links { gap: 20px; }
+            .container { margin-top: 110px; padding: 0 20px; }
+            .form-card { padding: 24px; }
+            .pool-header h1 { font-size: 2rem; }
+            .toast-msg { white-space: normal; text-align: center; max-width: 85vw; }
+        }
     </style>
 </head>
 <body>
@@ -68,6 +118,14 @@
         <p>許下你的奇思妙想，為靈感閣開啟新的一嶼。</p>
     </div>
 
+    <!-- 后台管理区域 -->
+    <div class="admin-panel">
+        <i class="fas fa-shield-alt" style="color: #a68b5b;"></i>
+        <input type="password" id="adminPassword" placeholder="管理密碼" autocomplete="off">
+        <button id="enableAdminBtn"><i class="fas fa-lock-open"></i> 開啟管理模式</button>
+        <span style="font-size: 0.65rem; color: #b2a48f;">進入後可刪除願望</span>
+    </div>
+
     <div class="form-card">
         <div class="form-group">
             <label>🌿 暱稱</label>
@@ -75,7 +133,8 @@
         </div>
         <div class="form-group">
             <label>📖 你的願望・想學的內容・任何想對我說的話</label>
-            <textarea id="message" rows="4" placeholder="寫下你心中的許願⋯⋯"></textarea>
+            <textarea id="message" rows="4" placeholder="寫下你心中的許願⋯⋯" maxlength="500"></textarea>
+            <div class="char-counter"><span id="charCount">0</span>/500</div>
         </div>
         <button class="submit-btn" id="submitBtn">
             <i class="fas fa-feather-alt"></i> 貼上許願牆
@@ -94,103 +153,186 @@
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // 已更新为您最新的 Apps Script 网址
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMPydxxqXQjXCvxyR3j2Jqz2ZKvlMM01No9Tib2MuiyKef16soEqN4kwMOeSwk9j9B/exec';
-
-    const submitBtn = document.getElementById('submitBtn');
-    const nicknameInput = document.getElementById('nickname');
-    const messageInput = document.getElementById('message');
-    const refreshBtn = document.getElementById('refreshBtn');
-    const wishWall = document.getElementById('wishWall');
-
+    // ✅ 已为您配置好专属后端网址
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyN3xAy8cTSMJ2G1J6CMP7cuZquQPLtKqlbn_MJXlG_-H5G_PkRsRc4ei_oL-fluOcT/exec';
+    const ADMIN_PASSWORD = 'admin123';  // 请与 Apps Script 中的密码保持一致
+    
+    let isAdminMode = false;
+    let currentWishes = [];
+    
     function showToast(msg, isSuccess = false) {
         const toast = document.getElementById('toastMsg');
-        toast.innerHTML = (isSuccess ? '✓ ' : '') + msg;
+        toast.innerHTML = (isSuccess ? '✨ ' : '🍃 ') + msg;
         toast.style.opacity = '1';
         setTimeout(() => { toast.style.opacity = '0'; }, 2500);
     }
-
+    
     function formatDate(timestamp) {
         if (!timestamp) return '未知日期';
         try {
             const date = new Date(timestamp);
-            return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+            return `${date.getFullYear()}.${String(date.getMonth()+1).padStart(2,'0')}.${String(date.getDate()).padStart(2,'0')}`;
         } catch(e) { return '近期'; }
     }
-
+    
     async function loadWishes() {
-        wishWall.innerHTML = '<div class="empty-message">🎐 載入中... 🎐</div>';
+        const wishWall = document.getElementById('wishWall');
+        wishWall.innerHTML = '<div class="empty-message">🎐 微風吹拂池面，拾取靈感中... 🎐</div>';
+        
         try {
-            const response = await fetch(APPS_SCRIPT_URL);
+            const response = await fetch(`${APPS_SCRIPT_URL}?t=${Date.now()}`);
             const result = await response.json();
             
-            // 处理可能的错误格式
-            let wishes = result;
-            if (result && !Array.isArray(result) && result.wishes) {
-                wishes = result.wishes;
-            } else if (result && !Array.isArray(result) && result.error) {
-                throw new Error(result.error);
+            if (!result.success) {
+                throw new Error(result.error || '加载失败');
             }
             
-            if (!wishes || wishes.length === 0) {
+            currentWishes = result.wishes || [];
+            
+            if (currentWishes.length === 0) {
                 wishWall.innerHTML = '<div class="empty-message">🎐 許願牆空靈如鏡，等你書寫第一道願望 🎐</div>';
                 return;
             }
+            
             wishWall.innerHTML = '';
-            for (let wish of wishes) {
+            for (let wish of currentWishes) {
                 const card = document.createElement('div');
                 card.className = 'wish-card';
+                card.setAttribute('data-id', wish.id);
                 card.innerHTML = `
-                    <div class="wish-nickname">${escapeHtml(wish.nickname || '匿名旅人')}</div>
-                    <div class="wish-message">${escapeHtml(wish.message || '')}</div>
+                    <div class="wish-nickname">${escapeHtml(wish.nickname)}</div>
+                    <div class="wish-message">${escapeHtml(wish.message)}</div>
                     <div class="wish-footer">
                         <span><i class="far fa-calendar-alt"></i> ${formatDate(wish.timestamp)}</span>
+                        <span><i class="fas fa-heart" style="color: #d4b48c;"></i> 粼粼心願</span>
                     </div>
+                    ${isAdminMode ? `<button class="delete-btn" data-id="${wish.id}" title="刪除願望"><i class="fas fa-trash-alt"></i></button>` : ''}
                 `;
                 wishWall.appendChild(card);
             }
+            
+            if (isAdminMode) {
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const wishId = btn.getAttribute('data-id');
+                        deleteWish(wishId);
+                    });
+                });
+            }
         } catch (error) {
-            console.error('读取许愿失败:', error);
+            console.error('加载失败:', error);
             wishWall.innerHTML = '<div class="empty-message">⚠️ 連線異常，請確認 Apps Script 已正確部署並設定權限為「任何人」</div>';
         }
     }
-
+    
     async function submitWish() {
-        const nickname = nicknameInput.value.trim();
-        const message = messageInput.value.trim();
-        if (!message) { showToast('✨ 願望不能留空，請寫下靈感 ✨'); return; }
-        const finalNickname = nickname || '匿名旅人';
+        const nickname = document.getElementById('nickname').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        if (!message) {
+            showToast('願望不能留空，請寫下靈感✨');
+            return;
+        }
+        
+        const submitBtn = document.getElementById('submitBtn');
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> 送出中...';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> 祈願送往池心...';
+        
         try {
-            await fetch(APPS_SCRIPT_URL, {
+            const response = await fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nickname: finalNickname, message: message })
+                body: JSON.stringify({
+                    nickname: nickname || '匿名旅人',
+                    message: message
+                })
             });
-            showToast('🌟 願望已送入許願池！感謝你 🌟', true);
-            nicknameInput.value = '';
-            messageInput.value = '';
-            setTimeout(() => loadWishes(), 1000);
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                showToast('🌟 願望已送入許願池！感謝你 🌟', true);
+                document.getElementById('nickname').value = '';
+                document.getElementById('message').value = '';
+                updateCharCount();
+                loadWishes();
+            } else {
+                showToast('❌ ' + (result.error || '送出失敗'));
+            }
         } catch (error) {
+            console.error('提交失败:', error);
             showToast('❌ 連線異常，請稍後再試');
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-feather-alt"></i> 貼上許願牆';
         }
     }
-
+    
+    async function deleteWish(wishId) {
+        if (!confirm('確定要刪除這個願望嗎？')) return;
+        
+        const password = document.getElementById('adminPassword').value;
+        if (!password) {
+            showToast('請先輸入管理密碼');
+            return;
+        }
+        
+        try {
+            const response = await fetch(`${APPS_SCRIPT_URL}?action=delete&id=${wishId}&password=${encodeURIComponent(password)}`, {
+                method: 'DELETE'
+            });
+            const result = await response.json();
+            
+            if (result.success) {
+                showToast('🗑️ 願望已刪除', true);
+                loadWishes();
+            } else {
+                showToast('❌ 刪除失敗：' + (result.error || '密碼錯誤'));
+            }
+        } catch (error) {
+            showToast('❌ 連線異常');
+        }
+    }
+    
+    function enableAdminMode() {
+        const password = document.getElementById('adminPassword').value;
+        if (password === ADMIN_PASSWORD) {
+            isAdminMode = true;
+            showToast('🔓 管理模式已開啟，可點擊垃圾桶刪除願望', true);
+            loadWishes();
+        } else {
+            showToast('❌ 密碼錯誤');
+        }
+    }
+    
+    function updateCharCount() {
+        const len = document.getElementById('message').value.length;
+        document.getElementById('charCount').innerText = len;
+    }
+    
     function escapeHtml(str) {
         if (!str) return '';
-        return str.replace(/[&<>]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m] || m));
+        return str.replace(/[&<>]/g, (m) => {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
     }
-
-    submitBtn.addEventListener('click', submitWish);
-    refreshBtn.addEventListener('click', loadWishes);
-    messageInput.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); submitWish(); }
+    
+    document.getElementById('submitBtn').addEventListener('click', submitWish);
+    document.getElementById('refreshBtn').addEventListener('click', loadWishes);
+    document.getElementById('enableAdminBtn').addEventListener('click', enableAdminMode);
+    document.getElementById('message').addEventListener('input', updateCharCount);
+    
+    document.getElementById('message').addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+            e.preventDefault();
+            submitWish();
+        }
     });
+    
     loadWishes();
 </script>
 </body>
