@@ -6,58 +6,41 @@
     <title>課程收集器｜靈感閣</title>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin:0; padding:0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
             background: #ffffff;
             color: #2c2c2c;
             line-height: 1.7;
-            scroll-behavior: smooth;
+        }
+        #nav-placeholder {
+            min-height: 85px;
+            width: 100%;
         }
         .container {
             max-width: 1080px;
             margin: 0 auto;
             padding: 60px 40px 100px;
         }
-        .tool-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .back-link {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            color: #b59d6e;
-            text-decoration: none;
-            border-bottom: 1px solid #e2d9d2;
-            padding-bottom: 3px;
-            transition: all 0.2s;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        .back-link:hover {
-            border-bottom-color: #b59d6e;
-            color: #9b7a50;
-        }
-        .tool-title {
+        .page-title {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.8rem;
             font-weight: 400;
             letter-spacing: 0.15em;
             color: #2c2c2c;
             margin-bottom: 12px;
+            text-align: center;
         }
-        .tool-sub {
+        .page-sub {
             font-size: 0.8rem;
             color: #888;
             letter-spacing: 0.1em;
             border-top: 1px solid #ece5e0;
             display: inline-block;
             padding-top: 10px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 48px;
         }
         .card-block {
             border-bottom: 1px solid #ece5e0;
@@ -65,9 +48,7 @@
             margin-bottom: 48px;
             transition: border-color 0.25s ease;
         }
-        .card-block:hover {
-            border-bottom-color: #b59d6e;
-        }
+        .card-block:hover { border-bottom-color: #b59d6e; }
         .card-title {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.2rem;
@@ -96,17 +77,13 @@
             gap: 16px;
             flex-wrap: wrap;
         }
-        .row2 > * {
-            flex: 1;
-        }
+        .row2 > * { flex: 1; }
         .row3 {
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
         }
-        .row3 > * {
-            flex: 1;
-        }
+        .row3 > * { flex: 1; }
         button {
             background: transparent;
             border: 1px solid #b59d6e;
@@ -117,8 +94,6 @@
             color: #b59d6e;
             cursor: pointer;
             transition: all 0.25s;
-            margin-right: 12px;
-            margin-bottom: 12px;
         }
         button:hover {
             background: #b59d6e;
@@ -132,18 +107,11 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            transition: 0.2s;
         }
-        .course-item:hover {
-            border-bottom-color: #b59d6e;
-        }
-        .course-info {
-            flex: 1;
-        }
+        .course-item:hover { border-bottom-color: #b59d6e; }
         .course-info strong {
             font-family: 'Noto Serif TC', serif;
             font-size: 1rem;
-            color: #2c2c2c;
         }
         .course-meta {
             font-size: 0.8rem;
@@ -157,18 +125,9 @@
             border-radius: 20px;
             margin-left: 10px;
         }
-        .status-completed {
-            background: #e8f0e8;
-            color: #2c6e2c;
-        }
-        .status-progress {
-            background: #fef0e8;
-            color: #b5753c;
-        }
-        .status-planned {
-            background: #e8e8fd;
-            color: #5a5ab5;
-        }
+        .status-completed { background: #e8f0e8; color: #2c6e2c; }
+        .status-progress { background: #fef0e8; color: #b5753c; }
+        .status-planned { background: #e8e8fd; color: #5a5ab5; }
         .region-badge {
             display: inline-block;
             font-size: 0.65rem;
@@ -185,10 +144,7 @@
             font-size: 0.7rem;
             margin-left: 8px;
         }
-        .complete-btn {
-            border-color: #8fb88f;
-            color: #4a7a4a;
-        }
+        .complete-btn { border-color: #8fb88f; color: #4a7a4a; }
         .filter-bar {
             display: flex;
             gap: 12px;
@@ -198,9 +154,6 @@
         .filter-bar input, .filter-bar select {
             flex: 1;
             margin-bottom: 0;
-        }
-        .filter-bar select {
-            flex: 0.8;
         }
         .stats {
             text-align: right;
@@ -222,252 +175,194 @@
         }
         @media (max-width: 768px) {
             .container { padding: 40px 24px 80px; }
-            .tool-title { font-size: 1.4rem; }
+            .page-title { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="tool-header">
-        <a href="index.html" class="back-link">← 返回首頁</a>
-        <div class="tool-title">📚 全台課程收集器</div>
-        <div class="tool-sub">記錄想學的一切・全台縣市篩選</div>
+    <div id="nav-placeholder"></div>
+
+    <div class="container">
+        <div class="page-title">📚 全台課程收集器</div>
+        <div class="page-sub">記錄想學的一切・全台縣市篩選</div>
+
+        <div class="card-block">
+            <div class="card-title">✏️ 新增課程</div>
+            <input type="text" id="courseName" placeholder="課程名稱 (必填)">
+            <div class="row3">
+                <input type="text" id="courseDate" placeholder="日期 (如 2025/8/15 或 每週三)">
+                <input type="text" id="courseProvider" placeholder="開課單位 / 老師">
+                <select id="courseRegion">
+                    <option value="">📍 選擇縣市</option>
+                    <option value="台北">台北市</option><option value="新北">新北市</option>
+                    <option value="基隆">基隆市</option><option value="桃園">桃園市</option>
+                    <option value="新竹">新竹縣市</option><option value="苗栗">苗栗縣</option>
+                    <option value="台中">台中市</option><option value="彰化">彰化縣</option>
+                    <option value="南投">南投縣</option><option value="雲林">雲林縣</option>
+                    <option value="嘉義">嘉義縣市</option><option value="台南">台南市</option>
+                    <option value="高雄">高雄市</option><option value="屏東">屏東縣</option>
+                    <option value="宜蘭">宜蘭縣</option><option value="花蓮">花蓮縣</option>
+                    <option value="台東">台東縣</option>
+                    <option value="線上">🌐 線上課程</option>
+                </select>
+            </div>
+            <div class="row2">
+                <select id="courseType">
+                    <option value="線上課程">線上課程</option>
+                    <option value="實體講座">實體講座</option>
+                    <option value="證照考試">證照/考試</option>
+                    <option value="工作坊">工作坊</option>
+                    <option value="語言學習">語言學習</option>
+                    <option value="其他">其他</option>
+                </select>
+                <select id="courseStatus">
+                    <option value="planned">📅 計劃中</option>
+                    <option value="progress">⚡ 進行中</option>
+                    <option value="completed">✅ 已完成</option>
+                </select>
+            </div>
+            <textarea id="courseNote" rows="2" placeholder="備註、課程連結或心得"></textarea>
+            <button id="addCourseBtn">＋ 新增課程</button>
+        </div>
+
+        <div class="card-block">
+            <div class="card-title">📖 我的課程清單</div>
+            <div class="filter-bar">
+                <input type="text" id="searchCourse" placeholder="搜尋課程名稱或單位">
+                <select id="filterRegion">
+                    <option value="">📍 全部縣市</option>
+                    <option value="台北">台北市</option><option value="新北">新北市</option>
+                    <option value="基隆">基隆市</option><option value="桃園">桃園市</option>
+                    <option value="新竹">新竹縣市</option><option value="苗栗">苗栗縣</option>
+                    <option value="台中">台中市</option><option value="彰化">彰化縣</option>
+                    <option value="南投">南投縣</option><option value="雲林">雲林縣</option>
+                    <option value="嘉義">嘉義縣市</option><option value="台南">台南市</option>
+                    <option value="高雄">高雄市</option><option value="屏東">屏東縣</option>
+                    <option value="宜蘭">宜蘭縣</option><option value="花蓮">花蓮縣</option>
+                    <option value="台東">台東縣</option>
+                    <option value="線上">🌐 線上課程</option>
+                </select>
+                <select id="filterType">
+                    <option value="">📂 全部類型</option>
+                    <option value="線上課程">線上課程</option>
+                    <option value="實體講座">實體講座</option>
+                    <option value="證照考試">證照/考試</option>
+                    <option value="工作坊">工作坊</option>
+                    <option value="語言學習">語言學習</option>
+                    <option value="其他">其他</option>
+                </select>
+                <select id="filterStatus">
+                    <option value="">📌 全部狀態</option>
+                    <option value="planned">📅 計劃中</option>
+                    <option value="progress">⚡ 進行中</option>
+                    <option value="completed">✅ 已完成</option>
+                </select>
+            </div>
+            <div class="stats" id="courseStats"></div>
+            <div id="courseList">載入中...</div>
+        </div>
     </div>
 
-    <div class="card-block">
-        <div class="card-title">✏️ 新增課程</div>
-        <input type="text" id="courseName" placeholder="課程名稱 (必填)">
-        <div class="row3">
-            <input type="text" id="courseDate" placeholder="日期 (如 2025/8/15 或 每週三)">
-            <input type="text" id="courseProvider" placeholder="開課單位 / 老師">
-            <select id="courseRegion">
-                <option value="">📍 選擇縣市</option>
-                <option value="台北">台北市</option>
-                <option value="新北">新北市</option>
-                <option value="基隆">基隆市</option>
-                <option value="桃園">桃園市</option>
-                <option value="新竹">新竹縣市</option>
-                <option value="苗栗">苗栗縣</option>
-                <option value="台中">台中市</option>
-                <option value="彰化">彰化縣</option>
-                <option value="南投">南投縣</option>
-                <option value="雲林">雲林縣</option>
-                <option value="嘉義">嘉義縣市</option>
-                <option value="台南">台南市</option>
-                <option value="高雄">高雄市</option>
-                <option value="屏東">屏東縣</option>
-                <option value="宜蘭">宜蘭縣</option>
-                <option value="花蓮">花蓮縣</option>
-                <option value="台東">台東縣</option>
-                <option value="線上">🌐 線上課程</option>
-            </select>
-        </div>
-        <div class="row2">
-            <select id="courseType">
-                <option value="線上課程">線上課程</option>
-                <option value="實體講座">實體講座</option>
-                <option value="證照考試">證照/考試</option>
-                <option value="工作坊">工作坊</option>
-                <option value="語言學習">語言學習</option>
-                <option value="其他">其他</option>
-            </select>
-            <select id="courseStatus">
-                <option value="planned">📅 計劃中</option>
-                <option value="progress">⚡ 進行中</option>
-                <option value="completed">✅ 已完成</option>
-            </select>
-        </div>
-        <textarea id="courseNote" rows="2" placeholder="備註、課程連結或心得"></textarea>
-        <button id="addCourseBtn">＋ 新增課程</button>
-    </div>
+    <footer>WUNDERKAMMER · 靈感閣</footer>
 
-    <div class="card-block">
-        <div class="card-title">📖 我的課程清單</div>
-        <div class="filter-bar">
-            <input type="text" id="searchCourse" placeholder="搜尋課程名稱或單位">
-            <select id="filterRegion">
-                <option value="">📍 全部縣市</option>
-                <option value="台北">台北市</option>
-                <option value="新北">新北市</option>
-                <option value="基隆">基隆市</option>
-                <option value="桃園">桃園市</option>
-                <option value="新竹">新竹縣市</option>
-                <option value="苗栗">苗栗縣</option>
-                <option value="台中">台中市</option>
-                <option value="彰化">彰化縣</option>
-                <option value="南投">南投縣</option>
-                <option value="雲林">雲林縣</option>
-                <option value="嘉義">嘉義縣市</option>
-                <option value="台南">台南市</option>
-                <option value="高雄">高雄市</option>
-                <option value="屏東">屏東縣</option>
-                <option value="宜蘭">宜蘭縣</option>
-                <option value="花蓮">花蓮縣</option>
-                <option value="台東">台東縣</option>
-                <option value="線上">🌐 線上課程</option>
-            </select>
-            <select id="filterType">
-                <option value="">📂 全部類型</option>
-                <option value="線上課程">線上課程</option>
-                <option value="實體講座">實體講座</option>
-                <option value="證照考試">證照/考試</option>
-                <option value="工作坊">工作坊</option>
-                <option value="語言學習">語言學習</option>
-                <option value="其他">其他</option>
-            </select>
-            <select id="filterStatus">
-                <option value="">📌 全部狀態</option>
-                <option value="planned">📅 計劃中</option>
-                <option value="progress">⚡ 進行中</option>
-                <option value="completed">✅ 已完成</option>
-            </select>
-        </div>
-        <div class="stats" id="courseStats"></div>
-        <div id="courseList">載入中...</div>
-    </div>
-</div>
-<footer>WUNDERKAMMER · 靈感閣</footer>
+    <script>
+        fetch('nav.html')
+            .then(res => {
+                if (!res.ok) throw new Error('nav not found');
+                return res.text();
+            })
+            .then(data => {
+                const navContainer = document.getElementById('nav-placeholder');
+                if (navContainer) {
+                    navContainer.innerHTML = data;
+                    const scripts = navContainer.querySelectorAll('script');
+                    scripts.forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        if (oldScript.src) {
+                            newScript.src = oldScript.src;
+                        } else {
+                            newScript.textContent = oldScript.textContent;
+                        }
+                        oldScript.parentNode.replaceChild(newScript, oldScript);
+                    });
+                }
+            })
+            .catch(err => {
+                console.log('導航組件載入略過:', err);
+                const navDiv = document.getElementById('nav-placeholder');
+                if (navDiv && !navDiv.innerHTML.trim()) {
+                    navDiv.style.minHeight = '40px';
+                }
+            });
 
-<script>
-    let courses = [];
-    
-    function loadCourses() {
-        const stored = localStorage.getItem("courses_all");
-        if (stored) courses = JSON.parse(stored);
-        renderCourses();
-    }
-    
-    function saveCourses() {
-        localStorage.setItem("courses_all", JSON.stringify(courses));
-        renderCourses();
-    }
-    
-    function getStatusText(status) {
-        switch(status) {
-            case 'planned': return '📅 計劃中';
-            case 'progress': return '⚡ 進行中';
-            case 'completed': return '✅ 已完成';
-            default: return '📅 計劃中';
-        }
-    }
-    
-    function getStatusClass(status) {
-        switch(status) {
-            case 'completed': return 'status-completed';
-            case 'progress': return 'status-progress';
-            default: return 'status-planned';
-        }
-    }
-    
-    function renderCourses() {
-        const keyword = document.getElementById("searchCourse").value.toLowerCase();
-        const regionFilter = document.getElementById("filterRegion").value;
-        const typeFilter = document.getElementById("filterType").value;
-        const statusFilter = document.getElementById("filterStatus").value;
+        let courses = [];
         
-        let filtered = courses.filter(c => {
-            const matchKeyword = (c.name + (c.provider || "")).toLowerCase().includes(keyword);
-            const matchRegion = regionFilter === "" || c.region === regionFilter;
-            const matchType = typeFilter === "" || c.type === typeFilter;
-            const matchStatus = statusFilter === "" || c.status === statusFilter;
-            return matchKeyword && matchRegion && matchType && matchStatus;
-        });
-        
-        // 更新統計
-        const total = courses.length;
-        const completed = courses.filter(c => c.status === 'completed').length;
-        const progress = courses.filter(c => c.status === 'progress').length;
-        const planned = courses.filter(c => c.status === 'planned').length;
-        document.getElementById("courseStats").innerHTML = `📊 總計 ${total} 堂 | ✅ 已完成 ${completed} | ⚡ 進行中 ${progress} | 📅 計劃中 ${planned}`;
-        
-        const container = document.getElementById("courseList");
-        if (filtered.length === 0) {
-            container.innerHTML = "📭 尚無課程，新增一筆吧";
-            return;
+        function loadCourses() {
+            const stored = localStorage.getItem("courses_all");
+            if (stored) courses = JSON.parse(stored);
+            renderCourses();
         }
         
-        container.innerHTML = filtered.map((c, idx) => {
-            const originalIdx = courses.findIndex(x => x === c);
-            const statusText = getStatusText(c.status);
-            const statusClass = getStatusClass(c.status);
-            const regionDisplay = c.region === "線上" ? "🌐 線上" : (c.region ? `📍 ${c.region}` : "");
+        function saveCourses() {
+            localStorage.setItem("courses_all", JSON.stringify(courses));
+            renderCourses();
+        }
+        
+        function getStatusText(status) {
+            switch(status) {
+                case 'planned': return '📅 計劃中';
+                case 'progress': return '⚡ 進行中';
+                case 'completed': return '✅ 已完成';
+                default: return '📅 計劃中';
+            }
+        }
+        
+        function getStatusClass(status) {
+            switch(status) {
+                case 'completed': return 'status-completed';
+                case 'progress': return 'status-progress';
+                default: return 'status-planned';
+            }
+        }
+        
+        function renderCourses() {
+            const keyword = document.getElementById("searchCourse").value.toLowerCase();
+            const regionFilter = document.getElementById("filterRegion").value;
+            const typeFilter = document.getElementById("filterType").value;
+            const statusFilter = document.getElementById("filterStatus").value;
             
-            return `<div class="course-item">
-                <div class="course-info">
-                    <strong>${escapeHtml(c.name)}</strong>
-                    <span class="course-status ${statusClass}">${statusText}</span>
-                    ${regionDisplay ? `<span class="region-badge">${regionDisplay}</span>` : ""}
-                    <div class="course-meta">
-                        📅 ${c.date || "日期未定"} &nbsp; 🏷️ ${c.type} &nbsp; 👤 ${c.provider || "-"}
-                    </div>
-                    <div style="font-size:0.75rem; color:#6a6a6a; margin-top:4px;">${c.note || ""}</div>
-                </div>
-                <div>
-                    ${c.status !== 'completed' ? `<button class="complete-btn" data-idx="${originalIdx}" data-action="complete">✔ 完成</button>` : ""}
-                    <button class="delete-btn" data-idx="${originalIdx}" data-action="delete">刪除</button>
-                </div>
-            </div>`;
-        }).join('');
-        
-        // 綁定按鈕事件
-        document.querySelectorAll(".complete-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                const idx = parseInt(btn.dataset.idx);
-                courses[idx].status = 'completed';
-                saveCourses();
+            let filtered = courses.filter(c => {
+                const matchKeyword = (c.name + (c.provider || "")).toLowerCase().includes(keyword);
+                const matchRegion = regionFilter === "" || c.region === regionFilter;
+                const matchType = typeFilter === "" || c.type === typeFilter;
+                const matchStatus = statusFilter === "" || c.status === statusFilter;
+                return matchKeyword && matchRegion && matchType && matchStatus;
             });
-        });
-        document.querySelectorAll(".delete-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                const idx = parseInt(btn.dataset.idx);
-                courses.splice(idx, 1);
-                saveCourses();
-            });
-        });
-    }
-    
-    function escapeHtml(str) {
-        if (!str) return "";
-        return str.replace(/[&<>]/g, function(m) {
-            return {'&':'&amp;', '<':'&lt;', '>':'&gt;'}[m];
-        });
-    }
-    
-    document.getElementById("addCourseBtn").onclick = () => {
-        const name = document.getElementById("courseName").value.trim();
-        if (!name) {
-            alert("請填寫課程名稱");
-            return;
-        }
-        
-        courses.push({
-            name: name,
-            date: document.getElementById("courseDate").value,
-            provider: document.getElementById("courseProvider").value,
-            region: document.getElementById("courseRegion").value,
-            type: document.getElementById("courseType").value,
-            status: document.getElementById("courseStatus").value,
-            note: document.getElementById("courseNote").value
-        });
-        
-        saveCourses();
-        
-        // 清空表單
-        document.getElementById("courseName").value = "";
-        document.getElementById("courseDate").value = "";
-        document.getElementById("courseProvider").value = "";
-        document.getElementById("courseRegion").value = "";
-        document.getElementById("courseType").value = "線上課程";
-        document.getElementById("courseStatus").value = "planned";
-        document.getElementById("courseNote").value = "";
-    };
-    
-    document.getElementById("searchCourse").addEventListener("input", renderCourses);
-    document.getElementById("filterRegion").addEventListener("change", renderCourses);
-    document.getElementById("filterType").addEventListener("change", renderCourses);
-    document.getElementById("filterStatus").addEventListener("change", renderCourses);
-    
-    loadCourses();
-</script>
-</body>
-</html>
+            
+            const total = courses.length;
+            const completed = courses.filter(c => c.status === 'completed').length;
+            const progress = courses.filter(c => c.status === 'progress').length;
+            const planned = courses.filter(c => c.status === 'planned').length;
+            document.getElementById("courseStats").innerHTML = `📊 總計 ${total} 堂 | ✅ 已完成 ${completed} | ⚡ 進行中 ${progress} | 📅 計劃中 ${planned}`;
+            
+            const container = document.getElementById("courseList");
+            if (filtered.length === 0) {
+                container.innerHTML = "📭 尚無課程，新增一筆吧";
+                return;
+            }
+            
+            container.innerHTML = filtered.map((c, idx) => {
+                const originalIdx = courses.findIndex(x => x === c);
+                const statusText = getStatusText(c.status);
+                const statusClass = getStatusClass(c.status);
+                const regionDisplay = c.region === "線上" ? "🌐 線上" : (c.region ? `📍 ${c.region}` : "");
+                
+                return `<div class="course-item">
+                    <div class="course-info">
+                        <strong>${escapeHtml(c.name)}</strong>
+                        <span class="course-status ${statusClass}">${statusText}</span>
+                        ${regionDisplay ? `<span class="region-badge">${regionDisplay}</span>` : ""}
+                        <div class="course-meta">
+                            📅 ${c.date || "日期未定"} &nbsp; 🏷️ ${c.type} &nbsp; 👤 ${c.provider || "-"}
+                        </div>
+                        <div style="font-size:0.75rem; color:#6a
