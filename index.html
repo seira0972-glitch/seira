@@ -73,7 +73,7 @@
             padding: 0 40px 100px;
         }
 
-        /* 區塊標題 — 雅緻底線 (最新內容使用相同風格) */
+        /* 區塊標題 — 雅緻底線 */
         .section-title {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.4rem;
@@ -94,7 +94,7 @@
             opacity: 0.8;
         }
 
-        /* 統一的內容網格 — 溫潤卡片，展現最新內容 */
+        /* 統一的內容網格 — 溫潤卡片 */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -143,7 +143,7 @@
             color: #9b7a50;
         }
 
-        /* 頁尾 — 低調經典 */
+        /* 頁尾 */
         footer {
             text-align: center;
             padding: 60px 40px 48px;
@@ -257,7 +257,7 @@
             </div>
         </div>
 
-        <!-- 實用工具區塊（新增） -->
+        <!-- 實用工具區塊 -->
         <h2 class="section-title" style="margin-top: 80px;">實用工具</h2>
         <div class="grid">
             <div class="card">
@@ -270,18 +270,12 @@
                 <p>記錄想上的課、講座，自訂分類與備註。</p>
                 <a href="course.html">前往工具 →</a>
             </div>
-            <div class="card">
-                <h3>📈 台股看盤</h3>
-                <p>自選股清單，手動記錄價格，簡易追蹤。</p>
-                <a href="stock.html">前往工具 →</a>
-            </div>
         </div>
     </div>
 
     <footer>WUNDERKAMMER · 靈感閣</footer>
 
     <script>
-        // 優雅加載導航 nav.html (若檔案存在則引入，不存在時不影響主視覺，保持乾淨)
         fetch('nav.html')
             .then(res => {
                 if (!res.ok) throw new Error('nav not found');
@@ -291,7 +285,6 @@
                 const navContainer = document.getElementById('nav-placeholder');
                 if (navContainer) {
                     navContainer.innerHTML = data;
-                    // 重新執行可能內嵌的腳本，確保動態功能
                     const scripts = navContainer.querySelectorAll('script');
                     scripts.forEach(oldScript => {
                         const newScript = document.createElement('script');
@@ -305,8 +298,7 @@
                 }
             })
             .catch(err => {
-                // 靜默失敗，導航區塊可選留白，不破壞視覺
-                console.log('導航組件載入略過（可選）:', err);
+                console.log('導航組件載入略過:', err);
                 const navDiv = document.getElementById('nav-placeholder');
                 if (navDiv && !navDiv.innerHTML.trim()) {
                     navDiv.style.minHeight = '40px';
