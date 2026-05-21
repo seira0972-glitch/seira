@@ -213,7 +213,7 @@
             .catch(err => console.log('導航載入略過:', err));
 
         // ========= 請填寫你的 Gemini API 金鑰 =========
-        const API_KEY = "你的Gemini_API金鑰";
+        const API_KEY = "AIzaSyDoDmsULVJSI-WHz5kBeTLvhJE8u_0UHGc";
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
         const PROMPT = `你是一個課程資訊解析助手。從下面這段文字中，提取出所有課程，每筆課程包含「日期」(date)、「課程名稱」(course)、「地點」(location)、「開課單位」(organizer)。如果某個欄位沒有明確寫出，就填「不详」。輸出格式必須是純 JSON 陣列，不要有任何其他文字或說明。範例：[{"date":"2025/8/5","course":"AI實戰工作坊","location":"台北市大安區","organizer":"資策會"}]`;
