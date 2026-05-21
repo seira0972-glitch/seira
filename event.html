@@ -250,7 +250,7 @@
             });
 
         // ========= 請填寫你的 Gemini API 金鑰 =========
-        const API_KEY = "你的Gemini_API金鑰";
+        const API_KEY = "AIzaSyDoDmsULVJSI-WHz5kBeTLvhJE8u_0UHGc";
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
         const PROMPT = `你是一個活動資訊解析助手。從下面這段文字中，提取出「活動名稱」、「開始日期」、「結束日期(如果有)」、「地點(包含完整的縣市名稱)」、「活動類型(市集/音樂/講座/展覽/其他)」。若無明確寫出則填「不详」。輸出純 JSON 格式，不要有任何其他說明。範例：{"name":"白晝之夜","startDate":"2025/10/12","endDate":"2025/10/13","location":"台北市大安區大安森林公園","type":"展覽"}`;
