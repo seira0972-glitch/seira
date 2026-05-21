@@ -6,58 +6,43 @@
     <title>活動收集器｜靈感閣</title>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin:0; padding:0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
             background: #ffffff;
             color: #2c2c2c;
             line-height: 1.7;
             scroll-behavior: smooth;
+        }
+        /* 導航佔位符 */
+        #nav-placeholder {
+            min-height: 85px;
+            width: 100%;
         }
         .container {
             max-width: 1080px;
             margin: 0 auto;
             padding: 60px 40px 100px;
         }
-        .tool-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .back-link {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            color: #b59d6e;
-            text-decoration: none;
-            border-bottom: 1px solid #e2d9d2;
-            padding-bottom: 3px;
-            transition: all 0.2s;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        .back-link:hover {
-            border-bottom-color: #b59d6e;
-            color: #9b7a50;
-        }
-        .tool-title {
+        .page-title {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.8rem;
             font-weight: 400;
             letter-spacing: 0.15em;
             color: #2c2c2c;
             margin-bottom: 12px;
+            text-align: center;
         }
-        .tool-sub {
+        .page-sub {
             font-size: 0.8rem;
             color: #888;
             letter-spacing: 0.1em;
             border-top: 1px solid #ece5e0;
             display: inline-block;
             padding-top: 10px;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 48px;
         }
         .card-block {
             border-bottom: 1px solid #ece5e0;
@@ -157,12 +142,6 @@
         .filter-bar select {
             flex: 0.8;
         }
-        .stats {
-            text-align: right;
-            font-size: 0.75rem;
-            color: #bcb2a4;
-            margin-bottom: 16px;
-        }
         .note {
             font-size: 0.75rem;
             background: #fefaf5;
@@ -185,224 +164,245 @@
         }
         @media (max-width: 768px) {
             .container { padding: 40px 24px 80px; }
-            .tool-title { font-size: 1.4rem; }
+            .page-title { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="tool-header">
-        <a href="index.html" class="back-link">← 返回首頁</a>
-        <div class="tool-title">🎪 全台活動收集器</div>
-        <div class="tool-sub">AI 解析・全台縣市篩選</div>
-    </div>
+    <div id="nav-placeholder"></div>
 
-    <div class="note">
-        ⚠️ 使用前請先到 <a href="https://aistudio.google.com/" target="_blank" style="color:#b59d6e;">Google AI Studio</a> 取得 Gemini API 金鑰，<br>
-        並修改本頁面程式碼中的 <strong>「你的Gemini_API金鑰」</strong>（位於底部 script 區）。
-    </div>
+    <div class="container">
+        <div class="page-title">🎪 全台活動收集器</div>
+        <div class="page-sub">AI 解析・全台縣市篩選</div>
 
-    <div class="card-block">
-        <div class="card-title">✍️ 新增活動（貼上文字）</div>
-        <textarea id="rawText" rows="3" placeholder="貼上活動介紹文字，例如：&#10;2025 台北白晝之夜 10/12-13 大安森林公園，大型藝術展演"></textarea>
-        <div>
-            <button id="parseBtn">✨ AI 解析活動</button>
-            <button id="clearBtn">清空</button>
+        <div class="note">
+            ⚠️ 使用前請先到 <a href="https://aistudio.google.com/" target="_blank" style="color:#b59d6e;">Google AI Studio</a> 取得 Gemini API 金鑰，<br>
+            並修改本頁面程式碼中的 <strong>「你的Gemini_API金鑰」</strong>（位於底部 script 區）。
         </div>
-        <div id="resultArea" style="margin-top: 24px; background: #fefaf5; padding: 16px; display: none;"></div>
-    </div>
 
-    <div class="card-block">
-        <div class="card-title">📅 我的活動清單</div>
-        <div class="filter-bar">
-            <input type="text" id="searchInput" placeholder="搜尋名稱或地點">
-            <select id="regionFilter">
-                <option value="">🌍 全部縣市</option>
-                <option value="台北">台北市</option>
-                <option value="新北">新北市</option>
-                <option value="基隆">基隆市</option>
-                <option value="桃園">桃園市</option>
-                <option value="新竹">新竹縣市</option>
-                <option value="苗栗">苗栗縣</option>
-                <option value="台中">台中市</option>
-                <option value="彰化">彰化縣</option>
-                <option value="南投">南投縣</option>
-                <option value="雲林">雲林縣</option>
-                <option value="嘉義">嘉義縣市</option>
-                <option value="台南">台南市</option>
-                <option value="高雄">高雄市</option>
-                <option value="屏東">屏東縣</option>
-                <option value="宜蘭">宜蘭縣</option>
-                <option value="花蓮">花蓮縣</option>
-                <option value="台東">台東縣</option>
-            </select>
-            <select id="typeFilter">
-                <option value="">全部類型</option>
-                <option>市集</option><option>音樂</option><option>講座</option><option>展覽</option><option>其他</option>
-            </select>
-            <button id="exportCalendar">📆 匯出 iCal</button>
+        <div class="card-block">
+            <div class="card-title">✍️ 新增活動（貼上文字）</div>
+            <textarea id="rawText" rows="3" placeholder="貼上活動介紹文字，例如：&#10;2025 台北白晝之夜 10/12-13 大安森林公園，大型藝術展演"></textarea>
+            <div>
+                <button id="parseBtn">✨ AI 解析活動</button>
+                <button id="clearBtn">清空</button>
+            </div>
+            <div id="resultArea" style="margin-top: 24px; background: #fefaf5; padding: 16px; display: none;"></div>
         </div>
-        <div id="eventList">載入中...</div>
+
+        <div class="card-block">
+            <div class="card-title">📅 我的活動清單</div>
+            <div class="filter-bar">
+                <input type="text" id="searchInput" placeholder="搜尋名稱或地點">
+                <select id="regionFilter">
+                    <option value="">🌍 全部縣市</option>
+                    <option value="台北">台北市</option><option value="新北">新北市</option>
+                    <option value="基隆">基隆市</option><option value="桃園">桃園市</option>
+                    <option value="新竹">新竹縣市</option><option value="苗栗">苗栗縣</option>
+                    <option value="台中">台中市</option><option value="彰化">彰化縣</option>
+                    <option value="南投">南投縣</option><option value="雲林">雲林縣</option>
+                    <option value="嘉義">嘉義縣市</option><option value="台南">台南市</option>
+                    <option value="高雄">高雄市</option><option value="屏東">屏東縣</option>
+                    <option value="宜蘭">宜蘭縣</option><option value="花蓮">花蓮縣</option>
+                    <option value="台東">台東縣</option>
+                </select>
+                <select id="typeFilter">
+                    <option value="">全部類型</option>
+                    <option>市集</option><option>音樂</option><option>講座</option><option>展覽</option><option>其他</option>
+                </select>
+                <button id="exportCalendar">📆 匯出 iCal</button>
+            </div>
+            <div id="eventList">載入中...</div>
+        </div>
     </div>
-</div>
-<footer>WUNDERKAMMER · 靈感閣</footer>
 
-<script>
-    // ========= 請填寫你的 Gemini API 金鑰 =========
-    const API_KEY = "AIzaSyBJdL2pKtZm9JTrAdFvb9CDlDxLwykWx4M";   // <--- 這裡！
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+    <footer>WUNDERKAMMER · 靈感閣</footer>
 
-    const PROMPT = `你是一個活動資訊解析助手。從下面這段文字中，提取出「活動名稱」、「開始日期」、「結束日期(如果有)」、「地點(包含完整的縣市名稱)」、「活動類型(市集/音樂/講座/展覽/其他)」。若無明確寫出則填「不详」。輸出純 JSON 格式，不要有任何其他說明。範例：{"name":"白晝之夜","startDate":"2025/10/12","endDate":"2025/10/13","location":"台北市大安區大安森林公園","type":"展覽"}`;
-
-    let events = [];
-    
-    // 從地點字串判斷縣市
-    function detectRegion(location) {
-        if (!location || location === "不详") return "";
-        const regionMap = [
-            "台北", "新北", "基隆", "桃園", "新竹", "苗栗", "台中", "彰化", 
-            "南投", "雲林", "嘉義", "台南", "高雄", "屏東", "宜蘭", "花蓮", "台東"
-        ];
-        for (let region of regionMap) {
-            if (location.includes(region)) return region;
-        }
-        return "";
-    }
-
-    function loadEvents() {
-        const stored = localStorage.getItem("activities_events");
-        if(stored) events = JSON.parse(stored);
-        renderEvents();
-    }
-    function saveEvents() { 
-        localStorage.setItem("activities_events", JSON.stringify(events)); 
-        renderEvents(); 
-    }
-
-    function renderEvents() {
-        const search = document.getElementById("searchInput").value.toLowerCase();
-        const regionFilter = document.getElementById("regionFilter").value;
-        const typeFilter = document.getElementById("typeFilter").value;
-        
-        let filtered = events.filter(ev => {
-            const matchSearch = (ev.name + ev.location).toLowerCase().includes(search);
-            const matchRegion = regionFilter === "" || ev.region === regionFilter;
-            const matchType = typeFilter === "" || ev.type === typeFilter;
-            return matchSearch && matchRegion && matchType;
-        });
-        
-        const container = document.getElementById("eventList");
-        if(filtered.length === 0) { 
-            container.innerHTML = "📭 尚無活動，請用上方AI解析新增"; 
-            return; 
-        }
-        
-        container.innerHTML = filtered.map((ev, idx) => {
-            const originalIdx = events.findIndex(e => e === ev);
-            let regionClass = "";
-            if (ev.region === "台南") regionClass = "tainan";
-            else if (ev.region === "高雄") regionClass = "kaohsiung";
-            else if (ev.region === "屏東") regionClass = "pingtung";
-            
-            return `<div class="event-item">
-                <div class="event-info">
-                    <strong>${escapeHtml(ev.name)}</strong>
-                    <span class="region-badge" style="${ev.region === '台北' ? 'background:#e8f0fe;color:#2c5a8c;' : ev.region === '台中' ? 'background:#fef0e8;color:#b5753c;' : ev.region === '高雄' ? 'background:#fde8e8;color:#b55a5a;' : ev.region === '台南' ? 'background:#e8f0e8;color:#2c6e2c;' : ev.region === '屏東' ? 'background:#e8e8fd;color:#5a5ab5;' : 'background:#f0ede8;color:#6e5e4a;'}">${ev.region || "地點未判讀"}</span>
-                    <div class="event-meta">📅 ${ev.startDate} ${ev.endDate && ev.endDate !== "不详" ? "～" + ev.endDate : ""} &nbsp; 📍 ${ev.location} &nbsp; 🏷️ ${ev.type}</div>
-                </div>
-                <button class="delete-btn" data-idx="${originalIdx}">刪除</button>
-            </div>`;
-        }).join('');
-        
-        document.querySelectorAll(".delete-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => { 
-                events.splice(parseInt(btn.dataset.idx), 1); 
-                saveEvents(); 
+    <script>
+        // 載入導航列
+        fetch('nav.html')
+            .then(res => {
+                if (!res.ok) throw new Error('nav not found');
+                return res.text();
+            })
+            .then(data => {
+                const navContainer = document.getElementById('nav-placeholder');
+                if (navContainer) {
+                    navContainer.innerHTML = data;
+                    const scripts = navContainer.querySelectorAll('script');
+                    scripts.forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        if (oldScript.src) {
+                            newScript.src = oldScript.src;
+                        } else {
+                            newScript.textContent = oldScript.textContent;
+                        }
+                        oldScript.parentNode.replaceChild(newScript, oldScript);
+                    });
+                }
+            })
+            .catch(err => {
+                console.log('導航組件載入略過:', err);
+                const navDiv = document.getElementById('nav-placeholder');
+                if (navDiv && !navDiv.innerHTML.trim()) {
+                    navDiv.style.minHeight = '40px';
+                }
             });
-        });
-    }
-    
-    function escapeHtml(str) { 
-        if (!str) return "";
-        return str.replace(/[&<>]/g, function(m) {
-            return {'&':'&amp;', '<':'&lt;', '>':'&gt;'}[m];
-        }); 
-    }
 
-    async function parseWithAI(text) {
-        const body = { contents: [{ parts: [{ text: PROMPT + "\n\n文字：" + text }] }] };
-        const res = await fetch(API_URL, { 
-            method: "POST", 
-            headers: { "Content-Type": "application/json" }, 
-            body: JSON.stringify(body) 
-        });
-        const data = await res.json();
-        const raw = data.candidates[0].content.parts[0].text;
-        const jsonMatch = raw.match(/\{[\s\S]*\}/);
-        if(jsonMatch) return JSON.parse(jsonMatch[0]);
-        throw new Error("解析失敗");
-    }
+        // ========= 請填寫你的 Gemini API 金鑰 =========
+        const API_KEY = "你的Gemini_API金鑰";
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
-    document.getElementById("parseBtn").onclick = async () => {
-        const raw = document.getElementById("rawText").value.trim();
-        if(!raw) { alert("請輸入活動文字"); return; }
-        const resultDiv = document.getElementById("resultArea");
-        resultDiv.style.display = "block";
-        resultDiv.innerHTML = "🤖 AI 思考中...";
-        try {
-            const parsed = await parseWithAI(raw);
-            const detectedRegion = detectRegion(parsed.location);
-            resultDiv.innerHTML = `
-                <div><strong>📌 解析結果</strong></div>
-                <div>名稱：${parsed.name || "不详"}</div>
-                <div>日期：${parsed.startDate || "不详"} ${parsed.endDate ? "～" + parsed.endDate : ""}</div>
-                <div>地點：${parsed.location || "不详"} ${detectedRegion ? `<span style="color:#b59d6e;">（判別：${detectedRegion}）</span>` : ""}</div>
-                <div>類型：${parsed.type || "其他"}</div>
-                <button id="confirmAdd" style="margin-top:12px;">＋ 加入活動清單</button>
-            `;
-            document.getElementById("confirmAdd").onclick = () => {
-                events.push({
-                    name: parsed.name || "未命名活動",
-                    startDate: parsed.startDate || "不详",
-                    endDate: parsed.endDate || "",
-                    location: parsed.location || "不详",
-                    type: parsed.type || "其他",
-                    region: detectedRegion || ""
-                });
-                saveEvents();
-                resultDiv.style.display = "none";
-                document.getElementById("rawText").value = "";
-            };
-        } catch(e) { 
-            resultDiv.innerHTML = `<span style="color:#b87a5a;">❌ 解析失敗，請檢查API金鑰或重試</span>`; 
-        }
-    };
-    
-    document.getElementById("clearBtn").onclick = () => { 
-        document.getElementById("rawText").value = ""; 
-        document.getElementById("resultArea").style.display = "none"; 
-    };
-    document.getElementById("searchInput").addEventListener("input", renderEvents);
-    document.getElementById("regionFilter").addEventListener("change", renderEvents);
-    document.getElementById("typeFilter").addEventListener("change", renderEvents);
-    
-    document.getElementById("exportCalendar").onclick = () => {
-        let ical = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//活動收集器//EN\n";
-        events.forEach(ev => {
-            if(ev.startDate !== "不详") {
-                let d = ev.startDate.replace(/\//g, "").replace(/-/g, "");
-                if(d.length === 8) ical += `BEGIN:VEVENT\nSUMMARY:${ev.name}\nDTSTART;VALUE=DATE:${d}\nLOCATION:${ev.location}\nEND:VEVENT\n`;
+        const PROMPT = `你是一個活動資訊解析助手。從下面這段文字中，提取出「活動名稱」、「開始日期」、「結束日期(如果有)」、「地點(包含完整的縣市名稱)」、「活動類型(市集/音樂/講座/展覽/其他)」。若無明確寫出則填「不详」。輸出純 JSON 格式，不要有任何其他說明。範例：{"name":"白晝之夜","startDate":"2025/10/12","endDate":"2025/10/13","location":"台北市大安區大安森林公園","type":"展覽"}`;
+
+        let events = [];
+        
+        function detectRegion(location) {
+            if (!location || location === "不详") return "";
+            const regionMap = ["台北","新北","基隆","桃園","新竹","苗栗","台中","彰化","南投","雲林","嘉義","台南","高雄","屏東","宜蘭","花蓮","台東"];
+            for (let region of regionMap) {
+                if (location.includes(region)) return region;
             }
-        });
-        ical += "END:VCALENDAR";
-        const blob = new Blob([ical], {type: "text/calendar"});
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "events.ics";
-        a.click();
-    };
-    
-    loadEvents();
-</script>
+            return "";
+        }
+
+        function loadEvents() {
+            const stored = localStorage.getItem("activities_events");
+            if(stored) events = JSON.parse(stored);
+            renderEvents();
+        }
+        function saveEvents() { 
+            localStorage.setItem("activities_events", JSON.stringify(events)); 
+            renderEvents(); 
+        }
+
+        function renderEvents() {
+            const search = document.getElementById("searchInput").value.toLowerCase();
+            const regionFilter = document.getElementById("regionFilter").value;
+            const typeFilter = document.getElementById("typeFilter").value;
+            
+            let filtered = events.filter(ev => {
+                const matchSearch = (ev.name + ev.location).toLowerCase().includes(search);
+                const matchRegion = regionFilter === "" || ev.region === regionFilter;
+                const matchType = typeFilter === "" || ev.type === typeFilter;
+                return matchSearch && matchRegion && matchType;
+            });
+            
+            const container = document.getElementById("eventList");
+            if(filtered.length === 0) { 
+                container.innerHTML = "📭 尚無活動，請用上方AI解析新增"; 
+                return; 
+            }
+            
+            container.innerHTML = filtered.map((ev, idx) => {
+                const originalIdx = events.findIndex(e => e === ev);
+                let regionColor = "";
+                if (ev.region === "台北") regionColor = "background:#e8f0fe;color:#2c5a8c;";
+                else if (ev.region === "台中") regionColor = "background:#fef0e8;color:#b5753c;";
+                else if (ev.region === "高雄") regionColor = "background:#fde8e8;color:#b55a5a;";
+                else if (ev.region === "台南") regionColor = "background:#e8f0e8;color:#2c6e2c;";
+                else if (ev.region === "屏東") regionColor = "background:#e8e8fd;color:#5a5ab5;";
+                else regionColor = "background:#f0ede8;color:#6e5e4a;";
+                
+                return `<div class="event-item">
+                    <div class="event-info">
+                        <strong>${escapeHtml(ev.name)}</strong>
+                        <span class="region-badge" style="${regionColor}">${ev.region || "地點未判讀"}</span>
+                        <div class="event-meta">📅 ${ev.startDate} ${ev.endDate && ev.endDate !== "不详" ? "～" + ev.endDate : ""} &nbsp; 📍 ${ev.location} &nbsp; 🏷️ ${ev.type}</div>
+                    </div>
+                    <button class="delete-btn" data-idx="${originalIdx}">刪除</button>
+                </div>`;
+            }).join('');
+            
+            document.querySelectorAll(".delete-btn").forEach(btn => {
+                btn.addEventListener("click", (e) => { 
+                    events.splice(parseInt(btn.dataset.idx), 1); 
+                    saveEvents(); 
+                });
+            });
+        }
+        
+        function escapeHtml(str) { 
+            if (!str) return "";
+            return str.replace(/[&<>]/g, function(m) {
+                return {'&':'&amp;', '<':'&lt;', '>':'&gt;'}[m];
+            }); 
+        }
+
+        async function parseWithAI(text) {
+            const body = { contents: [{ parts: [{ text: PROMPT + "\n\n文字：" + text }] }] };
+            const res = await fetch(API_URL, { 
+                method: "POST", 
+                headers: { "Content-Type": "application/json" }, 
+                body: JSON.stringify(body) 
+            });
+            const data = await res.json();
+            const raw = data.candidates[0].content.parts[0].text;
+            const jsonMatch = raw.match(/\{[\s\S]*\}/);
+            if(jsonMatch) return JSON.parse(jsonMatch[0]);
+            throw new Error("解析失敗");
+        }
+
+        document.getElementById("parseBtn").onclick = async () => {
+            const raw = document.getElementById("rawText").value.trim();
+            if(!raw) { alert("請輸入活動文字"); return; }
+            const resultDiv = document.getElementById("resultArea");
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = "🤖 AI 思考中...";
+            try {
+                const parsed = await parseWithAI(raw);
+                const detectedRegion = detectRegion(parsed.location);
+                resultDiv.innerHTML = `
+                    <div><strong>📌 解析結果</strong></div>
+                    <div>名稱：${parsed.name || "不详"}</div>
+                    <div>日期：${parsed.startDate || "不详"} ${parsed.endDate ? "～" + parsed.endDate : ""}</div>
+                    <div>地點：${parsed.location || "不详"} ${detectedRegion ? `<span style="color:#b59d6e;">（判別：${detectedRegion}）</span>` : ""}</div>
+                    <div>類型：${parsed.type || "其他"}</div>
+                    <button id="confirmAdd" style="margin-top:12px;">＋ 加入活動清單</button>
+                `;
+                document.getElementById("confirmAdd").onclick = () => {
+                    events.push({
+                        name: parsed.name || "未命名活動",
+                        startDate: parsed.startDate || "不详",
+                        endDate: parsed.endDate || "",
+                        location: parsed.location || "不详",
+                        type: parsed.type || "其他",
+                        region: detectedRegion || ""
+                    });
+                    saveEvents();
+                    resultDiv.style.display = "none";
+                    document.getElementById("rawText").value = "";
+                };
+            } catch(e) { 
+                resultDiv.innerHTML = `<span style="color:#b87a5a;">❌ 解析失敗，請檢查API金鑰或重試</span>`; 
+            }
+        };
+        
+        document.getElementById("clearBtn").onclick = () => { 
+            document.getElementById("rawText").value = ""; 
+            document.getElementById("resultArea").style.display = "none"; 
+        };
+        document.getElementById("searchInput").addEventListener("input", renderEvents);
+        document.getElementById("regionFilter").addEventListener("change", renderEvents);
+        document.getElementById("typeFilter").addEventListener("change", renderEvents);
+        
+        document.getElementById("exportCalendar").onclick = () => {
+            let ical = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//活動收集器//EN\n";
+            events.forEach(ev => {
+                if(ev.startDate !== "不详") {
+                    let d = ev.startDate.replace(/\//g, "").replace(/-/g, "");
+                    if(d.length === 8) ical += `BEGIN:VEVENT\nSUMMARY:${ev.name}\nDTSTART;VALUE=DATE:${d}\nLOCATION:${ev.location}\nEND:VEVENT\n`;
+                }
+            });
+            ical += "END:VCALENDAR";
+            const blob = new Blob([ical], {type: "text/calendar"});
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "events.ics";
+            a.click();
+        };
+        
+        loadEvents();
+    </script>
 </body>
 </html>
